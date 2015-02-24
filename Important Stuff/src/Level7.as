@@ -51,6 +51,7 @@ package
 		//[Embed(source = "../assets/water.mp3")] private var water:Class;
 		
 		//public var waterSFX:FlxSound = new FlxSound();
+		//HI!
 		public var rockMap:FlxTilemap;	
 		public var crumbleRockMap:FlxTilemap;
 		public var fadeBlockMap:FlxTilemap;
