@@ -59,6 +59,7 @@ package
 		public static var fx:Fx = new Fx;
 		public static var firstLevel1:Boolean = true;
 		public static var firstLevel4:Boolean = true;
+		public static var dropBouldlets:Boolean = false;
 		
 		
 		public function Registry() 

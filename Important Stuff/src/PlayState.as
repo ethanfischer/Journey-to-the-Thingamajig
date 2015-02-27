@@ -17,6 +17,7 @@ package
 		private var _level5:Class = Level5;
 		private var _level6:Class = Level6;
 		private var _level7:Class = Level7;
+		private var _finalLevel:Class = FinalLevel;
 		private var _menuButton:FlxButton;
 		private var _muteButton:FlxButton;
 		public var healthBar:FlxHealthBar;
@@ -32,6 +33,7 @@ package
 		private var _partyPopflag:Boolean;
 		private var _splosion:Poof;
 		private var _splat:FlxSprite = new FlxSprite(0, 0);
+		private var bouldletsFLag:Boolean;
 
 		[Embed(source = "../assets/punch2.mp3")] public var punchSFX:Class;
 		[Embed(source = "../assets/kick.mp3")] public var kickSFX:Class;
@@ -58,7 +60,7 @@ package
 
 		override public function create():void
 		{
-			stages = [_level1, _level2, _level3, _level4, _level5, _level6, _level7];
+			stages = [_level1, _level2, _level3, _level4, _level5, _level6, _level7, _finalLevel];
 
 			if(!Registry.pauseSounds) FlxG.volume = .5;
 
@@ -107,7 +109,6 @@ package
 				FlxG.collide(_gameLevel.player, _gameLevel.fadeBlocks);
 				FlxG.collide(_gameLevel.player, _gameLevel.npc);
 				FlxG.collide(_gameLevel.bots, _gameLevel.foreground);
-				if (Registry.stageCount == 6) FlxG.collide(_gameLevel.bots, _gameLevel.bots);
 				FlxG.collide(_gameLevel.bots, _gameLevel.crumbleRocks);
 				FlxG.overlap(_gameLevel.bots, _gameLevel.rocks, botRock);
 				FlxG.collide(_gameLevel.bots, _gameLevel.rocks, botRock);
@@ -227,6 +228,14 @@ package
 					if (!((!_streamLeft && FlxG.keys.RIGHT) || (FlxG.keys.LEFT && _streamLeft))) //and they're not carrying momentum from stream, no more streamDrag
 					{
 						streamDrag = false;
+					}
+				}
+				if (stageCount == 6)
+				{
+					if (Registry.dropBouldlets) 
+					{	
+						add(_gameLevel.bouldlets);
+						Registry.dropBouldlets = false;
 					}
 				}
 			}
@@ -631,11 +640,6 @@ package
 			{
 				add(_gameLevel.smokelets);
 				add(_gameLevel.particles);
-				if ((int(Registry.playtime)) % 20 == 0 && Registry.playtime != 0) 
-				{	
-					_gameLevel.bouldlets.setAll("active", true);
-					add(_gameLevel.bouldlets);
-				}
 			}
 			
 			add(_gameLevel.foreground);

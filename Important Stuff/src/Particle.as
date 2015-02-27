@@ -11,7 +11,7 @@ package
 		[Embed(source = "../assets/particle.png")] private var ParticlePNG:Class;
 		private var rand1:int;
 		private var rand2:int;
-		private var timer:Number = 0;
+		private var timer:Number = .01;
 		
 		public function Particle(i_x:int, i_y:int) 
 		{
@@ -41,16 +41,25 @@ package
 				x = 455 + rand1;
 				
 			}
-			timer += FlxG.elapsed;
-			if (timer > 10)
+			if (timer <= 20 && timer > 0)
 			{
-				visible = true;
-				if (timer > 15)
-				{
-					timer = 0;
-					visible = false;
-				}
+				timer += FlxG.elapsed;
 			}
+			if (timer > 8)
+			FlxG.shake(.003, 1);
+				if (timer > 10)
+				{
+					visible = true;
+					if (timer > 13)
+					{
+						Registry.dropBouldlets = true;
+						if (timer > 20)
+						{
+							visible = false;
+							timer = 0;
+						}
+					}
+				}
 			
 			
 		}
