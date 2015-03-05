@@ -131,6 +131,9 @@ package
 				FlxG.overlap(_gameLevel.player, _gameLevel.borgs, hitBorg);
 				FlxG.overlap(_gameLevel.player, _gameLevel.torches, hitFire);
 				FlxG.overlap(_gameLevel.player, _gameLevel.lilguy, hitLilguy);
+				FlxG.overlap(_gameLevel.player.hitBox, _gameLevel.bots, punchBot);
+				FlxG.overlap(_gameLevel.player.hitBox, _gameLevel.bots2, punchBot);
+				FlxG.overlap(_gameLevel.player.hitBox, _gameLevel.borgs, punchBorg);
 
 				if(Registry.stageCount == 3 && Registry.firstLevel4) FlxG.overlap(_gameLevel.player, _gameLevel.mail, hitMail);
 
@@ -145,12 +148,9 @@ package
 				FlxG.overlap(_gameLevel.player.hitBox, _gameLevel.rocks, punchRock);
 
 				if (Registry.stageCount == 4) FlxG.overlap(_gameLevel.player.hitBox, _gameLevel.npc, punchNPC);
-
-				FlxG.overlap(_gameLevel.player.hitBox, _gameLevel.bots, punchBot);
-				FlxG.overlap(_gameLevel.player.hitBox, _gameLevel.bots2, punchBot);
-				FlxG.overlap(_gameLevel.player.hitBox, _gameLevel.borgs, punchBorg);
-
 				if (Registry.stageCount == 1) FlxG.overlap(_gameLevel.player.hitBox, _gameLevel.npc, meetNPC);
+				
+				
 
 				FlxG.overlap(_gameLevel.player.screen, _gameLevel.bots, updateThings);
 				FlxG.overlap(_gameLevel.player.screen, _gameLevel.bots2, updateThings);
@@ -236,6 +236,15 @@ package
 					{	
 						add(_gameLevel.bouldlets);
 						Registry.dropBouldlets = false;
+					}
+					if (_gameLevel.player.x > _gameLevel.focusPoint.x) 
+					{
+						FlxG.camera.follow(_gameLevel.focusPoint);
+						_gameLevel.focusPoint.velocity.x = 300;
+					}
+					if (_gameLevel.focusPoint.x >= _gameLevel.meh.x)
+					{
+						_gameLevel.focusPoint.velocity.x = 0;
 					}
 				}
 			}
@@ -640,9 +649,11 @@ package
 			{
 				add(_gameLevel.smokelets);
 				add(_gameLevel.particles);
+				add(_gameLevel.focusPoint);
 			}
 			
-			add(_gameLevel.foreground);
+			add(_gameLevel.foreground);	
+			add(_gameLevel.wiz);
 			add(_gameLevel.supports);
 			add(_gameLevel.rocks);
 			add(_gameLevel.reinforcements);
@@ -652,6 +663,7 @@ package
 			add(_gameLevel.sign2);
 			add(_gameLevel.bots);
 			add(_gameLevel.poofs);
+			//add(_gameLevel.player.hitBox);
 
 			if(!Registry.hasUmbrella && (Registry.stageCount == 1 || Registry.stageCount == 4)) add(_gameLevel.npc); //if player already has umbrella, don't add the creature
 
