@@ -55,9 +55,6 @@ package
 		
 			Registry.hasUmbrella = true;
 		
-			focusPoint = new FlxSprite(500, 398);
-			focusPoint.visible = false;
-			focusPoint.scrollFactor.x = 0;
 			//Registry.musix = dwarfDance;
 			
 			Registry.fstPlace = 120;
@@ -96,8 +93,6 @@ package
 		parseCheckpoint();
 		
 		player = new Player(20, 398);
-		wiz = new Wiz(1000, 378);
-		meh = new FlxPoint(wiz.x - 260, wiz.y); //where the camera should stop in the last level
 		
 		Registry.player = player;
 			

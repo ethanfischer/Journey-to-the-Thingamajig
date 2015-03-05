@@ -2,7 +2,7 @@ package
 {
 	import flash.geom.Point;
 	import org.flixel.*;
-	import org.flixel.plugin.photonstorm.*;
+	//import org.flixel.plugin.photonstorm.*;
 	import org.flixel.plugin.photonstorm.BaseTypes.Bullet;
 
 	public class PlayState extends FlxState
@@ -123,6 +123,7 @@ package
 				FlxG.collide(_gameLevel.lilguy, _gameLevel.rocks);
 				FlxG.collide(_gameLevel.lilguy, _gameLevel.crumbleRocks);
 				FlxG.collide(_gameLevel.npc, _gameLevel.foreground);
+				FlxG.collide(_gameLevel.wiz, _gameLevel.foreground);
 
 				//Overlappings
 				FlxG.overlap(_gameLevel.player, _gameLevel.reinforcements, hitReinforcement);
@@ -245,7 +246,7 @@ package
 					if (_gameLevel.focusPoint.x >= _gameLevel.meh.x)
 					{
 						_gameLevel.focusPoint.velocity.x = 0;
-					}
+					} 
 				}
 			}
 		}

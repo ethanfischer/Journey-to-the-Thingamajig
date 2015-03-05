@@ -51,7 +51,6 @@ package
 		//[Embed(source = "../assets/water.mp3")] private var water:Class;
 		
 		//public var waterSFX:FlxSound = new FlxSound();
-		//HI!
 		public var rockMap:FlxTilemap;	
 		public var crumbleRockMap:FlxTilemap;
 		public var fadeBlockMap:FlxTilemap;
@@ -83,6 +82,14 @@ package
 			Registry.sndPlace = 220;
 			Registry.thdPlace = 420;
 			
+			
+			
+			wiz = new Wiz(10631, 350);
+			meh = new FlxPoint(wiz.x-300, wiz.y); //where the camera should stop in the last level
+			
+			focusPoint = new FlxSprite(wiz.x - 400, 430);
+			focusPoint.visible = false;
+			focusPoint.scrollFactor.x = 0;
 			Registry.hasFlower = true;
 			Registry.meetingAdjourned = true;
 			
@@ -122,8 +129,8 @@ package
 		}
 		else 
 		{
-			player = new Player(10, 65);
-			//player = new Player(2530, 350); //checkpoint
+			//player = new Player(10, 65);
+			player = new Player(9530, 350); //checkpoint
 			
 			Registry.torchesOn = true;
 		}
