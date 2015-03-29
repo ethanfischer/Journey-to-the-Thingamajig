@@ -2,7 +2,7 @@ package
 {
 	import flash.geom.Point;
 	import org.flixel.*;
-	//import org.flixel.plugin.photonstorm.*;
+	import org.flixel.plugin.photonstorm.*;
 	import org.flixel.plugin.photonstorm.BaseTypes.Bullet;
 
 	public class PlayState extends FlxState
@@ -53,14 +53,13 @@ package
 		[Embed(source = "../assets/foldpaper(openletter).mp3")] private var _openletter:Class;
 
 		//only here so reference in PlayState doesn't freak out
-		//HI
 		public function PlayState()
 		{
 		}
 
 		override public function create():void
 		{
-			stages = [_level1, _level2, _level3, _level4, _level5, _level6, _level7, _finalLevel];
+			stages = [_level1, _level2, _level3, _level4, _level5, _level6, _level7];
 
 			if(!Registry.pauseSounds) FlxG.volume = .5;
 

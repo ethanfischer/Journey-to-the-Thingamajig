@@ -85,9 +85,9 @@ package
 			
 			
 			wiz = new Wiz(10631, 350);
-			meh = new FlxPoint(wiz.x-300, wiz.y); //where the camera should stop in the last level
+			meh = new FlxPoint(wiz.x-280, wiz.y); //where the camera should stop in the last level
 			
-			focusPoint = new FlxSprite(wiz.x - 400, 430);
+			focusPoint = new FlxSprite(wiz.x - 590, 430);
 			focusPoint.visible = false;
 			focusPoint.scrollFactor.x = 0;
 			Registry.hasFlower = true;
