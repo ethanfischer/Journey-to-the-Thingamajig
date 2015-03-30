@@ -60,6 +60,7 @@ package
 		public var volcano:FlxSprite;
 		public var boulder:Boulder;
 		public var bouldlets:FlxGroup; 
+		public var pointsMessage:FlxText;
 	
 		[Embed(source = "../assets/canopy.png")] private var canopyPNG:Class;
 		[Embed(source = "../assets/canopy6.png")] private var canopy6PNG:Class;

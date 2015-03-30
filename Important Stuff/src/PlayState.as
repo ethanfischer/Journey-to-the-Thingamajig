@@ -149,9 +149,7 @@ package
 
 				if (Registry.stageCount == 4) FlxG.overlap(_gameLevel.player.hitBox, _gameLevel.npc, punchNPC);
 				if (Registry.stageCount == 1) FlxG.overlap(_gameLevel.player.hitBox, _gameLevel.npc, meetNPC);
-				
-				
-
+								
 				FlxG.overlap(_gameLevel.player.screen, _gameLevel.bots, updateThings);
 				FlxG.overlap(_gameLevel.player.screen, _gameLevel.bots2, updateThings);
 				FlxG.overlap(_gameLevel.player.screen, _gameLevel.rocks, updateThings);
@@ -180,7 +178,7 @@ package
 				}
 
 				// Bird appears every 30 seconds in the forest levels
-				if (Registry.stageCount <3 && Registry.playtime > 1 && Registry.playtime % 30 > 0 && Registry.playtime % 30 < 0.5) add(_gameLevel.bird);
+				if (Registry.stageCount <3 && Registry.playtime > 1 && Registry.playtime % 30 > 0 && Registry.playtime % 30 < 0.5 && !_gameLevel.letter.visible) add(_gameLevel.bird);
 
 				//reset the bird's position after it goes off screen
 				if (_gameLevel.bird.x < -30)
@@ -241,11 +239,15 @@ package
 					{
 						FlxG.camera.follow(_gameLevel.focusPoint);
 						_gameLevel.focusPoint.velocity.x = 300;
+						FlxControl.player1.setCursorControl(false, false, false, false);
 					}
 					if (_gameLevel.focusPoint.x >= _gameLevel.meh.x)
 					{
 						_gameLevel.focusPoint.velocity.x = 0;
 					} 
+					
+					add(_gameLevel.wiz.message);
+					
 				}
 			}
 		}
@@ -409,6 +411,7 @@ package
 		private function hitReinforcement(player:Player, reinforcement:Reinforcement):void
 		{
 			reinforcement.kill();
+			if (Registry.stageCount == 0 && player.x > 600) _gameLevel.pointsMessage.kill();
 		}
 
 		private function hitBlade(player:Player, blade:Bullet):void
@@ -530,7 +533,7 @@ package
 		private function hitMail(player:Player, mail:Mail):void
 		{
 			add(_gameLevel.letter);
-			_gameLevel.player.moves = false;
+			//_gameLevel.player.moves = false;
 			FlxG.play(_openletter);
 			FlxG.fade(0x000000, .2, viewMail);
 			mail.kill();
@@ -663,7 +666,8 @@ package
 			add(_gameLevel.sign2);
 			add(_gameLevel.bots);
 			add(_gameLevel.poofs);
-			//add(_gameLevel.player.hitBox);
+			add(_gameLevel.player.hitBox);
+			if (Registry.stageCount == 0 && Registry.firstLevel1) add(_gameLevel.pointsMessage);
 
 			if(!Registry.hasUmbrella && (Registry.stageCount == 1 || Registry.stageCount == 4)) add(_gameLevel.npc); //if player already has umbrella, don't add the creature
 

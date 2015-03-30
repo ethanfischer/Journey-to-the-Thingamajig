@@ -106,7 +106,7 @@ package
 				addAnimation("dead", [15], 0, false);
 				addAnimation("pickup", [19, 19, 19, 19, 19, 19, 19, 19, 19, 19, 19, 19], 3, false);
 				addAnimation("parachute", [24, 23, 23, 23, 23, 23, 23, 23, 23, 23, 23, 23, 23, 23, 23, 23, 23, 23, 23, 23, 23, 23, 23, 23, 23, 23, 23, 23, 23], 24, false);
-				addAnimation("letter", [26, 27,28,29,30,31,32,33,0], 18, false);
+				addAnimation("letter", [26, 27,28,29,30,31,32,33,0,0], 18, false);
 				
 				//handle walking Soundeffect stuff here
 				walkSFX = new FlxSound();

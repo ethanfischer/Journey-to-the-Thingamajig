@@ -15,8 +15,7 @@ package
 		public var dTurnFlag:Boolean = false;
 		private var shockedTimer:Number;
 		private var shockedFlag:Boolean = false;
-		
-		
+		public var message:FlxText;
 		
 		public function Wiz(x:int, y:int)
 		{
@@ -32,6 +31,9 @@ package
 			scrollFactor.x = 1;
 			
 			acceleration.y = 500;
+			
+			message = new FlxText(x+14, y- 20, 80, "");
+			
 		}
 	
 		override public function update():void
@@ -41,7 +43,7 @@ package
 			
 			if (onScreen() && !shockedFlag)
 			{
-				shockedTimer = 1.5;
+				shockedTimer = 15;
 				shockedFlag = true;
 			}
 			
@@ -50,12 +52,41 @@ package
 			if (shockedTimer > 0)
 			{
 				shockedTimer -= FlxG.elapsed;
+			
+				if (shockedTimer < 14)
+				{
+					message.text = "!";
+					if (shockedTimer < 12 && shockedTimer > 10)
+					{
+						if (isTouching(FLOOR)) velocity.y = -110;
+						play("excited");
+						message.x = x - 40;
+						message.text = "YOU MADE IT!!!!!!!!";
+					}
+					else if (shockedTimer <= 10)
+					{
+						play("idle");
+						message.text = "Come.";
+						if (shockedTimer < 8)
+						{
+							message.text = "We must hurry if we want to see it.";
+							if (shockedTimer < 5)
+							{
+								play("excited");
+								velocity.y = -60;
+								message.text = "You are not going to believe your eyes!";
+							}
+						}
+						
+					}
+				}
+					
 			}
 			else if (shockedTimer < 0)
 			{
-				if (isTouching(FLOOR)) velocity.y = -110;
-				play("excited");
+
 			}
+			
 		}
 		
 		public function turnAround():void

@@ -101,7 +101,7 @@ package
 		l6.label.color = 0xffffff;
 		l7.label.color = 0xffffff;
 		
-		levels = [l1, l2, l3, l4, l5, l6, l7, ];
+		levels = [l1, l2, l3, l4, l5, l6, l7];
 		
 		FlxG.mouse.show();
 			
@@ -121,7 +121,7 @@ package
 			else dots.play("blink");
 			
 			//use arrow keys to scroll through level titles
-			if (levelCount < 7 && l1pic.velocity.x == 0 && FlxG.keys.RIGHT && selector == 1) 
+			if (levelCount < 6 && l1pic.velocity.x == 0 && FlxG.keys.RIGHT && selector == 1) 
 			{
 				levelCount += 1;
 				Registry.stageCount += 1;

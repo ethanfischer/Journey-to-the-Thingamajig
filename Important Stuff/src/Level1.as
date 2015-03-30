@@ -22,7 +22,7 @@ package
 		[Embed(source = "../assets/letter(j).png")] private var _letterPNG:Class;
 		[Embed(source="../assets/forestsounds.mp3")] public var dwarfDance:Class;
 		
-		public var rockMap:FlxTilemap;	
+		public var rockMap:FlxTilemap;
 		
 		public function Level1() 
 		{
@@ -32,6 +32,7 @@ package
 			letter.loadGraphic(_letterPNG, false, false, 600, 300);
 			letter.scrollFactor.y = 0;
 			
+			pointsMessage = new FlxText(624, 190, 100, "these are pointless");
 			
 			Registry.hmodeChkpt = 99999999999999999;
 			Registry.musix = dwarfDance;
@@ -72,10 +73,9 @@ package
 			height = foreground.height;
 			
 			if(Registry.checkpointFlag) player = new Player(Registry.checkpoint.x + 5, Registry.checkpoint.y - 5);
-			else player = new Player(50, height - 65);
+			else player = new Player(50, height - 64);
 			
 			sign = new Sign(135, 240, "PRESS 'Z' OR 'UP' TO JUMP", player, 100, 240);
-			//sign2 = new Sign(1460, 240, "", player, 1435, 240);
 			parseBots(player);
 			parseRocks(player);
 			parseReinforcements();
