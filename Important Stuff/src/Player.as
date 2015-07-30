@@ -60,7 +60,7 @@ package
 		public var canPunch:Boolean = true;
 		public var isDying:Boolean = false;
 		public var isDucking:Boolean = false;
-		private var umbrellaCounter:int; //when you first open the umbrella, it slows you down. Only let this happen twice
+		private var umbrellaCounter:int; //when you first open the umbrella, it slows you down. Only let this happen a few times so players cant abuse this power
 		
 		public var walkingFlag:Boolean = false;
 		public var halted:Boolean;
@@ -310,6 +310,7 @@ package
 			//not exactly sure what this does. Left boundary maybe?
 			if (x < 0) x = 0;
 			if (x > Registry.gameLevel.end.x) x = Registry.gameLevel.end.x;
+			if (x < Registry.noGoingBack) x = Registry.noGoingBack;
 			
 			////////////////////////////////////////////////////////////////////////////////////
 			//								Idle, Walk, Run, Duck, and Jump					  //

@@ -12,6 +12,7 @@
     <movie minorVersion="0" />
     <movie platform="Flash Player" />
     <movie background="#FFFFFF" />
+    <movie preferredSDK="C:\Users\Ethan\AppData\Local\FlashDevelop\Apps\flexairsdk" />
   </output>
   <!-- Other classes to be compiled into your SWF -->
   <classpaths>
@@ -84,8 +85,8 @@
   <postBuildCommand alwaysRun="False" />
   <!-- Other project options -->
   <options>
-    <option showHiddenPaths="True" />
-    <option testMovie="NewTab" />
+    <option showHiddenPaths="False" />
+    <option testMovie="Default" />
     <option testMovieCommand="" />
   </options>
   <!-- Plugin storage -->

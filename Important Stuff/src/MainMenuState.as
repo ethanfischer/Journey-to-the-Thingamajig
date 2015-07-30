@@ -145,6 +145,7 @@ package
 		{
 			super.update();
 			dots.play("blink");
+			
 			//title.alpha += .01;
 			
 			if (stars.x < -600) stars.x = 0;

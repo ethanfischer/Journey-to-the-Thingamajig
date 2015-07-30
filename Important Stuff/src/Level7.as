@@ -46,6 +46,7 @@ package
 		
 		[Embed(source = "../assets/distant_thunder.mp3")] public var dwarfDance:Class; //mountain ambience mode
 		[Embed(source = "../assets/volcano.png")] public var volcanoPNG:Class;
+		[Embed(source="../assets/thingamajig.png")] public var thingPNG:Class;
 		//[Embed(source="../assets/02_Open_Eye_Signal.mp3")] public var dwarfDance:Class; //music mode
 		//[Embed(source="../assets/Native American video game music test.mp3")] public var dwarfDance:Class;
 		//[Embed(source = "../assets/water.mp3")] private var water:Class;
@@ -68,6 +69,10 @@ package
 			volcano.scrollFactor.y = 0;
 			boulder = new Boulder();
 			bouldlets = new FlxGroup(30);
+			thingamajig = new FlxSprite(11100, 405);
+			thingamajig.loadGraphic(thingPNG, false, false, 64, 64);
+			add(thingamajig);
+			
 			
 			for (var j:int = 0; j < 30; j++)
 			{
@@ -84,10 +89,10 @@ package
 			
 			
 			
-			wiz = new Wiz(10631, 415);
-			meh = new FlxPoint(wiz.x-280, wiz.y); //where the camera should stop in the last level
+			wiz = new Wiz(10000, 415);
+			focusDestination = new FlxPoint(wiz.x-220, wiz.y); //where the camera should stop in the last level
 			
-			focusPoint = new FlxSprite(wiz.x - 565, 430);
+			focusPoint = new FlxSprite(wiz.x - 455, 430);
 			focusPoint.visible = false;
 			focusPoint.scrollFactor.x = 0;
 			Registry.hasFlower = true;
@@ -102,15 +107,20 @@ package
 			
 			foreground = new FlxTilemap;
 			foreground.loadMap(new foregroundCSV, foregroundTilesPNG, 16, 16, 0, 0, 1, 24);
+			//	Makes these tiles non collidable)
+			foreground.setTileProperties(53, FlxObject.NONE, null, null, 2);
+			foreground.setTileProperties(57, FlxObject.NONE, null, null, 6);
+			foreground.setTileProperties(27, FlxObject.UP, null, null, 0);
+			foreground.setTileProperties(34, FlxObject.NONE, null, null, 4);
+			foreground.setTileProperties(33, FlxObject.NONE, null, null, 4);
+			foreground.setTileProperties(52, FlxObject.NONE, null, null, 4);
+			foreground.setTileProperties(90, FlxObject.NONE, null, null, 4);
 			
 			foreforeground = new FlxTilemap;
 			foreforeground.loadMap(new foreforegroundCSV, foreforegroundTilesPNG, 16, 16, 0, 0, 1, 64);
 			foreforeground.scrollFactor.x = 1;
 			foreforeground.y += 160;
-			
-			//	Makes these tiles non collidable)
-			foreground.setTileProperties(57, FlxObject.NONE, null, null, 6);
-			foreground.setTileProperties(27, FlxObject.UP, null, null, 0);
+	
 		
 			Registry.map = foreground;
 			
@@ -123,15 +133,22 @@ package
 		parseCheckpoint();
 		
 		if (Registry.checkpointFlag) 
-		{
-			player = new Player(Registry.checkpoint.x + 5, Registry.checkpoint.y - 5);
-			Registry.torchesOn = true;
+		{	
+			if (Registry.checkpointFlag2)
+			{	
+				player = new Player(Registry.checkpoint2.x + 5, Registry.checkpoint2.y - 5);
+				Registry.torchesOn = true;
+			}
+			else
+			{
+				player = new Player(Registry.checkpoint.x + 5, Registry.checkpoint.y - 5);
+				Registry.torchesOn = true;
+			}
 		}
 		else 
 		{
 			//player = new Player(10, 65);
-			player = new Player(9530, 350); //checkpoint
-			
+			player = new Player(10700, 350); //for testing ending sequence
 			Registry.torchesOn = true;
 		}
 		var rand1:int;
@@ -246,26 +263,13 @@ package
 			{
 				for (var tx:int = 0; tx < streamMap.widthInTiles; tx++)
 				{
-					if (streamMap.getTile(tx, ty) == 1)
-					{
-						streams.add(new Stream(tx, ty, true, "normal"));
-					}
-					else if(streamMap.getTile(tx, ty) == 2)
-					{
-						streams.add(new Stream(tx, ty, false, "normal"));
-					}
-					else if (streamMap.getTile(tx, ty) == 4)
-					{
-						streams.add(new Stream(tx, ty, false, "fall"));
-					}
-					else if (streamMap.getTile(tx, ty) == 5)
-					{
-						streams.add(new Stream(tx, ty, false, "drop"));
-					}
-					else if (streamMap.getTile(tx, ty) == 10)
-					{
-						streams.add(new Stream(tx, ty, true, "crash"));
-					}
+					if (streamMap.getTile(tx, ty) == 1) streams.add(new Stream(tx, ty, true, "normal"));
+					else if(streamMap.getTile(tx, ty) == 2) streams.add(new Stream(tx, ty, false, "normal"));
+					else if (streamMap.getTile(tx, ty) == 4) streams.add(new Stream(tx, ty, false, "fall"));
+					else if (streamMap.getTile(tx, ty) == 12) streams.add(new Stream(tx, ty, false, "fallRight"));
+					else if (streamMap.getTile(tx, ty) == 5) streams.add(new Stream(tx, ty, false, "drop"));
+					else if (streamMap.getTile(tx, ty) == 16) streams.add(new Stream(tx, ty, false, "dropRight"));
+					else if (streamMap.getTile(tx, ty) == 10) streams.add(new Stream(tx, ty, true, "crash"));
 				}
 			}
 		}
@@ -307,10 +311,17 @@ package
 				for (var tx:int = 0; tx < checkpointMap.widthInTiles; tx++)
 				{
 					if (checkpointMap.getTile(tx, ty) == 1)
-					{
+					{	
 						checkpoint = new Checkpoint(tx, ty);
 						Registry.checkpoint = checkpoint;
 						add(checkpoint);
+					}
+					else if (checkpointMap.getTile(tx, ty) == 2)
+					{
+						checkpoint2 = new Checkpoint(tx, ty);
+						checkpoint2.second = true;
+						Registry.checkpoint2 = checkpoint2;
+						add(checkpoint2);
 					}
 					else if (checkpointMap.getTile(tx, ty) == 3)
 					{

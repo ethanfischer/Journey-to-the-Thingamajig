@@ -1,5 +1,6 @@
 package  
 {
+	import flash.concurrent.Condition;
 	import flash.geom.Point;
 	import org.flixel.*;
 	
@@ -25,7 +26,9 @@ package
 		public static var gameLevel:GameLevel;
 		public static var stageCount:int = 0;
 		public static var checkpointFlag:Boolean = false;
+		public static var checkpointFlag2:Boolean = false;
 		public static var checkpoint:Checkpoint;
+		public static var checkpoint2:Checkpoint;
 		public static var ezchkpt:FlxPoint;
 		public static var deathMessageFlag:Boolean = false;
 		public static var levelDeathMessage:String;
@@ -60,7 +63,18 @@ package
 		public static var firstLevel1:Boolean = true;
 		public static var firstLevel4:Boolean = true;
 		public static var dropBouldlets:Boolean = false;
+		public static var wizUnfreeze:Boolean = false;
+		public static var wizUnfreeze2:Boolean = false;
+		public static var noGoingBack:int = 11170 - screenWidth + 60; //in level 7 after wiz dies you shouldn't be able to go back (11170 is BEHINDGIFT)
 		
+		//cutscenes
+		//NOTE: because every cutscene in my game should only happen once (no one wants to go through a cutscene over and over again
+		//cutscene booleans are put in Registry (this class) because we want them to happen permanently (or as long as the user is playing the game)
+		
+		public static var giftExchange:Boolean = false; //when you see the present, stop the camera from following player
+		public static var giftHasBeenExchanged:Boolean = false; //set to true after the wiz and gift disappear
+		public static var metWiz:Boolean = false;
+		public static var wizGiftFlag:Boolean = false; //once set, camera stays stationary with wiz and gift on right side of screen (set true in Playstate)
 		
 		public function Registry() 
 		{

@@ -30,7 +30,7 @@ package
 		
 		override public function update():void
 		{
-			if (y < 130) 
+			if (y < 130 && !Registry.gameLevel.wiz.rumbleFlag) 
 			{
 				play("cool");
 				//velocity.y = (int(Math.random()*3)) * -50;
@@ -41,11 +41,11 @@ package
 				x = 455 + rand1;
 				
 			}
-			if (timer <= 20 && timer > 0)
+			if (timer <= 20 && timer > 0 && !Registry.gameLevel.wiz.rumbleFlag)
 			{
 				timer += FlxG.elapsed;
 			}
-			if (timer > 8)
+			if (timer > 8 && !Registry.gameLevel.wiz.impendingDoomFlag)
 			FlxG.shake(.003, 1);
 				if (timer > 10)
 				{
@@ -60,7 +60,17 @@ package
 						}
 					}
 				}
+			if (Registry.gameLevel.wiz.impendingDoomFlag && !Registry.gameLevel.wiz.rumbleFlag)
+			{
+				visible = true;
+				velocity.y = (int(Math.random() + .5 * 3)) * -550;
+				timer = -100;
 			
+			}
+			if (Registry.gameLevel.wiz.smushFlag)
+			{
+				visible = false;
+			}
 			
 		}
 		

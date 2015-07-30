@@ -14,7 +14,7 @@ package
 		private var _level2:Class = Level2;
 		private var _level3:Class = Level3;
 		private var _level4:Class = Level4;
-		private var _level5:Class = Level5;
+		private var _level5:Class = Level5;	
 		private var _level6:Class = Level6;
 		private var _level7:Class = Level7;
 		private var _finalLevel:Class = FinalLevel;
@@ -102,6 +102,20 @@ package
 
 			if (!Registry.gameStart)
 			{
+				
+				////////////////////////////////////////////////////////////////////////
+				//							TESTING ZONE							  //
+				////////////////////////////////////////////////////////////////////////
+				
+				//press 'T'
+				if (FlxG.keys.T)
+				{
+					trace("		***TEST***");
+					
+				}
+				
+				
+				
 				//Collisions
 				FlxG.collide(_gameLevel.player, _gameLevel.foreground);
 				FlxG.collide(_gameLevel.player, _gameLevel.crumbleRocks, crumble);
@@ -134,6 +148,7 @@ package
 				FlxG.overlap(_gameLevel.player.hitBox, _gameLevel.bots, punchBot);
 				FlxG.overlap(_gameLevel.player.hitBox, _gameLevel.bots2, punchBot);
 				FlxG.overlap(_gameLevel.player.hitBox, _gameLevel.borgs, punchBorg);
+				FlxG.overlap(_gameLevel.player, _gameLevel.boulder, playerBoulder);
 
 				if(Registry.stageCount == 3 && Registry.firstLevel4) FlxG.overlap(_gameLevel.player, _gameLevel.mail, hitMail);
 
@@ -160,6 +175,7 @@ package
 				FlxG.overlap(_gameLevel.player, _gameLevel.spring, bouncePlayer);
 				FlxG.overlap(_gameLevel.player, _gameLevel.spring2, bouncePlayer);
 				FlxG.overlap(_gameLevel.player, _gameLevel.checkpoint, hitCheckpoint);
+				if(stageCount == 6 && Registry.giftHasBeenExchanged) FlxG.overlap(_gameLevel.player, _gameLevel.checkpoint2, hitCheckpoint);
 				FlxG.overlap(_gameLevel.player, _gameLevel.end, hitCheckpoint);
 
 				//If the letter is on screen (it should be when first playing level 1 and when hitting the mail in level 4),
@@ -228,6 +244,7 @@ package
 						streamDrag = false;
 					}
 				}
+				
 				if (stageCount == 6)
 				{
 					if (Registry.dropBouldlets) 
@@ -235,19 +252,43 @@ package
 						add(_gameLevel.bouldlets);
 						Registry.dropBouldlets = false;
 					}
-					if (_gameLevel.player.x > _gameLevel.focusPoint.x) 
+					if (Registry.gameLevel.wiz.smushFlag)
 					{
-						FlxG.camera.follow(_gameLevel.focusPoint);
-						_gameLevel.focusPoint.velocity.x = 300;
-						FlxControl.player1.setCursorControl(false, false, false, false);
+						if(_gameLevel.player.x > _gameLevel.wiz.BEHINDGIFT - 300){
+							_gameLevel.boulder.x = _gameLevel.wiz.BEHINDGIFT - 110;
+							add(_gameLevel.boulder);
+							Registry.gameLevel.wiz.smushFlag = false;
+							_gameLevel.wiz.smushTimer = .4;
+						}
 					}
-					if (_gameLevel.focusPoint.x >= _gameLevel.meh.x)
+					
+					//////////////////////
+					//     Wiz cutscene //     		
+					////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+					//		NOTE:I know there must be a much easier/more efficient way of handling cutscenes, 
+					//	    	 but this is how I do it:
+					//		-create a cutscene boolean in Registry. The cutscene can be triggered in any class that has access to Registry (which is every class I'm aware of)
+					//		-because PlayState(this class) handles animations and generally everything that happens on stage, what happens in the cutscene happens here
+					///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+					
+					//MEETING WIZ
+					//if (!Registry.giftExchange) //giftExchange is turned on when Wiz is onScreen behind the big gift (gExch turned on in Wiz)
+					//{
+						if (!Registry.metWiz)
+						{
+							meetWiz();
+						}
+					//}
+					
+					//GIFT EXCHANGE
+					if (Registry.giftExchange) //gift exchange cutscene happens after you greet the wiz (flagged in Wiz)
 					{
-						_gameLevel.focusPoint.velocity.x = 0;
-					} 
+						giftExchange();
+						
+					}
 					
-					add(_gameLevel.wiz.message);
-					
+					add(_gameLevel.wiz.message); //the game is constantly refreshing wiz's message because the message updates in real time
+				
 				}
 			}
 		}
@@ -382,7 +423,11 @@ package
 
 		private function hitCheckpoint(player:Player, checkpoint:Checkpoint):void
 		{
-			Registry.checkpointFlag = true;
+			checkpoint.kill();
+			
+			if (checkpoint.second) Registry.checkpointFlag2 = true;
+			else Registry.checkpointFlag = true;
+			
 			if (checkpoint.end)
 			{
 				if (!_partyPopflag)
@@ -390,7 +435,6 @@ package
 					_partyPopflag = true;
 					FlxG.play(_partyPop);
 				}
-				checkpoint.kill();
 				_gameLevel.player.walkSFX.stop();
 				_gameLevel.player.visible = false;
 				this.clear();
@@ -400,18 +444,13 @@ package
 				FlxG.music.fadeOut(.4);
 				FlxG.flash(0x00CCFF, 3, nextStage);
 			}
-			else if (!_shakeFlag)
-			{
-				_shakeFlag = true;
-				FlxG.flash(0xFFCCCC, .3);
-				checkpoint.kill();
-			}
+			
 		}
 
 		private function hitReinforcement(player:Player, reinforcement:Reinforcement):void
 		{
 			reinforcement.kill();
-			if (Registry.stageCount == 0 && player.x > 600) _gameLevel.pointsMessage.kill();
+			//if (Registry.stageCount == 0 && player.x > 600) _gameLevel.pointsMessage.kill();
 		}
 
 		private function hitBlade(player:Player, blade:Bullet):void
@@ -599,6 +638,7 @@ package
 
 		public function updateThings(screen:FlxSprite, thing:FlxObject):void //this is supposed to optimze my game. Don't know if actually does.
 		{
+			
 			var thatBot:Bot2; //in Level 7, there's one bot that shouldn't stop updating once you get past it
 			if (thing is Bot2) thatBot = Bot2(thing); //since you can only check if the bot2 should update forever, typecast the thing
 			if (thing is Bot2 && thatBot.updateForever) //if it is the updating forever bot, don't do anything
@@ -638,7 +678,11 @@ package
 				FlxG.volume = 0;
 			}
 		}
-
+		
+		public function playerBoulder(player:Player, boulder:Boulder):void
+		{
+			player.x -= 5;
+		}
 		public function makeStage():void
 		{
 			_gameLevel = new stages[Registry.stageCount];
@@ -655,7 +699,8 @@ package
 				add(_gameLevel.focusPoint);
 			}
 			
-			add(_gameLevel.foreground);	
+			add(_gameLevel.foreground);
+			if (Registry.stageCount == 6) add(_gameLevel.thingamajig);
 			add(_gameLevel.wiz);
 			add(_gameLevel.supports);
 			add(_gameLevel.rocks);
@@ -687,12 +732,15 @@ package
 			add(_gameLevel.spring2);
 			add(_gameLevel.player);
 			add(_gameLevel.checkpoint);
+			//add(_gameLevel.checkpoint2); only add second checkpoint when wiz makes it
 			add(_gameLevel.end);
 			add(_gameLevel.crumbleRocks);
 			add(_gameLevel.nomNoms);
 			add(_gameLevel.streams);
+			if(Registry.stageCount == 6)add(_gameLevel.wiz.smokelets);
 			add(_gameLevel.foreforeground);
 			add(_muteButton);
+			
 			createHealthBar(); //creates and adds player's health bar. Called here because it should appear over top of everything else
 			createPlaytimeMessage(); //creates and adds playtime message
 
@@ -734,5 +782,72 @@ package
 			Registry.musixFlag = false;
 			/////////////////////////////////////////////////////////////DON"T LET MUSIC STOP. FIGURE OUT A WAY TO DO SMOOTH TRANSITION
 		}
+		
+		//////////////////////////////////////////////////////////////
+		//						CUTSCENES							//
+		//////////////////////////////////////////////////////////////
+		public function meetWiz():void
+		{
+			if (!Registry.metWiz) //once player is free, set this to true
+			{
+				if (_gameLevel.player.x > _gameLevel.focusPoint.x) 
+				{
+					FlxG.camera.follow(_gameLevel.focusPoint); //have the camera pan over to the right to reveal the wizard
+					
+					_gameLevel.focusPoint.velocity.x = 600; //the speed of the panning
+					if (Registry.wizUnfreeze == false) 
+					{
+						FlxControl.player1.setCursorControl(false, false, false, false);
+						//_gameLevel.player.moves = false; //freeze the player
+						_gameLevel.player.velocity.x = 0;
+					}
+					//once wiz is on screen, he will go through his shenanagins, then you will unfreeze 
+				}
+				else if (_gameLevel.focusPoint.x >= _gameLevel.focusDestination.x)
+				{
+					if (Registry.wizUnfreeze == true)
+					{
+						//_gameLevel.player.moves = true; //unfreeze the player, allowing player to move to next cutscene (giftExchange)
+						FlxControl.player1.setCursorControl(false, false, true, true);
+						if (_gameLevel.player.x > _gameLevel.focusDestination.x)
+						{
+							FlxG.camera.follow(_gameLevel.player, FlxCamera.STYLE_PLATFORMER); //The camera will follow the player
+							_gameLevel.focusPoint.velocity.x = 0; //make sure focus point isn't moving (yet)
+							_gameLevel.focusPoint.x = _gameLevel.wiz.BEHINDGIFT - Registry.screenWidth + 50; //set up fPoint for giftExchange()
+							_gameLevel.focusDestination.x = _gameLevel.wiz.BEHINDGIFT;
+							
+							//exit meetWiz() and never come back
+							Registry.metWiz = true; //once player.moves is set to true and camera is following player, metWiz is set to true
+							return;
+						}
+					}
+					_gameLevel.focusPoint.velocity.x = 0; //focus point.x is consequently set to focusDestination.x when it passes focusDestination
+					
+				} 
+			}
+			
+		}
+		
+		public function giftExchange():void
+		{
+			if (_gameLevel.player.x > _gameLevel.focusPoint.x) 
+			{
+				FlxG.camera.follow(_gameLevel.focusPoint); //have the camera pan over to the right to reveal the thingamajig and wiz
+				
+				_gameLevel.focusPoint.velocity.x = 600; //the speed of the panning
+				if (Registry.wizUnfreeze2 == false) 
+				{
+					//_gameLevel.player.moves = false; //freeze the player //*TODO* BUT NOT IN MID AIR????
+					FlxControl.player1.setCursorControl(false, false, false, false);
+					_gameLevel.player.velocity.x = 0;
+				}
+				//once wiz is on screen, he will go through his shenanagins, then you will unfreeze 
+			}
+			else if (_gameLevel.focusPoint.x >= _gameLevel.focusDestination.x) //stop camera when fPoint > fDest
+			{
+				_gameLevel.focusPoint.velocity.x = 0; //focus point.x is consequently set to focusDestination.x when it passes focusDestination
+			} 
+		}
+		
 	}
 }

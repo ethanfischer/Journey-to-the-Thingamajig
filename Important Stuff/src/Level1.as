@@ -32,7 +32,6 @@ package
 			letter.loadGraphic(_letterPNG, false, false, 600, 300);
 			letter.scrollFactor.y = 0;
 			
-			pointsMessage = new FlxText(624, 190, 100, "these are pointless");
 			
 			Registry.hmodeChkpt = 99999999999999999;
 			Registry.musix = dwarfDance;
@@ -57,6 +56,7 @@ package
 			
 			//	Makes these tiles as allowed to be jumped UP through (but collide at all other angles)
 			foreground.setTileProperties(57, FlxObject.NONE, null, null, 6);
+
 			
 			Registry.map = foreground;
 			Registry.levelExit = new FlxPoint(99 * 16, 16 * 16);
@@ -75,7 +75,9 @@ package
 			if(Registry.checkpointFlag) player = new Player(Registry.checkpoint.x + 5, Registry.checkpoint.y - 5);
 			else player = new Player(50, height - 64);
 			
-			sign = new Sign(135, 240, "PRESS 'Z' OR 'UP' TO JUMP", player, 100, 240);
+			sign = new Sign(135, 240, "PRESS 'Z' TO JUMP", player, 100, 240);
+			sign2 = new Sign(1000, 180, "BALL OF POINTLESSNESS!", player, 1080, 180);
+			
 			parseBots(player);
 			parseRocks(player);
 			parseReinforcements();

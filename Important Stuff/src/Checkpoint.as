@@ -15,14 +15,17 @@ package
 		public var aliveTimer:Number = 0;
 		public var dieFlag:Boolean = false;
 		public var end:Boolean;
+		public var popable:Boolean = true;
+		public var second:Boolean;
 		
-		public function Checkpoint(x:int, y:int, i_end:Boolean = false)
+		public function Checkpoint(x:int, y:int, i_end:Boolean = false, i_second:Boolean = false)
 		{
 			super(x*16, y*16);
 			
 			//player = Registry.gameLevel.player;
-			
+			second = i_second;
 			end = i_end;
+			
 			if (end)
 			{
 				loadGraphic(endPNG, true, true, 32, 32);
@@ -48,9 +51,12 @@ package
 		}
 		
 		override public function kill():void
-		{		
+		{	
+			popable = false;
+			
 			if (!dieFlag)
 			{
+				FlxG.flash(0xFFCCCC, .3);
 				play("pop");
 				if (!end) FlxG.play(pop);
 				isDying = true;

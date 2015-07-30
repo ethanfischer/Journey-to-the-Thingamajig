@@ -31,6 +31,7 @@ package
 		public var sign:Sign;
 		public var sign2:Sign;// = new Sign(0, 0, "", player, 0, 0);
 		public var checkpoint:Checkpoint;
+		public var checkpoint2:Checkpoint; // for the last level you need 2 checkpoints!
 		public var end:Checkpoint;
 		public var spring:Spring;
 		public var spring2:Spring;
@@ -53,14 +54,15 @@ package
 		public var worm3:Worm;
 		public var mail:Mail;
 		public var wiz:Wiz;
-		public var focusPoint:FlxSprite;
-		public var meh:FlxPoint;
+		public var focusPoint:FlxSprite; //what the camera focuses on when moving in cutscenes
+		public var focusDestination:FlxPoint; //where the camera should stop moving
 		public var smokelets:Smokelets;
 		public var particles:Particles;
 		public var volcano:FlxSprite;
 		public var boulder:Boulder;
 		public var bouldlets:FlxGroup; 
 		public var pointsMessage:FlxText;
+		public var thingamajig:FlxSprite;
 	
 		[Embed(source = "../assets/canopy.png")] private var canopyPNG:Class;
 		[Embed(source = "../assets/canopy6.png")] private var canopy6PNG:Class;
@@ -82,7 +84,7 @@ package
 			worm2 = new Worm(FlxMath.rand(worm2.x + 700, 3400), 0); 
 			
 			
-			
+	
 			
 			//umbrella
 			umbrella.loadGraphic(_umbrellaPNG, false, false, 18, 21);

@@ -2,6 +2,7 @@ package
 {
 	import org.flixel.FlxGroup;
 	import org.flixel.FlxSprite;
+	import org.flixel.FlxG;
 	/**
 	 * ...
 	 * @author ...
@@ -15,10 +16,13 @@ package
 		public function Boulder() 
 		{
 			super(100, -100);
-			loadGraphic(boulderPNG, false, false, 30, 24);
-			velocity.y = 10;
-			acceleration.y = 800;
+			loadGraphic(boulderPNG, false, false, 171, 112);
+			//velocity.y = 10;
+			offset.y = -17;
+			acceleration.y = 5000;
 			solid = true;
+			drag.x = 10000;
+			mass = 10000;
 			addAnimation("splode", [1, 2] , 15, true);
 			
 			
@@ -27,12 +31,6 @@ package
 		{
 			super.update();
 			
-			if (velocity.y == 0 && !splodeFlag)
-			{
-				visible = false;
-				splodeFlag = true;
-				sploded = true;
-			}
 		}
 		
 	}
