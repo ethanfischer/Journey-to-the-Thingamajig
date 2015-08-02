@@ -13,9 +13,9 @@ package
 			super();
 		}
 		
-		public function addSmokelet(i_x:int, i_y:int, i_wizPoof:Boolean = false, randVelX:int = 0, randVelY:int = 0):void
+		public function addSmokelet(i_x:int, i_y:int, i_wizPoof:Boolean = false, randAclX:int = 0, randVelY:int = 0):void
 		{	
-			var temp:Smokelet = new Smokelet(i_x, i_y, i_wizPoof, randVelX, randVelY);
+			var temp:Smokelet = new Smokelet(i_x, i_y, i_wizPoof, randAclX, randVelY);
 			add(temp);
 		}
 		

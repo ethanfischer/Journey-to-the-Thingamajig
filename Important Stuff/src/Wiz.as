@@ -40,6 +40,8 @@ package
 			addAnimation("look", [5], 0, false);
 			addAnimation("idle", [0], 0, true);
 			addAnimation("excited", [1, 2], 4, true);
+			addAnimation("exuberant", [1, 2], 6, true);
+			addAnimation("ecstatic", [1, 2], 8, true);
 			addAnimation("run", [4], 12, true);
 			addAnimation("dead", [6], 0, true);
 			play("think");
@@ -48,7 +50,8 @@ package
 			
 			acceleration.y = 500;
 			
-			message = new FlxText(x - 14, y - 24, 100, "");
+			message = new FlxText(x - 38, y - 24, 100, "");
+			message.alignment = "center";
 		
 			smokelets = new Smokelets();
 			
@@ -61,7 +64,7 @@ package
 
 			if (onScreen() && !shockedFlag)
 			{
-				cut1Timer = 14;
+				cut1Timer = 12;
 				shockedFlag = true;
 			}
 			//Timer
@@ -69,44 +72,48 @@ package
 			{
 				cut1Timer -= FlxG.elapsed;
 				
-				if (cut1Timer < 13)
+				if (cut1Timer < 11)
 				{
-					if(cut1Timer > 12.5) message.text = "	  !";
-					//message.centerOffsets();
-					if(cut1Timer < 12 && cut1Timer > 11) play("look");
-					if (cut1Timer < 11)
+					if(cut1Timer > 10.5) message.text = "!";
+					if(cut1Timer < 10 && cut1Timer > 9) play("look");
+					if (cut1Timer < 9)
 					{
-						if (isTouching(FLOOR) && cut1Timer > 9.5) velocity.y = -110;
+						if (isTouching(FLOOR) && cut1Timer > 7.5) {
+						velocity.y = -110;
 						play("excited");
 						message.text = "Aw shucks!";
-						//message.centerOffsets();
-						if (cut1Timer <= 9.5 && cut1Timer > 1.5)
+						}
+						if (cut1Timer <= 7.5 && cut1Timer > 6)
 						{
 							play("idle");
 							message.text = "";
 						}
-						if (cut1Timer < 8)
+						if (cut1Timer < 6 && cut1Timer > 4.5)
 						{
+							play("exuberant");
 							message.text = "Ya made it!";
 						}
-						if (cut1Timer < 6.5)
+						if (cut1Timer < 4.5 && cut1Timer > 3)
 						{
+							play("idle");
 							message.text = "";
-							
 						}
 						
-							if (cut1Timer < 3)
-							{
-								message.text = "What'rya Waitin' for??"
-								if (cut1Timer < 1.5) 
-								{
-									play("excited");
-									message.size = 16; 
-									message.x = x - 100;
-									message.width = 4000;
-									message.text = "COME SEE THE GIZMO!";
-								}
-							}
+						if (cut1Timer < 3 && cut1Timer > 1.5)
+						{
+							play("ecstatic");
+							message.text = "What'rya Waitin' for??"
+						}
+						if (cut1Timer < 1.5 && cut1Timer > 1) message.text = "";
+						if (cut1Timer < 1) 
+						{
+							play("excited");
+							if(isTouching(FLOOR))velocity.y = -110;
+							message.size = 16; 
+							message.y = y - 44;
+							message.text = "COME SEE THE GIZMO!";
+						}
+							
 							
 						
 					}
@@ -128,18 +135,16 @@ package
 			if (cut2Timer > 0)
 			{
 				cut2Timer -= FlxG.elapsed;
-				
-				if (cut2Timer < .5)
-				{
-					message.size = 8;
-					message.text = "Well, Come and git it!";
-					message.width = 140;					
-					Registry.wizUnfreeze2 = true;
-					//Registry.gameLevel.player.moves = true;
-					FlxControl.player1.setCursorControl(false, false, true, true);
-					
-				}
-				
+			}
+			if (cut2Timer < 0 && cut2Timer > -10)
+			{
+				message.size = 8;
+				message.text = "Come and git it!";		 			
+				Registry.wizUnfreeze2 = true;
+				//Registry.gameLevel.player.moves = true;
+				FlxControl.player1.setCursorControl(false, false, true, true);
+				Registry.noGoingBack = 11170 - Registry.screenWidth + 60;
+				cut2Timer = 0;
 			}
 			
 			if (smushTimer > 0)
@@ -152,9 +157,10 @@ package
 					x = BEHINDGIFT + 4;
 					if (!smushedFlag) { 
 						FlxG.play(smash, 1); 
-						FlxG.shake(.08, .3);
+						FlxG.shake(.02, .6, end);
 						FlxG.music.stop();
 						smushedFlag = true;
+						
 						}
 				}
 			}
@@ -166,7 +172,7 @@ package
 				facing = FlxObject.LEFT;				
 				if (cut2Timer == -100 && onScreen()) 
 				{
-					cut2Timer = 1;
+					cut2Timer = .5;
 				}
 				Registry.giftExchange = true; //once wiz is on screen, turn on giftexchange cutscene
 				message.x = x - 94
@@ -199,20 +205,28 @@ package
 			
 		}
 		
+		private function end():void
+		{
+			FlxG.pauseSounds();
+			Registry.pauseSounds = true;
+			FlxG.volume = 0;
+			Registry.theEnd = true;
+		}
+		
 		public function poof():void
 		{
 			FlxG.flash(0x0000B9, 1);
 			var rand1:int;
 			var rand2:int;
-			var randVelX:int;
+			var randAclX:int;
 			var randVelY:int;
 			for (var i:int = 0; i < 500; i++)
 			{
 				rand1 = Math.random() * 10;
 				rand2 = Math.random() * 20;
-				randVelX = (Math.random() + 1) * 50;
+				randAclX = (Math.random()) * 200;
 				randVelY = (Math.random() + 1) * -5;
-				smokelets.addSmokelet(x + rand1, y + 20 + rand2, true, randVelX, randVelY);
+				smokelets.addSmokelet(x + rand1, y + 20 + rand2, true, randAclX, randVelY);
 			}
 		}
 		

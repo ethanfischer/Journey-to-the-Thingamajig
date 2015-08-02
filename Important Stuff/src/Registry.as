@@ -65,7 +65,8 @@ package
 		public static var dropBouldlets:Boolean = false;
 		public static var wizUnfreeze:Boolean = false;
 		public static var wizUnfreeze2:Boolean = false;
-		public static var noGoingBack:int = 11170 - screenWidth + 60; //in level 7 after wiz dies you shouldn't be able to go back (11170 is BEHINDGIFT)
+		public static var noGoingBack:int = 0; //in level 7 after wiz dies you shouldn't be able to go back (11170 is BEHINDGIFT)
+		public static var theEnd:Boolean;
 		
 		//cutscenes
 		//NOTE: because every cutscene in my game should only happen once (no one wants to go through a cutscene over and over again

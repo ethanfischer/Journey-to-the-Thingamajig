@@ -32,8 +32,13 @@ package
 		private var _npcTextTime:Number;
 		private var _partyPopflag:Boolean;
 		private var _splosion:Poof;
-		private var _splat:FlxSprite = new FlxSprite(0, 0);
+		private var _jttt:FlxSprite;
 		private var bouldletsFLag:Boolean;
+		private var endTimer:Number;
+		private var endTimerFlag:Boolean;
+		private var credits:FlxText;
+		private var credits2:FlxText;
+		
 
 		[Embed(source = "../assets/punch2.mp3")] public var punchSFX:Class;
 		[Embed(source = "../assets/kick.mp3")] public var kickSFX:Class;
@@ -48,9 +53,9 @@ package
 		[Embed(source = "../assets/trumpetfanfare_mom.mp3")] private var _trumpetSFX:Class;
 		[Embed(source = "../assets/mute.png")] private var _mutePNG:Class;
 		[Embed(source = "../assets/menu.png")] private var _menuPNG:Class;
-		[Embed(source = "../assets/splat.png")] private var __splatPNG:Class;
 		[Embed(source = "../assets/party_pop.mp3")] private var _partyPop:Class;
 		[Embed(source = "../assets/foldpaper(openletter).mp3")] private var _openletter:Class;
+		[Embed(source="../assets/jttt.png")] private var jtttPNG:Class;
 
 		//only here so reference in PlayState doesn't freak out
 		public function PlayState()
@@ -73,9 +78,6 @@ package
 			_muteButton.loadGraphic(_mutePNG, true, false, 12, 12);
 			_muteButton.scrollFactor.x = 0;
 			_muteButton.scrollFactor.y = 0;
-
-			_splat.scrollFactor.x = 0;
-			_splat.scrollFactor.y = 0;
 
 			if (Registry.gameStart)
 			{
@@ -261,6 +263,7 @@ package
 							_gameLevel.wiz.smushTimer = .4;
 						}
 					}
+					if (Registry.theEnd) theEnd();
 					
 					//////////////////////
 					//     Wiz cutscene //     		
@@ -683,6 +686,126 @@ package
 		{
 			player.x -= 5;
 		}
+		
+		public function theEnd():void
+		{
+			if (!endTimerFlag) 
+			{ 
+				credits = new FlxText(0, Registry.screenHeight / 8, Registry.screenWidth);
+				credits.size = 16;
+				credits.centerOffsets();
+				credits.scrollFactor.x = 0;
+				credits.scrollFactor.y = 0;
+				credits.alpha = 0;
+				credits.alignment = "center";
+				add(credits);
+				
+				credits2 = new FlxText(0, Registry.screenHeight / 8, Registry.screenWidth);
+				credits2.size = 16;
+				credits2.centerOffsets();
+				credits2.scrollFactor.x = 0;
+				credits2.scrollFactor.y = 0;
+				credits2.alpha = 0;
+				credits2.alignment = "center";
+				add(credits2);
+				
+				_jttt = new FlxSprite(Registry.screenWidth/15, Registry.screenHeight/20);
+				_jttt.loadGraphic(jtttPNG,false, false, 517, 174);
+				_jttt.scrollFactor.x = 0;
+				_jttt.scrollFactor.y = 0;
+				_jttt.moves = false;
+				_jttt.alpha = 0;
+				add(_jttt);
+				
+				endTimer = 40; 
+				endTimerFlag = true;
+			}
+			if (endTimer > 0) 
+			{
+				endTimer -= FlxG.elapsed;
+			}
+			
+			if (endTimer < 35 && endTimer > 31) 
+			{
+				_jttt.alpha += .07;
+			}
+			if (endTimer < 31 && endTimer > 27)
+			{
+				_jttt.alpha -= .1;
+				credits.text = "Created by Ethan Fischer";
+				credits.alpha += .07;
+			}
+			if (endTimer < 27 && endTimer > 23)
+			{
+				credits.alpha -= .1;
+				credits2.text = "Music by Ethan Berg";
+				credits2.alpha += .05;
+			}
+			if (endTimer < 23 && endTimer > 21)
+			{
+				credits2.alpha -= .1;
+				credits.text = "Special thanks to:";
+				credits.alpha += .05;
+			}
+			if (endTimer < 21 && endTimer > 19)
+			{
+				credits.alpha -= .1;
+				credits2.text = "Kyle Connour";
+				credits2.alpha += .05;
+			}
+			if (endTimer < 19 && endTimer > 17)
+			{
+				credits2.alpha -= .1;
+				credits.text = "Hayden Ford";
+				credits.alpha += .05;
+			}
+			if (endTimer < 17 && endTimer > 15)
+			{
+				credits.alpha -= .1;
+				credits2.text = "Tom Herrmann";
+				credits2.alpha += .05;
+			}
+			if (endTimer < 15 && endTimer > 13)
+			{
+				credits2.alpha -= .1;
+				credits.text = "James Buebe";
+				credits.alpha += .05;
+			}
+			if (endTimer < 13 && endTimer > 11)
+			{
+				credits.alpha -= .1;
+				credits2.text = "Jules Wang";
+				credits2.alpha += .05;
+			}
+			if (endTimer < 11 && endTimer > 9)
+			{
+				credits2.alpha -= .1;
+				credits.text = "and everyone else who supported \n the making of this game";
+				credits.alpha += .05;
+			}
+			if (endTimer < 9)
+			{
+				credits.alpha -= .1;
+				credits2.text = "Thanks for playing";
+				credits2.alpha += .05;
+				FlxG.fade(0x000000, 10, youBeatTheGame);
+			}
+			/*if (endTimer < )
+			{
+				credits2.alpha -= .1;
+				credits.text = "";
+				credits.alpha += .07;
+			}*/
+			
+		}
+		
+		private function youBeatTheGame():void
+		{
+			FlxG.volume = .1;
+			Registry.pauseSounds = false;
+			FlxG.switchState(new MainMenuState);
+		}
+		
 		public function makeStage():void
 		{
 			_gameLevel = new stages[Registry.stageCount];
@@ -732,7 +855,6 @@ package
 			add(_gameLevel.spring2);
 			add(_gameLevel.player);
 			add(_gameLevel.checkpoint);
-			//add(_gameLevel.checkpoint2); only add second checkpoint when wiz makes it
 			add(_gameLevel.end);
 			add(_gameLevel.crumbleRocks);
 			add(_gameLevel.nomNoms);
@@ -777,7 +899,6 @@ package
 			Registry.stageCount++;
 			Registry.checkpointFlag = false;
 			Registry.deathMessageFlag = false;
-			//Registry.stageCount = stageCount;
 			FlxG.switchState(new LevelCompleteState);
 			Registry.musixFlag = false;
 			/////////////////////////////////////////////////////////////DON"T LET MUSIC STOP. FIGURE OUT A WAY TO DO SMOOTH TRANSITION

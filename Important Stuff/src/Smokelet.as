@@ -17,7 +17,7 @@ package
 		private var poofPNG:Class; //holder for randomly selected blue OR white poof image
 		private var poofArray:Array
 		
-		public function Smokelet(i_x:int, i_y:int, i_wizPoof:Boolean = false, randVelX:int = 0, randVelY:int = 0) 
+		public function Smokelet(i_x:int, i_y:int, i_wizPoof:Boolean = false, randAclX:int = 0, randVelY:int = 0) 
 		{
 			super(i_x, i_y);
 			wizPoof = i_wizPoof;
@@ -29,7 +29,7 @@ package
 				poofPNG = randomPoof();
 				loadGraphic(poofPNG, false, false, 2, 2);
 				velocity.y = randVelY; //~-5 value assigned in Wiz
-				velocity.x = randVelX; //~50 value assigned in Wiz
+				acceleration.x = randAclX; //~50 value assigned in Wiz
 				scrollFactor.x = 1;
 				scrollFactor.y = 1;
 			}
