@@ -98,36 +98,19 @@ package
 			///////////////////////////////////////////////////////
 			//					 CHECKPOINT						 //
 			///////////////////////////////////////////////////////
-			Registry.hmodeChkpt = 1825;
-			
-			if (Registry.easyMode)
+			if (Registry.checkpointFlag)
 			{
-				if (Registry.checkpointFlag)
-				{
-					player = new Player(Registry.ezchkpt.x, Registry.ezchkpt.y);
-					Registry.torchesOn = Registry.torchesCheckpoint;
-				}
-				else 
-				{
-					player = new Player(30, 400);
-					Registry.torchesOn = false;
-				}
+				player = new Player(1795, 386);
+				frog = new Frog(2013, 388);
+				Registry.torchesOn = true;
 			}
 			else
 			{
-				if (Registry.checkpointFlag)
-				{
-					player = new Player(1795, 386);
-					Registry.torchesOn = true;
-				}
-				else
-				{
-					player = new Player(15, 400);
-					Registry.torchesOn = true;
-				}
-
+				player = new Player(15, 400);
+				frog = new Frog(80, 400);
+				Registry.torchesOn = true;
 			}
-			
+
 			Registry.player = player;
 			
 			not_a_flower = new NotAFlower(260, height - 48, player);

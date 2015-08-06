@@ -84,36 +84,23 @@ package
 			
 			canopy.visible = false;
 			
+			//TODO: FIGURE OUT WHY BOTS AFTER CHECKPOINT CANT BE PUNCHED PROPERLY
+			
 			///////////////////////////////////////////////////////
 			//					 CHECKPOINT						 //
 			///////////////////////////////////////////////////////
-			Registry.hmodeChkpt = 1820;
-			
-			if (Registry.easyMode)
+
+			if (Registry.checkpointFlag) 
 			{
-				if (Registry.checkpointFlag) 
-				{
-					player = new Player(Registry.ezchkpt.x, Registry.ezchkpt.y);
-					Registry.torchesOn = Registry.torchesCheckpoint;
-				}
-				else 
-				{
-					player = new Player(40, 150);
-					Registry.torchesOn = false;
-				}
+				player = new Player(Registry.checkpoint.x + 5, Registry.checkpoint.y - 5);
+				frog = new Frog(2000, 336);
+				Registry.torchesOn = true;
 			}
-			else
+			else 
 			{
-				if (Registry.checkpointFlag) 
-				{
-					player = new Player(Registry.checkpoint.x + 5, Registry.checkpoint.y - 5);
-					Registry.torchesOn = true;
-				}
-				else 
-				{
-					player = new Player(40, 150);
-					Registry.torchesOn = true;
-				}
+				player = new Player(40, 150);
+				frog = new Frog(177, 400);
+				Registry.torchesOn = true;
 			}
 			
 			Registry.player = player;

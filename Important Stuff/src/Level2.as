@@ -76,18 +76,18 @@ package
 			///////////////////////////////////////////////////////
 			//					 CHECKPOINT						 //
 			///////////////////////////////////////////////////////
-			Registry.hmodeChkpt = 99999;
-			
-			if (Registry.easyMode)
+		
+			if (Registry.checkpointFlag) 
 			{
-				if (Registry.checkpointFlag) player = new Player(Registry.ezchkpt.x, Registry.ezchkpt.y);
-				else player = new Player(30, 220);
+				player = new Player(Registry.checkpoint.x + 5, Registry.checkpoint.y - 5);
+				frog = new Frog(1666, 260);
 			}
 			else
 			{
-				if(Registry.checkpointFlag) player = new Player(Registry.checkpoint.x + 5, Registry.checkpoint.y - 5);
-				else player = new Player(30, 220);
+				player = new Player(30, 225);
+				frog = new Frog(690, 200);
 			}
+			
 			
 			width = foreground.width;
 			height = foreground.height;

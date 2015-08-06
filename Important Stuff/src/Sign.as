@@ -27,7 +27,8 @@ package
 		
 		override public function update():void
 		{
-			if (player.x > x-34 && player.x < x+50)
+			if (player.x > x - 34 && player.x < x + 50
+			&& player.y > y - 50 && player.y < y + 50)
 			{
 				message.visible = true;
 			}

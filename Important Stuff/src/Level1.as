@@ -72,8 +72,16 @@ package
 			width = foreground.width;
 			height = foreground.height;
 			
-			if(Registry.checkpointFlag) player = new Player(Registry.checkpoint.x + 5, Registry.checkpoint.y - 5);
-			else player = new Player(50, height - 64);
+			if (Registry.checkpointFlag)
+			{
+				player = new Player(Registry.checkpoint.x + 5, Registry.checkpoint.y - 5);
+				frog = new Frog(1872, 200);
+			}
+			else 
+			{
+				player = new Player(50, height - 64);
+				frog = new Frog(625, 100);
+			}
 			
 			sign = new Sign(135, 240, "PRESS 'Z' TO JUMP", player, 100, 240);
 			sign2 = new Sign(1000, 180, "BALL OF POINTLESSNESS!", player, 1080, 180);
@@ -82,6 +90,7 @@ package
 			parseRocks(player);
 			parseReinforcements();
 			parseCheckpoint();
+			
 			
 		}
 		

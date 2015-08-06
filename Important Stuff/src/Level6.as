@@ -116,11 +116,13 @@ package
 		if (Registry.checkpointFlag) 
 		{
 			player = new Player(Registry.checkpoint.x + 5, Registry.checkpoint.y - 5);
+			frog = new Frog(623, 432);
 			Registry.torchesOn = true;
 		}
 		else 
 		{
 			player = new Player(40, 410);
+			frog = new Frog(1309, 112);
 			Registry.torchesOn = true;
 		}
 		

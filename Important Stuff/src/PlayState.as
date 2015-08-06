@@ -113,6 +113,7 @@ package
 				if (FlxG.keys.T)
 				{
 					trace("		***TEST***");
+					trace(Registry.gameLevel.player.x, Registry.gameLevel.player.y);
 					
 				}
 				
@@ -139,6 +140,7 @@ package
 				FlxG.collide(_gameLevel.lilguy, _gameLevel.crumbleRocks);
 				FlxG.collide(_gameLevel.npc, _gameLevel.foreground);
 				FlxG.collide(_gameLevel.wiz, _gameLevel.foreground);
+				FlxG.collide(_gameLevel.frog, _gameLevel.crumbleRocks);
 
 				//Overlappings
 				FlxG.overlap(_gameLevel.player, _gameLevel.reinforcements, hitReinforcement);
@@ -150,6 +152,7 @@ package
 				FlxG.overlap(_gameLevel.player.hitBox, _gameLevel.bots, punchBot);
 				FlxG.overlap(_gameLevel.player.hitBox, _gameLevel.bots2, punchBot);
 				FlxG.overlap(_gameLevel.player.hitBox, _gameLevel.borgs, punchBorg);
+				FlxG.overlap(_gameLevel.player.hitBox, _gameLevel.frog, punchFrog);
 				FlxG.overlap(_gameLevel.player, _gameLevel.boulder, playerBoulder);
 
 				if(Registry.stageCount == 3 && Registry.firstLevel4) FlxG.overlap(_gameLevel.player, _gameLevel.mail, hitMail);
@@ -196,7 +199,11 @@ package
 				}
 
 				// Bird appears every 30 seconds in the forest levels
-				if (Registry.stageCount <3 && Registry.playtime > 1 && Registry.playtime % 30 > 0 && Registry.playtime % 30 < 0.5 && !_gameLevel.letter.visible) add(_gameLevel.bird);
+				if (Registry.stageCount < 3 && Registry.playtime > 1 && Registry.playtime % 30 > 0 
+				&& Registry.playtime % 30 < 0.5) 
+				{
+					if(!(Registry.stageCount == 0 && Registry.gameLevel.letter.visible)) add(_gameLevel.bird);
+				}
 
 				//reset the bird's position after it goes off screen
 				if (_gameLevel.bird.x < -30)
@@ -535,6 +542,15 @@ package
 				bot.knockback();
 			}
 		}
+		
+		private function punchFrog(hitBox:FlxObject, frog:Frog):void
+		{
+			if (Registry.gameLevel.player.canPunch && FlxG.keys.justPressed("X") && Registry.hasFlower)
+			{
+				FlxG.play(punchSFX);
+				frog.knockBack();
+			}
+		}
 
 		//only here so reference in PlayState doesn't freak out
 		private function nothing():void
@@ -854,6 +870,11 @@ package
 			add(_gameLevel.spring);
 			add(_gameLevel.spring2);
 			add(_gameLevel.player);
+			//if (Registry.deaths % 10== 0 /*&& Registry.deaths != 0*/)
+			//{
+				add(_gameLevel.frog); //TODO  only add frog every 20 deaths or so
+				add(_gameLevel.frog.message);
+			//}
 			add(_gameLevel.checkpoint);
 			add(_gameLevel.end);
 			add(_gameLevel.crumbleRocks);

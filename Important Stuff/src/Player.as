@@ -24,7 +24,6 @@ package
 		
 		
 		[Embed(source = "../assets/slidewhistle.mp3")] private var _slideWhistle:Class;
-	
 		[Embed(source = "../assets/umbrella.mp3")] private var _umbrellaSFX:Class;
 		[Embed(source = "../assets/foldpaper.mp3")] private var _foldPaperSFX:Class;
 		
@@ -323,6 +322,8 @@ package
 				_jump = 0;
 				umbrellaCounter = 0; //so that you can slow down again
 				
+				
+				
 				if (velocity.x != 0)
 				{
 					if (Math.abs(velocity.x) >= MAXSPEED)
@@ -351,17 +352,11 @@ package
 				else
 				{
 					//don't play walkingSFX if you're not walking
-					if (this.velocity.x == 0)
+					if (velocity.x == 0)
 					{
-						/*if (!_fadeoutFlag)
-						{
-						walkSFX.fadeOut(.1, true);
-						_fadeoutFlag = true;
-						} */
 						walkSFX.stop();
 						walkingFlag = false;
 					}
-					
 					
 					if (canIdle)
 					{
@@ -400,6 +395,7 @@ package
 				if(!_paraFlag)play("fall");
 				_jumpSFX.stop();
 				_jumpSFXflag = false;
+				walkSFX.stop();
 			}
 			
 			//JUMP

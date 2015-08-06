@@ -63,6 +63,7 @@ package
 		public var bouldlets:FlxGroup; 
 		public var pointsMessage:FlxText;
 		public var thingamajig:FlxSprite;
+		public var frog:Frog;
 	
 		[Embed(source = "../assets/canopy.png")] private var canopyPNG:Class;
 		[Embed(source = "../assets/canopy6.png")] private var canopy6PNG:Class;

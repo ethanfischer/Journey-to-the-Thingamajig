@@ -79,24 +79,24 @@ package
 			///////////////////////////////////////////////////////
 			//					 CHECKPOINT						 //
 			///////////////////////////////////////////////////////
-			Registry.hmodeChkpt = 1372;
-			
-			if (Registry.easyMode)
+		
+			if (Registry.checkpointFlag)
 			{
-				if (Registry.checkpointFlag) player = new Player(Registry.ezchkpt.x, Registry.ezchkpt.y);
-				else player = new Player(30, 160);
+				player = new Player(Registry.checkpoint.x + 5, Registry.checkpoint.y - 5);
+				frog = new Frog(1487, 244);
 			}
 			else
 			{
-				if (Registry.checkpointFlag) player = new Player(Registry.checkpoint.x + 5, Registry.checkpoint.y - 5);
-				else player = new Player(30, 160);
+				player = new Player(30, 160);
+				frog = new Frog(173, 160);
 			}
+			
 			
 			Registry.player = player;
 			
 			not_a_flower = new NotAFlower(260, height - 48, player);
 			
-			sign = new Sign(135, 134, "1. PRESS DOWN TO DUCK." + "\n" + "2. RUNNING + DUCKING = SLIDING.", player, 105, 124);		
+			if(!frog.onScreen()) sign = new Sign(135, 134, "1. PRESS DOWN TO DUCK." + "\n" + "2. RUNNING + DUCKING = SLIDING.", player, 105, 124);		
 			sign2 = new Sign(1103, 50, "SLIDE INTO BAD GUYS", player, 1060, 30);
 			
 			parseBots(player);

@@ -134,20 +134,16 @@ package
 		
 		if (Registry.checkpointFlag) 
 		{	
-			if (Registry.checkpointFlag2)
-			{	
-				player = new Player(Registry.checkpoint2.x + 5, Registry.checkpoint2.y - 5);
-				Registry.torchesOn = true;
-			}
-			else
-			{
-				player = new Player(Registry.checkpoint.x + 5, Registry.checkpoint.y - 5);
-				Registry.torchesOn = true;
-			}
+			
+			player = new Player(Registry.checkpoint.x + 5, Registry.checkpoint.y - 5);
+			frog = new Frog(2582, 352);
+			Registry.torchesOn = true;
+			
 		}
 		else 
 		{
 			player = new Player(10, 65);
+			frog = new Frog(166, 80);
 			//player = new Player(9700, 350); //for testing ending sequence
 			Registry.torchesOn = true;
 		}
