@@ -149,10 +149,10 @@ package
 				FlxG.overlap(_gameLevel.player, _gameLevel.borgs, hitBorg);
 				FlxG.overlap(_gameLevel.player, _gameLevel.torches, hitFire);
 				FlxG.overlap(_gameLevel.player, _gameLevel.lilguy, hitLilguy);
-				FlxG.overlap(_gameLevel.player.hitBox, _gameLevel.bots, punchBot);
-				FlxG.overlap(_gameLevel.player.hitBox, _gameLevel.bots2, punchBot);
-				FlxG.overlap(_gameLevel.player.hitBox, _gameLevel.borgs, punchBorg);
-				FlxG.overlap(_gameLevel.player.hitBox, _gameLevel.frog, punchFrog);
+				FlxG.overlap(_gameLevel.hitBox, _gameLevel.bots, punchBot);
+				FlxG.overlap(_gameLevel.hitBox, _gameLevel.bots2, punchBot);
+				FlxG.overlap(_gameLevel.hitBox, _gameLevel.borgs, punchBorg);
+				FlxG.overlap(_gameLevel.hitBox, _gameLevel.frog, punchFrog);
 				FlxG.overlap(_gameLevel.player, _gameLevel.boulder, playerBoulder);
 
 				if(Registry.stageCount == 3 && Registry.firstLevel4) FlxG.overlap(_gameLevel.player, _gameLevel.mail, hitMail);
@@ -165,10 +165,10 @@ package
 
 				FlxG.overlap(_gameLevel.player, _gameLevel.bots2.blades, hitBlade);
 				FlxG.overlap(_gameLevel.player, _gameLevel.streams, handleStreams);
-				FlxG.overlap(_gameLevel.player.hitBox, _gameLevel.rocks, punchRock);
+				FlxG.overlap(_gameLevel.hitBox, _gameLevel.rocks, punchRock);
 
-				if (Registry.stageCount == 4) FlxG.overlap(_gameLevel.player.hitBox, _gameLevel.npc, punchNPC);
-				if (Registry.stageCount == 1) FlxG.overlap(_gameLevel.player.hitBox, _gameLevel.npc, meetNPC);
+				if (Registry.stageCount == 4) FlxG.overlap(_gameLevel.hitBox, _gameLevel.npc, punchNPC);
+				if (Registry.stageCount == 1) FlxG.overlap(_gameLevel.hitBox, _gameLevel.npc, meetNPC);
 								
 				FlxG.overlap(_gameLevel.player.screen, _gameLevel.bots, updateThings);
 				FlxG.overlap(_gameLevel.player.screen, _gameLevel.bots2, updateThings);
@@ -190,6 +190,7 @@ package
 					_letterTimer = .5;
 					_gameLevel.player.putAway();
 					Registry.letterSequence = false;
+					Registry.gameLevel.player.moves = true;
 				}
 
 				if (!Registry.musixFlag) //flag needed to prevent music from playing a million times (since this is in update())
@@ -536,8 +537,10 @@ package
 
 		private function punchBot(hitBox:FlxObject , bot:Bot):void
 		{
+			trace("overlapping");
 			if (Registry.gameLevel.player.canPunch && FlxG.keys.justPressed("X") && Registry.hasFlower && !bot.isDying)
 			{
+				//TODO level 4 bots arent dying?
 				FlxG.play(punchSFX);
 				bot.knockback();
 			}
@@ -604,6 +607,9 @@ package
 			FlxG.flash(0x00000000, 1.4);
 			Registry.letterSequence = true;
 			_gameLevel.letter.visible = true;
+			Registry.gameLevel.player.moves = false;
+			Registry.gameLevel.player.velocity.x = 0;
+			
 		}
 
 		private function punchNPC(hitBox:FlxObject, npc:NPC):void
@@ -850,7 +856,7 @@ package
 			add(_gameLevel.sign2);
 			add(_gameLevel.bots);
 			add(_gameLevel.poofs);
-			add(_gameLevel.player.hitBox);
+			add(_gameLevel.hitBox);
 			if (Registry.stageCount == 0 && Registry.firstLevel1) add(_gameLevel.pointsMessage);
 
 			if(!Registry.hasUmbrella && (Registry.stageCount == 1 || Registry.stageCount == 4)) add(_gameLevel.npc); //if player already has umbrella, don't add the creature
@@ -870,11 +876,11 @@ package
 			add(_gameLevel.spring);
 			add(_gameLevel.spring2);
 			add(_gameLevel.player);
-			//if (Registry.deaths % 10== 0 /*&& Registry.deaths != 0*/)
-			//{
+			if (Registry.deaths % 10== 0 && Registry.deaths != 0)
+			{
 				add(_gameLevel.frog); //TODO  only add frog every 20 deaths or so
 				add(_gameLevel.frog.message);
-			//}
+			}
 			add(_gameLevel.checkpoint);
 			add(_gameLevel.end);
 			add(_gameLevel.crumbleRocks);

@@ -47,8 +47,6 @@ package
 			this.offset.y = 0;
 			acceleration.y = 500;
 			velocity.x = 20;
-			
-		
 		}
 		
 		override public function kill():void
@@ -89,11 +87,12 @@ package
 				turnAround();
 			}
 			
-			if (player.x > x - 250 && player.x < x + 250)
+			//wtf is this?
+			/*if (player.x > x - 250 && player.x < x + 250)
 			{
 				if (player.x < x && facing == RIGHT && (Registry.map.getTile(tx - .2, ty + 1.5) > 23)) turnAround();
 				else if (player.x > x && facing == LEFT && (Registry.map.getTile(tx + 1, ty + 1.5) > 23)) turnAround();
-			} 
+			} */
 			
 			
 			////////////////////////////
@@ -196,6 +195,7 @@ package
 			{
 				if (facing == FlxObject.RIGHT)
 				{
+					
 					facing = FlxObject.LEFT;
 					////IMPLEMENT A PAUSED TURN AROUND/////////////////////////////////////////////////////////
 					velocity.x = -30;
@@ -223,6 +223,7 @@ package
 		public function knockback():void
 		{		
 			kill();
+			trace("knockback");
 		
 			//if(FlxG.timeScale > .1) Registry.nmlTimescale = FlxG.timeScale;
 			//FlxG.timeScale = .14;

@@ -83,7 +83,7 @@ package
 			if (Registry.checkpointFlag)
 			{
 				player = new Player(Registry.checkpoint.x + 5, Registry.checkpoint.y - 5);
-				frog = new Frog(1487, 244);
+				frog = new Frog(1487, 242);
 			}
 			else
 			{

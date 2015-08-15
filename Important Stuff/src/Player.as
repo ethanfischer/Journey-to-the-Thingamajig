@@ -10,7 +10,7 @@ package
 		[Embed(source = "../assets/player_40x40(letter).png")] private var _girlPNG:Class; //normal
 		[Embed(source = "../assets/egg(2).png")] private var _botPNG:Class; //robot
 		[Embed(source = "../assets/player_hurt.png")] private var _playerHurtPNG:Class;
-		[Embed(source = "../assets/hitbox.png")] private var _hitboxPNG:Class;
+		
 		[Embed(source="../assets/footstep.mp3")] private var _girlwalkSound:Class; //normal walk sound
 		[Embed(source = "../assets/faststep.mp3")] private var _fastgirlwalkSound:Class;//faster
 		[Embed(source = "../assets/Wowiwiw.mp3")] private var _botwalkSound:Class; //bot walk sound
@@ -52,7 +52,6 @@ package
 		public var _canJump:Boolean = true;
 		private var _jump:Number;
 		private const MAXSPEED:Number = 170;
-		public var hitBox:FlxSprite;
 		public var screen:FlxSprite; //for updating things off screen
 		public var screen2:FlxSprite; //for updating things that visible on screen
 		public var canIdle:Boolean = true;
@@ -178,13 +177,7 @@ package
 				
 			}
 			
-			//hitbox
-			hitBox = new FlxSprite(x + 14, y);
-			hitBox.loadGraphic(_hitboxPNG, true, true, 34, 20, true);
-			hitBox.width = 38;
-			hitBox.height = 20;
-			hitBox.exists = true;
-			hitBox.visible = false;
+			
 		
 			//screen
 			screen = new FlxSprite(x - 500, y - 250);
@@ -401,21 +394,10 @@ package
 			//JUMP
 			jump();
 			
-			//////////////////////
-			//		HITBOX		//
-			//////////////////////
-			if (Registry.character == "girl") hitBox.y = this.y + 10;
-			else if (Registry.character == "bot") hitBox.y = this.y;
 			
 			
-			if (_facing == RIGHT)
-			{
-				hitBox.x = this.x + 8;
-			}
-			else
-			{
-				hitBox.x = this.x - 32;
-			}
+			
+			
 			
 			//////////////////////
 			//		SCREEN		//

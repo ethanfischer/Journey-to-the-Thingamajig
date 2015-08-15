@@ -53,6 +53,7 @@ package
 		public var worm2:Worm;
 		public var worm3:Worm;
 		public var mail:Mail;
+		public var hitBox:Hitbox;
 		public var wiz:Wiz;
 		public var focusPoint:FlxSprite; //what the camera focuses on when moving in cutscenes
 		public var focusDestination:FlxPoint; //where the camera should stop moving
@@ -83,9 +84,7 @@ package
 			worm1 = new Worm(FlxMath.rand(700, 3400), 0);
 			worm2 = new Worm(FlxMath.rand(worm1.x + 700, 3400), 0); 
 			worm2 = new Worm(FlxMath.rand(worm2.x + 700, 3400), 0); 
-			
-			
-	
+			hitBox = new Hitbox();
 			
 			//umbrella
 			umbrella.loadGraphic(_umbrellaPNG, false, false, 18, 21);
@@ -95,30 +94,13 @@ package
 			cutscene.scrollFactor.x = 0;
 			cutscene.scrollFactor.y = 0;
 			cutscene.alpha = 0;
-			if (Registry.stageCount < 5) canopy.loadGraphic(canopyPNG, false, false, 600, 300);
-			else canopy.loadGraphic(canopy6PNG, false, false, 600, 300);
-			canopy.scrollFactor.y = 1;
-			canopy.scrollFactor.x = 0;
-			canopy.y = 180;
+			
 			
 			umbrella.visible = false;
 			
 			blue = new FlxSprite(0, 0);
 			blue.loadGraphic(bluePNG, false, false, 600, 300);
 			blue.visible = false;
-			
-			/*beat1.loadEmbedded(beet1, true);
-			beat2.loadEmbedded(beet2, true);
-			beat3.loadEmbedded(beet3, true);
-			beat4.loadEmbedded(beet4, true); */
-			
-			//beats = new Array();
-			//beats = [beat2, beat1, beat3, beat4];
-			//musix = beats[Registry.deathCount % 4];
-			//FlxG.music = musix;
-			
-			
-		
 			
 		}
 	}
