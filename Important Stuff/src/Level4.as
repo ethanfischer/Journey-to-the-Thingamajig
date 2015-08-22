@@ -98,7 +98,8 @@ package
 			}
 			else 
 			{
-				player = new Player(40, 150);
+				if (Registry.firstLevel4) player = new Player(40, 150);
+				else player = new Player(40, 350);
 				frog = new Frog(177, 400);
 				Registry.torchesOn = true;
 			}

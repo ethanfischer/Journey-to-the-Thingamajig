@@ -25,9 +25,9 @@ package
 		{
 			super(x, y, i_player, FlxObject.RIGHT);
 			
-			//fireSFX = new FlxSound();
-			//fireSFX.loadEmbedded(fireSoundEffect, false, true);
-			//fireSFX.volume = 0;
+			fireSFX = new FlxSound();
+			fireSFX.loadEmbedded(fireSoundEffect, false, true);
+			fireSFX.volume = 0;
 			
 			weapon = i_weapon;
 			updateForever = i_updateForever;
@@ -74,10 +74,10 @@ package
 			{
 				if(isTouching(FLOOR)) weapon.fire(); //don't shoot before they land
 				
-				/*if (Registry.pauseSounds) this.fireSFX.volume = 0;
+				if (Registry.pauseSounds) this.fireSFX.volume = 0;
 				if (Registry.stageCount == 2 && (this.x > 2110 && this.x < 2120)) this.fireSFX.volume = 0.05; //for those three guys in level 3
 				else if(this.onScreen()) fireSFX.volume = 1;
-				else fireSFX.volume = .2; */
+				else fireSFX.volume = .2; 
 			}
 			
 			

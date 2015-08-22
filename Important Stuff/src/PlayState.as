@@ -601,6 +601,7 @@ package
 		private function hitMail(player:Player, mail:Mail):void
 		{
 			add(_gameLevel.letter);
+			player.velocity.x = 0;
 			//_gameLevel.player.moves = false;
 			FlxG.play(_openletter);
 			FlxG.fade(0x000000, .2, viewMail);

@@ -121,8 +121,7 @@ package
 		}
 		else 
 		{
-			player = new Player(5000, 100);
-			//player = new Player(40, 410);
+			player = new Player(40, 410);
 			frog = new Frog(1309, 112);
 			Registry.torchesOn = true;
 		}
