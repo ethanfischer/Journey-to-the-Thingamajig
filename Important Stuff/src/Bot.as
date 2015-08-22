@@ -223,8 +223,7 @@ package
 		public function knockback():void
 		{		
 			kill();
-			trace("knockback");
-		
+			
 			//if(FlxG.timeScale > .1) Registry.nmlTimescale = FlxG.timeScale;
 			//FlxG.timeScale = .14;
 			FlxG.shake(.03, .1, null, true, 1);
@@ -252,7 +251,7 @@ package
 		
 		public function delayedTurnaround(delay:Number):void
 		{
-			if (!dTurnFlag)
+			if (!dTurnFlag && !isDying)
 			{
 			velocity.x = 0;
 			play("stop");

@@ -81,6 +81,8 @@ package
 			
 			_start = new FlxPoint(x, y);
 			
+			
+			
 			//	Load the player.png into this sprite.
 			//	The 2nd parameter tells Flixel it's a sprite sheet and it should chop it up into 16x18 sized frames.
 			
@@ -262,6 +264,7 @@ package
 				FlxControl.player1.setCursorControl(false, false, false, false);
 			}
 			
+			
 			//----------------------------------------------------------------------------------//
 			if (pickupTimer > 0)
 			{
@@ -325,8 +328,12 @@ package
 						
 						if (!walkingFlag)
 						{
-							walkSFX.play(true);
-							walkingFlag = true;
+							if (velocity.x > 100 || velocity.x < -100) 
+							{
+								walkSFX.play(true); //only play once you're really walking
+								walkingFlag = true;
+							}
+							
 							_fadeoutFlag = false;
 						}
 					}
@@ -336,9 +343,13 @@ package
 						
 						if (!walkingFlag)
 						{
-							walkSFX.play(true);
-							_fadeoutFlag = false;
-							walkingFlag = true;
+							if (velocity.x > 100 || velocity.x < -100) 
+							{
+								walkSFX.play(true); //only play once you're really walking
+								walkingFlag = true;
+							}
+							_fadeoutFlag = false; //fadeout flag? I don't remember what this does
+							
 						}
 					}
 				}
@@ -351,7 +362,7 @@ package
 						walkingFlag = false;
 					}
 					
-					if (canIdle)
+					if (canIdle && (!_letterTimer > 0)) 
 					{
 						play("idle");
 					}
@@ -390,6 +401,9 @@ package
 				_jumpSFXflag = false;
 				walkSFX.stop();
 			}
+			
+			if (justTouched(FLOOR)) walkingFlag = false;
+			
 			
 			//JUMP
 			jump();
@@ -459,7 +473,7 @@ package
 						{
 							_slideSFX.stop();
 							isDucking = false;
-							if (!_flag497)
+							if (!_flag497) //WTF IS FLAG 497 ????  FUCK YOU!
 							{
 								canIdle = true;
 								_flag497 = true;
@@ -516,7 +530,7 @@ package
 		private function jump():void
 		{
 			_jump:Number;
-				if((_jump >= 0) && (FlxG.keys.Z || FlxG.keys.UP) && (_canJump)) //You can also use space or any other key you want
+				if((_jump >= 0) && ((FlxG.keys.Z || FlxG.keys.UP) && !_letterTimer > 0) && (_canJump)) //You can also use space or any other key you want
 				{	
 					_jump += FlxG.elapsed;
 					if (Math.abs(velocity.x) >= MAXSPEED)
@@ -555,7 +569,7 @@ package
                     //velocity.y = -200; //The general acceleration of the jump
             } else
             {
-				if ((FlxG.keys.Z || FlxG.keys.UP) && velocity.y > 10 && _hurtTimer <= 0 && Registry.hasUmbrella) 
+				if (((FlxG.keys.Z || FlxG.keys.UP) && !_letterTimer > 0) && velocity.y > 10 && _hurtTimer <= 0 && Registry.hasUmbrella) 
 				{
 					acceleration.y = 100;
 					if(!_paraFlag)

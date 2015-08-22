@@ -8,7 +8,14 @@ package
 		[Embed(source = "../map/wiz.png")] private var wizPNG:Class;
 		[Embed(source = "../assets/smash.mp3")] private var smash:Class;
 		[Embed(source = "../assets/rumble_loud.mp3")] public var rumble:Class;
-		 private var poofPNG:Class;
+		[Embed(source = "../assets/wiz_laugh.mp3")] public var wizLaugh:Class;
+		[Embed(source = "../assets/wiz_laugh2.mp3")] public var wizLaugh2:Class;
+		[Embed(source = "../assets/wiz_laugh3.mp3")] public var wizLaugh3:Class;
+		[Embed(source = "../assets/wiz_laugh_long.mp3")] public var wizLaughLong:Class;
+		[Embed(source = "../assets/magic.mp3")] public var magic:Class;
+		
+		private var wizLaughFlag:Boolean = false;
+		private var poofPNG:Class;
 		
 		public var isDying:Boolean = false;
 		private var dieTimer:Number;
@@ -27,6 +34,8 @@ package
 		public var smushTimer:Number;
 		public var smushedFlag:Boolean;
 		public var rumbleFlag:Boolean;
+		[Embed(source = "../assets/fanfare.mp3")] private var fanfare:Class;
+		private var fanfareFlag:Boolean = false;
 		
 		public function Wiz(x:int, y:int)
 		{
@@ -39,7 +48,7 @@ package
 			addAnimation("think", [3], 0, false);
 			addAnimation("look", [5], 0, false);
 			addAnimation("idle", [0], 0, true);
-			addAnimation("excited", [1, 2], 4, true);
+			addAnimation("excited", [1, 2, 1, 2, 1,1,1,1,1,1,1,1,1,1], 4, true);
 			addAnimation("exuberant", [1, 2], 6, true);
 			addAnimation("ecstatic", [1, 2], 8, true);
 			addAnimation("run", [4], 12, true);
@@ -74,44 +83,74 @@ package
 				
 				if (cut1Timer < 11)
 				{
+					if (!fanfareFlag)
+					{
+						FlxG.play(fanfare);
+						fanfareFlag = true;
+					}
 					if(cut1Timer > 10.5) message.text = "!";
 					if(cut1Timer < 10 && cut1Timer > 9) play("look");
 					if (cut1Timer < 9)
 					{
 						if (isTouching(FLOOR) && cut1Timer > 7.5) {
-						velocity.y = -110;
+						
 						play("excited");
+						if (!wizLaughFlag)
+						{
+							FlxG.play(wizLaugh);
+							wizLaughFlag = true;
+						}
 						message.text = "Aw shucks!";
 						}
 						if (cut1Timer <= 7.5 && cut1Timer > 6)
 						{
+							wizLaughFlag = false;
 							play("idle");
 							message.text = "";
 						}
 						if (cut1Timer < 6 && cut1Timer > 4.5)
 						{
+							if (!wizLaughFlag)
+							{
+								FlxG.play(wizLaugh2);
+								wizLaughFlag = true;
+							}
 							play("exuberant");
 							message.text = "Ya made it!";
 						}
 						if (cut1Timer < 4.5 && cut1Timer > 3)
 						{
+							wizLaughFlag = false;
 							play("idle");
 							message.text = "";
 						}
 						
 						if (cut1Timer < 3 && cut1Timer > 1.5)
 						{
+							if (!wizLaughFlag)
+							{
+								FlxG.play(wizLaugh);
+								wizLaughFlag = true;
+							}
 							play("ecstatic");
 							message.text = "What'rya Waitin' for??"
 						}
-						if (cut1Timer < 1.5 && cut1Timer > 1) message.text = "";
+						if (cut1Timer < 1.5 && cut1Timer > 1)
+						{
+							message.text = "";
+							wizLaughFlag = false;
+						}
 						if (cut1Timer < 1) 
 						{
+							if (!wizLaughFlag)
+							{
+								FlxG.play(wizLaughLong);
+								wizLaughFlag = true;
+							}
 							play("excited");
 							if(isTouching(FLOOR))velocity.y = -110;
-							message.size = 16; 
-							message.y = y - 44;
-							message.text = "COME SEE THE GIZMO!";
+							//message.y = y - 44;
+							message.text = "COME SEE IT!";
 						}
 							
 							
@@ -128,6 +167,7 @@ package
 				x = BEHINDGIFT;
 				play("run");
 				cut1Timer = 0;
+				wizLaughFlag = false;
 				
 			}
 			
@@ -138,8 +178,12 @@ package
 			}
 			if (cut2Timer < 0 && cut2Timer > -10)
 			{
-				message.size = 8;
-				message.text = "Come and git it!";		 			
+				message.text = "Come and git it!";
+				if (!wizLaughFlag)
+				{
+					FlxG.play(wizLaugh2);
+					wizLaughFlag = true;
+				}
 				Registry.wizUnfreeze2 = true;
 				//Registry.gameLevel.player.moves = true;
 				FlxControl.player1.setCursorControl(false, false, true, true);
@@ -216,6 +260,7 @@ package
 		public function poof():void
 		{
 			FlxG.flash(0x0000B9, 1);
+			FlxG.play(magic);
 			var rand1:int;
 			var rand2:int;
 			var randAclX:int;

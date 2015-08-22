@@ -128,6 +128,8 @@ package
 				FlxG.collide(_gameLevel.bots, _gameLevel.crumbleRocks);
 				FlxG.overlap(_gameLevel.bots, _gameLevel.rocks, botRock);
 				FlxG.collide(_gameLevel.bots, _gameLevel.rocks, botRock);
+				FlxG.overlap(_gameLevel.bots2, _gameLevel.rocks, botRock);
+				FlxG.collide(_gameLevel.bots2, _gameLevel.rocks, botRock);
 				FlxG.collide(_gameLevel.bots2, _gameLevel.foreground);
 				FlxG.collide(_gameLevel.bots2, _gameLevel.crumbleRocks);
 				FlxG.collide(_gameLevel.bots2.blades, _gameLevel.foreground, killBlade);
@@ -185,7 +187,7 @@ package
 
 				//If the letter is on screen (it should be when first playing level 1 and when hitting the mail in level 4),
 				// pressing space should make the letter fade away and the player animate putting the letter away
-				if ((Registry.stageCount == 0 || Registry.stageCount == 3) && Registry.letterSequence && FlxG.keys.SPACE)
+				if ((Registry.stageCount == 0 || Registry.stageCount == 3) && Registry.letterSequence && FlxG.keys.Z)
 				{
 					_letterTimer = .5;
 					_gameLevel.player.putAway();
@@ -217,7 +219,7 @@ package
 				//playtime
 				Registry.playtime += FlxG.elapsed; //keep track of how long user has played the current level
 				Registry.totalPlaytime += FlxG.elapsed; //keep track of how long user has played the game
-				_playtimeMessage.text = "" + FlxU.formatTime(Registry.playtime, false); //display how long the user has played the current level
+				//_playtimeMessage.text = "" + FlxU.formatTime(Registry.playtime, false); //display how long the user has played the current level
 
 				//letterTimer
 				if (_letterTimer > 0)
@@ -230,6 +232,7 @@ package
 					_gameLevel.letter.kill();
 					remove(_gameLevel.letter);
 				}
+				
 
 				//whiff sound effect
 				if(Registry.gameLevel.player.canPunch && Registry.hasFlower && FlxG.keys.justPressed("X"))
@@ -521,14 +524,14 @@ package
 			add(_amountOfDeathsMessage);
 		}
 
-		private function createPlaytimeMessage():void
+		/*private function createPlaytimeMessage():void
 		{
 			_playtimeMessage = new FlxText(Registry.screenWidth - 63, 3, 320, "" + Registry.playtime);
 			_playtimeMessage.size = 8;
 			_playtimeMessage.scrollFactor.x = 0;
 			_playtimeMessage.scrollFactor.y = 0;
 			add(_playtimeMessage);
-		}
+		}*/
 		private function meetNPC(hitBox:FlxObject, npc:NPC):void
 		{
 			add(_gameLevel.npc.message);
@@ -540,7 +543,6 @@ package
 			trace("overlapping");
 			if (Registry.gameLevel.player.canPunch && FlxG.keys.justPressed("X") && Registry.hasFlower && !bot.isDying)
 			{
-				//TODO level 4 bots arent dying?
 				FlxG.play(punchSFX);
 				bot.knockback();
 			}
@@ -876,9 +878,9 @@ package
 			add(_gameLevel.spring);
 			add(_gameLevel.spring2);
 			add(_gameLevel.player);
-			if (Registry.deaths % 10== 0 && Registry.deaths != 0)
+			if (Registry.deaths % 12== 0 && Registry.deaths != 0)
 			{
-				add(_gameLevel.frog); //TODO  only add frog every 20 deaths or so
+				add(_gameLevel.frog); //only add frog every 7 deaths or so
 				add(_gameLevel.frog.message);
 			}
 			add(_gameLevel.checkpoint);
@@ -891,7 +893,7 @@ package
 			add(_muteButton);
 			
 			createHealthBar(); //creates and adds player's health bar. Called here because it should appear over top of everything else
-			createPlaytimeMessage(); //creates and adds playtime message
+			//createPlaytimeMessage(); //creates and adds playtime message
 
 			if (Registry.firstLevel1 && Registry.stageCount == 0) //if playing level 1 for first time, make the user read the damn letter //added last so it's over top of everything else
 			{
@@ -985,7 +987,7 @@ package
 				_gameLevel.focusPoint.velocity.x = 600; //the speed of the panning
 				if (Registry.wizUnfreeze2 == false) 
 				{
-					//_gameLevel.player.moves = false; //freeze the player //*TODO* BUT NOT IN MID AIR????
+					//_gameLevel.player.moves = false; //freeze the player 
 					FlxControl.player1.setCursorControl(false, false, false, false);
 					_gameLevel.player.velocity.x = 0;
 				}

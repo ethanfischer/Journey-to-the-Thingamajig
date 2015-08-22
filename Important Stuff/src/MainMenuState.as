@@ -32,7 +32,7 @@ package
 		private var fadeChordflag3:Boolean;
 		
 		
-	 	private var dots:FlxSprite = new FlxSprite(Registry.screenWidth / 2 - 34, 191);
+	 	private var dots:FlxSprite = new FlxSprite(Registry.screenWidth / 2 - 34, 191 + 40); //40 is how far down dots are
 		
 		private var level:Level1;
 		private var title:FlxSprite;
@@ -51,7 +51,7 @@ package
 		private var black:FlxSprite;
 		private var menuTrees:FlxSprite;
 		private var punchFlag:Boolean;
-		private var timer:Number = 2.8;
+		private var timer:Number = 4.8;
 		private var start:FlxSprite;
 		
 		public function MainMenuState() 
@@ -90,7 +90,7 @@ package
 		nowhere.loadGraphic(nowherePNG, false, false, 600, 300);
 		nowhere.alpha = 0;
 		
-		start = new FlxSprite(0, 0);
+		start = new FlxSprite(0, 40);
 		start.loadGraphic(startPNG, false, false, 600, 300);
 		start.alpha = 0;
 		
@@ -154,7 +154,7 @@ package
 			
 			if (timer > 0)
 			{	
-				if (timer < 2.1)
+				if (timer < 3.1)
 				{
 					quest.alpha += .5;
 					if (!fadeChordflag1)
@@ -162,7 +162,7 @@ package
 						FlxG.play(fadeChord);
 						fadeChordflag1 = true;
 					}
-					if (timer < 1.4)
+					if (timer < 2.4)
 					{
 						to.alpha += .5;
 						if (!fadeChordflag2)
@@ -170,7 +170,7 @@ package
 							FlxG.play(fadeChord);
 							fadeChordflag2 = true;
 						}
-						if (timer < .7)
+						if (timer < 1.7)
 						{
 							nowhere.alpha += .5;
 							if (!fadeChordflag3)
@@ -211,7 +211,7 @@ package
 				FlxG.play(quack);
 			}
 			
-			if (FlxG.keys.SPACE || FlxG.keys.ENTER)
+			if (FlxG.keys.Z)
 			{
 				if (selector == 1) 
 				{

@@ -96,7 +96,11 @@ package
 			
 			not_a_flower = new NotAFlower(260, height - 48, player);
 			
-			if(!frog.onScreen()) sign = new Sign(135, 134, "1. PRESS DOWN TO DUCK." + "\n" + "2. RUNNING + DUCKING = SLIDING.", player, 105, 124);		
+			if (Registry.deaths % 13== 0 && Registry.deaths != 0) //if frog is on screen 
+			{
+				sign = new Sign(135, 134, "", player, 105, 124);
+			}
+			else sign = new Sign(135, 134, "PRESS DOWN TO DUCK", player, 105, 124);
 			sign2 = new Sign(1103, 50, "SLIDE INTO BAD GUYS", player, 1060, 30);
 			
 			parseBots(player);

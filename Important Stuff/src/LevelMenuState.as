@@ -65,7 +65,7 @@ package
 		l4 = new FlxButton(Registry.screenWidth / 2 - 25, Registry.screenHeight - 35, "LEVEL 4", changeState);
 		l5 = new FlxButton(Registry.screenWidth / 2 - 25, Registry.screenHeight - 35, "LEVEL 5", changeState);
 		l6 = new FlxButton(Registry.screenWidth / 2 - 25, Registry.screenHeight - 35, "LEVEL 6", changeState);
-		l7 = new FlxButton(Registry.screenWidth / 2 - 25, Registry.screenHeight - 35, "LEVEL ??", changeState);
+		l7 = new FlxButton(Registry.screenWidth / 2 - 25, Registry.screenHeight - 35, "LEVEL 7", changeState);
 		
 		dots.loadGraphic(dotsPNG, true, false, 72, 6);
 		dots.drag.y = 4500;
@@ -136,7 +136,7 @@ package
 				FlxG.play(quack);
 			}
 			
-			if (FlxG.keys.justPressed("SPACE") || FlxG.keys.ENTER) 
+			if (FlxG.keys.justPressed("Z") || FlxG.keys.ENTER) 
 			{
 				if (selector == 1) changeState();
 				else FlxG.switchState(new MainMenuState);

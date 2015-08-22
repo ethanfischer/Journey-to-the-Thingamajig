@@ -61,6 +61,7 @@ package
 			backbackground.setTileProperties(1, FlxObject.NONE);
 			backbackground.scrollFactor.x = .2; 
 			
+			
 			background = new FlxTilemap;
 			background.loadMap(new backgroundCSV, backgroundTilesPNG, 256, 600);
 			background.setTileProperties(1, FlxObject.NONE);
@@ -80,11 +81,10 @@ package
 			width = foreground.width;
 			height = foreground.height;
 			
-			if(Registry.firstLevel4) mail = new Mail(160, 430);
+			if(Registry.firstLevel4) mail = new Mail(130, 430);
 			
 			canopy.visible = false;
 			
-			//TODO: FIGURE OUT WHY BOTS AFTER CHECKPOINT CANT BE PUNCHED PROPERLY
 			
 			///////////////////////////////////////////////////////
 			//					 CHECKPOINT						 //
