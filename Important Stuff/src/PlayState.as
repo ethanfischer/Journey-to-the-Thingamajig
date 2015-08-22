@@ -9,7 +9,7 @@ package
 	{
 		private var _gameLevel:GameLevel;
 		private static var stages:Array;
-		private static var stageCount:int = Registry.stageCount; //what stage the user is currently on (0 means Level 1, 1 means Level 2, etc.)
+		//private static var stageCount:int = Registry.stageCount; //what stage the user is currently on (0 means Level 1, 1 means Level 2, etc.)
 		private var _level1:Class = Level1;
 		private var _level2:Class = Level2;
 		private var _level3:Class = Level3;
@@ -101,7 +101,9 @@ package
 		override public function update():void
 		{
 			super.update();
-
+			
+			
+			
 			if (!Registry.gameStart)
 			{
 				
@@ -113,7 +115,8 @@ package
 				if (FlxG.keys.T)
 				{
 					trace("		***TEST***");
-					trace(Registry.gameLevel.player.x, Registry.gameLevel.player.y);
+					trace("stageCount = " + Registry.stageCount);
+					//trace(Registry.gameLevel.player.x, Registry.gameLevel.player.y);
 					
 				}
 				
@@ -174,20 +177,20 @@ package
 								
 				FlxG.overlap(_gameLevel.player.screen, _gameLevel.bots, updateThings);
 				FlxG.overlap(_gameLevel.player.screen, _gameLevel.bots2, updateThings);
-				FlxG.overlap(_gameLevel.player.screen, _gameLevel.rocks, updateThings);
-				FlxG.overlap(_gameLevel.player.screen, _gameLevel.crumbleRocks, updateThings);
-				FlxG.overlap(_gameLevel.player.screen, _gameLevel.borgs, updateThings);
+				FlxG.overlap(_gameLevel.player.screen2, _gameLevel.rocks, updateThings);
+				FlxG.overlap(_gameLevel.player.screen2, _gameLevel.crumbleRocks, updateThings);
+				FlxG.overlap(_gameLevel.player.screen2, _gameLevel.borgs, updateThings);
 				FlxG.overlap(_gameLevel.player.screen2, _gameLevel.torches, updateThings);
 				FlxG.overlap(_gameLevel.player.screen2, _gameLevel.streams, updateThings);
 				FlxG.overlap(_gameLevel.player, _gameLevel.spring, bouncePlayer);
 				FlxG.overlap(_gameLevel.player, _gameLevel.spring2, bouncePlayer);
 				FlxG.overlap(_gameLevel.player, _gameLevel.checkpoint, hitCheckpoint);
-				if(stageCount == 6 && Registry.giftHasBeenExchanged) FlxG.overlap(_gameLevel.player, _gameLevel.checkpoint2, hitCheckpoint);
+				if(Registry.stageCount == 6 && Registry.giftHasBeenExchanged) FlxG.overlap(_gameLevel.player, _gameLevel.checkpoint2, hitCheckpoint);
 				FlxG.overlap(_gameLevel.player, _gameLevel.end, hitCheckpoint);
 
 				//If the letter is on screen (it should be when first playing level 1 and when hitting the mail in level 4),
 				// pressing space should make the letter fade away and the player animate putting the letter away
-				if ((Registry.stageCount == 0 || Registry.stageCount == 3) && Registry.letterSequence && FlxG.keys.Z)
+				if ((Registry.stageCount == 0 || Registry.stageCount == 3) && Registry.letterSequence && (FlxG.keys.Z && FlxG.keys.X))
 				{
 					_letterTimer = .5;
 					_gameLevel.player.putAway();
@@ -258,8 +261,9 @@ package
 					}
 				}
 				
-				if (stageCount == 6)
+				if (Registry.stageCount == 6) //for some reason when you beat stagecount 5, it doesn't realize your on stage 6
 				{
+					trace("whaaaaaaat");
 					if (Registry.dropBouldlets) 
 					{	
 						add(_gameLevel.bouldlets);
@@ -288,10 +292,11 @@ package
 					//MEETING WIZ
 					//if (!Registry.giftExchange) //giftExchange is turned on when Wiz is onScreen behind the big gift (gExch turned on in Wiz)
 					//{
-						if (!Registry.metWiz)
-						{
-							meetWiz();
-						}
+					if (!Registry.metWiz)
+					{
+						
+						meetWiz();
+					}
 					//}
 					
 					//GIFT EXCHANGE
@@ -540,7 +545,7 @@ package
 
 		private function punchBot(hitBox:FlxObject , bot:Bot):void
 		{
-			trace("overlapping");
+			
 			if (Registry.gameLevel.player.canPunch && FlxG.keys.justPressed("X") && Registry.hasFlower && !bot.isDying)
 			{
 				FlxG.play(punchSFX);
@@ -618,11 +623,8 @@ package
 		{
 			if (Registry.gameLevel.player.canPunch && FlxG.keys.justPressed("X"))
 			{
-				if (stageCount == 4)
-				{
-					FlxG.shake(.02, .05);
-					FlxG.play(kickSFX, 1);
-				}
+				FlxG.shake(.02, .05);
+				FlxG.play(kickSFX, 1);
 				add(_gameLevel.npc.message);
 				npc.talk();
 				add(_gameLevel.umbrella);
@@ -673,7 +675,7 @@ package
 			}
 			else
 			{
-				if (_gameLevel.player.x > thing.x && !thing.onScreen()) thing.active = false; //when player is far enough to right of thing (as happens when user progresses through every level), the thing should stop being active
+				if (_gameLevel.player.x > (thing.x + 500)) thing.active = false; //when player is far enough to right of thing (as happens when user progresses through every level), the thing should stop being active
 				else thing.active = true;
 			}
 		}
@@ -832,12 +834,14 @@ package
 		
 		public function makeStage():void
 		{
+	
 			_gameLevel = new stages[Registry.stageCount];
 			Registry.gameLevel = _gameLevel;
 
 			add(_gameLevel);
 			add(_gameLevel.backbackground);
 			add(_gameLevel.background);
+			
 			
 			if (Registry.stageCount == 6) 
 			{
@@ -870,7 +874,7 @@ package
 			add(_gameLevel.worm2);
 			add(_gameLevel.worm3);
 
-			if (stageCount == 3 && Registry.firstLevel4) add(_gameLevel.mail); //if playing level 4 for first time, add the mail for player to hit
+			if (Registry.stageCount == 3 && Registry.firstLevel4) add(_gameLevel.mail); //if playing level 4 for first time, add the mail for player to hit
 
 			add(_gameLevel.torches);
 			add(_gameLevel.bots2.blades);
@@ -938,15 +942,19 @@ package
 		//////////////////////////////////////////////////////////////
 		public function meetWiz():void
 		{
+			
 			if (!Registry.metWiz) //once player is free, set this to true
 			{
+			
 				if (_gameLevel.player.x > _gameLevel.focusPoint.x) 
 				{
+			
 					FlxG.camera.follow(_gameLevel.focusPoint); //have the camera pan over to the right to reveal the wizard
 					
 					_gameLevel.focusPoint.velocity.x = 600; //the speed of the panning
 					if (Registry.wizUnfreeze == false) 
 					{
+					
 						FlxControl.player1.setCursorControl(false, false, false, false);
 						//_gameLevel.player.moves = false; //freeze the player
 						_gameLevel.player.velocity.x = 0;

@@ -34,12 +34,12 @@ package
 			var bulletBoundRect:FlxRect = new FlxRect((x * 16) - 800, (y * 16) + 4, 1600, 8);
 			
 			weapon.setParent(this, "x", "y", 0, 0, true);
-			weapon.makeAnimatedBullet(bullets, blade, 16, 2, [0, 1], 25, true, 10, 3);
+			weapon.makeAnimatedBullet(bullets, blade, 16, 2, [0, 1], 25, true, 5, 3);
 			weapon.bulletLifeSpan = 20000;
 			weapon.setBulletSpeed(bladeSpeed);
 			weapon.setFireRate((2950 + (bladeSpeed * 3.125)) / fireRate);
 			weapon.setBulletBounds(bulletBoundRect);
-			//weapon.setFireCallback(meh, fireSFX);
+			weapon.setFireCallback(meh, fireSFX);
 
 			player = i_player;
 			
@@ -90,10 +90,14 @@ package
 			
 		}
 		
+		override public function turnAround():void
+		{
+			//do nothing. Bot2 can't turn around
+		}
 		
 		private function meh():void
 		{
-			
+			//empty function
 		}
 	}
 

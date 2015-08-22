@@ -182,7 +182,11 @@ package
 					}
 					else if (bot2Map.getTile(tx, ty) == 2)
 					{
-						bots2.addBot2(tx, ty, player, FlxObject.RIGHT, 400);
+						bots2.addBot2(tx, ty, player, FlxObject.LEFT, 400);
+					}
+					else if (bot2Map.getTile(tx, ty) == 3)
+					{
+						bots2.addBot2(tx, ty, player, FlxObject.RIGHT, 80);
 					}
 					
 				}

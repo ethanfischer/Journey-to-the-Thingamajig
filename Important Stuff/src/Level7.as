@@ -142,9 +142,9 @@ package
 		}
 		else 
 		{
-			player = new Player(10, 65);
+			//player = new Player(10, 65);
 			frog = new Frog(166, 80);
-			//player = new Player(9700, 350); //for testing ending sequence
+			player = new Player(9500, 350); //for testing ending sequence
 			Registry.torchesOn = true;
 		}
 		var rand1:int;
@@ -377,7 +377,7 @@ package
 					}
 					else if (bot2Map.getTile(tx, ty) == 3)
 					{
-						bots2.addBot2(tx, ty, player, FlxObject.RIGHT, 120, true, 2, 8);
+						bots2.addBot2(tx, ty, player, FlxObject.LEFT, 120, true, 2, 8);
 					}
 					else if (bot2Map.getTile(tx, ty) == 4)
 					{

@@ -211,7 +211,7 @@ package
 				FlxG.play(quack);
 			}
 			
-			if (FlxG.keys.Z)
+			if (FlxG.keys.Z && FlxG.keys.X)
 			{
 				if (selector == 1) 
 				{

@@ -183,14 +183,14 @@ package
 		
 			//screen
 			screen = new FlxSprite(x - 500, y - 250);
-			screen.width = 2000;
+			screen.width = 3000;
 			screen.height = 500;
 			screen.exists = true;
 			screen.visible = false;
 			
 			//screen2
 			screen2 = new FlxSprite(x, y - 250);
-			screen2.width = Registry.screenWidth;
+			screen2.width = Registry.screenWidth + 250;
 			screen2.height = 500;
 			screen2.exists = true;
 			screen2.visible = false;

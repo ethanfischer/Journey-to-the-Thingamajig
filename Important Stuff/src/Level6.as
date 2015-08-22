@@ -121,7 +121,8 @@ package
 		}
 		else 
 		{
-			player = new Player(40, 410);
+			player = new Player(5000, 100);
+			//player = new Player(40, 410);
 			frog = new Frog(1309, 112);
 			Registry.torchesOn = true;
 		}
@@ -131,7 +132,7 @@ package
 			
 			not_a_flower = new NotAFlower(260, height - 48, player);
 			
-			sign = new Sign(103, 300, "PUNCH LIKE NOBODY'S WATCHING", player, 93, 385);		
+			sign = new Sign(103, 400, "PUNCH LIKE NOBODY'S WATCHING", player, 93, 385);		
 			
 			parseBots(player);
 			parseBots2(player);
@@ -150,7 +151,7 @@ package
 			Registry.crumbleRocks = crumbleRocks;
 		
 			spring = new Spring(528, 249, 500);
-			spring2 = new Spring(1201, 443, 600);
+			spring2 = new Spring(1201, 443, 700);
 		}
 			
 		private function parseNomNoms():void
@@ -326,7 +327,7 @@ package
 					}
 					else if (bot2Map.getTile(tx, ty) == 2)
 					{
-						bots2.addBot2(tx, ty, player, FlxObject.RIGHT, 400);
+						bots2.addBot2(tx, ty, player, FlxObject.LEFT, 400);
 					}
 					else if (bot2Map.getTile(tx, ty) == 3)
 					{
@@ -334,7 +335,7 @@ package
 					}
 				}
 			}
-			Registry.bots2 = bots2;
+			Registry.bots2 = bots2;5
 		}
 		
 	

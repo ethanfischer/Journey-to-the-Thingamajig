@@ -13,7 +13,7 @@ package
 			loadGraphic(WormPNG, true, true, 4, 8);
 			addAnimation("idle", [0,1,2,3], 4, true);	
 			play("idle");
-			acceleration.y = 100;
+			acceleration.y = 800;
 			facing = FlxObject.LEFT;
 			velocity.x = -5;
 			offset.y = -2;

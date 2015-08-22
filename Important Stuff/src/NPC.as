@@ -12,6 +12,7 @@ package
 		private var noise2Flag:Boolean;
 		[Embed(source = "../assets/bah.mp3")] private var bah:Class;
 		[Embed(source = "../assets/bahfade.mp3")] private var bahfade:Class;
+		[Embed(source = "../assets/trumpetfanfare_mom.mp3")] private var trumpet:Class;
 		
 		public var isDying:Boolean = false;
 		private var dieTimer:Number;
@@ -117,6 +118,7 @@ package
 						if (!Registry.gameLevel.player.pickup) 
 						{
 							Registry.gameLevel.player.pickup = true;
+							FlxG.play(trumpet);
 							Registry.gameLevel.player.pickupTimer = 2;
 						}
 						Registry.hasFlower = true;

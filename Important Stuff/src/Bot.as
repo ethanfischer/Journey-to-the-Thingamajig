@@ -129,7 +129,8 @@ package
 				}
 				else
 				{
-					velocity.x = -400;
+					if (Registry.stageCount == 2) velocity.x = -600;
+					else velocity.x = -400;
 					angle -= 20;
 				}
 			}
