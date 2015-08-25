@@ -40,6 +40,9 @@ package
 		{
 			super();
 			
+			//MUSIC IS TAKEN CARE OF IN DEATHMENUSTATE. THIS IS CONFUSING, BAD CODING AND IS AN EXAMPLE OF WHY YOU ENCAPSULATE and KEEP YOUR PROGRAM HIGH IN MODULARITY
+		
+			
 			//Registry.musix = beats[Registry.deathCount % 2];
 			Registry.musix = dwarfDance;
 			//musix.loadEmbedded(dwarfDance, true, false);

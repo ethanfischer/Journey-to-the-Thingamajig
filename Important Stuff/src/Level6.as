@@ -43,10 +43,9 @@ package
 															[Embed(source = "../assets/stream.png")] public var streamPNG:Class;
 		[Embed(source = "../map/mapCSV_Level6_Streams.csv", mimeType = "application/octet-stream")] public var streamsCSV:Class;
 		
-		[Embed(source="../assets/distant_thunder.mp3")] public var dwarfDance:Class; //mountain ambience mode
-		//[Embed(source="../assets/02_Open_Eye_Signal.mp3")] public var dwarfDance:Class; //music mode
-		//[Embed(source="../assets/Native American video game music test.mp3")] public var dwarfDance:Class;
-		//[Embed(source = "../assets/water.mp3")] private var water:Class;
+
+		
+		//MUSIC IS TAKEN CARE OF IN DEATHMENUSTATE. THIS IS CONFUSING, BAD CODING AND IS AN EXAMPLE OF WHY YOU ENCAPSULATE and KEEP YOUR PROGRAM HIGH IN MODULARITY
 		
 		//public var waterSFX:FlxSound = new FlxSound();
 		public var rockMap:FlxTilemap;	
@@ -131,7 +130,8 @@ package
 			
 			not_a_flower = new NotAFlower(260, height - 48, player);
 			
-			sign = new Sign(103, 400, "PUNCH LIKE NOBODY'S WATCHING", player, 93, 385);		
+			sign = new Sign(103, 400, "    DANGER in Level 7.\n    Once you beat this level,\n     QUIT.\n    DO NOT TRUST THE WIZARD    ", player, 73, 355);	
+			sign.message.alignment = "center";
 			
 			parseBots(player);
 			parseBots2(player);

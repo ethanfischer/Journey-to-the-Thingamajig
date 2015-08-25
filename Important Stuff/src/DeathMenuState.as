@@ -15,10 +15,16 @@ package
 		//private var reveal:CenterSlideFX;
 		[Embed(source = "../assets/quack.mp3")] private var quack:Class;
 		[Embed(source = "../assets/writing.mp3")] private var writing:Class;
+		//Level1,3
 		[Embed(source = "../assets/forestsounds.mp3")] public var forestSounds:Class;
+		//Level2
 		[Embed(source = "../assets/forestsounds2.mp3")] public var forestSounds2:Class;
+		//Level4
 		[Embed(source = "../assets/river.mp3")] private var water:Class;
-		[Embed(source = "../assets/distant_thunder.mp3")] public var dwarfDance:Class; //mountain ambience mode
+		//Level 5
+		//[Embed(source = "../assets/distant_thunder.mp3")] public var dwarfDance:Class; //mountain ambience mode
+		 [Embed(source="../assets/howler_monkeys_thunder.mp3")]public var dwarfDance:Class;
+		
 		[Embed(source = "../assets/rumble.mp3")] public var rumble:Class;
 		
 		public function DeathMenuState() 

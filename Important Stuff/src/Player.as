@@ -17,7 +17,8 @@ package
 		[Embed(source = "../assets/jumpSFX3.mp3")] private var _jumpSoundEffect:Class;
 		[Embed(source="../assets/slide.mp3")] private var _slideSoundEffect:Class;
 		[Embed(source = "../assets/hurtSFX.mp3")] private var _ouchSFX:Class;
-		[Embed(source = "../assets/hurtSFX(bot).mp3")] private var _ouchBotSFX:Class;
+		//[Embed(source = "../assets/hurtSFX(bot).mp3")] private var _ouchBotSFX:Class;
+		[Embed(source = "../assets/hurtSFX2(bot).mp3")] private var _ouchBotSFX:Class;
 		[Embed(source = "../assets/land.mp3")] private var _land:Class;
 		
 		private var _deathSFX:Class;
