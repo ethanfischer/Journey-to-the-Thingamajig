@@ -53,13 +53,34 @@ package
 		public var fadeBlockMap:FlxTilemap;
 		//public var borgs:Borgs;
 		
+	
+		
+		//private var wiz_name1:String = "TOP GODFATHER";
+		//private var wiz_name2:String = "HIGH PRIEST";
+		//private var wiz_name3:String = "CAPTAIN BADASS";
+		//private var wiz_name4:String = "GRAND COMANDER";
+		
+		private var wiz_name_holder:String; //assign wiz_name to this
+		private var wiz_name_array:Array;
+		
 		public function Level6() 
 		{
 			super();
 		
-			Registry.hasUmbrella = true;
+			//make array wiz_name_holder contain 4 names which it iterates through each time the player dies
+			//change wizs nick name every death
 			
-			//Registry.musix = dwarfDance;
+			
+			//var i:int;
+			//while (i <= 3)
+			//{
+				
+				
+			//	i++;
+			//}
+			
+			
+			Registry.hasUmbrella = true;
 			
 			Registry.fstPlace = 120;
 			Registry.sndPlace = 150;
@@ -130,8 +151,34 @@ package
 			
 			not_a_flower = new NotAFlower(260, height - 48, player);
 			
-			sign = new Sign(103, 400, "    DANGER in Level 7.\n    Once you beat this level,\n     QUIT.\n    DO NOT TRUST THE WIZARD    ", player, 73, 355);	
-			sign.message.alignment = "center";
+			//wizs name changes every death
+			//iterates 4 predefined wiz names
+			
+			
+			//var i:int = Registry.deathCount;
+			//while ((i % 3) <= 1)
+			//{
+				switch((Registry.totalDeaths % 3)) 
+				{ 
+					case 0: 
+						wiz_name_holder = "TOP GODFATHER";  
+						break; 
+					case 1: 
+						wiz_name_holder = "HIGH PRIEST"; 
+						break; 
+					case 2: 
+						wiz_name_holder = "CAPTAIN BADASS";
+						break; 
+					case 3: 
+						wiz_name_holder = "GRAND COMANDER";
+						break; 
+				}
+				
+			//	i++;
+			//}
+			
+			sign = new Sign(103, 400, " WIZARD THINK HE        \n" + wiz_name_holder + ".    \n        HE NOT.        ", player, 73, 355);	
+			//sign.message.alignment = "center";
 			
 			parseBots(player);
 			parseBots2(player);
