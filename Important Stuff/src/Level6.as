@@ -152,31 +152,29 @@ package
 			not_a_flower = new NotAFlower(260, height - 48, player);
 			
 			//wizs name changes every death
-			//iterates 4 predefined wiz names
-			
-			
-			//var i:int = Registry.deathCount;
-			//while ((i % 3) <= 1)
-			//{
-				switch((Registry.totalDeaths % 3)) 
+				switch((Registry.totalDeaths % 6)) 
 				{ 
 					case 0: 
-						wiz_name_holder = "TOP GODFATHER";  
+						wiz_name_holder = "MAN WITH ANSWERS";  
 						break; 
 					case 1: 
-						wiz_name_holder = "HIGH PRIEST"; 
+						wiz_name_holder = "ONE WHO KNOWS"; 
 						break; 
 					case 2: 
-						wiz_name_holder = "CAPTAIN BADASS";
+						wiz_name_holder = "CONTROL DESTINY";
 						break; 
 					case 3: 
-						wiz_name_holder = "GRAND COMANDER";
-						break; 
+						wiz_name_holder = "MASTER OF FATE";
+						break;
+					case 4:
+						wiz_name_holder = "      INVINCIBLE";
+						break;
+					case 5:
+						wiz_name_holder = "ALWAYS KNOW BEST";
+						break;
+					
 				}
-				
-			//	i++;
-			//}
-			
+	
 			sign = new Sign(103, 400, " WIZARD THINK HE        \n" + wiz_name_holder + ".    \n        HE NOT.        ", player, 73, 355);	
 			//sign.message.alignment = "center";
 			

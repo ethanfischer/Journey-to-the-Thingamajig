@@ -106,6 +106,7 @@ package
 			}
 			else
 			{
+				//player = new Player(3930, 300); //end
 				player = new Player(15, 400);
 				frog = new Frog(80, 400);
 				Registry.torchesOn = true;
@@ -131,7 +132,7 @@ package
 			Registry.crumbleRockMap = crumbleRockMap;
 			Registry.crumbleRocks = crumbleRocks;
 			
-			//spring = new Spring(2458, 423, 700);
+			spring = new Spring(3958, 395, 10000);
 			spring2 = new Spring(1080, 408, 1200);
 		}
 			

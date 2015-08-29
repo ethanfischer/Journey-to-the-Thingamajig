@@ -115,8 +115,9 @@ package
 				if (FlxG.keys.T)
 				{
 					trace("		***TEST***");
-					trace("stageCount = " + Registry.stageCount);
-					//trace(Registry.gameLevel.player.x, Registry.gameLevel.player.y);
+					
+					//Player Position//
+					trace(Registry.gameLevel.player.x, Registry.gameLevel.player.y);
 					
 				}
 				

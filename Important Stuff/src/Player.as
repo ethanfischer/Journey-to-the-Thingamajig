@@ -190,9 +190,9 @@ package
 			screen.visible = false;
 			
 			//screen2
-			screen2 = new FlxSprite(x, y - 250);
-			screen2.width = Registry.screenWidth + 250;
-			screen2.height = 500;
+			screen2 = new FlxSprite(x - 250, y - 250);
+			screen2.width = Registry.screenWidth + 350;
+			screen2.height = Registry.screenHeight + 300;
 			screen2.exists = true;
 			screen2.visible = false;
 		
@@ -419,8 +419,8 @@ package
 			//////////////////////
 			screen.y = this.y - 250;
 			screen.x = this.x - 1500;
-			screen2.x = x - Registry.screenWidth/2.5;
-			screen2.y = y - Registry.screenHeight/2;			
+			screen2.x = x - 350;
+			screen2.y = y - Registry.screenHeight;			
 			/////////////////////
 			//		SPEED	   //
 			/////////////////////

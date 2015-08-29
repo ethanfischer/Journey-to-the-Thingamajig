@@ -179,7 +179,7 @@ package
 				{
 					if (meetTimer2 > 6.6) 
 					{
-						FlxG.play(trumpet);
+						if(!Registry.gameLevel.umbrella.visible)FlxG.play(trumpet);
 						Registry.gameLevel.player.pickupTimer = 2;
 						Registry.gameLevel.umbrella.visible = true;
 						Registry.gameLevel.umbrella.x = Registry.gameLevel.player.x - 5;
