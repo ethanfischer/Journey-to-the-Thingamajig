@@ -60,14 +60,14 @@ package
 		//private var wiz_name3:String = "CAPTAIN BADASS";
 		//private var wiz_name4:String = "GRAND COMANDER";
 		
-		private var wiz_name_holder:String; //assign wiz_name to this
+		private var sign_message:String; //assign wiz_name to this
 		private var wiz_name_array:Array;
 		
 		public function Level6() 
 		{
 			super();
 		
-			//make array wiz_name_holder contain 4 names which it iterates through each time the player dies
+			//make array sign_message contain 4 names which it iterates through each time the player dies
 			//change wizs nick name every death
 			
 			
@@ -155,28 +155,28 @@ package
 				switch((Registry.totalDeaths % 6)) 
 				{ 
 					case 0: 
-						wiz_name_holder = "MAN WITH ANSWERS";  
+						sign_message = "DANGER";  
 						break; 
 					case 1: 
-						wiz_name_holder = "ONE WHO KNOWS"; 
+						sign_message = "ANGRY BEASTS"; 
 						break; 
 					case 2: 
-						wiz_name_holder = "CONTROL DESTINY";
+						sign_message = "DANGER";
 						break; 
 					case 3: 
-						wiz_name_holder = "MASTER OF FATE";
+						sign_message = "WIZARD IN LEVEL 7";
 						break;
 					case 4:
-						wiz_name_holder = "      INVINCIBLE";
+						sign_message = "DANGER";
 						break;
 					case 5:
-						wiz_name_holder = "ALWAYS KNOW BEST";
+						sign_message = "THOSE AREN'T MOUNTAINS";
 						break;
 					
 				}
 	
-			sign = new Sign(103, 400, " WIZARD THINK HE        \n" + wiz_name_holder + ".    \n        HE NOT.        ", player, 73, 355);	
-			//sign.message.alignment = "center";
+			sign = new Sign(103, 400, sign_message, player, 45, 390);	
+			sign.message.alignment = "center";
 			
 			parseBots(player);
 			parseBots2(player);

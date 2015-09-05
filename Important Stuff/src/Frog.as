@@ -71,7 +71,7 @@ package
 		
 		private function insultZone():Boolean
 		{
-			if (Registry.gameLevel.player.x > x - 150 && Registry.gameLevel.player.x < x + 150
+			if (Registry.gameLevel.player.x > x - 200 && Registry.gameLevel.player.x < x + 200
 			&& Registry.gameLevel.player.y > y - 75 && Registry.gameLevel.player.y < y + 75)
 			{
 				return true;

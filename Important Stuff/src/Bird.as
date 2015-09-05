@@ -28,6 +28,7 @@ package
 			
 			retreatFlag = false;
 			
+			solid = false;
 			
 			message = new FlxText(x*16, y*16 - 10, 150, "");
 		

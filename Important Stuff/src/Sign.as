@@ -36,6 +36,19 @@ package
 			{
 				message.visible = false;
 			}
+			
+			if (Registry.stageCount == 0)
+			{
+				if (player.x > x - 34 && player.x < x + 90
+				&& player.y > y - 50 && player.y < y + 50)
+				{
+					message.visible = true;
+				}
+				else
+				{
+					message.visible = false;
+				}
+			}
 		}
 		
 	}

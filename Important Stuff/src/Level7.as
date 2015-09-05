@@ -147,6 +147,7 @@ package
 			//player = new Player(9500, 350); //for testing ending sequence
 			Registry.torchesOn = true;
 		}
+		
 		var rand1:int;
 		var rand2:int;
 		for (var i:int = 0; i < 100; i++)

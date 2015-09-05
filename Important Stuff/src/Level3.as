@@ -103,8 +103,8 @@ package
 			{
 				sign = new Sign(135, 134, "", player, 105, 124);
 			}
-			else sign = new Sign(135, 134, "PRESS DOWN TO DUCK", player, 105, 124);
-			sign2 = new Sign(1103, 50, "SLIDE INTO BAD GUYS", player, 1060, 30);
+			else sign = new Sign(135, 134, "PRESS DOWN TO DUCK", player, 105, 134);
+			sign2 = new Sign(1103, 50, "SLIDE INTO BAD GUYS", player, 1060, 50);
 			
 			parseBots(player);
 			parseBots2(player);

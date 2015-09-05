@@ -52,7 +52,7 @@ package
 		public static var mode:String = "high";
 		public static var nmlTimescale:Number;
 		public static var playtime:Number = 0;
-		public static var totalPlaytime:Number;
+		public static var totalPlaytime:Number = 0;
 		public static var footage:String;
 		public static var pauseSounds:Boolean = false;
 		public static var letterSequence:Boolean = false;;
@@ -67,6 +67,7 @@ package
 		public static var wizUnfreeze2:Boolean = false;
 		public static var noGoingBack:int = 0; //in level 7 after wiz dies you shouldn't be able to go back (11170 is BEHINDGIFT)
 		public static var theEnd:Boolean;
+		public static var ballsCollected:int = 0;
 		
 		//cutscenes
 		//NOTE: because every cutscene in my game should only happen once (no one wants to go through a cutscene over and over again

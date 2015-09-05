@@ -33,11 +33,15 @@ package
 		private var _partyPopflag:Boolean;
 		private var _splosion:Poof;
 		private var _jttt:FlxSprite;
+		private var _blackScreen:FlxSprite;
 		private var bouldletsFLag:Boolean;
 		private var endTimer:Number;
 		private var endTimerFlag:Boolean;
 		private var credits:FlxText;
 		private var credits2:FlxText;
+		private var trumpetFlag:Boolean;
+		private var finalPlaytime:Number;
+		
 		
 
 		[Embed(source = "../assets/punch2.mp3")] public var punchSFX:Class;
@@ -55,7 +59,8 @@ package
 		[Embed(source = "../assets/menu.png")] private var _menuPNG:Class;
 		[Embed(source = "../assets/party_pop.mp3")] private var _partyPop:Class;
 		[Embed(source = "../assets/foldpaper(openletter).mp3")] private var _openletter:Class;
-		[Embed(source="../assets/jttt.png")] private var jtttPNG:Class;
+		[Embed(source = "../assets/jttt.png")] private var jtttPNG:Class;
+		[Embed(source="../assets/black_screen.png")] private var blackScreenPNG:Class;
 
 		//only here so reference in PlayState doesn't freak out
 		public function PlayState()
@@ -118,6 +123,8 @@ package
 					
 					//Player Position//
 					trace(Registry.gameLevel.player.x, Registry.gameLevel.player.y);
+					trace("Playtime: " + Registry.playtime
+						+ "\nTotalPlaytime: " + Registry.totalPlaytime);
 					
 				}
 				
@@ -262,9 +269,9 @@ package
 					}
 				}
 				
-				if (Registry.stageCount == 6) //for some reason when you beat stagecount 5, it doesn't realize your on stage 6
+				if (Registry.stageCount == 6) 
 				{
-					trace("whaaaaaaat");
+			
 					if (Registry.dropBouldlets) 
 					{	
 						add(_gameLevel.bouldlets);
@@ -470,6 +477,17 @@ package
 		private function hitReinforcement(player:Player, reinforcement:Reinforcement):void
 		{
 			reinforcement.kill();
+			Registry.ballsCollected++;
+			
+			if (Registry.ballsCollected % 50 == 0 && Registry.ballsCollected > 0)
+			{
+				if (!trumpetFlag)
+				{
+					FlxG.play(_trumpetSFX);
+					trumpetFlag = true;
+				}
+				add(new FlxText(_gameLevel.player.x, _gameLevel.player.y - 10, 200, Registry.ballsCollected + "th BALL OF POINTLESSNESS!"));
+			}
 			//if (Registry.stageCount == 0 && player.x > 600) _gameLevel.pointsMessage.kill();
 		}
 
@@ -719,6 +737,14 @@ package
 		{
 			if (!endTimerFlag) 
 			{ 
+				_blackScreen = new FlxSprite(0, 0);
+				_blackScreen.loadGraphic(blackScreenPNG,false, false, 1200, 600);
+				_blackScreen.scrollFactor.x = 0;
+				_blackScreen.scrollFactor.y = 0;
+				_blackScreen.moves = false;
+				_blackScreen.alpha = 0;
+				add(_blackScreen);
+				
 				credits = new FlxText(0, Registry.screenHeight / 8, Registry.screenWidth);
 				credits.size = 16;
 				credits.centerOffsets();
@@ -745,6 +771,8 @@ package
 				_jttt.alpha = 0;
 				add(_jttt);
 				
+				
+				
 				endTimer = 40; 
 				endTimerFlag = true;
 			}
@@ -756,6 +784,7 @@ package
 			if (endTimer < 35 && endTimer > 31) 
 			{
 				_jttt.alpha += .07;
+				finalPlaytime = Registry.totalPlaytime;
 			}
 			if (endTimer < 31 && endTimer > 27)
 			{
@@ -766,72 +795,83 @@ package
 			if (endTimer < 27 && endTimer > 23)
 			{
 				credits.alpha -= .1;
-				credits2.text = "Music by Ethan Berg";
+				credits2.text = "Special Thanks to:";
 				credits2.alpha += .05;
 			}
 			if (endTimer < 23 && endTimer > 21)
 			{
 				credits2.alpha -= .1;
-				credits.text = "Special thanks to:";
+				credits.text = "Sneha Subramanian and family";
 				credits.alpha += .05;
 			}
-			if (endTimer < 21 && endTimer > 19)
+			if (endTimer < 21 && endTimer > 20)
 			{
 				credits.alpha -= .1;
 				credits2.text = "Kyle Connour";
 				credits2.alpha += .05;
 			}
-			if (endTimer < 19 && endTimer > 17)
+			if (endTimer < 20 && endTimer > 19)
 			{
 				credits2.alpha -= .1;
 				credits.text = "Hayden Ford";
 				credits.alpha += .05;
 			}
-			if (endTimer < 17 && endTimer > 15)
+			if (endTimer < 19 && endTimer > 18)
 			{
 				credits.alpha -= .1;
 				credits2.text = "Tom Herrmann";
 				credits2.alpha += .05;
 			}
-			if (endTimer < 15 && endTimer > 13)
+			if (endTimer < 18 && endTimer > 17)
 			{
 				credits2.alpha -= .1;
 				credits.text = "James Buebe";
 				credits.alpha += .05;
 			}
-			if (endTimer < 13 && endTimer > 11)
+			if (endTimer < 17 && endTimer > 16)
 			{
 				credits.alpha -= .1;
 				credits2.text = "Jules Wang";
 				credits2.alpha += .05;
 			}
-			if (endTimer < 11 && endTimer > 9)
+			if (endTimer < 16 && endTimer > 14)
 			{
 				credits2.alpha -= .1;
-				credits.text = "and everyone else who supported \n the making of this game";
+				credits.text = "Gautam Gogada";
 				credits.alpha += .05;
 			}
-			if (endTimer < 9)
+			if (endTimer < 14 && endTimer > 10)
 			{
 				credits.alpha -= .1;
 				credits2.text = "Thanks for playing";
 				credits2.alpha += .05;
-				FlxG.fade(0x000000, 10, youBeatTheGame);
+				_blackScreen.alpha += .01;
+				
 			}
-			/*if (endTimer < )
+			if (endTimer < 12 && endTimer > 10)
 			{
 				credits2.alpha -= .1;
-				credits.text = "";
-				credits.alpha += .07;
-			}*/
-			
+			}
+			if (endTimer < 10 && endTimer > 8)
+			{
+				credits.y = 120;
+				credits.text = "Total Playtime";
+				credits.alpha += .07;	
+			}
+			if (endTimer < 8)
+			{
+				credits2.y = 140;
+				credits2.text = FlxU.formatTime(finalPlaytime, false);
+				credits2.alpha += .05;
+				
+			}
 		}
 		
 		private function youBeatTheGame():void
 		{
 			FlxG.volume = .1;
 			Registry.pauseSounds = false;
-			FlxG.switchState(new MainMenuState);
+			//FlxG.switchState(new MainMenuState);
 		}
 		
 		public function makeStage():void
