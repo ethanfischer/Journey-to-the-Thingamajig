@@ -68,7 +68,7 @@ package
 		FlxG.playMusic(dwarfDance, 1);
 	
 		dots.loadGraphic(dotsPNG, true, false, 72, 6);
-		dots.drag.y = 3900;
+		dots.drag.y = 2800;
 		dots.addAnimation("blink", [0, 2], 3, true);
 		dots.play("blink");
 		

@@ -76,7 +76,7 @@ package
 			if (timer < 0)
 			{
 				Registry.deaths = 0;
-				FlxG.fade(0xff000000, 1, changeState);
+				FlxG.fade(0xff000000, .5, changeState);
 			}
 			
 			/*if (!Registry.gameStart)
