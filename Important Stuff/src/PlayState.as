@@ -198,7 +198,7 @@ package
 
 				//If the letter is on screen (it should be when first playing level 1 and when hitting the mail in level 4),
 				// pressing space should make the letter fade away and the player animate putting the letter away
-				if ((Registry.stageCount == 0 || Registry.stageCount == 3) && Registry.letterSequence && (FlxG.keys.Z && FlxG.keys.X))
+				if ((Registry.stageCount == 0 || Registry.stageCount == 3) && Registry.letterSequence && (FlxG.keys.any()))
 				{
 					_letterTimer = .5;
 					_gameLevel.player.putAway();
