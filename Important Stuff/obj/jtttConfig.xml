@@ -32,12 +32,20 @@
     </define>
     <verbose-stacktraces>true</verbose-stacktraces>
     <source-path append="true">
+<<<<<<< HEAD
       <path-element>C:\Users\Ethan Fischer\Desktop\Journey-to-the-Thingamajig - Copy\Important Stuff\src</path-element>
+=======
+      <path-element>C:\Users\Ethan Fischer\Desktop\Journey-to-the-Thingamajig\Important Stuff\src</path-element>
+>>>>>>> origin/gh-pages
       <path-element>C:\Program Files (x86)\FlashDevelop\Library\AS3\classes</path-element>
     </source-path>
   </compiler>
   <file-specs>
+<<<<<<< HEAD
     <path-element>C:\Users\Ethan Fischer\Desktop\Journey-to-the-Thingamajig - Copy\Important Stuff\src\Main.as</path-element>
+=======
+    <path-element>C:\Users\Ethan Fischer\Desktop\Journey-to-the-Thingamajig\Important Stuff\src\Main.as</path-element>
+>>>>>>> origin/gh-pages
   </file-specs>
   <default-background-color>#FFFFFF</default-background-color>
   <default-frame-rate>30</default-frame-rate>
