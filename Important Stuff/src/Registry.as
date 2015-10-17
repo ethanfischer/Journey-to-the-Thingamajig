@@ -1,13 +1,18 @@
 package  
 {
+	import flash.system.Capabilities;
 	import flash.concurrent.Condition;
 	import flash.geom.Point;
 	import org.flixel.*;
 	
 	public class Registry 
 	{
-		public static var screenWidth:int = 600;
-		public static var screenHeight:int = 300;
+		
+		public static var screenWidth:int = 500;
+		public static var screenHeight:int = 250;
+		
+		
+		
 		public static var map:FlxTilemap;
 		public static var crumbleRockMap:FlxTilemap;
 		public static var crumbleRocks:CrumbleRocks;

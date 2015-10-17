@@ -20,7 +20,7 @@ package
 		private var selector:int = 1;
 		
 		private var l1pic:FlxSprite;
-		private var l2pic:FlxSprite;
+		//private var l2pic:FlxSprite;
 		
 		private var lpics:Array = new Array;
 		private var lpic:FlxSprite;
@@ -73,16 +73,17 @@ package
 		dots.addAnimation("arrows", [1, 2], 3, true);
 		dots.play("blink");
 		
-		l1pic = new FlxSprite(Registry.screenWidth / 2 - 250, 15);
+		l1pic = new FlxSprite(Registry.screenWidth / 2 - 250, 0);
 		l1pic.loadGraphic(levelsPNG, false, false, 3500, 250, false);
 		l1pic.drag.x = 64800;
 		
-		l2pic = new FlxSprite(Registry.screenWidth / 2 - 350, 15);
-		l2pic.loadGraphic(bracket, false, false, 700, 250, false);
+		
+		//l2pic = new FlxSprite(Registry.screenWidth / 2 - 350, 15);
+		//l2pic.loadGraphic(bracket, false, false, 700, 250, false);
 		
 		
 		
-		lpics = [l1pic, l2pic];
+		lpics = [l1pic];//, l2pic];
 		
 		
 		l1.makeGraphic(64, 20, 0x00000000);
@@ -106,7 +107,7 @@ package
 		FlxG.mouse.show();
 			
 		add(l1pic);
-		add(l2pic);
+		//add(l2pic);
 		add(dots);
 		add(back);
 		

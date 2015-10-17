@@ -32,7 +32,7 @@ package
 		private var fadeChordflag3:Boolean;
 		
 		
-	 	private var dots:FlxSprite = new FlxSprite(Registry.screenWidth / 2 - 34, 191 + 40); //40 is how far down dots are
+	 	private var dots:FlxSprite = new FlxSprite(Registry.screenWidth / 2 - 34, Registry.screenHeight / 1.38); //40 is how far down dots are
 		
 		private var level:Level1;
 		private var title:FlxSprite;
@@ -74,9 +74,6 @@ package
 		
 		var t:FlxSprite = new FlxSprite(0, 0, titlePagePNG);
 		
-		title = new FlxSprite(0, 0);
-		title.loadGraphic(titlePNG, false, false, 600, 300);
-		title.alpha = 0;
 		
 		quest = new FlxSprite(0, 0);
 		quest.loadGraphic(questPNG, false, false, 600, 300);
@@ -91,7 +88,7 @@ package
 		nowhere.alpha = 0;
 		
 		start = new FlxSprite(0, 40);
-		start.loadGraphic(startPNG, false, false, 600, 300);
+		start.loadGraphic(startPNG, false, false, 500, 250);
 		start.alpha = 0;
 		
 		menuTrees = new FlxSprite(0, 0);

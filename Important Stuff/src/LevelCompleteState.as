@@ -35,41 +35,21 @@ package
 		private var sFlag2:Boolean;
 		private var sFlag3:Boolean;
 		
-		//private var reveal:CenterSlideFX;
-		
 		public function LevelCompleteState() 
 		{
 		}
 		
 		override public function create():void
 		{	
-			//FlxG.music.stop();
-			//FlxG.music.fadeOut(2);
 			FlxG.flash(0x000000, 1, start);
 			levelNumber = Registry.stageCount;
-			
-			
-			
-			deathMessage = new FlxText(Registry.screenWidth/2 - 95, 70, 320, "");
-			deathMessage.size = 40; 
-			
-			levelDeathsMessage = new FlxText(Registry.screenWidth/2 - 25, 200, 320, "Deaths: " + Registry.deaths);
-			levelDeathsMessage.size = 12;
-			
+	
 			i_totalTime = Registry.playtime;
-			totalDeathsMessage = new FlxText(Registry.screenWidth/2 - 25, 235, 320, "Time: " + FlxU.formatTime(i_totalTime));
+			totalDeathsMessage = new FlxText(Registry.screenWidth/2 - 25, Registry.screenHeight/1.3, 320, "Time: " + FlxU.formatTime(i_totalTime));
 			totalDeathsMessage.size = 12;
 			
-			totalChkptsUsedText = new FlxText(Registry.screenWidth/2 - 45, 245, 320, "Total Checkpoints: " + Registry.totalChkptsUsed);
-			totalChkptsUsedText.size = 12;
-				
-			spacebarMessage = new FlxText(Registry.screenWidth/2 - 25, 260, 320, "PRESS SPACEBAR");
-			spacebarMessage.size = 6;
-		
 			add(deathMessage);
-			add(totalDeathsMessage);
-			
-			
+			add(totalDeathsMessage);	
 		}
 		
 		override public function update():void

@@ -1,6 +1,7 @@
 package
 {
 	import flash.geom.Point;
+	import flash.system.Capabilities;
 	import org.flixel.*;
 	import org.flixel.plugin.photonstorm.*;
 	import org.flixel.plugin.photonstorm.BaseTypes.Bullet;
@@ -122,9 +123,10 @@ package
 					trace("		***TEST***");
 					
 					//Player Position//
-					trace(Registry.gameLevel.player.x, Registry.gameLevel.player.y);
+					/*trace(Registry.gameLevel.player.x, Registry.gameLevel.player.y);
 					trace("Playtime: " + Registry.playtime
-						+ "\nTotalPlaytime: " + Registry.totalPlaytime);
+						+ "\nTotalPlaytime: " + Registry.totalPlaytime);*/
+					trace("screenResX: " + Capabilities.screenResolutionX + "\n screenResY: " + Capabilities.screenResolutionY);
 					
 				}
 				
@@ -198,7 +200,7 @@ package
 
 				//If the letter is on screen (it should be when first playing level 1 and when hitting the mail in level 4),
 				// pressing space should make the letter fade away and the player animate putting the letter away
-				if ((Registry.stageCount == 0 || Registry.stageCount == 3) && Registry.letterSequence && (FlxG.keys.Z && FlxG.keys.X))
+				if ((Registry.stageCount == 0 || Registry.stageCount == 3) && Registry.letterSequence && (FlxG.keys.any()))
 				{
 					_letterTimer = .5;
 					_gameLevel.player.putAway();
@@ -313,7 +315,6 @@ package
 						giftExchange();
 						
 					}
-					
 					add(_gameLevel.wiz.message); //the game is constantly refreshing wiz's message because the message updates in real time
 				
 				}
