@@ -16,7 +16,11 @@
     </define>
     <define append="true">
       <name>CONFIG::timeStamp</name>
+<<<<<<< HEAD
       <value>'10/17/2015'</value>
+=======
+      <value>'10/8/2015'</value>
+>>>>>>> origin/gh-pages
     </define>
     <define append="true">
       <name>CONFIG::air</name>
@@ -34,12 +38,21 @@
     <omit-trace-statements>true</omit-trace-statements>
     <verbose-stacktraces>false</verbose-stacktraces>
     <source-path append="true">
+<<<<<<< HEAD
       <path-element>\\VBOXSVR\Dev\Journey-to-the-Thingamajig\Important Stuff\src</path-element>
       <path-element>C:\Program Files\FlashDevelop\Library\AS3\classes</path-element>
     </source-path>
   </compiler>
   <file-specs>
     <path-element>\\VBOXSVR\Dev\Journey-to-the-Thingamajig\Important Stuff\src\Main.as</path-element>
+=======
+      <path-element>C:\Users\Ethan Fischer\Desktop\Journey-to-the-Thingamajig\Important Stuff\src</path-element>
+      <path-element>C:\Program Files (x86)\FlashDevelop\Library\AS3\classes</path-element>
+    </source-path>
+  </compiler>
+  <file-specs>
+    <path-element>C:\Users\Ethan Fischer\Desktop\Journey-to-the-Thingamajig\Important Stuff\src\Main.as</path-element>
+>>>>>>> origin/gh-pages
   </file-specs>
   <default-background-color>#FFFFFF</default-background-color>
   <default-frame-rate>30</default-frame-rate>
