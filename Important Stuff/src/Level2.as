@@ -107,6 +107,7 @@ package
 			Registry.crumbleRocks = crumbleRocks;
 			
 			Registry.player = player;
+			super.makeLevelNumber();
 		}
 			
 		private function parseNomNoms():void

@@ -33,22 +33,22 @@ package
 		
 		override public function create():void
 		{			
-			deathMessage = new FlxText(Registry.screenWidth/5, Registry.screenHeight/14, 320, "" + levelNumber);
+			deathMessage = new FlxText(Registry.screenWidth/2 - 155, 50, 320, "" + levelNumber);
 			deathMessage.size = 180; 
 			deathMessage.alignment = "center";
 			
 			//FlxG.play(writing, 1, false);
 			//if (Registry.stageCount == 0) FlxG.playMusic(forestSounds, 1);
-			if (Registry.stageCount == 1) FlxG.playMusic(forestSounds2, 1);
-			if (Registry.stageCount == 2) FlxG.playMusic(forestSounds, 1);
-			if (Registry.stageCount == 3) FlxG.playMusic(water, 1);
-			if (Registry.stageCount == 4) FlxG.playMusic(water, 1);
-			if (Registry.stageCount == 5) FlxG.playMusic(dwarfDance, 1);
-			if (Registry.stageCount == 6) FlxG.playMusic(rumble, 1);
-			
-			Registry.musixFlag = true;
-			FlxG.flash(0x000000, 1);
-			Registry.chkptsUsed = 0;
+			//if (Registry.stageCount == 1) FlxG.playMusic(forestSounds2, 1);
+			//if (Registry.stageCount == 2) FlxG.playMusic(forestSounds, 1);
+			//if (Registry.stageCount == 3) FlxG.playMusic(water, 1);
+			//if (Registry.stageCount == 4) FlxG.playMusic(water, 1);
+			//if (Registry.stageCount == 5) FlxG.playMusic(dwarfDance, 1);
+			//if (Registry.stageCount == 6) FlxG.playMusic(rumble, 1);
+			//
+			//Registry.musixFlag = true;
+			//FlxG.flash(0x000000, 1);
+			//Registry.chkptsUsed = 0;
 			
 			//handle level names here
 			if (Registry.stageCount == 0) deathMessage.text = "1";

@@ -634,7 +634,7 @@ package
 			//death
 			if (!deathFlag)
 			{
-				_deadTimer = .2;
+				_deadTimer = .1;
 						
 				Registry.totalDeaths += 1;
 				Registry.deaths += 1;
@@ -656,7 +656,7 @@ package
 			
 			if (_deadTimer < 0)
 			{
-				FlxG.fade(0x00000000, .2, onFade);	
+				FlxG.fade(0x00000000, .1, onFade);	
 			}
 			deathFlag = true;
 			return true;

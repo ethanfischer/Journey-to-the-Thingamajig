@@ -65,8 +65,11 @@ package
 		public static var sndPlace:int;
 		public static var fstPlace:int;
 		public static var fx:Fx = new Fx;
+		
 		public static var firstLevel1:Boolean = true;
 		public static var firstLevel4:Boolean = true;
+		public static var firstTimePlayingLevel:Boolean = true;
+		
 		public static var dropBouldlets:Boolean = false;
 		public static var wizUnfreeze:Boolean = false;
 		public static var wizUnfreeze2:Boolean = false;
@@ -82,6 +85,22 @@ package
 		public static var giftHasBeenExchanged:Boolean = false; //set to true after the wiz and gift disappear
 		public static var metWiz:Boolean = false;
 		public static var wizGiftFlag:Boolean = false; //once set, camera stays stationary with wiz and gift on right side of screen (set true in Playstate)
+		
+		////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+		//															musicRepository															  //
+		////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+		[Embed(source = "../assets/quack.mp3")] public static var quack:Class;
+		[Embed(source = "../assets/writing.mp3")] public static var writing:Class;
+		//Level1,3
+		[Embed(source = "../assets/forestsounds.mp3")] public static var forestSounds:Class;
+		//Level2
+		[Embed(source = "../assets/forestsounds2.mp3")] public static var forestSounds2:Class;
+		//Level4
+		[Embed(source = "../assets/river.mp3")] public static var water:Class;
+		//Level 5
+		[Embed(source="../assets/howler_monkeys_thunder.mp3")]public static var dwarfDance:Class;
+		[Embed(source = "../assets/rumble.mp3")] public static var rumble:Class;
+		
 		
 		public function Registry() 
 		{

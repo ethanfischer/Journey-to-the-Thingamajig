@@ -196,6 +196,8 @@ package
 		
 			spring = new Spring(528, 249, 500);
 			spring2 = new Spring(1201, 443, 700);
+			
+			super.makeLevelNumber();
 		}
 			
 		private function parseNomNoms():void

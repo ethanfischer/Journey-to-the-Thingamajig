@@ -44,6 +44,7 @@ package
 		private var finalPlaytime:Number;
 		
 		
+		
 
 		[Embed(source = "../assets/punch2.mp3")] public var punchSFX:Class;
 		[Embed(source = "../assets/kick.mp3")] public var kickSFX:Class;
@@ -74,7 +75,7 @@ package
 
 			if(!Registry.pauseSounds) FlxG.volume = .5;
 
-			_menuButton = new FlxButton(2, 2, "Main Menu", gotoMainMenu);
+			_menuButton = new FlxButton(2, 2, "Menu", gotoMainMenu);
 			_menuButton.loadGraphic(_menuPNG, false, false, 56, 12);
 			_menuButton.label.color = 0xFFFFFF;
 			_menuButton.scrollFactor.x = 0;
@@ -84,6 +85,7 @@ package
 			_muteButton.loadGraphic(_mutePNG, true, false, 12, 12);
 			_muteButton.scrollFactor.x = 0;
 			_muteButton.scrollFactor.y = 0;
+
 
 			if (Registry.gameStart)
 			{
@@ -885,6 +887,13 @@ package
 			add(_gameLevel.backbackground);
 			add(_gameLevel.background);
 			
+			if (Registry.firstTimePlayingLevel)
+			{
+				Registry.firstTimePlayingLevel = false;
+				_gameLevel._levelNumber.text = new int(Registry.stageCount + 1).toString();
+				add(_gameLevel._levelNumber);
+				_gameLevel._levelNumber.velocity.x = 350;
+			}
 			
 			if (Registry.stageCount == 6) 
 			{
@@ -935,9 +944,11 @@ package
 			add(_gameLevel.crumbleRocks);
 			add(_gameLevel.nomNoms);
 			add(_gameLevel.streams);
+			
 			if(Registry.stageCount == 6)add(_gameLevel.wiz.smokelets);
 			add(_gameLevel.foreforeground);
 			add(_muteButton);
+			add(_menuButton);
 			
 			createHealthBar(); //creates and adds player's health bar. Called here because it should appear over top of everything else
 			//createPlaytimeMessage(); //creates and adds playtime message
@@ -975,7 +986,19 @@ package
 			Registry.stageCount++;
 			Registry.checkpointFlag = false;
 			Registry.deathMessageFlag = false;
-			FlxG.switchState(new LevelCompleteState);
+			Registry.firstTimePlayingLevel = true;
+			
+			if (Registry.stageCount == 1) FlxG.playMusic(Registry.forestSounds2, 1);
+			if (Registry.stageCount == 2) FlxG.playMusic(Registry.forestSounds, 1);
+			if (Registry.stageCount == 3) FlxG.playMusic(Registry.water, 1);
+			if (Registry.stageCount == 4) FlxG.playMusic(Registry.water, 1);
+			if (Registry.stageCount == 5) FlxG.playMusic(Registry.dwarfDance, 1);
+			if (Registry.stageCount == 6) FlxG.playMusic(Registry.rumble, 1);
+			
+			Registry.musixFlag = true;
+			FlxG.flash(0x000000, 1);
+			Registry.chkptsUsed = 0;
+			FlxG.switchState(new PlayState);
 			Registry.musixFlag = false;
 			/////////////////////////////////////////////////////////////DON"T LET MUSIC STOP. FIGURE OUT A WAY TO DO SMOOTH TRANSITION
 		}

@@ -33,7 +33,6 @@ package
 			letter.scrollFactor.y = 0;
 			
 			
-			Registry.hmodeChkpt = 99999999999999999;
 			Registry.musix = dwarfDance;
 			//Registry.musix.loadEmbedded(dwarfDance, true, false);
 			
@@ -90,6 +89,7 @@ package
 			parseRocks(player);
 			parseReinforcements();
 			parseCheckpoint();
+			super.makeLevelNumber();
 			
 			
 		}
