@@ -92,7 +92,8 @@ package
 		[Embed(source = "../assets/quack.mp3")] public static var quack:Class;
 		[Embed(source = "../assets/writing.mp3")] public static var writing:Class;
 		//Level1,3
-		[Embed(source = "../assets/forestsounds.mp3")] public static var forestSounds:Class;
+		//[Embed(source = "../assets/forestsounds.mp3")] public static var forestSounds:Class;
+		[Embed(source = "../assets/jazz_afroloop.mp3")] public static var forestSounds:Class;
 		//Level2
 		[Embed(source = "../assets/forestsounds2.mp3")] public static var forestSounds2:Class;
 		//Level4

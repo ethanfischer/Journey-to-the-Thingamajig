@@ -24,14 +24,15 @@ package
 		//[Embed(source = "../assets/Save an Enemy.mp3")] private var horns:Class;
 	
 		[Embed(source = "../assets/start.png")] private var startPNG:Class;
-		[Embed(source = "../assets/fadein_chord1.mp3")] private var fadeChord1:Class
-		[Embed(source = "../assets/fadein_chord2.mp3")] private var fadeChord2:Class
-		[Embed(source = "../assets/fadein_chord3.mp3")] private var fadeChord3:Class
-		[Embed(source = "../assets/forestsounds.mp3")] public var dwarfDance:Class;
+		//[Embed(source = "../assets/fadein_chord1.mp3")] private var fadeChord1:Class
+		//[Embed(source = "../assets/fadein_chord2.mp3")] private var fadeChord2:Class
+		//[Embed(source = "../assets/fadein_chord3.mp3")] private var fadeChord3:Class
+		//[Embed(source = "../assets/forestsounds.mp3")] public var l1msc:Class;
+		[Embed(source = "../assets/jazz_slowswing(drumfade_outandin).mp3")] private var l1msc:Class;
 		
-		private var fadeChordflag1:Boolean;
-		private var fadeChordflag2:Boolean;
-		private var fadeChordflag3:Boolean;
+		//private var fadeChordflag1:Boolean;
+		//private var fadeChordflag2:Boolean;
+		//private var fadeChordflag3:Boolean;
 		
 		
 	 	private var dots:FlxSprite = new FlxSprite(Registry.screenWidth / 2 - 34, Registry.screenHeight / 1.38); //40 is how far down dots are
@@ -68,7 +69,7 @@ package
 		FlxG.mouse.show();
 		Registry.firstTimePlayingLevel = true;
 		
-		FlxG.playMusic(dwarfDance, 1);
+		FlxG.playMusic(l1msc, 1);
 	
 		dots.loadGraphic(dotsPNG, true, false, 72, 6);
 		dots.drag.y = 2800;
@@ -157,28 +158,12 @@ package
 				if (timer < 4)
 				{
 					quest.alpha += .5;
-					if (!fadeChordflag1)
-					{
-						FlxG.play(fadeChord1);
-						fadeChordflag1 = true;
-					}
 					if (timer < 2)
 					{
 						to.alpha += .5;
-						if (!fadeChordflag2)
-						{
-							FlxG.play(fadeChord2);
-							fadeChordflag2 = true;
-						}
 						if (timer < .1)
 						{
 							nowhere.alpha += .5;
-							if (!fadeChordflag3)
-							{
-								FlxG.play(fadeChord3);
-								fadeChordflag3 = true;
-							}
-							
 						}
 					}
 				}

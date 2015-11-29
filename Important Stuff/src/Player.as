@@ -97,7 +97,7 @@ package
 			
 				addAnimation("idle", [0], 0, false);
 				addAnimation("walk", [1, 0, 2, 0], 7, true);
-				addAnimation("run", [8, 9, 7, 9], 7, true);
+				addAnimation("run", [8, 9, 7, 9], 9, true);
 				addAnimation("jump", [11], 2, false);
 				addAnimation("fall", [12, 13], 15, true);
 				addAnimation("duck", [14], 0, true);
@@ -107,7 +107,8 @@ package
 				addAnimation("dead", [15], 0, false);
 				addAnimation("pickup", [19, 19, 19, 19, 19, 19, 19, 19, 19, 19, 19, 19], 3, false);
 				addAnimation("parachute", [24, 23, 23, 23, 23, 23, 23, 23, 23, 23, 23, 23, 23, 23, 23, 23, 23, 23, 23, 23, 23, 23, 23, 23, 23, 23, 23, 23, 23], 24, false);
-				addAnimation("letter", [26, 27,28,29,30,31,32,33,0,0], 18, false);
+				addAnimation("letter", [26, 27, 28, 29, 30, 31, 32, 33, 0, 0], 18, false);
+				addAnimation("letterIdle", [26], 0, false);
 				
 				//handle walking Soundeffect stuff here
 				walkSFX = new FlxSound();
@@ -329,11 +330,11 @@ package
 						
 						if (!walkingFlag)
 						{
-							if (velocity.x > 100 || velocity.x < -100) 
-							{
-								walkSFX.play(true); //only play once you're really walking
-								walkingFlag = true;
-							}
+							walkSFX.play(true); //only play once you're really walking
+							walkingFlag = true;
+							
+							if (velocity.x > 100 || velocity.x < -100) walkSFX.volume = 1; 
+							else walkSFX.volume = .5; 
 							
 							_fadeoutFlag = false;
 						}
@@ -525,7 +526,7 @@ package
 		}
 	
 		///////////////////////////////////////////////////////////////////////////////////////////
-		//										OTHER METHODS									 //
+		//									 	OTHER METHODS									 //
 		///////////////////////////////////////////////////////////////////////////////////////////
 				
 		private function jump():void
@@ -683,6 +684,11 @@ package
 			canIdle = false;
 			_letterTimer = .7;
 			play("letter");
+		}
+		
+		public function setLetterTimer(lt:Number):void
+		{
+			_letterTimer = lt;
 		}
 		
 	}

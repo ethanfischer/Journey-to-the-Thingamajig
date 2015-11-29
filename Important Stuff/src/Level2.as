@@ -84,7 +84,7 @@ package
 			}
 			else
 			{
-				player = new Player(30, 225);
+				player = new Player(30, 255);
 				frog = new Frog(690, 200);
 			}
 			

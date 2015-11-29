@@ -19,7 +19,6 @@ package
 		[Embed(source = "../map/rock.png")] private var _rockPNG:Class;
 		[Embed(source = "../map/botlet(2).png")] public var botletPNG:Class;
 		[Embed(source = "../map/mapCSV_Level1_Reinforcements.csv", mimeType = "application/octet-stream")] private var _reinforcementsCSV:Class;
-		[Embed(source = "../assets/letter(j).png")] private var _letterPNG:Class;
 		[Embed(source="../assets/forestsounds.mp3")] public var dwarfDance:Class;
 		
 		public var rockMap:FlxTilemap;
@@ -28,9 +27,19 @@ package
 		{
 			super();
 			
-			letter = new FlxSprite(0, 0);
-			letter.loadGraphic(_letterPNG, false, false, 600, 300);
-			letter.scrollFactor.y = 0;
+			letterMsg = new FlxText(30, 150, 400);
+			letterMsg.text = 
+				"Dear whats-er-name,\n\n"
+				
+				+"I don't know what it is or where it came from\n"
+				+"but it's the best thing on the planet\n"
+				+"and you GOTTA see it\n\n"
+				
+				+"COME TO LEVEL 7\n\n"
+				
+				+"-me";
+			//letterMsg.loadGraphic(_letterPNG, false, false, 600, 300);
+			//letterMsg.scrollFactor.y = 0;
 			
 			
 			Registry.musix = dwarfDance;
@@ -66,6 +75,7 @@ package
 			Registry.fstPlace = 60;
 			Registry.sndPlace = 180;
 			Registry.thdPlace = 320;
+			
 		
 			
 			width = foreground.width;
@@ -80,6 +90,13 @@ package
 			{
 				player = new Player(50, height - 64);
 				frog = new Frog(625, 100);
+			}
+			
+			if (Registry.firstLevel1) 
+			{
+				player.setLetterTimer(200);
+				player.play("letterIdle");
+
 			}
 			
 			sign = new Sign(135, 240, "PRESS 'Z' TO JUMP", player, 100, 240);

@@ -43,7 +43,7 @@ package
 		public var bird:Bird = new Bird();
 		public var walkSFX:FlxSound;
 		public var cutscene:FlxSprite;
-		public var letter:FlxSprite;
+		public var letterMsg:FlxText;
 		[Embed(source = "../assets/umbrella.png")] private var _umbrellaPNG:Class;
 		[Embed(source = "../assets/cutscene.png")] private var cutscenePNG:Class;
 		[Embed(source = "../assets/blue.png")] private var bluePNG:Class;

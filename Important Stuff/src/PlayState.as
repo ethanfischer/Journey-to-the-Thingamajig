@@ -42,6 +42,7 @@ package
 		private var credits2:FlxText;
 		private var trumpetFlag:Boolean;
 		private var finalPlaytime:Number;
+		private var endLevelFlag:Boolean = false;
 		
 		
 		
@@ -210,17 +211,17 @@ package
 					Registry.gameLevel.player.moves = true;
 				}
 
-				if (!Registry.musixFlag) //flag needed to prevent music from playing a million times (since this is in update())
-				{
-					FlxG.playMusic(Registry.musix, 1);
-					Registry.musixFlag = true;
-				}
+				//if (!Registry.musixFlag) //flag needed to prevent music from playing a million times (since this is in update())
+				//{
+					////FlxG.playMusic(Registry.musix, 1);
+					//Registry.musixFlag = true;
+				//}
 
 				// Bird appears every 30 seconds in the forest levels
 				if (Registry.stageCount < 3 && Registry.playtime > 1 && Registry.playtime % 30 > 0 
 				&& Registry.playtime % 30 < 0.5) 
 				{
-					if(!(Registry.stageCount == 0 && Registry.gameLevel.letter.visible)) add(_gameLevel.bird);
+					if(!(Registry.stageCount == 0 && Registry.gameLevel.letterMsg.visible)) add(_gameLevel.bird);
 				}
 
 				//reset the bird's position after it goes off screen
@@ -240,12 +241,12 @@ package
 				if (_letterTimer > 0)
 				{
 					_letterTimer -= FlxG.elapsed;
-					_gameLevel.letter.alpha -= .2;
+					_gameLevel.letterMsg.alpha -= .2;
 				}
 				else if(_letterTimer < 0)
 				{
-					_gameLevel.letter.kill();
-					remove(_gameLevel.letter);
+					_gameLevel.letterMsg.kill();
+					remove(_gameLevel.letterMsg);
 				}
 				
 
@@ -460,19 +461,8 @@ package
 			
 			if (checkpoint.end)
 			{
-				if (!_partyPopflag)
-				{
-					_partyPopflag = true;
-					FlxG.play(_partyPop);
-				}
-				_gameLevel.player.walkSFX.stop();
-				_gameLevel.player.visible = false;
-				this.clear();
-				add(_gameLevel.blue);
-				_gameLevel.blue.visible = true;
-				if(Registry.stageCount > 0) _gameLevel.not_a_flower.visible = false;
-				FlxG.music.fadeOut(.4);
-				FlxG.flash(0x00CCFF, 3, nextStage);
+					endLevel();
+				
 			}
 			
 		}
@@ -551,14 +541,41 @@ package
 			add(_amountOfDeathsMessage);
 		}
 
-		/*private function createPlaytimeMessage():void
+		private function endLevel():void
 		{
-			_playtimeMessage = new FlxText(Registry.screenWidth - 63, 3, 320, "" + Registry.playtime);
-			_playtimeMessage.size = 8;
-			_playtimeMessage.scrollFactor.x = 0;
-			_playtimeMessage.scrollFactor.y = 0;
-			add(_playtimeMessage);
-		}*/
+			
+			if (!endLevelFlag) 
+			{
+				if (!_partyPopflag)
+				{
+					_partyPopflag = true;
+					FlxG.play(_partyPop);
+				}
+				_gameLevel.player.walkSFX.stop();
+				_gameLevel.player.visible = false;
+				this.clear();
+				add(_gameLevel.blue);//??
+				_gameLevel.blue.visible = true;//??
+				if(Registry.stageCount > 0) _gameLevel.not_a_flower.visible = false; //??
+				//FlxG.music.fadeOut(.4);
+				
+				//play next levels music
+				if (Registry.stageCount == 0) 
+				{
+					FlxG.playMusic(Registry.forestSounds, .5);
+					FlxG.playMusic(Registry.water, 1);
+
+				}
+				if (Registry.stageCount == 1) FlxG.playMusic(Registry.forestSounds2, 1);
+				if (Registry.stageCount == 2) FlxG.playMusic(Registry.water, 1);
+				if (Registry.stageCount == 3) FlxG.playMusic(Registry.water, 1);
+				if (Registry.stageCount == 4) FlxG.playMusic(Registry.dwarfDance, 1);
+				if (Registry.stageCount == 5) FlxG.playMusic(Registry.rumble, 1);
+				endLevelFlag = true;
+			}	
+			
+			FlxG.flash(0x00CCFF, 2, nextStage);
+		}
 		private function meetNPC(hitBox:FlxObject, npc:NPC):void
 		{
 			add(_gameLevel.npc.message);
@@ -622,7 +639,7 @@ package
 
 		private function hitMail(player:Player, mail:Mail):void
 		{
-			add(_gameLevel.letter);
+			add(_gameLevel.letterMsg);
 			player.velocity.x = 0;
 			//_gameLevel.player.moves = false;
 			FlxG.play(_openletter);
@@ -636,7 +653,7 @@ package
 			FlxG.camera.stopFX();
 			FlxG.flash(0x00000000, 1.4);
 			Registry.letterSequence = true;
-			_gameLevel.letter.visible = true;
+			_gameLevel.letterMsg.visible = true;
 			Registry.gameLevel.player.moves = false;
 			Registry.gameLevel.player.velocity.x = 0;
 			
@@ -707,7 +724,7 @@ package
 		public function gotoMainMenu():void
 		{
 			FlxG.music.stop();
-			Registry.musixFlag = false;
+			//Registry.musixFlag = false;
 			Registry.gameStart = true;
 			FlxG.switchState(new MainMenuState);
 		}
@@ -955,9 +972,9 @@ package
 
 			if (Registry.firstLevel1 && Registry.stageCount == 0) //if playing level 1 for first time, make the user read the damn letter //added last so it's over top of everything else
 			{
-				add(_gameLevel.letter);
+				add(_gameLevel.letterMsg);
 				Registry.letterSequence = true;
-				_gameLevel.letter.visible = true;
+				_gameLevel.letterMsg.visible = true;
 				Registry.firstLevel1 = false;
 				_gameLevel.player.moves = false;
 			}
@@ -983,23 +1000,17 @@ package
 		//load the next stage
 		public function nextStage():void
 		{
+			trace("nextstage()");
 			Registry.stageCount++;
 			Registry.checkpointFlag = false;
 			Registry.deathMessageFlag = false;
 			Registry.firstTimePlayingLevel = true;
 			
-			if (Registry.stageCount == 1) FlxG.playMusic(Registry.forestSounds2, 1);
-			if (Registry.stageCount == 2) FlxG.playMusic(Registry.forestSounds, 1);
-			if (Registry.stageCount == 3) FlxG.playMusic(Registry.water, 1);
-			if (Registry.stageCount == 4) FlxG.playMusic(Registry.water, 1);
-			if (Registry.stageCount == 5) FlxG.playMusic(Registry.dwarfDance, 1);
-			if (Registry.stageCount == 6) FlxG.playMusic(Registry.rumble, 1);
-			
-			Registry.musixFlag = true;
+			//Registry.musixFlag = true;
 			FlxG.flash(0x000000, 1);
 			Registry.chkptsUsed = 0;
 			FlxG.switchState(new PlayState);
-			Registry.musixFlag = false;
+			//Registry.musixFlag = false;
 			/////////////////////////////////////////////////////////////DON"T LET MUSIC STOP. FIGURE OUT A WAY TO DO SMOOTH TRANSITION
 		}
 		
