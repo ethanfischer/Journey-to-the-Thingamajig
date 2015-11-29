@@ -6,7 +6,6 @@ package
 	{
 		[Embed(source = "../assets/checkpoint.png")] private var CheckpointPNG:Class;
 		[Embed(source = "../assets/pop.mp3")] private var pop:Class;
-		[Embed(source = "../assets/hornfall.mp3")] private var hornfall:Class;
 		[Embed(source = "../assets/ending.png")] private var endPNG:Class;
 		
 		public var isDying:Boolean = false;
@@ -63,7 +62,6 @@ package
 				if (!end) 
 				{
 					FlxG.play(pop);
-					FlxG.play(hornfall, .7);
 				}
 				isDying = true;
 				dieTimer = 1.7;

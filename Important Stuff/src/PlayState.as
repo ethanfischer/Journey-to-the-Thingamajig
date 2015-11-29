@@ -563,7 +563,7 @@ package
 				if (Registry.stageCount == 0) 
 				{
 					FlxG.playMusic(Registry.forestSounds, .5);
-					FlxG.playMusic(Registry.water, 1);
+					//FlxG.playMusic(Registry.water, 1);
 
 				}
 				if (Registry.stageCount == 1) FlxG.playMusic(Registry.forestSounds2, 1);
