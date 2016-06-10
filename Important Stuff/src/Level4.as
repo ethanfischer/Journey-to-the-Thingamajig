@@ -45,10 +45,15 @@ package
 			
 			//MUSIC IS TAKEN CARE OF IN DEATHMENUSTATE. THIS IS CONFUSING, BAD CODING AND IS AN EXAMPLE OF WHY YOU ENCAPSULATE and KEEP YOUR PROGRAM HIGH IN MODULARITY
 		
-			letter = new FlxSprite(0, 0);
-			letter.loadGraphic(letterPNG, false, false, 600, 300);
-			letter.scrollFactor.y = 0;
-			letter.visible = false;
+			
+			letterMsg = new FlxText(10, 50, 300);
+			letterMsg.text = "Ahhhhh \n\nThe caverns. It was here I began to wonder if the journey was worth it." +
+							"Now I wake up and shout\n\n" +
+							"'I AM THE ONE WHO KNOWS!!'\n\n" +
+							"-Wizard";
+			//letterMsg.loadGraphic(letterPNG, false, false, 600, 300);
+			letterMsg.scrollFactor.y = 0;
+			letterMsg.visible = false;
 			
 			Registry.fstPlace = 120;
 			Registry.sndPlace = 220;
@@ -126,6 +131,8 @@ package
 			
 			spring = new Spring(2696, 426, 700);
 			spring2 = new Spring(1340, 378, 800);
+			
+			super.makeLevelNumber();
 		}
 			
 		private function parseNomNoms():void

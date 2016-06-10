@@ -19,7 +19,6 @@ package
 		[Embed(source = "../map/rock.png")] private var _rockPNG:Class;
 		[Embed(source = "../map/botlet(2).png")] public var botletPNG:Class;
 		[Embed(source = "../map/mapCSV_Level1_Reinforcements.csv", mimeType = "application/octet-stream")] private var _reinforcementsCSV:Class;
-		[Embed(source = "../assets/letter(j).png")] private var _letterPNG:Class;
 		[Embed(source="../assets/forestsounds.mp3")] public var dwarfDance:Class;
 		
 		public var rockMap:FlxTilemap;
@@ -28,13 +27,22 @@ package
 		{
 			super();
 			
-			letter = new FlxSprite(0, 0);
-			letter.loadGraphic(_letterPNG, false, false, 600, 300);
-			letter.scrollFactor.y = 0;
+			letterMsg = new FlxText(30, 150, 400);
+			letterMsg.text = 
+				"Dear whats-er-name,\n\n"
+				
+				+"I don't know what it is or where it came from\n"
+				+"but it's the answer to every question.\n"
+				+"In fact, this thing might be the point of existence\n\n"
+				
+				+"...I'm in Level 7. Better come quick. \n\n"
+				
+				+"-Wizard";
+			//letterMsg.loadGraphic(_letterPNG, false, false, 600, 300);
+			//letterMsg.scrollFactor.y = 0;
 			
 			
-			Registry.hmodeChkpt = 99999999999999999;
-			Registry.musix = dwarfDance;
+			//Registry.musix = dwarfDance;
 			//Registry.musix.loadEmbedded(dwarfDance, true, false);
 			
 			backbackground = new FlxTilemap;
@@ -67,6 +75,7 @@ package
 			Registry.fstPlace = 60;
 			Registry.sndPlace = 180;
 			Registry.thdPlace = 320;
+			
 		
 			
 			width = foreground.width;
@@ -83,6 +92,13 @@ package
 				frog = new Frog(625, 100);
 			}
 			
+			if (Registry.firstLevel1) 
+			{
+				player.setLetterTimer(200);
+				player.play("letterIdle");
+
+			}
+			
 			sign = new Sign(135, 240, "PRESS 'Z' TO JUMP", player, 100, 240);
 			sign2 = new Sign(1000, 180, "BALL OF POINTLESSNESS!", player, 1080, 180);
 			
@@ -90,6 +106,7 @@ package
 			parseRocks(player);
 			parseReinforcements();
 			parseCheckpoint();
+			super.makeLevelNumber();
 			
 			
 		}

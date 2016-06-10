@@ -58,7 +58,11 @@ package
 			{
 				FlxG.flash(0xFFCCCC, .3);
 				play("pop");
-				if (!end) FlxG.play(pop);
+				
+				if (!end) 
+				{
+					FlxG.play(pop);
+				}
 				isDying = true;
 				dieTimer = 1.7;
 				dieFlag = true;

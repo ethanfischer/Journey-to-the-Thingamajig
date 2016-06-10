@@ -16,39 +16,41 @@ package
 		[Embed(source = "../assets/quack.mp3")] private var quack:Class;
 		[Embed(source = "../assets/writing.mp3")] private var writing:Class;
 		//Level1,3
-		[Embed(source = "../assets/forestsounds.mp3")] public var forestSounds:Class;
-		//Level2
-		[Embed(source = "../assets/forestsounds2.mp3")] public var forestSounds2:Class;
-		//Level4
-		[Embed(source = "../assets/river.mp3")] private var water:Class;
-		//Level 5
-		//[Embed(source = "../assets/distant_thunder.mp3")] public var dwarfDance:Class; //mountain ambience mode
-		 [Embed(source="../assets/howler_monkeys_thunder.mp3")]public var dwarfDance:Class;
 		
-		[Embed(source = "../assets/rumble.mp3")] public var rumble:Class;
-		
+		//UPDATE MUSIC IS NO LONGER PLAYED FROM THIS CLASS
+		//[Embed(source = "../assets/forestsounds.mp3")] public var forestSounds:Class;
+		////Level2
+		//[Embed(source = "../assets/forestsounds2.mp3")] public var forestSounds2:Class;
+		////Level4
+		//[Embed(source = "../assets/river.mp3")] private var water:Class;
+		////Level 5
+		////[Embed(source = "../assets/distant_thunder.mp3")] public var dwarfDance:Class; //mountain ambience mode
+		 //[Embed(source="../assets/howler_monkeys_thunder.mp3")]public var dwarfDance:Class;
+		//
+		//[Embed(source = "../assets/rumble.mp3")] public var rumble:Class;
+		//
 		public function DeathMenuState() 
 		{
 		}
 		
 		override public function create():void
 		{			
-			deathMessage = new FlxText(Registry.screenWidth/5, Registry.screenHeight/14, 320, "" + levelNumber);
+			deathMessage = new FlxText(Registry.screenWidth/2 - 155, 50, 320, "" + levelNumber);
 			deathMessage.size = 180; 
 			deathMessage.alignment = "center";
 			
 			//FlxG.play(writing, 1, false);
 			//if (Registry.stageCount == 0) FlxG.playMusic(forestSounds, 1);
-			if (Registry.stageCount == 1) FlxG.playMusic(forestSounds2, 1);
-			if (Registry.stageCount == 2) FlxG.playMusic(forestSounds, 1);
-			if (Registry.stageCount == 3) FlxG.playMusic(water, 1);
-			if (Registry.stageCount == 4) FlxG.playMusic(water, 1);
-			if (Registry.stageCount == 5) FlxG.playMusic(dwarfDance, 1);
-			if (Registry.stageCount == 6) FlxG.playMusic(rumble, 1);
-			
-			Registry.musixFlag = true;
-			FlxG.flash(0x000000, 1);
-			Registry.chkptsUsed = 0;
+			//if (Registry.stageCount == 1) FlxG.playMusic(forestSounds2, 1);
+			//if (Registry.stageCount == 2) FlxG.playMusic(forestSounds, 1);
+			//if (Registry.stageCount == 3) FlxG.playMusic(water, 1);
+			//if (Registry.stageCount == 4) FlxG.playMusic(water, 1);
+			//if (Registry.stageCount == 5) FlxG.playMusic(dwarfDance, 1);
+			//if (Registry.stageCount == 6) FlxG.playMusic(rumble, 1);
+			//
+			//Registry.musixFlag = true;
+			//FlxG.flash(0x000000, 1);
+			//Registry.chkptsUsed = 0;
 			
 			//handle level names here
 			if (Registry.stageCount == 0) deathMessage.text = "1";

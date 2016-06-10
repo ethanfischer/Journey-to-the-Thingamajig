@@ -185,6 +185,8 @@ package
 			Registry.crumbleRocks = crumbleRocks;
 			
 			spring = new Spring(2832, 378, 900);
+			
+			super.makeLevelNumber();
 
 		}
 			

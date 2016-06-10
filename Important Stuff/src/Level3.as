@@ -119,6 +119,8 @@ package
 			Registry.crumbleRocks = crumbleRocks;
 			
 			spring = new Spring(1568, 233, 600);
+			
+			super.makeLevelNumber();
 		}
 			
 		private function parseNomNoms():void

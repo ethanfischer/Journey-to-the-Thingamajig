@@ -24,12 +24,16 @@ package
 		//[Embed(source = "../assets/Save an Enemy.mp3")] private var horns:Class;
 	
 		[Embed(source = "../assets/start.png")] private var startPNG:Class;
-		[Embed(source = "../assets/fadein_chord.mp3")] private var fadeChord:Class
-		[Embed(source = "../assets/forestsounds.mp3")] public var dwarfDance:Class;
+		//[Embed(source = "../assets/fadein_chord1.mp3")] private var fadeChord1:Class
+		//[Embed(source = "../assets/fadein_chord2.mp3")] private var fadeChord2:Class
+		//[Embed(source = "../assets/fadein_chord3.mp3")] private var fadeChord3:Class
+		//[Embed(source = "../assets/forestsounds.mp3")] public var l1msc:Class;
+		//[Embed(source = "../assets/jazz_slowswing(drumfade_outandin).mp3")] private var l1msc:Class;
+		[Embed(source="../assets/EFFG-Level-2-or-3-v2.mp3")] private var l1msc:Class;
 		
-		private var fadeChordflag1:Boolean;
-		private var fadeChordflag2:Boolean;
-		private var fadeChordflag3:Boolean;
+		//private var fadeChordflag1:Boolean;
+		//private var fadeChordflag2:Boolean;
+		//private var fadeChordflag3:Boolean;
 		
 		
 	 	private var dots:FlxSprite = new FlxSprite(Registry.screenWidth / 2 - 34, Registry.screenHeight / 1.38); //40 is how far down dots are
@@ -51,7 +55,7 @@ package
 		private var black:FlxSprite;
 		private var menuTrees:FlxSprite;
 		private var punchFlag:Boolean;
-		private var timer:Number = 4.8;
+		private var timer:Number = 4;
 		private var start:FlxSprite;
 		
 		public function MainMenuState() 
@@ -64,8 +68,9 @@ package
 		//Registry.checkpointFlag = false;
 		//FlxG.play(quack);
 		FlxG.mouse.show();
+		Registry.firstTimePlayingLevel = true;
 		
-		FlxG.playMusic(dwarfDance, 1);
+		FlxG.playMusic(l1msc, 1);
 	
 		dots.loadGraphic(dotsPNG, true, false, 72, 6);
 		dots.drag.y = 2800;
@@ -151,31 +156,15 @@ package
 			
 			if (timer > 0)
 			{	
-				if (timer < 3.1)
+				if (timer < 4)
 				{
 					quest.alpha += .5;
-					if (!fadeChordflag1)
-					{
-						FlxG.play(fadeChord);
-						fadeChordflag1 = true;
-					}
-					if (timer < 2.4)
+					if (timer < 2)
 					{
 						to.alpha += .5;
-						if (!fadeChordflag2)
-						{
-							FlxG.play(fadeChord);
-							fadeChordflag2 = true;
-						}
-						if (timer < 1.7)
+						if (timer < .1)
 						{
 							nowhere.alpha += .5;
-							if (!fadeChordflag3)
-							{
-								FlxG.play(fadeChord);
-								fadeChordflag3 = true;
-							}
-							
 						}
 					}
 				}
@@ -234,7 +223,7 @@ package
 		{
 			if (selector == 1) 
 				{	
-					FlxG.switchState(new DeathMenuState);
+					FlxG.switchState(new PlayState);
 				}
 				else if (selector == 2) 
 				{	
@@ -258,7 +247,20 @@ package
 		private function startIt():void
 		{
 			Registry.stageCount = 0;
-			FlxG.switchState(new DeathMenuState);
+			
+			//TODO put this logic at beginning of each level or in gamelevel and use FirstTimePlayinglevel flag to make sure you don't overlap[ the music
+			if (Registry.stageCount == 1) FlxG.playMusic(Registry.forestSounds2, 1);
+			if (Registry.stageCount == 2) FlxG.playMusic(Registry.forestSounds, 1);
+			if (Registry.stageCount == 3) FlxG.playMusic(Registry.water, 1);
+			if (Registry.stageCount == 4) FlxG.playMusic(Registry.water, 1);
+			if (Registry.stageCount == 5) FlxG.playMusic(Registry.dwarfDance, 1);
+			if (Registry.stageCount == 6) FlxG.playMusic(Registry.rumble, 1);
+			
+			Registry.musixFlag = true;
+			FlxG.flash(0x000000, 1);
+			Registry.chkptsUsed = 0;
+			
+			FlxG.switchState(new PlayState);
 		}
 	}
 }

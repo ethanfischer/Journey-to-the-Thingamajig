@@ -1,6 +1,7 @@
 package  
 {
 	import flash.display.Sprite;
+	import flash.geom.Point;
 	import org.flixel.*;
 	import org.flixel.plugin.photonstorm.*;
 
@@ -42,7 +43,7 @@ package
 		public var bird:Bird = new Bird();
 		public var walkSFX:FlxSound;
 		public var cutscene:FlxSprite;
-		public var letter:FlxSprite;
+		public var letterMsg:FlxText;
 		[Embed(source = "../assets/umbrella.png")] private var _umbrellaPNG:Class;
 		[Embed(source = "../assets/cutscene.png")] private var cutscenePNG:Class;
 		[Embed(source = "../assets/blue.png")] private var bluePNG:Class;
@@ -65,6 +66,8 @@ package
 		public var pointsMessage:FlxText;
 		public var thingamajig:FlxSprite;
 		public var frog:Frog;
+		public var _levelNumber:FlxText; //this can't be static so it has to be in this class
+		public var _playerSpawn:FlxPoint;
 	
 		[Embed(source = "../assets/canopy.png")] private var canopyPNG:Class;
 		[Embed(source = "../assets/canopy6.png")] private var canopy6PNG:Class;
@@ -79,12 +82,14 @@ package
 			super();
 		
 			bots2 = new Bots2(); //why do I have only these two variables initiated here?
-			poofs = new Poofs();
+			poofs = new Poofs(); //idk wtf poofs are
 			borgs = new Borgs();
 			worm1 = new Worm(FlxMath.rand(700, 3400), 0);
 			worm2 = new Worm(FlxMath.rand(worm1.x + 700, 3400), 0); 
 			worm2 = new Worm(FlxMath.rand(worm2.x + 700, 3400), 0); 
 			hitBox = new Hitbox();
+			
+			
 			
 			//umbrella
 			umbrella.loadGraphic(_umbrellaPNG, false, false, 18, 21);
@@ -102,6 +107,14 @@ package
 			blue.loadGraphic(bluePNG, false, false, 600, 300);
 			blue.visible = false;
 			
+		}
+		
+		public function makeLevelNumber():void
+		{
+			//
+			_levelNumber = new FlxText( -20, player.y - 160, 200, Registry.stageCount.toString());
+			if (Registry.stageCount == 6) _levelNumber.y = player.y - 60;
+			_levelNumber.size = 200;
 		}
 	}
 }
