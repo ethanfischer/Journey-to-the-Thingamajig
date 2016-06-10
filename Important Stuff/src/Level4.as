@@ -45,10 +45,14 @@ package
 			
 			//MUSIC IS TAKEN CARE OF IN DEATHMENUSTATE. THIS IS CONFUSING, BAD CODING AND IS AN EXAMPLE OF WHY YOU ENCAPSULATE and KEEP YOUR PROGRAM HIGH IN MODULARITY
 		
-			letterMsg = new FlxText(0, 200, 300);
-			letterMsg.text = "Level 4 message";
+			
+			letterMsg = new FlxText(10, 50, 300);
+			letterMsg.text = "Ahhhhh \n\nThe caverns. It was here I began to wonder if the journey was worth it." +
+							"Now I wake up and shout\n\n" +
+							"'I AM THE ONE WHO KNOWS!!'\n\n" +
+							"-Wizard";
 			//letterMsg.loadGraphic(letterPNG, false, false, 600, 300);
-			//letterMsg.scrollFactor.y = 0;
+			letterMsg.scrollFactor.y = 0;
 			letterMsg.visible = false;
 			
 			Registry.fstPlace = 120;

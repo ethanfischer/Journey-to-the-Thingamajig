@@ -28,7 +28,8 @@ package
 		//[Embed(source = "../assets/fadein_chord2.mp3")] private var fadeChord2:Class
 		//[Embed(source = "../assets/fadein_chord3.mp3")] private var fadeChord3:Class
 		//[Embed(source = "../assets/forestsounds.mp3")] public var l1msc:Class;
-		[Embed(source = "../assets/jazz_slowswing(drumfade_outandin).mp3")] private var l1msc:Class;
+		//[Embed(source = "../assets/jazz_slowswing(drumfade_outandin).mp3")] private var l1msc:Class;
+		[Embed(source="../assets/EFFG-Level-2-or-3-v2.mp3")] private var l1msc:Class;
 		
 		//private var fadeChordflag1:Boolean;
 		//private var fadeChordflag2:Boolean;

@@ -651,7 +651,7 @@ package
 		private function viewMail():void
 		{
 			FlxG.camera.stopFX();
-			FlxG.flash(0x00000000, 1.4);
+			//FlxG.flash(0x00000000, 1.4);
 			Registry.letterSequence = true;
 			_gameLevel.letterMsg.visible = true;
 			Registry.gameLevel.player.moves = false;
