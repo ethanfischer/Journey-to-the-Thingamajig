@@ -32,30 +32,17 @@ package
 				"Dear whats-er-name,\n\n"
 				
 				+"I don't know what it is or where it came from\n"
-<<<<<<< HEAD
 				+"but it's the answer to every question.\n"
 				+"In fact, this thing might be the point of existence\n\n"
 				
 				+"...I'm in Level 7. Better come quick. \n\n"
 				
 				+"-Wizard";
-=======
-				+"but it's the best thing on the planet\n"
-				+"and you GOTTA see it\n\n"
-				
-				+"COME TO LEVEL 7\n\n"
-				
-				+"-me";
->>>>>>> origin/gh-pages
 			//letterMsg.loadGraphic(_letterPNG, false, false, 600, 300);
 			//letterMsg.scrollFactor.y = 0;
 			
 			
-<<<<<<< HEAD
 			//Registry.musix = dwarfDance;
-=======
-			Registry.musix = dwarfDance;
->>>>>>> origin/gh-pages
 			//Registry.musix.loadEmbedded(dwarfDance, true, false);
 			
 			backbackground = new FlxTilemap;
