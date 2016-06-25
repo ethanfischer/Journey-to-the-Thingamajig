@@ -175,12 +175,12 @@ package
 		
 		private function changeState():void
 		{
-			if (Registry.stageCount == 1) FlxG.playMusic(Registry.forestSounds2, 1);
-			if (Registry.stageCount == 2) FlxG.playMusic(Registry.forestSounds, 1);
-			if (Registry.stageCount == 3) FlxG.playMusic(Registry.water, 1);
-			if (Registry.stageCount == 4) FlxG.playMusic(Registry.water, 1);
-			if (Registry.stageCount == 5) FlxG.playMusic(Registry.dwarfDance, 1);
-			if (Registry.stageCount == 6) FlxG.playMusic(Registry.rumble, 1);
+			if (Registry.stageCount == 1) FlxG.playMusic(Registry.l2msc, 1);
+			if (Registry.stageCount == 2) FlxG.playMusic(Registry.l3msc, 1);
+			if (Registry.stageCount == 3) FlxG.playMusic(Registry.l4msc, 1);
+			if (Registry.stageCount == 4) FlxG.playMusic(Registry.l5msc, 1);
+			if (Registry.stageCount == 5) FlxG.playMusic(Registry.l6msc, 1);
+			if (Registry.stageCount == 6) FlxG.playMusic(Registry.l7msc, 1);
 			
 			Registry.musixFlag = true;
 			FlxG.flash(0x000000, 1);
