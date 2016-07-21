@@ -104,14 +104,14 @@ package
 		[Embed(source="../assets/CaveTune.mp3")] public static var l4msc:Class;
 
 		//Level 5
-		[Embed(source="../assets/CaveTune.mp3")] public static var l5msc:Class;
+		[Embed(source="../assets/Dat Native American Stride_3.mp3")] public static var l5msc:Class;
 
 		
 		//Level 6
 		[Embed(source = "../assets/howler_monkeys_thunder.mp3")]public static var l6msc:Class;
 
 		//Level 7		
-		[Embed(source = "../assets/rumble.mp3")] public static var l7msc:Class;
+		[Embed(source="../assets/experimental-mixing.mp3")] public static var l7msc:Class;
 		
 		
 		

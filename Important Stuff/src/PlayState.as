@@ -203,7 +203,7 @@ package
 
 				//If the letter is on screen (it should be when first playing level 1 and when hitting the mail in level 4),
 				// pressing space should make the letter fade away and the player animate putting the letter away
-				if ((Registry.stageCount == 0 || Registry.stageCount == 3) && Registry.letterSequence && (FlxG.keys.any()))
+				if ((Registry.stageCount == 0 || Registry.stageCount == 3) && Registry.letterSequence && (FlxG.keys.Z && FlxG.keys.X))
 				{
 					_letterTimer = .5;
 					_gameLevel.player.putAway();
@@ -783,7 +783,7 @@ package
 				credits2.alignment = "center";
 				add(credits2);
 				
-				_jttt = new FlxSprite(Registry.screenWidth/15, Registry.screenHeight/20);
+				_jttt = new FlxSprite(Registry.screenWidth/15 - 25, Registry.screenHeight/20);
 				_jttt.loadGraphic(jtttPNG,false, false, 517, 174);
 				_jttt.scrollFactor.x = 0;
 				_jttt.scrollFactor.y = 0;

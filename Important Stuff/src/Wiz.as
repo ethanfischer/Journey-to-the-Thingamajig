@@ -59,8 +59,8 @@ package
 			
 			acceleration.y = 500;
 			
-			message = new FlxText(x - 38, y - 24, 100, "");
-			message.alignment = "center";
+			message = new FlxText(x - 68, y - 24, 100, "");
+			message.alignment = "right";
 		
 			smokelets = new Smokelets();
 			
@@ -88,7 +88,7 @@ package
 						FlxG.play(fanfare);
 						fanfareFlag = true;
 					}
-					if(cut1Timer > 10.5) message.text = "!";
+					if(cut1Timer > 10.5) message.text = "!\t";
 					if(cut1Timer < 10 && cut1Timer > 9) play("look");
 					if (cut1Timer < 9)
 					{
@@ -100,7 +100,7 @@ package
 							FlxG.play(wizLaugh);
 							wizLaughFlag = true;
 						}
-						message.text = "Aw shucks!";
+						message.text = "Shucks!";
 						}
 						if (cut1Timer <= 7.5 && cut1Timer > 6)
 						{
@@ -116,7 +116,7 @@ package
 								wizLaughFlag = true;
 							}
 							play("exuberant");
-							message.text = "Ya made it!";
+							message.text = "You came!";
 						}
 						if (cut1Timer < 4.5 && cut1Timer > 3)
 						{
@@ -133,7 +133,7 @@ package
 								wizLaughFlag = true;
 							}
 							play("ecstatic");
-							message.text = "What'rya Waitin' for??"
+							message.text = "What are ya waiting for??"
 						}
 						if (cut1Timer < 1.5 && cut1Timer > 1)
 						{
@@ -178,7 +178,7 @@ package
 			}
 			if (cut2Timer < 0 && cut2Timer > -10)
 			{
-				message.text = "Come and git it!";
+				message.text = "Come see it!";
 				if (!wizLaughFlag)
 				{
 					FlxG.play(wizLaugh2);

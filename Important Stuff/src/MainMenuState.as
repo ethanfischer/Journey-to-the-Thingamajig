@@ -36,7 +36,7 @@ package
 		//private var fadeChordflag3:Boolean;
 		
 		
-	 	private var dots:FlxSprite = new FlxSprite(Registry.screenWidth / 2 - 34, Registry.screenHeight / 1.38); //40 is how far down dots are
+	 	private var dots:FlxSprite = new FlxSprite(Registry.screenWidth / 2 - 34, Registry.screenHeight / 1.325); //40 is how far down dots are
 		
 		private var level:Level1;
 		private var title:FlxSprite;
@@ -73,7 +73,7 @@ package
 		FlxG.playMusic(l1msc, 1);
 	
 		dots.loadGraphic(dotsPNG, true, false, 72, 6);
-		dots.drag.y = 2800;
+		dots.drag.y = 3900;
 		dots.addAnimation("blink", [0, 2], 3, true);
 		dots.play("blink");
 		
@@ -197,7 +197,7 @@ package
 				FlxG.play(quack);
 			}
 			
-			if (FlxG.keys.Z && FlxG.keys.X)
+			if (FlxG.keys.Z || FlxG.keys.X || FlxG.keys.SPACE || FlxG.keys.ENTER)
 			{
 				if (selector == 1) 
 				{

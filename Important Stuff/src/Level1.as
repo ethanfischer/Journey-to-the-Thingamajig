@@ -27,17 +27,20 @@ package
 		{
 			super();
 			
-			letterMsg = new FlxText(30, 150, 400);
+			letterMsg = new FlxText(30, 140, 400);
 			letterMsg.text = 
-				"Dear whats-er-name,\n\n"
+				"Gertrude,\n\n"
 				
-				+"I don't know what it is or where it came from\n"
-				+"but it's the answer to every question.\n"
-				+"In fact, this thing might be the point of existence\n\n"
+				+"Come to level 7.\n"
+				+"I don't know what this thing is.\n"
+				+"I don't know where it came from.\n\n"
 				
-				+"...I'm in Level 7. Better come quick. \n\n"
+				+"But I know one thing:"
+				+"\nYou have to see it.\n\n"
 				
-				+"-Wizard";
+				+"P.S.\n"
+				+"Press 'Z' + 'X'";
+				
 			//letterMsg.loadGraphic(_letterPNG, false, false, 600, 300);
 			//letterMsg.scrollFactor.y = 0;
 			
