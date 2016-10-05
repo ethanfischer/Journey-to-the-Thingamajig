@@ -28,14 +28,15 @@ package
 		//[Embed(source = "../assets/fadein_chord2.mp3")] private var fadeChord2:Class
 		//[Embed(source = "../assets/fadein_chord3.mp3")] private var fadeChord3:Class
 		//[Embed(source = "../assets/forestsounds.mp3")] public var l1msc:Class;
-		[Embed(source = "../assets/jazz_slowswing(drumfade_outandin).mp3")] private var l1msc:Class;
+		//[Embed(source = "../assets/jazz_slowswing(drumfade_outandin).mp3")] private var l1msc:Class;
+		[Embed(source="../assets/EFFG-Level-2-or-3-v2.mp3")] private var l1msc:Class;
 		
 		//private var fadeChordflag1:Boolean;
 		//private var fadeChordflag2:Boolean;
 		//private var fadeChordflag3:Boolean;
 		
 		
-	 	private var dots:FlxSprite = new FlxSprite(Registry.screenWidth / 2 - 34, Registry.screenHeight / 1.38); //40 is how far down dots are
+	 	private var dots:FlxSprite = new FlxSprite(Registry.screenWidth / 2 - 34, Registry.screenHeight / 1.325); //40 is how far down dots are
 		
 		private var level:Level1;
 		private var title:FlxSprite;
@@ -66,13 +67,12 @@ package
 		
 		//Registry.checkpointFlag = false;
 		//FlxG.play(quack);
-		FlxG.mouse.show();
 		Registry.firstTimePlayingLevel = true;
 		
 		FlxG.playMusic(l1msc, 1);
 	
 		dots.loadGraphic(dotsPNG, true, false, 72, 6);
-		dots.drag.y = 2800;
+		dots.drag.y = 3900;
 		dots.addAnimation("blink", [0, 2], 3, true);
 		dots.play("blink");
 		
@@ -196,7 +196,7 @@ package
 				FlxG.play(quack);
 			}
 			
-			if (FlxG.keys.Z && FlxG.keys.X)
+			if (FlxG.keys.Z || FlxG.keys.X || FlxG.keys.SPACE || FlxG.keys.ENTER)
 			{
 				if (selector == 1) 
 				{
@@ -248,12 +248,12 @@ package
 			Registry.stageCount = 0;
 			
 			//TODO put this logic at beginning of each level or in gamelevel and use FirstTimePlayinglevel flag to make sure you don't overlap[ the music
-			if (Registry.stageCount == 1) FlxG.playMusic(Registry.forestSounds2, 1);
-			if (Registry.stageCount == 2) FlxG.playMusic(Registry.forestSounds, 1);
-			if (Registry.stageCount == 3) FlxG.playMusic(Registry.water, 1);
-			if (Registry.stageCount == 4) FlxG.playMusic(Registry.water, 1);
-			if (Registry.stageCount == 5) FlxG.playMusic(Registry.dwarfDance, 1);
-			if (Registry.stageCount == 6) FlxG.playMusic(Registry.rumble, 1);
+			if (Registry.stageCount == 1) FlxG.playMusic(Registry.l2msc, 1);
+			if (Registry.stageCount == 2) FlxG.playMusic(Registry.l3msc, 1);
+			if (Registry.stageCount == 3) FlxG.playMusic(Registry.l4msc, 1);
+			if (Registry.stageCount == 4) FlxG.playMusic(Registry.l5msc, 1);
+			if (Registry.stageCount == 5) FlxG.playMusic(Registry.l6msc, 1);
+			if (Registry.stageCount == 6) FlxG.playMusic(Registry.l7msc, 1);
 			
 			Registry.musixFlag = true;
 			FlxG.flash(0x000000, 1);
