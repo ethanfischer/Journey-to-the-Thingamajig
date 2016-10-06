@@ -364,7 +364,7 @@ package
 						walkingFlag = false;
 					}
 					
-					if (canIdle && (!_letterTimer > 0 && !Registry.letterSequence)) 
+					if (canIdle && (!_letterTimer > 0)) 
 					{
 						play("idle");
 					}

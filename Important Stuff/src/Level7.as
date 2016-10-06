@@ -89,7 +89,7 @@ package
 			
 			
 			
-			wiz = new Wiz(9900, 415);
+			wiz = new Wiz(10000, 415);
 			focusDestination = new FlxPoint(wiz.x-220, wiz.y); //where the camera should stop in the last level
 			
 			focusPoint = new FlxSprite(wiz.x - 455, 430);

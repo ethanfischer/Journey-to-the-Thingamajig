@@ -17,10 +17,14 @@
     <define append="true">
       <name>CONFIG::timeStamp</name>
 <<<<<<< HEAD
+<<<<<<< HEAD
       <value>'8/7/2016'</value>
 =======
       <value>'7/22/2016'</value>
 >>>>>>> origin/gh-pages
+=======
+      <value>'12/10/2015'</value>
+>>>>>>> parent of 19778ad... First commit
     </define>
     <define append="true">
       <name>CONFIG::air</name>

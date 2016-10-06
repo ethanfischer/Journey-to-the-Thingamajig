@@ -104,16 +104,16 @@ package
 				//FREEZE THE PLAYER
 				Registry.gameLevel.player.canPunch = false;
 				FlxControl.player1.setCursorControl(false, false, false, false);
-				if (meetTimer < 13) 
+				if (meetTimer < 11) 
 				{
-					message.text = "You collected many balls. Wow.";
+					message.text = "!";
 					if (!hereSFXFLAG)
 					{
 						FlxG.play(hereSFX);
 						hereSFXFLAG = true;
 					}
 					
-					if (meetTimer < 10)
+					if (meetTimer < 9)
 					{
 						if (!Registry.gameLevel.player.pickup) 
 						{
@@ -133,7 +133,7 @@ package
 						message.text = "";
 						if (meetTimer < 6)
 						{
-							message.text = "(press 'X')";
+							message.text = "PRESS 'X' TO PUNCH";
 							if (!noise2Flag)
 							{
 								FlxG.play(noise2);
@@ -225,14 +225,14 @@ package
 			play("punched");
 			if (messageCount == 1)
 			{
-				message.text = "So many balls.\n Great job.";
+				message.text = "!";
 				FlxG.play(bah);
 				Registry.hasUmbrella = true;
-				meetTimer2 = 11;
+				meetTimer2 = 8;
 			}
 			else if (messageCount == 3) //for some reason when you punch the NPC it calls talk() twice. This is terrible programming, but whatevs
 			{
-				message.text = "(Hold 'Z')";
+				message.text = "HOLD 'Z' TO USE IT";
 				FlxG.play(hereSFX);
 			}
 			else if (messageCount == 5)

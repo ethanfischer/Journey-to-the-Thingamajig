@@ -45,6 +45,7 @@ package
 			
 			//MUSIC IS TAKEN CARE OF IN DEATHMENUSTATE. THIS IS CONFUSING, BAD CODING AND IS AN EXAMPLE OF WHY YOU ENCAPSULATE and KEEP YOUR PROGRAM HIGH IN MODULARITY
 		
+<<<<<<< HEAD
 			
 <<<<<<< HEAD
 			letterMsg = new FlxText(40, 100, 300);
@@ -59,8 +60,12 @@ package
 							"'I AM THE ONE WHO KNOWS!!'\n\n" +
 							"-Wizard";
 >>>>>>> origin/gh-pages
+=======
+			letterMsg = new FlxText(0, 200, 300);
+			letterMsg.text = "Level 4 message";
+>>>>>>> parent of 19778ad... First commit
 			//letterMsg.loadGraphic(letterPNG, false, false, 600, 300);
-			letterMsg.scrollFactor.y = 0;
+			//letterMsg.scrollFactor.y = 0;
 			letterMsg.visible = false;
 			
 			Registry.fstPlace = 120;

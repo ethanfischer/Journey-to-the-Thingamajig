@@ -152,13 +152,25 @@ package
 			not_a_flower = new NotAFlower(260, height - 48, player);
 			
 			//wizs name changes every death
-				switch((Registry.totalDeaths % 20)) 
+				switch((Registry.totalDeaths % 6)) 
 				{ 
 					case 0: 
 						sign_message = "DANGER";  
 						break; 
-					case 14:
-						sign_message = "Easter egg";
+					case 1: 
+						sign_message = "ANGRY BEASTS"; 
+						break; 
+					case 2: 
+						sign_message = "DANGER";
+						break; 
+					case 3: 
+						sign_message = "WIZARD IN LEVEL 7";
+						break;
+					case 4:
+						sign_message = "DANGER";
+						break;
+					case 5:
+						sign_message = "THOSE AREN'T MOUNTAINS";
 						break;
 					
 				}

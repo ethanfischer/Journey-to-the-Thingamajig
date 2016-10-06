@@ -74,8 +74,6 @@ package
 		{
 			stages = [_level1, _level2, _level3, _level4, _level5, _level6, _level7];
 
-			FlxG.mouse.load(Registry.cursor, 1, 0, 0);
-
 			if(!Registry.pauseSounds) FlxG.volume = .5;
 
 			_menuButton = new FlxButton(2, 2, "Menu", gotoMainMenu);
@@ -113,7 +111,7 @@ package
 		{
 			super.update();
 			
-			handlePause();
+			
 			
 			if (!Registry.gameStart)
 			{
@@ -203,10 +201,8 @@ package
 				if(Registry.stageCount == 6 && Registry.giftHasBeenExchanged) FlxG.overlap(_gameLevel.player, _gameLevel.checkpoint2, hitCheckpoint);
 				FlxG.overlap(_gameLevel.player, _gameLevel.end, hitCheckpoint);
 
-				
-				
-				
 				//If the letter is on screen (it should be when first playing level 1 and when hitting the mail in level 4),
+<<<<<<< HEAD
 <<<<<<< HEAD
 				// pressing z and x should make the letter fade away and the player animate putting the letter away
 				if (Registry.stageCount == 0 && Registry.letterSequence && (FlxG.keys.Z && FlxG.keys.X)) //teach them to use Z and X in level one
@@ -221,6 +217,10 @@ package
 				// pressing space should make the letter fade away and the player animate putting the letter away
 				if ((Registry.stageCount == 0 || Registry.stageCount == 3) && Registry.letterSequence && (FlxG.keys.Z && FlxG.keys.X))
 >>>>>>> origin/gh-pages
+=======
+				// pressing space should make the letter fade away and the player animate putting the letter away
+				if ((Registry.stageCount == 0 || Registry.stageCount == 3) && Registry.letterSequence && (FlxG.keys.any()))
+>>>>>>> parent of 19778ad... First commit
 				{
 					_letterTimer = .5;
 					_gameLevel.player.putAway();
@@ -405,14 +405,6 @@ package
 				}
 			}
 		}
-		
-		private function handlePause():void
-		{
-			if (FlxG.keys.ESCAPE || FlxG.keys.P)
-			{
-				FlxG.paused = !FlxG.paused;
-			}
-		}
 
 		private function hitFire(player:Player, fire:Torch):void
 		{
@@ -587,15 +579,15 @@ package
 				//play next levels music
 				if (Registry.stageCount == 0) 
 				{
-					FlxG.playMusic(Registry.l2msc, .5);
+					FlxG.playMusic(Registry.forestSounds, .5);
 					//FlxG.playMusic(Registry.water, 1);
 
 				}
-				if (Registry.stageCount == 1) FlxG.playMusic(Registry.l3msc, 1);
-				if (Registry.stageCount == 2) FlxG.playMusic(Registry.l4msc, 1);
-				if (Registry.stageCount == 3) FlxG.playMusic(Registry.l5msc, 1);
-				if (Registry.stageCount == 4) FlxG.playMusic(Registry.l6msc, 1);
-				if (Registry.stageCount == 5) FlxG.playMusic(Registry.l7msc, 1);
+				if (Registry.stageCount == 1) FlxG.playMusic(Registry.forestSounds2, 1);
+				if (Registry.stageCount == 2) FlxG.playMusic(Registry.water, 1);
+				if (Registry.stageCount == 3) FlxG.playMusic(Registry.water, 1);
+				if (Registry.stageCount == 4) FlxG.playMusic(Registry.dwarfDance, 1);
+				if (Registry.stageCount == 5) FlxG.playMusic(Registry.rumble, 1);
 				endLevelFlag = true;
 			}	
 			
@@ -604,7 +596,7 @@ package
 		private function meetNPC(hitBox:FlxObject, npc:NPC):void
 		{
 			add(_gameLevel.npc.message);
-			if(!_gameLevel.npc.meetFlag) _gameLevel.npc.meetTimer = 14;
+			if(!_gameLevel.npc.meetFlag) _gameLevel.npc.meetTimer = 12;
 		}
 
 		private function punchBot(hitBox:FlxObject , bot:Bot):void
@@ -668,8 +660,7 @@ package
 			player.velocity.x = 0;
 			//_gameLevel.player.moves = false;
 			FlxG.play(_openletter);
-			viewMail();
-			//FlxG.fade(0x000000, .2, viewMail);
+			FlxG.fade(0x000000, .2, viewMail);
 			mail.kill();
 			Registry.firstLevel4 = false;
 		}
@@ -678,16 +669,18 @@ package
 		{
 			FlxG.camera.stopFX();
 <<<<<<< HEAD
+<<<<<<< HEAD
 			
 =======
 >>>>>>> origin/gh-pages
 			//FlxG.flash(0x00000000, 1.4);
+=======
+			FlxG.flash(0x00000000, 1.4);
+>>>>>>> parent of 19778ad... First commit
 			Registry.letterSequence = true;
 			_gameLevel.letterMsg.visible = true;
 			Registry.gameLevel.player.moves = false;
 			Registry.gameLevel.player.velocity.x = 0;
-			Registry.gameLevel.player.play("letterIdle");
-
 			
 		}
 
@@ -766,7 +759,7 @@ package
 			if (Registry.pauseSounds)
 			{
 				_muteButton.frame = 0;
-				FlxG.volume = Registry.volume;
+				FlxG.volume = .1;
 				Registry.pauseSounds = false;
 				FlxG.music.play();
 			}
@@ -776,7 +769,6 @@ package
 				FlxG.pauseSounds();
 				FlxG.music.stop();
 				Registry.pauseSounds = true;
-				Registry.volume = FlxG.volume;
 				FlxG.volume = 0;
 			}
 		}
@@ -816,7 +808,7 @@ package
 				credits2.alignment = "center";
 				add(credits2);
 				
-				_jttt = new FlxSprite(Registry.screenWidth/15 - 25, Registry.screenHeight/20);
+				_jttt = new FlxSprite(Registry.screenWidth/15, Registry.screenHeight/20);
 				_jttt.loadGraphic(jtttPNG,false, false, 517, 174);
 				_jttt.scrollFactor.x = 0;
 				_jttt.scrollFactor.y = 0;
@@ -1000,8 +992,6 @@ package
 			add(_muteButton);
 			add(_menuButton);
 			
-			
-			
 			createHealthBar(); //creates and adds player's health bar. Called here because it should appear over top of everything else
 			//createPlaytimeMessage(); //creates and adds playtime message
 
@@ -1011,15 +1001,6 @@ package
 				Registry.letterSequence = true;
 				_gameLevel.letterMsg.visible = true;
 				Registry.firstLevel1 = false;
-				_gameLevel.player.moves = false;
-			}
-			
-			if (Registry.firstLevel3 && Registry.stageCount == 2) //if playing level 3 for first time, make the user read the damn letter //added last so it's over top of everything else
-			{
-				add(_gameLevel.letterMsg);
-				Registry.letterSequence = true;
-				_gameLevel.letterMsg.visible = true;
-				Registry.firstLevel3 = false;
 				_gameLevel.player.moves = false;
 			}
 			if (Registry.stageCount == 1 && Registry.hasFlower) _gameLevel.npc.exists = false; //if you already have the boxing glove, don't let the thing appear

@@ -27,18 +27,23 @@ package
 		{
 			super();
 			
-			letterMsg = new FlxText(30, 140, 400);
+			letterMsg = new FlxText(30, 150, 400);
 			letterMsg.text = 
+<<<<<<< HEAD
 <<<<<<< HEAD
 				"Dude,\n\n"
 =======
 				"Gertrude,\n\n"
 >>>>>>> origin/gh-pages
+=======
+				"Dear whats-er-name,\n\n"
+>>>>>>> parent of 19778ad... First commit
 				
-				+"Come to level 7.\n"
-				+"I don't know what this thing is.\n"
-				+"I don't know where it came from.\n\n"
+				+"I don't know what it is or where it came from\n"
+				+"but it's the best thing on the planet\n"
+				+"and you GOTTA see it\n\n"
 				
+<<<<<<< HEAD
 				+"But I know one thing:"
 <<<<<<< HEAD
 				+"\n...You have to see it.\n\n"
@@ -48,12 +53,16 @@ package
 				
 				+"P.S.\n"
 				+"Press 'Z' + 'X'";
+=======
+				+"COME TO LEVEL 7\n\n"
+>>>>>>> parent of 19778ad... First commit
 				
+				+"-me";
 			//letterMsg.loadGraphic(_letterPNG, false, false, 600, 300);
 			//letterMsg.scrollFactor.y = 0;
 			
 			
-			//Registry.musix = dwarfDance;
+			Registry.musix = dwarfDance;
 			//Registry.musix.loadEmbedded(dwarfDance, true, false);
 			
 			backbackground = new FlxTilemap;

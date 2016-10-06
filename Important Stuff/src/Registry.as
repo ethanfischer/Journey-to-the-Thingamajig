@@ -65,13 +65,10 @@ package
 		public static var sndPlace:int;
 		public static var fstPlace:int;
 		public static var fx:Fx = new Fx;
-		[Embed(source="../assets/cursor.png")] public static var cursor:Class; 
 		
 		public static var firstLevel1:Boolean = true;
-		public static var firstLevel3:Boolean = true;
 		public static var firstLevel4:Boolean = true;
 		public static var firstTimePlayingLevel:Boolean = true;
-		public static var volume:Number = .5; 
 		
 		public static var dropBouldlets:Boolean = false;
 		public static var wizUnfreeze:Boolean = false;
@@ -94,28 +91,16 @@ package
 		////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 		[Embed(source = "../assets/quack.mp3")] public static var quack:Class;
 		[Embed(source = "../assets/writing.mp3")] public static var writing:Class;
-		//Level1 music is set in MainMenuState
-		
-		
+		//Level1,3
+		//[Embed(source = "../assets/forestsounds.mp3")] public static var forestSounds:Class;
+		[Embed(source = "../assets/jazz_afroloop.mp3")] public static var forestSounds:Class;
 		//Level2
-		[Embed(source = "../assets/Rocksalt.mp3")] public static var l2msc:Class;
-		
-		//Level3
-		[Embed(source="../assets/level3waltz_1.mp3")] public static var l3msc:Class;
-		
+		[Embed(source = "../assets/forestsounds2.mp3")] public static var forestSounds2:Class;
 		//Level4
-		[Embed(source="../assets/CaveTune.mp3")] public static var l4msc:Class;
-
+		[Embed(source = "../assets/river.mp3")] public static var water:Class;
 		//Level 5
-		[Embed(source="../assets/Dat Native American Stride_3.mp3")] public static var l5msc:Class;
-
-		
-		//Level 6
-		[Embed(source = "../assets/howler_monkeys_thunder.mp3")]public static var l6msc:Class;
-
-		//Level 7		
-		[Embed(source="../assets/experimental-mixing.mp3")] public static var l7msc:Class;
-		
+		[Embed(source="../assets/howler_monkeys_thunder.mp3")]public static var dwarfDance:Class;
+		[Embed(source = "../assets/rumble.mp3")] public static var rumble:Class;
 		
 		
 		public function Registry() 
