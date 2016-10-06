@@ -46,11 +46,19 @@ package
 			//MUSIC IS TAKEN CARE OF IN DEATHMENUSTATE. THIS IS CONFUSING, BAD CODING AND IS AN EXAMPLE OF WHY YOU ENCAPSULATE and KEEP YOUR PROGRAM HIGH IN MODULARITY
 		
 			
+<<<<<<< HEAD
 			letterMsg = new FlxText(40, 100, 300);
 			letterMsg.text = "The path has been hard.\n"
 							+"Here, I thought of giving up.\n\n"
 							+"'No' it told me.\n\n"
 							+"How foolish I was to doubt the Thingamajig.";
+=======
+			letterMsg = new FlxText(10, 50, 300);
+			letterMsg.text = "Ahhhhh \n\nThe caverns. It was here I began to wonder if the journey was worth it." +
+							"Now I wake up and shout\n\n" +
+							"'I AM THE ONE WHO KNOWS!!'\n\n" +
+							"-Wizard";
+>>>>>>> origin/gh-pages
 			//letterMsg.loadGraphic(letterPNG, false, false, 600, 300);
 			letterMsg.scrollFactor.y = 0;
 			letterMsg.visible = false;

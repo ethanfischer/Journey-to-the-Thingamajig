@@ -16,7 +16,11 @@
     </define>
     <define append="true">
       <name>CONFIG::timeStamp</name>
+<<<<<<< HEAD
       <value>'8/7/2016'</value>
+=======
+      <value>'7/22/2016'</value>
+>>>>>>> origin/gh-pages
     </define>
     <define append="true">
       <name>CONFIG::air</name>

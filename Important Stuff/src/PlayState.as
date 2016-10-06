@@ -207,6 +207,7 @@ package
 				
 				
 				//If the letter is on screen (it should be when first playing level 1 and when hitting the mail in level 4),
+<<<<<<< HEAD
 				// pressing z and x should make the letter fade away and the player animate putting the letter away
 				if (Registry.stageCount == 0 && Registry.letterSequence && (FlxG.keys.Z && FlxG.keys.X)) //teach them to use Z and X in level one
 				{
@@ -216,6 +217,10 @@ package
 					Registry.gameLevel.player.moves = true;
 				}
 				else if ((Registry.stageCount == 2 || Registry.stageCount == 3) && Registry.letterSequence && (FlxG.keys.X || FlxG.keys.Z)) //after level one, any key will put the letter away
+=======
+				// pressing space should make the letter fade away and the player animate putting the letter away
+				if ((Registry.stageCount == 0 || Registry.stageCount == 3) && Registry.letterSequence && (FlxG.keys.Z && FlxG.keys.X))
+>>>>>>> origin/gh-pages
 				{
 					_letterTimer = .5;
 					_gameLevel.player.putAway();
@@ -672,7 +677,10 @@ package
 		private function viewMail():void
 		{
 			FlxG.camera.stopFX();
+<<<<<<< HEAD
 			
+=======
+>>>>>>> origin/gh-pages
 			//FlxG.flash(0x00000000, 1.4);
 			Registry.letterSequence = true;
 			_gameLevel.letterMsg.visible = true;

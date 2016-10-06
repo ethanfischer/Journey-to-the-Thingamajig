@@ -29,14 +29,22 @@ package
 			
 			letterMsg = new FlxText(30, 140, 400);
 			letterMsg.text = 
+<<<<<<< HEAD
 				"Dude,\n\n"
+=======
+				"Gertrude,\n\n"
+>>>>>>> origin/gh-pages
 				
 				+"Come to level 7.\n"
 				+"I don't know what this thing is.\n"
 				+"I don't know where it came from.\n\n"
 				
 				+"But I know one thing:"
+<<<<<<< HEAD
 				+"\n...You have to see it.\n\n"
+=======
+				+"\nYou have to see it.\n\n"
+>>>>>>> origin/gh-pages
 				
 				+"P.S.\n"
 				+"Press 'Z' + 'X'";
