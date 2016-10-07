@@ -16,9 +16,10 @@ package
 		private var canKnockback:Boolean = false;
 		private var retreatFlag:Boolean = false;
 		public var specialOne:Boolean; //if true, this is the bot that the lilguy will retreat from
-		public var dTurnFlag:Boolean = false;		
+		public var dTurnFlag:Boolean = false;
+		private var suicidal:Boolean = false;		
 		
-		public function Bot(x:int, y:int, i_player:Player, i_facing:uint)
+		public function Bot(x:int, y:int, i_player:Player, i_facing:uint, i_suicidal:Boolean = false)
 		{
 			super(x * 16, y * 16);
 			
@@ -31,6 +32,7 @@ package
 			
 			solid = true;
 			active = false;
+			suicidal = i_suicidal;
 			
 			addAnimation("walk", [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10], 20, true);
 			addAnimation("idleRight", [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10], 20, true);
@@ -69,6 +71,9 @@ package
 		override public function update():void
 		{
 			super.update();
+
+			suicide();
+			FlxG.log("hihihi");			
 			
 			if (Registry.totalDeaths % 12 != 0 || Registry.totalDeaths == 0) this.specialOne = false;
 			
@@ -231,6 +236,28 @@ package
 			knockBackTimer = .01;
 		
 			
+		}
+
+		public function suicide():void
+		{
+			//check if suicidal
+			if(suicidal)
+			{
+			//make it uncollidable
+			   hop();
+
+			//jump off the screen	
+			}
+			
+
+		}
+
+		public function hop():void
+		{
+			if (bounceTimer < 0)
+			{
+				bounceTimer = .1;
+			}
 		}
 		
 		public function retreat():void

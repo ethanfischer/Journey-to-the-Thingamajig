@@ -18,12 +18,12 @@ package
 			super();
 		}
 		
-		public function addBot(i_x:int, i_y:int, i_player:Player, i_facing:uint):void
+		public function addBot(i_x:int, i_y:int, i_player:Player, i_facing:uint, i_suicidal:Boolean = false):void
 		{	
 			x = i_x;
 			y = i_y;
 			player = i_player;
-			tempBot = new Bot(x, y, player, i_facing);
+			tempBot = new Bot(x, y, player, i_facing, true);
 			add(tempBot);
 			alltheBots.push(tempBot);
 		}
