@@ -251,7 +251,9 @@ package
 			//make it uncollidable
 				if(onScreen() && 
 					Registry.gameLevel.player.isTouching(FlxObject.FLOOR) &&
-						FlxG.keys.S) 
+						/*player.x > x - 200 &&*/
+							Registry.playtime % 30 > 0 
+								&& Registry.playtime % 30 < 0.5) 
 				{
 					velocity.y = -150;
 					velocity.x = 60;
