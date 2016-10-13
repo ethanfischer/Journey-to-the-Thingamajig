@@ -23,7 +23,7 @@ package
 			x = i_x;
 			y = i_y;
 			player = i_player;
-			tempBot = new Bot(x, y, player, i_facing, true);
+			tempBot = new Bot(x, y, player, i_facing, i_suicidal);
 			add(tempBot);
 			alltheBots.push(tempBot);
 		}

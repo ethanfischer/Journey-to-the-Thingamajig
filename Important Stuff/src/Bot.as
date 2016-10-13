@@ -6,6 +6,7 @@ package
 	{
 		[Embed(source = "../map/bot.png")] private var botPNG:Class;
 		[Embed(source = "../assets/eject.mp3")] private var ejectSFX:Class;
+		[Embed(source = "../assets/wilhelm_scream.mp3")] private var scream:Class;
 		
 		public var isDying:Boolean = false;
 		private var dieTimer:Number;
@@ -17,12 +18,16 @@ package
 		private var retreatFlag:Boolean = false;
 		public var specialOne:Boolean; //if true, this is the bot that the lilguy will retreat from
 		public var dTurnFlag:Boolean = false;
-		private var suicidal:Boolean = false;		
+		private var suicidal:Boolean = false;
+		private var id:Number;	
+		private var isSuiciding:Boolean = false;
 		
 		public function Bot(x:int, y:int, i_player:Player, i_facing:uint, i_suicidal:Boolean = false)
 		{
 			super(x * 16, y * 16);
 			
+			id = x;
+
 			retreatFlag = false;
 			player = i_player;
 			
@@ -33,6 +38,7 @@ package
 			solid = true;
 			active = false;
 			suicidal = i_suicidal;
+
 			
 			addAnimation("walk", [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10], 20, true);
 			addAnimation("idleRight", [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10], 20, true);
@@ -73,7 +79,6 @@ package
 			super.update();
 
 			suicide();
-			FlxG.log("hihihi");			
 			
 			if (Registry.totalDeaths % 12 != 0 || Registry.totalDeaths == 0) this.specialOne = false;
 			
@@ -197,7 +202,7 @@ package
 		
 		public function turnAround():void
 		{
-			if (!isDying)
+			if (!isDying && !isSuiciding)
 			{
 				if (facing == FlxObject.RIGHT)
 				{
@@ -241,11 +246,25 @@ package
 		public function suicide():void
 		{
 			//check if suicidal
-			if(suicidal)
+			if(suicidal == true)
 			{
 			//make it uncollidable
-			   hop();
+				if(onScreen() && 
+					Registry.gameLevel.player.isTouching(FlxObject.FLOOR) &&
+						FlxG.keys.S) 
+				{
+					velocity.y = -150;
+					velocity.x = 60;
+					solid = false;
+					suicidal = false;
+					isSuiciding = true;
+					//FlxG.play(scream);
+					FlxG.play(ejectSFX);
+					FlxG.play(scream);
 
+
+				}
+				
 			//jump off the screen	
 			}
 			
@@ -254,7 +273,7 @@ package
 
 		public function hop():void
 		{
-			if (bounceTimer < 0)
+			if (bounceTimer == 0)
 			{
 				bounceTimer = .1;
 			}
@@ -279,7 +298,7 @@ package
 		
 		public function delayedTurnaround(delay:Number):void
 		{
-			if (!dTurnFlag && !isDying)
+			if (!dTurnFlag && !isDying && !isSuiciding)
 			{
 			velocity.x = 0;
 			play("stop");
