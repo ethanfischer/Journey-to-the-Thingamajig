@@ -47,10 +47,10 @@ package
 		
 			
 			letterMsg = new FlxText(40, 100, 300);
-			letterMsg.text = "The path has been hard.\n"
-							+"Here, I thought of giving up.\n\n"
-							+"'No' it told me.\n\n"
-							+"How foolish I was to doubt the Thingamajig.";
+			letterMsg.text = "I had many questions.\n"
+							+"And, for a time, it answered.\n\n"
+		
+							+"Soon, you will understand.";
 			//letterMsg.loadGraphic(letterPNG, false, false, 600, 300);
 			letterMsg.scrollFactor.y = 0;
 			letterMsg.visible = false;

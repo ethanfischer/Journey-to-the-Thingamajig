@@ -29,17 +29,16 @@ package
 			
 			letterMsg = new FlxText(30, 140, 400);
 			letterMsg.text = 
-				"Dude,\n\n"
-				
-				+"Come to level 7.\n"
-				+"I don't know what this thing is.\n"
+				"I don't know what it is.\n"
 				+"I don't know where it came from.\n\n"
 				
 				+"But I know one thing:"
 				+"\n...You have to see it.\n\n"
 				
-				+"P.S.\n"
-				+"Press 'Z' + 'X'";
+				+"Come to Level 7\n\n"
+
+				+"\n"
+				+"";
 				
 			//letterMsg.loadGraphic(_letterPNG, false, false, 600, 300);
 			//letterMsg.scrollFactor.y = 0;

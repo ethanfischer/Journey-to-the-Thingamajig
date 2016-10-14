@@ -208,12 +208,28 @@ package
 				
 				//If the letter is on screen (it should be when first playing level 1 and when hitting the mail in level 4),
 				// pressing z and x should make the letter fade away and the player animate putting the letter away
-				if (Registry.stageCount == 0 && Registry.letterSequence && (FlxG.keys.Z && FlxG.keys.X)) //teach them to use Z and X in level one
+				if (Registry.stageCount == 0 && Registry.letterSequence && FlxG.keys.any()) //teach them to use Z and X in level one
 				{
+					_gameLevel.letterMsg.text =
+
+					"I don't know what it is.\n"
+					+"I don't know where it came from.\n\n"
+					
+					+"But I know one thing:"
+					+"\n...You have to see it.\n\n"
+					
+					+"Come to Level 7\n\n"
+
+					+"P.S.\n"
+					+"Press 'Z' + 'X'";
+
+					if(FlxG.keys.Z && FlxG.keys.X)
+					{
 					_letterTimer = .5;
 					_gameLevel.player.putAway();
 					Registry.letterSequence = false;
 					Registry.gameLevel.player.moves = true;
+					}
 				}
 				else if ((Registry.stageCount == 2 || Registry.stageCount == 3) && Registry.letterSequence && (FlxG.keys.X || FlxG.keys.Z)) //after level one, any key will put the letter away
 				{
