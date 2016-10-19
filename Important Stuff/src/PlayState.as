@@ -184,6 +184,7 @@ package
 				if (!FlxG.overlap(_gameLevel.player, _gameLevel.nomNoms)) _torchFlag = false; //eliminate torches turning on and off when overlaping switch
 
 				FlxG.overlap(_gameLevel.player, _gameLevel.bots2.blades, hitBlade);
+				FlxG.overlap(_gameLevel.bots, _gameLevel.bots2.blades, botHitBlade);		
 				FlxG.overlap(_gameLevel.player, _gameLevel.streams, handleStreams);
 				FlxG.overlap(_gameLevel.hitBox, _gameLevel.rocks, punchRock);
 
@@ -538,6 +539,14 @@ package
 				FlxG.play(_gong, .13, false);
 				blade.kill();
 			}
+		}
+
+		private function botHitBlade(bot:Bot, blade:Bullet):void
+		{
+			FlxG.play(_gong);
+				_gameLevel.poofs.addPoof(blade.x - blade.width, blade.y - 16 );
+				FlxG.play(_gong, .13, false);
+				blade.kill();
 		}
 
 		private function hitLilguy(player:Player, lilguy:LilGuy):void

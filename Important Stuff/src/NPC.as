@@ -5,7 +5,9 @@ package
 
 	public class NPC extends FlxSprite
 	{
-		[Embed(source = "../map/teddy.png")] private var NPCPNG:Class;
+		//[Embed(source = "../map/teddy.png")] private var NPCPNG:Class;
+		[Embed(source = "../map/teddy_bot.png")] private var NPCPNG:Class;
+
 		[Embed(source = "../assets/here.mp3")] private var hereSFX:Class;
 		private var hereSFXFLAG:Boolean;
 		[Embed(source = "../assets/npcNoise2.mp3")] private var noise2:Class;
@@ -45,7 +47,7 @@ package
 			solid = true;
 			active = true;
 			
-			addAnimation("idle", [0], 20, true);
+			addAnimation("idle", [0,1], 2, true);
 			addAnimation("dead", [0, 11, 12, 13], 60, false);
 			addAnimation("punched", [1, 2, 1, 2, 1, 2, 1, 2, 1, 2, 0], 15, false);
 			addAnimation("umbrella", [1, 2, 1, 2, 1, 2, 1, 2, 3, 0], 15, false);
