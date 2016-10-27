@@ -234,6 +234,10 @@ package
 					{
 						bots.addBot(tx, ty, player, FlxObject.LEFT);
 					}
+					else if (botMap.getTile(tx, ty) == 3)
+					{
+						bots.addBot(tx, ty, player, FlxObject.RIGHT, true);
+					}
 				}
 			
 			}

@@ -65,7 +65,7 @@ package
 		override public function create():void
 		{
 		
-		//Registry.checkpointFlag = false;
+		Registry.checkpointFlag = false;
 		//FlxG.play(quack);
 		Registry.firstTimePlayingLevel = true;
 		

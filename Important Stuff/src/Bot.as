@@ -248,12 +248,16 @@ package
 			//check if suicidal
 			if(suicidal == true)
 			{
+				//FlxG.log("suicidal");
 			//make it uncollidable
 				if(onScreen() && 
-					Registry.gameLevel.player.isTouching(FlxObject.FLOOR) &&
-						/*player.x > x - 200 &&*/
-							Registry.playtime % 30 > 0 
-								&& Registry.playtime % 30 < 0.5) 
+					Registry.gameLevel.player.isTouching(FlxObject.FLOOR)
+						/*&& player.x > x - 200 &&*/
+							//&& Registry.playtime % 5500 > 0 
+								//&& Registry.playtime % 5500 < 0.5
+							&& Registry.playtime % 20 > 0 //for testing purposes
+								&& Registry.playtime % 20 < 0.5
+									&& Registry.playtime > 0) 
 				{
 					velocity.y = -150;
 					velocity.x = 60;

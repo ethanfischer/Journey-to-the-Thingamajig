@@ -82,6 +82,8 @@ package
 		override public function update():void
 		{
 			super.update();
+
+			FlxG.log("I'm alive!");
 			
 			////////////////////////////
 			//		   TIMERS		  //
