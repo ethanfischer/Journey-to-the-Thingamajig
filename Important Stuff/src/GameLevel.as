@@ -41,6 +41,7 @@ package
 		public var lilguy:LilGuy = new LilGuy(100, 500);
 		public var reinforcementMap:FlxTilemap;
 		public var bird:Bird = new Bird();
+		public var butt:Butt = new Butt(Registry.screenWidth/2 -16, 0);
 		public var walkSFX:FlxSound;
 		public var cutscene:FlxSprite;
 		public var letterMsg:FlxText;

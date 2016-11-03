@@ -11,8 +11,8 @@ package
 		[Embed(source="../map/mapCSV_Level1_Fore-Foreground.csv", mimeType="application/octet-stream")] public var foreforegroundCSV:Class;
 		[Embed(source = "../map/woody(green).png")] public var backgroundTilesPNG:Class;
 		[Embed(source="../map/woody_back_background.png")] public var backbackgroundTilesPNG:Class;
-		[Embed(source = "../map/forest_tiles(color).png")] public var foregroundTilesPNG:Class;
-		[Embed(source = "../map/forest_tiles_foregroud(color).png")] public var foreforegroundTilesPNG:Class;
+		[Embed(source = "../map/forest_tiles_l1.png")] public var foregroundTilesPNG:Class;
+		[Embed(source = "../map/forest_tiles_foregroud_l1.png")] public var foreforegroundTilesPNG:Class;
 		[Embed(source = "../map/mapCSV_Level1_Bots.csv", mimeType = "application/octet-stream")] public var botsCSV:Class;
 		[Embed(source = "../map/mapCSV_Level1_Rocks.csv", mimeType = "application/octet-stream")] private var _rocksCSV:Class;
 		[Embed(source = "../map/mapCSV_Level1_Checkpoint.csv", mimeType = "application/octet-stream")] private var _checkpointCSV:Class;

@@ -17,7 +17,7 @@ package
 		[Embed(source = "../assets/writing.mp3")] private var writing:Class;
 		//Level1,3
 		
-		//UPDATE MUSIC IS NO LONGER PLAYED FROM THIS CLASS
+		//UPDATE MUSIC IS NO LONGER PLAYED FROM THIS CLASS. IT"S IN PLAYSTATE. Music is gotten from REGISTRY
 		//[Embed(source = "../assets/forestsounds.mp3")] public var forestSounds:Class;
 		////Level2
 		//[Embed(source = "../assets/forestsounds2.mp3")] public var forestSounds2:Class;

@@ -17,7 +17,7 @@ package
 		[Embed(source="../assets/the.png")] private var thePNG:Class;
 		[Embed(source="../assets/quest.png")] private var questPNG:Class;
 		[Embed(source="../assets/to .png")] private var toPNG:Class;
-		[Embed(source = "../assets/nowhere.png")] private var nowherePNG:Class;
+		[Embed(source = "../assets/nowhere.png")] private var thingamajigPNG:Class;
 		[Embed(source = "../assets/stars.png")] private var starsPNG:Class;
 		[Embed(source = "../assets/black.png")] private var blackPNG:Class;
 		[Embed(source = "../assets/punch2.mp3")] private var punchSFX:Class;
@@ -29,8 +29,9 @@ package
 		//[Embed(source = "../assets/fadein_chord3.mp3")] private var fadeChord3:Class
 		//[Embed(source = "../assets/forestsounds.mp3")] public var l1msc:Class;
 		//[Embed(source = "../assets/jazz_slowswing(drumfade_outandin).mp3")] private var l1msc:Class;
-		[Embed(source="../assets/EFFG-Level-2-or-3-v2.mp3")] private var l1msc:Class;
-		
+		//[Embed(source="../assets/EFFG-Level-2-or-3-v2.mp3")] private var l1msc:Class;
+		[Embed(source="../assets/time.mp3")] private var l1msc:Class;
+
 		//private var fadeChordflag1:Boolean;
 		//private var fadeChordflag2:Boolean;
 		//private var fadeChordflag3:Boolean;
@@ -49,13 +50,13 @@ package
 		//private var the:FlxSprite;
 		private var quest:FlxSprite;
 		private var to:FlxSprite;
-		private var nowhere:FlxSprite;
+		private var thingamajig:FlxSprite;
 		private var stars:FlxSprite;
 		private var stars2:FlxSprite;
 		private var black:FlxSprite;
 		private var menuTrees:FlxSprite;
 		private var punchFlag:Boolean;
-		private var timer:Number = 4;
+		private var timer:Number = 6;
 		private var start:FlxSprite;
 		
 		public function MainMenuState() 
@@ -87,9 +88,9 @@ package
 		to.loadGraphic(toPNG, false, false, 600, 300);
 		to.alpha = 0;
 		
-		nowhere = new FlxSprite(0, 0);
-		nowhere.loadGraphic(nowherePNG, false, false, 600, 300);
-		nowhere.alpha = 0;
+		thingamajig = new FlxSprite(0, 0);
+		thingamajig.loadGraphic(thingamajigPNG, false, false, 600, 300);
+		thingamajig.alpha = 0;
 		
 		start = new FlxSprite(0, 40);
 		start.loadGraphic(startPNG, false, false, 500, 250);
@@ -137,7 +138,7 @@ package
 		//add(the);
 		add(quest);
 		add(to);
-		add(nowhere);
+		add(thingamajig);
 		add(start);
 		
 		}
@@ -155,15 +156,16 @@ package
 			
 			if (timer > 0)
 			{	
-				if (timer < 4)
+				if (timer < 6)
 				{
 					quest.alpha += .5;
-					if (timer < 2)
+					if (timer < 4)
 					{
 						to.alpha += .5;
-						if (timer < .1)
+						if (timer < 2)
 						{
-							nowhere.alpha += .5;
+							thingamajig.alpha += .01;
+
 						}
 					}
 				}

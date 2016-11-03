@@ -79,6 +79,7 @@ package
 		public static var noGoingBack:int = 0; //in level 7 after wiz dies you shouldn't be able to go back (11170 is BEHINDGIFT)
 		public static var theEnd:Boolean;
 		public static var ballsCollected:int = 0;
+		public static var buttAppeared:Boolean = false;
 		
 		//cutscenes
 		//NOTE: because every cutscene in my game should only happen once (no one wants to go through a cutscene over and over again
@@ -101,8 +102,9 @@ package
 		[Embed(source = "../assets/Rocksalt.mp3")] public static var l2msc:Class;
 		
 		//Level3
-		[Embed(source="../assets/level3waltz_1.mp3")] public static var l3msc:Class;
-		
+		//[Embed(source="../assets/level3waltz_1.mp3")] public static var l3msc:Class;
+		[Embed(source="../assets/HipHipHip.mp3")] public static var l3msc:Class;
+
 		//Level4
 		[Embed(source="../assets/CaveTune.mp3")] public static var l4msc:Class;
 
@@ -111,7 +113,7 @@ package
 
 		
 		//Level 6
-		[Embed(source = "../assets/howler_monkeys_thunder.mp3")]public static var l6msc:Class;
+		[Embed(source = "../assets/T.C.B.mp3")]public static var l6msc:Class;
 
 		//Level 7		
 		[Embed(source="../assets/experimental-mixing.mp3")] public static var l7msc:Class;

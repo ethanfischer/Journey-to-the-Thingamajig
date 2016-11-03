@@ -552,9 +552,9 @@
     <SaveGuidesSeparately>false</SaveGuidesSeparately>
     <ForceTilemapPositionChangesInUnits>false</ForceTilemapPositionChangesInUnits>
   </options>
-  <exporter name="C:\Program Files (x86)\DAME\lua\Exporters\csvTilemap.lua" spritepos="Top Left" rotatedSpritePos="false" relativePaths="false" useProjectExporterOnly="false">
+  <exporter name="/Applications/DAME.app/Contents/Resources/lua/Exporters/csvTilemap.lua" spritepos="Top Left" rotatedSpritePos="false" relativePaths="false" useProjectExporterOnly="false">
     <setting name="FileExt">csv</setting>
-    <setting name="CSVDir">C:\Users\Ethan\Music\Documents\GitHub\Journey-to-the-Thingamajig\Important Stuff\map</setting>
+    <setting name="CSVDir">/Users/Ethan/Dev/Journey-to-the-Thingamajig/Important Stuff/map/Exports/Level7</setting>
   </exporter>
   <customPropertyTypes/>
   <guides>

@@ -47,72 +47,6 @@
 	},
 	"buffers":
 	[
-		{
-			"file": "Level7.as",
-			"settings":
-			{
-				"buffer_size": 15891,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "Level6.as",
-			"settings":
-			{
-				"buffer_size": 13712,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "Level5.as",
-			"settings":
-			{
-				"buffer_size": 10927,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "Bots.as",
-			"settings":
-			{
-				"buffer_size": 628,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "MainMenuState.as",
-			"settings":
-			{
-				"buffer_size": 7176,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "Bot.as",
-			"settings":
-			{
-				"buffer_size": 7044,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "Level4.as",
-			"settings":
-			{
-				"buffer_size": 11273,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"contents": "Searching 174 files for \"registry.checkpointflag =\"\n\n/Users/Ethan/Dev/Journey-to-the-Thingamajig/Important Stuff/src/Level6.as:\n  127  			width = foreground.width;\n  128  			height = foreground.height;\n  129: 			//Registry.checkpointFlag = true;\n  130  		\n  131  			\n\n/Users/Ethan/Dev/Journey-to-the-Thingamajig/Important Stuff/src/LevelMenuState.as:\n   53  		FlxG.play(quack);\n   54  			\n   55: 		//Registry.checkpointFlag = false;	\n   56  			\n   57  		var t:FlxSprite = new FlxSprite(0, 0, titlePagePNG);\n\n/Users/Ethan/Dev/Journey-to-the-Thingamajig/Important Stuff/src/MainMenuState.as:\n   66  		{\n   67  		\n   68: 		Registry.checkpointFlag = false;\n   69  		//FlxG.play(quack);\n   70  		Registry.firstTimePlayingLevel = true;\n\n/Users/Ethan/Dev/Journey-to-the-Thingamajig/Important Stuff/src/PlayState.as:\n  495  			\n  496  			if (checkpoint.second) Registry.checkpointFlag2 = true;\n  497: 			else Registry.checkpointFlag = true;\n  498  			\n  499  			if (checkpoint.end)\n  ...\n 1064  			trace(\"nextstage()\");\n 1065  			Registry.stageCount++;\n 1066: 			Registry.checkpointFlag = false;\n 1067  			Registry.deathMessageFlag = false;\n 1068  			Registry.firstTimePlayingLevel = true;\n\n5 matches across 4 files\n",
-			"settings":
-			{
-				"buffer_size": 1208,
-				"line_ending": "Unix",
-				"name": "Find Results",
-				"scratch": true
-			}
-		}
 	],
 	"build_system": "",
 	"build_system_choices":
@@ -152,19 +86,25 @@
 		"side_bar_visible": false,
 		"status_bar_visible": false
 	},
+	"expanded_folders":
+	[
+		"/Users/Ethan/Dev/Journey-to-the-Thingamajig/Important Stuff/src"
+	],
 	"file_history":
 	[
+		"/Users/Ethan/Dev/Journey-to-the-Thingamajig/Important Stuff/src/Level2.as",
+		"/Users/Ethan/Dev/Journey-to-the-Thingamajig/Important Stuff/src/NPC.as",
+		"/Users/Ethan/Dev/Journey-to-the-Thingamajig/Important Stuff/src/Level4.as",
+		"/Users/Ethan/Dev/Journey-to-the-Thingamajig/Important Stuff/src/Bot.as",
+		"/Users/Ethan/Dev/Journey-to-the-Thingamajig/Important Stuff/src/MainMenuState.as",
+		"/Users/Ethan/Dev/Journey-to-the-Thingamajig/Important Stuff/src/Bots.as",
+		"/Users/Ethan/Dev/Journey-to-the-Thingamajig/Important Stuff/src/Level5.as",
 		"/Users/Ethan/Dev/Journey-to-the-Thingamajig/Important Stuff/src/Level7.as",
+		"/Users/Ethan/Dev/Journey-to-the-Thingamajig/Important Stuff/src/Level6.as",
 		"/Users/Ethan/Dev/Journey-to-the-Thingamajig/Important Stuff/src/PlayState.as",
 		"/Users/Ethan/Dev/Journey-to-the-Thingamajig/Important Stuff/src/Player.as",
 		"/Users/Ethan/Dev/Journey-to-the-Thingamajig/Important Stuff/src/Level3.as",
-		"/Users/Ethan/Dev/Journey-to-the-Thingamajig/Important Stuff/src/Level4.as",
-		"/Users/Ethan/Dev/Journey-to-the-Thingamajig/Important Stuff/src/Bots.as",
 		"/Users/Ethan/Dev/Journey-to-the-Thingamajig/Important Stuff/src/Level1.as",
-		"/Users/Ethan/Dev/Journey-to-the-Thingamajig/Important Stuff/src/NPC.as",
-		"/Users/Ethan/Dev/Journey-to-the-Thingamajig/Important Stuff/src/Level2.as",
-		"/Users/Ethan/Dev/Journey-to-the-Thingamajig/Important Stuff/src/Bot.as",
-		"/Users/Ethan/Dev/Journey-to-the-Thingamajig/Important Stuff/src/Level6.as",
 		"/Users/Ethan/Documents/software I want",
 		"/Users/Ethan/Dev/Journey-to-the-Thingamajig/(ignore:delete)DeveloperNotes/Links I used to figure out how to develop flixel o",
 		"/Users/Ethan/Flex/frameworks/flex-config.xml",
@@ -237,6 +177,8 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			"update(",
+			"npc",
 			"registry.checkpointflag =",
 			"registry.checkpointflag",
 			"parsebots(",
@@ -369,274 +311,8 @@
 	"groups":
 	[
 		{
-			"selected": 4,
 			"sheets":
 			[
-				{
-					"buffer": 0,
-					"file": "Level7.as",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 15891,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								10700,
-								10710
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/ActionScript/ActionScript.sublime-syntax",
-							"translate_tabs_to_spaces": false
-						},
-						"translation.x": 0.0,
-						"translation.y": 5001.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 5,
-					"type": "text"
-				},
-				{
-					"buffer": 1,
-					"file": "Level6.as",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 13712,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								9378,
-								9378
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/ActionScript/ActionScript.sublime-syntax",
-							"translate_tabs_to_spaces": false
-						},
-						"translation.x": 0.0,
-						"translation.y": 4654.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 4,
-					"type": "text"
-				},
-				{
-					"buffer": 2,
-					"file": "Level5.as",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 10927,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								8193,
-								8302
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/ActionScript/ActionScript.sublime-syntax",
-							"translate_tabs_to_spaces": false
-						},
-						"translation.x": 0.0,
-						"translation.y": 3733.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 6,
-					"type": "text"
-				},
-				{
-					"buffer": 3,
-					"file": "Bots.as",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 628,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								331,
-								331
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/ActionScript/ActionScript.sublime-syntax",
-							"translate_tabs_to_spaces": false
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 7,
-					"type": "text"
-				},
-				{
-					"buffer": 4,
-					"file": "MainMenuState.as",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 7176,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								2720,
-								2720
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/ActionScript/ActionScript.sublime-syntax",
-							"translate_tabs_to_spaces": false
-						},
-						"translation.x": 0.0,
-						"translation.y": 885.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 0,
-					"type": "text"
-				},
-				{
-					"buffer": 5,
-					"file": "Bot.as",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 7044,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								2214,
-								2225
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/ActionScript/ActionScript.sublime-syntax",
-							"translate_tabs_to_spaces": false
-						},
-						"translation.x": 153.0,
-						"translation.y": 1191.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 3,
-					"type": "text"
-				},
-				{
-					"buffer": 6,
-					"file": "Level4.as",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 11273,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								9522,
-								9522
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/ActionScript/ActionScript.sublime-syntax",
-							"translate_tabs_to_spaces": false
-						},
-						"translation.x": 0.0,
-						"translation.y": 4935.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 2,
-					"type": "text"
-				},
-				{
-					"buffer": 7,
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 1208,
-						"regions":
-						{
-							"match":
-							{
-								"flags": 112,
-								"regions":
-								[
-									[
-										214,
-										239
-									],
-									[
-										400,
-										425
-									],
-									[
-										620,
-										645
-									],
-									[
-										901,
-										926
-									],
-									[
-										1055,
-										1080
-									]
-								],
-								"scope": ""
-							}
-						},
-						"selection":
-						[
-							[
-								610,
-								610
-							]
-						],
-						"settings":
-						{
-							"detect_indentation": false,
-							"line_numbers": false,
-							"output_tag": 1,
-							"result_base_dir": "",
-							"result_file_regex": "^([^ 	].*):$",
-							"result_line_regex": "^ +([0-9]+):",
-							"scroll_past_end": true,
-							"syntax": "Packages/Default/Find Results.hidden-tmLanguage"
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 1,
-					"type": "text"
-				}
 			]
 		}
 	],
@@ -689,6 +365,14 @@
 		"selected_items":
 		[
 			[
+				"npc",
+				"NPC.as"
+			],
+			[
+				"level2",
+				"Level2.as"
+			],
+			[
 				"",
 				"~/Documents/Git Projects/flixel-demos/Arcade/FlxSnake/FlxSnake.hxproj"
 			]
@@ -721,7 +405,7 @@
 	"show_open_files": false,
 	"show_tabs": true,
 	"side_bar_visible": true,
-	"side_bar_width": 150.0,
+	"side_bar_width": 50.0,
 	"status_bar_visible": true,
 	"template_settings":
 	{

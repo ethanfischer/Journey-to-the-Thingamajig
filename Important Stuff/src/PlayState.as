@@ -43,7 +43,7 @@ package
 		private var trumpetFlag:Boolean;
 		private var finalPlaytime:Number;
 		private var endLevelFlag:Boolean = false;
-		
+
 		
 		
 
@@ -118,238 +118,22 @@ package
 			if (!Registry.gameStart)
 			{
 				
-				////////////////////////////////////////////////////////////////////////
-				//							TESTING ZONE							  //
-				////////////////////////////////////////////////////////////////////////
-				
-				//press 'T'
-				if (FlxG.keys.T)
-				{
-					trace("		***TEST***");
-					
-					//Player Position//
-					/*trace(Registry.gameLevel.player.x, Registry.gameLevel.player.y);
-					trace("Playtime: " + Registry.playtime
-						+ "\nTotalPlaytime: " + Registry.totalPlaytime);*/
-					trace("screenResX: " + Capabilities.screenResolutionX + "\n screenResY: " + Capabilities.screenResolutionY);
-					
-				}
-				
-				
-				
-				//Collisions
-				FlxG.collide(_gameLevel.player, _gameLevel.foreground);
-				FlxG.collide(_gameLevel.player, _gameLevel.crumbleRocks, crumble);
-				FlxG.collide(_gameLevel.player, _gameLevel.fadeBlocks);
-				FlxG.collide(_gameLevel.player, _gameLevel.npc);
-				FlxG.collide(_gameLevel.bots, _gameLevel.foreground);
-				FlxG.collide(_gameLevel.bots, _gameLevel.crumbleRocks);
-				FlxG.overlap(_gameLevel.bots, _gameLevel.rocks, botRock);
-				FlxG.collide(_gameLevel.bots, _gameLevel.rocks, botRock);
-				FlxG.overlap(_gameLevel.bots2, _gameLevel.rocks, botRock);
-				FlxG.collide(_gameLevel.bots2, _gameLevel.rocks, botRock);
-				FlxG.collide(_gameLevel.bots2, _gameLevel.foreground);
-				FlxG.collide(_gameLevel.bots2, _gameLevel.crumbleRocks);
-				FlxG.collide(_gameLevel.bots2.blades, _gameLevel.foreground, killBlade);
-				FlxG.collide(_gameLevel.lilguy, _gameLevel.foreground);
-				FlxG.collide(_gameLevel.borgs, _gameLevel.foreground);
-				FlxG.collide(_gameLevel.borgs, _gameLevel.rocks);
-				FlxG.collide(_gameLevel.rocks, _gameLevel.player);
-				FlxG.collide(_gameLevel.foreground, _gameLevel.rocks);
-				FlxG.collide(_gameLevel.lilguy, _gameLevel.rocks);
-				FlxG.collide(_gameLevel.lilguy, _gameLevel.crumbleRocks);
-				FlxG.collide(_gameLevel.npc, _gameLevel.foreground);
-				FlxG.collide(_gameLevel.wiz, _gameLevel.foreground);
-				FlxG.collide(_gameLevel.frog, _gameLevel.crumbleRocks);
-
-				//Overlappings
-				FlxG.overlap(_gameLevel.player, _gameLevel.reinforcements, hitReinforcement);
-				FlxG.overlap(_gameLevel.player, _gameLevel.bots, hitBot);
-				FlxG.overlap(_gameLevel.player, _gameLevel.bots2, hitBot);
-				FlxG.overlap(_gameLevel.player, _gameLevel.borgs, hitBorg);
-				FlxG.overlap(_gameLevel.player, _gameLevel.torches, hitFire);
-				FlxG.overlap(_gameLevel.player, _gameLevel.lilguy, hitLilguy);
-				FlxG.overlap(_gameLevel.hitBox, _gameLevel.bots, punchBot);
-				FlxG.overlap(_gameLevel.hitBox, _gameLevel.bots2, punchBot);
-				FlxG.overlap(_gameLevel.hitBox, _gameLevel.borgs, punchBorg);
-				FlxG.overlap(_gameLevel.hitBox, _gameLevel.frog, punchFrog);
-				FlxG.overlap(_gameLevel.player, _gameLevel.boulder, playerBoulder);
-
-				if(Registry.stageCount == 3 && Registry.firstLevel4) FlxG.overlap(_gameLevel.player, _gameLevel.mail, hitMail);
-
-				FlxG.overlap(_gameLevel.foreground, _gameLevel.torches, flameOn);
-				FlxG.overlap(_gameLevel.player, _gameLevel.nomNoms, hitNomNom);
-				FlxG.overlap(_gameLevel.bots, _gameLevel.nomNoms, hitNomNom);
-
-				if (!FlxG.overlap(_gameLevel.player, _gameLevel.nomNoms)) _torchFlag = false; //eliminate torches turning on and off when overlaping switch
-
-				FlxG.overlap(_gameLevel.player, _gameLevel.bots2.blades, hitBlade);
-				FlxG.overlap(_gameLevel.bots, _gameLevel.bots2.blades, botHitBlade);		
-				FlxG.overlap(_gameLevel.player, _gameLevel.streams, handleStreams);
-				FlxG.overlap(_gameLevel.hitBox, _gameLevel.rocks, punchRock);
-
-				if (Registry.stageCount == 4) FlxG.overlap(_gameLevel.hitBox, _gameLevel.npc, punchNPC);
-				if (Registry.stageCount == 1) FlxG.overlap(_gameLevel.hitBox, _gameLevel.npc, meetNPC);
-								
-				FlxG.overlap(_gameLevel.player.screen, _gameLevel.bots, updateThings);
-				FlxG.overlap(_gameLevel.player.screen, _gameLevel.bots2, updateThings);
-				FlxG.overlap(_gameLevel.player.screen2, _gameLevel.rocks, updateThings);
-				FlxG.overlap(_gameLevel.player.screen2, _gameLevel.crumbleRocks, updateThings);
-				FlxG.overlap(_gameLevel.player.screen2, _gameLevel.borgs, updateThings);
-				FlxG.overlap(_gameLevel.player.screen2, _gameLevel.torches, updateThings);
-				FlxG.overlap(_gameLevel.player.screen2, _gameLevel.streams, updateThings);
-				FlxG.overlap(_gameLevel.player, _gameLevel.spring, bouncePlayer);
-				FlxG.overlap(_gameLevel.player, _gameLevel.spring2, bouncePlayer);
-				FlxG.overlap(_gameLevel.player, _gameLevel.checkpoint, hitCheckpoint);
-				if(Registry.stageCount == 6 && Registry.giftHasBeenExchanged) FlxG.overlap(_gameLevel.player, _gameLevel.checkpoint2, hitCheckpoint);
-				FlxG.overlap(_gameLevel.player, _gameLevel.end, hitCheckpoint);
-
-				
-				
-				
-				//If the letter is on screen (it should be when first playing level 1 and when hitting the mail in level 4),
-				// pressing z and x should make the letter fade away and the player animate putting the letter away
-				if (Registry.stageCount == 0 && Registry.letterSequence && FlxG.keys.any()) //teach them to use Z and X in level one
-				{
-					_gameLevel.letterMsg.text =
-
-					"I don't know what it is.\n"
-					+"I don't know where it came from.\n\n"
-					
-					+"But I know one thing:"
-					+"\n...You have to see it.\n\n"
-					
-					+"Come to Level 7\n\n"
-
-					+"P.S.\n"
-					+"Press 'Z' + 'X'";
-
-					if(FlxG.keys.Z && FlxG.keys.X)
-					{
-					_letterTimer = .5;
-					_gameLevel.player.putAway();
-					Registry.letterSequence = false;
-					Registry.gameLevel.player.moves = true;
-					}
-				}
-				else if ((Registry.stageCount == 2 || Registry.stageCount == 3) && Registry.letterSequence && (FlxG.keys.X || FlxG.keys.Z)) //after level one, any key will put the letter away
-				{
-					_letterTimer = .5;
-					_gameLevel.player.putAway();
-					Registry.letterSequence = false;
-					Registry.gameLevel.player.moves = true;
-				}
-
-				//if (!Registry.musixFlag) //flag needed to prevent music from playing a million times (since this is in update())
-				//{
-					////FlxG.playMusic(Registry.musix, 1);
-					//Registry.musixFlag = true;
-				//}
-
-				// Bird appears every 30 seconds in the forest levels
-				if (Registry.stageCount < 3 && Registry.playtime > 1 && Registry.playtime % 30 > 0 
-				&& Registry.playtime % 30 < 0.5) 
-				{
-					if(!(Registry.stageCount == 0 && Registry.gameLevel.letterMsg.visible)) add(_gameLevel.bird);
-				}
-
-				//reset the bird's position after it goes off screen
-				if (_gameLevel.bird.x < -30)
-				{
-					_gameLevel.bird.x = Registry.screenWidth + 30;
-					_gameLevel.bird.y = Registry.screenHeight /2 - 70;
-					remove(_gameLevel.bird);
-				}
-
-				//playtime
+				debugStuff();
+				collisions();
+				letter();
+				bird();
 				Registry.playtime += FlxG.elapsed; //keep track of how long user has played the current level
 				Registry.totalPlaytime += FlxG.elapsed; //keep track of how long user has played the game
 				//_playtimeMessage.text = "" + FlxU.formatTime(Registry.playtime, false); //display how long the user has played the current level
 
-				//letterTimer
-				if (_letterTimer > 0)
-				{
-					_letterTimer -= FlxG.elapsed;
-					_gameLevel.letterMsg.alpha -= .2;
-				}
-				else if(_letterTimer < 0)
-				{
-					_gameLevel.letterMsg.kill();
-					remove(_gameLevel.letterMsg);
-				}
+				letterTimer();
 				
-
 				//whiff sound effect
-				if(Registry.gameLevel.player.canPunch && Registry.hasFlower && FlxG.keys.justPressed("X"))
-				{
-					FlxG.play(whiffSFX);
-				}
-
-				//streamDrag
-				if (streamDrag)
-				{
-					if (_streamLeft) _gameLevel.player.x -= 2; //if water is flowing left, make the player flow left
-					else
-					{
-						if (Registry.stageCount == 6) _gameLevel.player.x += 3; // vice versa
-						else _gameLevel.player.x += 2
-					}
-				}
-				if (!FlxG.overlap(_gameLevel.player, _gameLevel.streams)) //if player isn't in water
-				{
-					if (!((!_streamLeft && FlxG.keys.RIGHT) || (FlxG.keys.LEFT && _streamLeft))) //and they're not carrying momentum from stream, no more streamDrag
-					{
-						streamDrag = false;
-					}
-				}
+				if(Registry.gameLevel.player.canPunch && Registry.hasFlower && FlxG.keys.justPressed("X")) FlxG.play(whiffSFX);
+				handleStreamDrag();
 				
-				if (Registry.stageCount == 6) 
-				{
-			
-					if (Registry.dropBouldlets) 
-					{	
-						add(_gameLevel.bouldlets);
-						Registry.dropBouldlets = false;
-					}
-					if (Registry.gameLevel.wiz.smushFlag)
-					{
-						if(_gameLevel.player.x > _gameLevel.wiz.BEHINDGIFT - 300){
-							_gameLevel.boulder.x = _gameLevel.wiz.BEHINDGIFT - 110;
-							add(_gameLevel.boulder);
-							Registry.gameLevel.wiz.smushFlag = false;
-							_gameLevel.wiz.smushTimer = .4;
-						}
-					}
-					if (Registry.theEnd) theEnd();
-					
-					//////////////////////
-					//     Wiz cutscene //     		
-					////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-					//		NOTE:I know there must be a much easier/more efficient way of handling cutscenes, 
-					//	    	 but this is how I do it:
-					//		-create a cutscene boolean in Registry. The cutscene can be triggered in any class that has access to Registry (which is every class I'm aware of)
-					//		-because PlayState(this class) handles animations and generally everything that happens on stage, what happens in the cutscene happens here
-					///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-					
-					//MEETING WIZ
-					//if (!Registry.giftExchange) //giftExchange is turned on when Wiz is onScreen behind the big gift (gExch turned on in Wiz)
-					//{
-					if (!Registry.metWiz)
-					{
-						
-						meetWiz();
-					}
-					//}
-					
-					//GIFT EXCHANGE
-					if (Registry.giftExchange) //gift exchange cutscene happens after you greet the wiz (flagged in Wiz)
-					{
-						giftExchange();
-						
-					}
-					add(_gameLevel.wiz.message); //the game is constantly refreshing wiz's message because the message updates in real time
-				
-				}
+				level7();
+				//butt();
 			}
 		}
 
@@ -455,6 +239,242 @@ package
 		{
 			if (Registry.torchesOn) torch.flameOn = true;
 			else torch.flameOn = false;
+		}
+
+		private function collisions():void
+		{
+			//Collisions
+				FlxG.collide(_gameLevel.player, _gameLevel.foreground);
+				FlxG.collide(_gameLevel.player, _gameLevel.crumbleRocks, crumble);
+				FlxG.collide(_gameLevel.player, _gameLevel.fadeBlocks);
+				FlxG.collide(_gameLevel.player, _gameLevel.npc);
+				FlxG.collide(_gameLevel.bots, _gameLevel.foreground);
+				FlxG.collide(_gameLevel.bots, _gameLevel.crumbleRocks);
+				FlxG.overlap(_gameLevel.bots, _gameLevel.rocks, botRock);
+				FlxG.collide(_gameLevel.bots, _gameLevel.rocks, botRock);
+				FlxG.overlap(_gameLevel.bots2, _gameLevel.rocks, botRock);
+				FlxG.collide(_gameLevel.bots2, _gameLevel.rocks, botRock);
+				FlxG.collide(_gameLevel.bots2, _gameLevel.foreground);
+				FlxG.collide(_gameLevel.bots2, _gameLevel.crumbleRocks);
+				FlxG.collide(_gameLevel.bots2.blades, _gameLevel.foreground, killBlade);
+				FlxG.collide(_gameLevel.lilguy, _gameLevel.foreground);
+				FlxG.collide(_gameLevel.borgs, _gameLevel.foreground);
+				FlxG.collide(_gameLevel.borgs, _gameLevel.rocks);
+				FlxG.collide(_gameLevel.rocks, _gameLevel.player);
+				FlxG.collide(_gameLevel.foreground, _gameLevel.rocks);
+				FlxG.collide(_gameLevel.lilguy, _gameLevel.rocks);
+				FlxG.collide(_gameLevel.lilguy, _gameLevel.crumbleRocks);
+				FlxG.collide(_gameLevel.npc, _gameLevel.foreground);
+				FlxG.collide(_gameLevel.wiz, _gameLevel.foreground);
+				FlxG.collide(_gameLevel.frog, _gameLevel.crumbleRocks);
+
+				//Overlappings
+				FlxG.overlap(_gameLevel.player, _gameLevel.reinforcements, hitReinforcement);
+				FlxG.overlap(_gameLevel.player, _gameLevel.bots, hitBot);
+				FlxG.overlap(_gameLevel.player, _gameLevel.bots2, hitBot);
+				FlxG.overlap(_gameLevel.player, _gameLevel.borgs, hitBorg);
+				FlxG.overlap(_gameLevel.player, _gameLevel.torches, hitFire);
+				FlxG.overlap(_gameLevel.player, _gameLevel.lilguy, hitLilguy);
+				FlxG.overlap(_gameLevel.hitBox, _gameLevel.bots, punchBot);
+				FlxG.overlap(_gameLevel.hitBox, _gameLevel.bots2, punchBot);
+				FlxG.overlap(_gameLevel.hitBox, _gameLevel.borgs, punchBorg);
+				FlxG.overlap(_gameLevel.hitBox, _gameLevel.frog, punchFrog);
+				FlxG.overlap(_gameLevel.player, _gameLevel.boulder, playerBoulder);
+
+				if(Registry.stageCount == 3 && Registry.firstLevel4) FlxG.overlap(_gameLevel.player, _gameLevel.mail, hitMail);
+
+				FlxG.overlap(_gameLevel.foreground, _gameLevel.torches, flameOn);
+				FlxG.overlap(_gameLevel.player, _gameLevel.nomNoms, hitNomNom);
+				FlxG.overlap(_gameLevel.bots, _gameLevel.nomNoms, hitNomNom);
+
+				if (!FlxG.overlap(_gameLevel.player, _gameLevel.nomNoms)) _torchFlag = false; //eliminate torches turning on and off when overlaping switch
+
+				FlxG.overlap(_gameLevel.player, _gameLevel.bots2.blades, hitBlade);
+				FlxG.overlap(_gameLevel.bots, _gameLevel.bots2.blades, botHitBlade);		
+				FlxG.overlap(_gameLevel.player, _gameLevel.streams, handleStreams);
+				FlxG.overlap(_gameLevel.hitBox, _gameLevel.rocks, punchRock);
+
+				if (Registry.stageCount == 4) FlxG.overlap(_gameLevel.hitBox, _gameLevel.npc, punchNPC);
+				if (Registry.stageCount == 1) FlxG.overlap(_gameLevel.hitBox, _gameLevel.npc, meetNPC);
+								
+				FlxG.overlap(_gameLevel.player.screen, _gameLevel.bots, updateThings);
+				FlxG.overlap(_gameLevel.player.screen, _gameLevel.bots2, updateThings);
+				FlxG.overlap(_gameLevel.player.screen2, _gameLevel.rocks, updateThings);
+				FlxG.overlap(_gameLevel.player.screen2, _gameLevel.crumbleRocks, updateThings);
+				FlxG.overlap(_gameLevel.player.screen2, _gameLevel.borgs, updateThings);
+				FlxG.overlap(_gameLevel.player.screen2, _gameLevel.torches, updateThings);
+				FlxG.overlap(_gameLevel.player.screen2, _gameLevel.streams, updateThings);
+				FlxG.overlap(_gameLevel.player, _gameLevel.spring, bouncePlayer);
+				FlxG.overlap(_gameLevel.player, _gameLevel.spring2, bouncePlayer);
+				FlxG.overlap(_gameLevel.player, _gameLevel.checkpoint, hitCheckpoint);
+				if(Registry.stageCount == 6 && Registry.giftHasBeenExchanged) FlxG.overlap(_gameLevel.player, _gameLevel.checkpoint2, hitCheckpoint);
+				FlxG.overlap(_gameLevel.player, _gameLevel.end, hitCheckpoint);
+
+				
+		}
+
+		private function letter():void
+		{
+			//If the letter is on screen (it should be when first playing level 1 and when hitting the mail in level 4),
+				// pressing z and x should make the letter fade away and the player animate putting the letter away
+				if (Registry.stageCount == 0 && Registry.letterSequence && FlxG.keys.any()) //teach them to use Z and X in level one
+				{
+					_gameLevel.letterMsg.text =
+
+					"I don't know what it is.\n"
+					+"I don't know where it came from.\n\n"
+					
+					+"But I know one thing:"
+					+"\n...You have to see it.\n\n"
+					
+					+"Come to Level 7\n\n"
+
+					+"P.S.\n"
+					+"Press 'Z' + 'X'";
+
+					if(FlxG.keys.Z && FlxG.keys.X)
+					{
+					_letterTimer = .5;
+					_gameLevel.player.putAway();
+					Registry.letterSequence = false;
+					Registry.gameLevel.player.moves = true;
+					}
+				}
+				else if ((Registry.stageCount == 2 || Registry.stageCount == 3) && Registry.letterSequence && (FlxG.keys.X || FlxG.keys.Z)) //after level one, any key will put the letter away
+				{
+					_letterTimer = .5;
+					_gameLevel.player.putAway();
+					Registry.letterSequence = false;
+					Registry.gameLevel.player.moves = true;
+				}
+		}
+
+		private function debugStuff():void
+		{
+			if (FlxG.keys.T)
+				{
+					FlxG.log("		***TEST***");
+					
+					//Player Position//
+					/*trace(Registry.gameLevel.player.x, Registry.gameLevel.player.y);
+					trace("Playtime: " + Registry.playtime
+						+ "\nTotalPlaytime: " + Registry.totalPlaytime);*/
+					FlxG.log("screenResX: " + Capabilities.screenResolutionX + "\n screenResY: " + Capabilities.screenResolutionY);
+					
+				}
+		}
+
+		private function bird():void
+		{
+				// Bird appears every 30 seconds in the forest levels
+				if (Registry.stageCount < 3 && Registry.playtime > 1 && Registry.playtime % 30 > 0 
+				&& Registry.playtime % 30 < 0.5) 
+				{
+					if(!(Registry.stageCount == 0 && Registry.gameLevel.letterMsg.visible)) add(_gameLevel.bird);
+				}
+
+				//reset the bird's position after it goes off screen
+				if (_gameLevel.bird.x < -30)
+				{
+					_gameLevel.bird.x = Registry.screenWidth + 30;
+					_gameLevel.bird.y = Registry.screenHeight /2 - 70;
+					remove(_gameLevel.bird);
+				}
+		}
+
+		private function letterTimer():void
+		{
+			if (_letterTimer > 0)
+			{
+				_letterTimer -= FlxG.elapsed;
+				_gameLevel.letterMsg.alpha -= .2;
+			}
+			else if(_letterTimer < 0)
+			{
+				_gameLevel.letterMsg.kill();
+				remove(_gameLevel.letterMsg);
+			}
+		}
+
+		private function handleStreamDrag():void
+		{
+			if (streamDrag)
+				{
+					if (_streamLeft) _gameLevel.player.x -= 2; //if water is flowing left, make the player flow left
+					else
+					{
+						if (Registry.stageCount == 6) _gameLevel.player.x += 3; // vice versa
+						else _gameLevel.player.x += 2
+					}
+				}
+				if (!FlxG.overlap(_gameLevel.player, _gameLevel.streams)) //if player isn't in water
+				{
+					if (!((!_streamLeft && FlxG.keys.RIGHT) || (FlxG.keys.LEFT && _streamLeft))) //and they're not carrying momentum from stream, no more streamDrag
+					{
+						streamDrag = false;
+					}
+				}
+		}
+
+		private function butt():void
+		{
+			if(Registry.totalPlaytime > 5 && !Registry.buttAppeared)
+			{
+				//FlxG.log("buttTime!");
+				add(_gameLevel.butt);
+			}
+
+		}
+
+		private function level7():void
+		{
+			if (Registry.stageCount == 6) 
+				{
+			
+					if (Registry.dropBouldlets) 
+					{	
+						add(_gameLevel.bouldlets);
+						Registry.dropBouldlets = false;
+					}
+					if (Registry.gameLevel.wiz.smushFlag)
+					{
+						if(_gameLevel.player.x > _gameLevel.wiz.BEHINDGIFT - 300){
+							_gameLevel.boulder.x = _gameLevel.wiz.BEHINDGIFT - 110;
+							add(_gameLevel.boulder);
+							Registry.gameLevel.wiz.smushFlag = false;
+							_gameLevel.wiz.smushTimer = .4;
+						}
+					}
+					if (Registry.theEnd) theEnd();
+					
+					//////////////////////
+					//     Wiz cutscene //     		
+					////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+					//		NOTE:I know there must be a much easier/more efficient way of handling cutscenes, 
+					//	    	 but this is how I do it:
+					//		-create a cutscene boolean in Registry. The cutscene can be triggered in any class that has access to Registry (which is every class I'm aware of)
+					//		-because PlayState(this class) handles animations and generally everything that happens on stage, what happens in the cutscene happens here
+					///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+					
+					//MEETING WIZ
+					//if (!Registry.giftExchange) //giftExchange is turned on when Wiz is onScreen behind the big gift (gExch turned on in Wiz)
+					//{
+					if (!Registry.metWiz)
+					{
+						
+						meetWiz();
+					}
+					//}
+					
+					//GIFT EXCHANGE
+					if (Registry.giftExchange) //gift exchange cutscene happens after you greet the wiz (flagged in Wiz)
+					{
+						giftExchange();
+						
+					}
+					add(_gameLevel.wiz.message); //the game is constantly refreshing wiz's message because the message updates in real time
+				
+				}
 		}
 
 		private function hitNomNom(thing:FlxSprite, nomNom:NomNom):void
