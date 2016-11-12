@@ -48,7 +48,11 @@ package
 		[Embed(source = "../assets/umbrella.png")] private var _umbrellaPNG:Class;
 		[Embed(source = "../assets/cutscene.png")] private var cutscenePNG:Class;
 		[Embed(source = "../assets/blue.png")] private var bluePNG:Class;
+		[Embed(source = "../assets/black.png")] private var blackPNG:Class;
+
+
 		public var blue:FlxSprite;
+		public var black:FlxSprite;
 		public var umbrella:FlxSprite = new FlxSprite(23, 375);	
 		public var beats:Array;
 		public var worm1:Worm;
@@ -107,6 +111,14 @@ package
 			blue = new FlxSprite(0, 0);
 			blue.loadGraphic(bluePNG, false, false, 600, 300);
 			blue.visible = false;
+
+
+			black = new FlxSprite(0, 0);
+			black.loadGraphic(blackPNG, false, false, 600, 300);
+			black.scrollFactor.x = 0;
+			black.scrollFactor.y = 0;
+			black.alpha = .3;			
+			//black.visible = false;
 			
 		}
 		

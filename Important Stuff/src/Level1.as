@@ -30,15 +30,15 @@ package
 			letterMsg = new FlxText(30, 140, 400);
 			letterMsg.text = 
 				"I don't know what it is.\n"
-				+"I don't know where it came from.\n\n"
+				//+"I don't know where it came from.\n\n"
 				
-				+"But I know one thing:"
-				+"\n...You have to see it.\n\n"
+				//+"But I know one thing:"
+				//+"\n...You have to see it.\n\n"
 				
-				+"Come to Level 7\n\n"
+				//+"Come to Level 7\n\n"
 
-				+"\n"
-				+"";
+				//+"\n"
+				//+"";
 				
 			//letterMsg.loadGraphic(_letterPNG, false, false, 600, 300);
 			//letterMsg.scrollFactor.y = 0;

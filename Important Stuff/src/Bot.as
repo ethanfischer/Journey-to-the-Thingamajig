@@ -255,9 +255,9 @@ package
 						/*&& player.x > x - 200 &&*/
 							//&& Registry.playtime % 5500 > 0 
 								//&& Registry.playtime % 5500 < 0.5
-							&& Registry.playtime % 20 > 0 //for testing purposes
-								&& Registry.playtime % 20 < 0.5
-									&& Registry.playtime > 0) 
+							&& Registry.playtime % 300 > 0 //for testing purposes
+								&& Registry.playtime % 300 < 0.5
+									&& Registry.playtime > 1) 
 				{
 					velocity.y = -150;
 					velocity.x = 60;

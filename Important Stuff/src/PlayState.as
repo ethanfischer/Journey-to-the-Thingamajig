@@ -38,11 +38,14 @@ package
 		private var bouldletsFLag:Boolean;
 		private var endTimer:Number;
 		private var endTimerFlag:Boolean;
+		private var fadeFlag:Boolean = false;
+		private var fadeTimer:Number = 0;
 		private var credits:FlxText;
 		private var credits2:FlxText;
 		private var trumpetFlag:Boolean;
 		private var finalPlaytime:Number;
 		private var endLevelFlag:Boolean = false;
+		private var anyKeyJustPressed:Boolean = false;
 
 		
 		
@@ -107,6 +110,9 @@ package
 			FlxG.camera.setBounds(0, 0, _gameLevel.width, _gameLevel.height);
 			//	The camera will follow the player
 			FlxG.camera.follow(_gameLevel.player, FlxCamera.STYLE_PLATFORMER);
+
+			Registry.tmpTxt = _gameLevel.letterMsg.text;
+
 		}
 
 		override public function update():void
@@ -133,6 +139,7 @@ package
 				handleStreamDrag();
 				
 				level7();
+				fade(_gameLevel.black); //listen for the black to fade in level 2
 				//butt();
 			}
 		}
@@ -281,7 +288,11 @@ package
 				FlxG.overlap(_gameLevel.hitBox, _gameLevel.frog, punchFrog);
 				FlxG.overlap(_gameLevel.player, _gameLevel.boulder, playerBoulder);
 
+				//reform this
 				if(Registry.stageCount == 3 && Registry.firstLevel4) FlxG.overlap(_gameLevel.player, _gameLevel.mail, hitMail);
+				if(Registry.stageCount == 2 && Registry.firstLevel3) FlxG.overlap(_gameLevel.player, _gameLevel.mail, hitMail);
+
+
 
 				FlxG.overlap(_gameLevel.foreground, _gameLevel.torches, flameOn);
 				FlxG.overlap(_gameLevel.player, _gameLevel.nomNoms, hitNomNom);
@@ -313,34 +324,106 @@ package
 				
 		}
 
+		private function addText(txt:String):void
+		{
+			if(Registry.stageCount == 0) 
+			{
+				l1Text();
+			}
+			else if (Registry.stageCount == 2) 
+			{
+				if(FlxG.keys.Z || FlxG.keys.X)
+				{
+					l3Text();
+				}
+			}
+		}
+
+		private function l1Text():void
+		{
+			Registry.textCounter++;
+			if(Registry.textCounter == 1)
+			{
+				Registry.tmpTxt = Registry.tmpTxt + "I don't know where it came from.\n\n";
+			}
+			else if(Registry.textCounter == 2)
+			{
+				Registry.tmpTxt = Registry.tmpTxt + "But I know one thing:";
+			}
+			else if(Registry.textCounter == 3)
+			{
+				Registry.tmpTxt = Registry.tmpTxt + "\n...You have to see it.\n\n"
+			}
+			else if(Registry.textCounter == 4)
+			{
+				Registry.tmpTxt = Registry.tmpTxt + "P.S.\n"
+									  			  + "Press 'ZX'"; 					
+			}
+			_gameLevel.letterMsg.text = Registry.tmpTxt;	
+		}
+
+		private function l3Text():void
+		{
+			Registry.textCounter++;
+			FlxG.log("l3Text textCount == " + Registry.textCounter);
+
+			if (Registry.textCounter == 1)
+			{
+				Registry.tmpTxt = Registry.tmpTxt + "\nYou'll tap your toe."; 					
+			}	
+			else if (Registry.textCounter == 2)
+			{
+				Registry.tmpTxt = Registry.tmpTxt + "\nHeck, you might never stop dancing,"; 					
+			}
+			else if (Registry.textCounter == 3)
+			{
+				Registry.tmpTxt = Registry.tmpTxt + "\nwhen you see this thing."; 					
+			}
+			else if (Registry.textCounter == 4)
+			{
+				Registry.tmpTxt = Registry.tmpTxt + "\n\n Press 'ZX'"; 					
+			}
+			_gameLevel.letterMsg.text = Registry.tmpTxt;	
+		}
+
 		private function letter():void
 		{
 			//If the letter is on screen (it should be when first playing level 1 and when hitting the mail in level 4),
 				// pressing z and x should make the letter fade away and the player animate putting the letter away
+				//if(Registry.letterSequence && FlxG.keys.justPressed("z"))
+				//{
+				//	addText(Registry.tmpTxt);
+
+				//}
+
+				if (FlxG.keys.any() && !anyKeyJustPressed)
+				{
+					anyKeyJustPressed = true;
+
+					// Do the stuff you want when any key is just pressed.
+					addText(Registry.tmpTxt);
+
+				}
+				else if (!FlxG.keys.any())
+				{
+					anyKeyJustPressed = false;
+				}
+
 				if (Registry.stageCount == 0 && Registry.letterSequence && FlxG.keys.any()) //teach them to use Z and X in level one
 				{
-					_gameLevel.letterMsg.text =
-
-					"I don't know what it is.\n"
-					+"I don't know where it came from.\n\n"
+					//_gameLevel.letterMsg.text =
+					//Registry.tmpTxt = _gameLevel.letterMsg.text;
 					
-					+"But I know one thing:"
-					+"\n...You have to see it.\n\n"
 					
-					+"Come to Level 7\n\n"
-
-					+"P.S.\n"
-					+"Press 'Z' + 'X'";
-
 					if(FlxG.keys.Z && FlxG.keys.X)
 					{
-					_letterTimer = .5;
-					_gameLevel.player.putAway();
-					Registry.letterSequence = false;
-					Registry.gameLevel.player.moves = true;
+						_letterTimer = .5;
+						_gameLevel.player.putAway();
+						Registry.letterSequence = false;
+						Registry.gameLevel.player.moves = true;
 					}
 				}
-				else if ((Registry.stageCount == 2 || Registry.stageCount == 3) && Registry.letterSequence && (FlxG.keys.X || FlxG.keys.Z)) //after level one, any key will put the letter away
+				else if ((Registry.stageCount == 2 || Registry.stageCount == 3) && Registry.letterSequence && (FlxG.keys.X && FlxG.keys.Z)) //after level one, any key will put the letter away
 				{
 					_letterTimer = .5;
 					_gameLevel.player.putAway();
@@ -627,15 +710,15 @@ package
 				//play next levels music
 				if (Registry.stageCount == 0) 
 				{
-					FlxG.playMusic(Registry.l2msc, .5);
+					//FlxG.playMusic(Registry.l2msc, .5);
 					//FlxG.playMusic(Registry.water, 1);
 
 				}
-				if (Registry.stageCount == 1) FlxG.playMusic(Registry.l3msc, 1);
+				/*if (Registry.stageCount == 1) FlxG.playMusic(Registry.l3msc, 1);
 				if (Registry.stageCount == 2) FlxG.playMusic(Registry.l4msc, 1);
 				if (Registry.stageCount == 3) FlxG.playMusic(Registry.l5msc, 1);
 				if (Registry.stageCount == 4) FlxG.playMusic(Registry.l6msc, 1);
-				if (Registry.stageCount == 5) FlxG.playMusic(Registry.l7msc, 1);
+				if (Registry.stageCount == 5) FlxG.playMusic(Registry.l7msc, 1);*/
 				endLevelFlag = true;
 			}	
 			
@@ -644,7 +727,36 @@ package
 		private function meetNPC(hitBox:FlxObject, npc:NPC):void
 		{
 			add(_gameLevel.npc.message);
-			if(!_gameLevel.npc.meetFlag) _gameLevel.npc.meetTimer = 14;
+			if(!_gameLevel.npc.meetFlag) 
+			{
+				_gameLevel.npc.meetTimer = 14;
+				startFade(_gameLevel.black, 6);
+				FlxG.playMusic(Registry.l2msc, .5);
+			}
+		}
+
+		private function startFade(object:FlxSprite, fadeTime:Number):void
+		{
+			if(fadeFlag == false)
+			{
+				fadeFlag = true
+				fadeTimer = fadeTime;
+			}
+		}
+
+		private function fade(object:FlxSprite):void
+		{
+			
+			if(fadeFlag)
+			{
+				fadeTimer -= FlxG.elapsed;
+				object.alpha -= .003;
+				if (fadeTimer < 0)
+				{
+					fadeFlag = false;
+					FlxG.log("faded");
+				}
+			}
 		}
 
 		private function punchBot(hitBox:FlxObject , bot:Bot):void
@@ -704,6 +816,7 @@ package
 
 		private function hitMail(player:Player, mail:Mail):void
 		{
+			//FlxG.log("hit Mail");
 			add(_gameLevel.letterMsg);
 			player.velocity.x = 0;
 			//_gameLevel.player.moves = false;
@@ -711,7 +824,16 @@ package
 			viewMail();
 			//FlxG.fade(0x000000, .2, viewMail);
 			mail.kill();
+			if(Registry.stageCount == 2)
+			{
+				Registry.firstLevel3 = false;
+				FlxG.playMusic(Registry.l3msc, 1);
+			}
+			if(Registry.stageCount == 3)
+			{
 			Registry.firstLevel4 = false;
+			}
+
 		}
 
 		private function viewMail():void
@@ -719,13 +841,18 @@ package
 			FlxG.camera.stopFX();
 			
 			//FlxG.flash(0x00000000, 1.4);
+			
 			Registry.letterSequence = true;
 			_gameLevel.letterMsg.visible = true;
 			Registry.gameLevel.player.moves = false;
 			Registry.gameLevel.player.velocity.x = 0;
 			Registry.gameLevel.player.play("letterIdle");
 
-			
+			/*if (Registry.stageCount == 1) FlxG.playMusic(Registry.l3msc, 1);
+			if (Registry.stageCount == 2) FlxG.playMusic(Registry.l4msc, 1);
+			if (Registry.stageCount == 3) FlxG.playMusic(Registry.l5msc, 1);
+			if (Registry.stageCount == 4) FlxG.playMusic(Registry.l6msc, 1);
+			if (Registry.stageCount == 5) FlxG.playMusic(Registry.l7msc, 1);*/
 		}
 
 		private function punchNPC(hitBox:FlxObject, npc:NPC):void
@@ -1013,6 +1140,11 @@ package
 			add(_gameLevel.worm2);
 			add(_gameLevel.worm3);
 
+			if (Registry.stageCount == 2 && Registry.firstLevel3) 
+			{
+				add(_gameLevel.mail); //if playing level 4 for first time, add the mail for player to hit
+			}
+			
 			if (Registry.stageCount == 3 && Registry.firstLevel4) add(_gameLevel.mail); //if playing level 4 for first time, add the mail for player to hit
 
 			add(_gameLevel.torches);
@@ -1021,11 +1153,13 @@ package
 			add(_gameLevel.spring);
 			add(_gameLevel.spring2);
 			add(_gameLevel.player);
+
 			if (Registry.deaths % 12== 0 && Registry.deaths != 0)
 			{
 				add(_gameLevel.frog); //only add frog every 7 deaths or so
 				add(_gameLevel.frog.message);
 			}
+			
 			add(_gameLevel.checkpoint);
 			add(_gameLevel.end);
 			add(_gameLevel.crumbleRocks);
@@ -1051,16 +1185,19 @@ package
 				_gameLevel.player.moves = false;
 			}
 			
-			if (Registry.firstLevel3 && Registry.stageCount == 2) //if playing level 3 for first time, make the user read the damn letter //added last so it's over top of everything else
+			/*if (Registry.firstLevel3 && Registry.stageCount == 2) //if playing level 3 for first time, make the user read the damn letter //added last so it's over top of everything else
 			{
 				add(_gameLevel.letterMsg);
 				Registry.letterSequence = true;
 				_gameLevel.letterMsg.visible = true;
 				Registry.firstLevel3 = false;
 				_gameLevel.player.moves = false;
+			}*/
+			if (Registry.stageCount == 1) 
+			{
+				if(Registry.hasFlower) _gameLevel.npc.exists = false; //if you already have the boxing glove, don't let the thing appear
+				else add(_gameLevel.black);
 			}
-			if (Registry.stageCount == 1 && Registry.hasFlower) _gameLevel.npc.exists = false; //if you already have the boxing glove, don't let the thing appear
-
 			if (Registry.pauseSounds) _muteButton.frame = 2; //when sounds are muted, make the audio graphic look muted
 			else _muteButton.frame = 0; //otherwise make it look normal
 

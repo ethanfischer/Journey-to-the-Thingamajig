@@ -68,8 +68,13 @@ package
 		[Embed(source="../assets/cursor.png")] public static var cursor:Class; 
 		
 		public static var firstLevel1:Boolean = true;
+		public static var firstLevel2:Boolean = true;
 		public static var firstLevel3:Boolean = true;
 		public static var firstLevel4:Boolean = true;
+		public static var firstLevel5:Boolean = true;
+		public static var firstLevel6:Boolean = true;
+		public static var firstLevel7:Boolean = true;
+
 		public static var firstTimePlayingLevel:Boolean = true;
 		public static var volume:Number = .5; 
 		
@@ -80,6 +85,8 @@ package
 		public static var theEnd:Boolean;
 		public static var ballsCollected:int = 0;
 		public static var buttAppeared:Boolean = false;
+		public static var textCounter:int = 0;
+		public static var tmpTxt:String ="";
 		
 		//cutscenes
 		//NOTE: because every cutscene in my game should only happen once (no one wants to go through a cutscene over and over again
@@ -99,25 +106,25 @@ package
 		
 		
 		//Level2
-		[Embed(source = "../assets/Rocksalt.mp3")] public static var l2msc:Class;
+		[Embed(source = "../assets/ElephantTime.mp3")] public static var l2msc:Class;
 		
 		//Level3
-		//[Embed(source="../assets/level3waltz_1.mp3")] public static var l3msc:Class;
-		[Embed(source="../assets/HipHipHip.mp3")] public static var l3msc:Class;
+		[Embed(source="../assets/A_Wonderful_Guy.mp3")] public static var l3msc:Class;
 
 		//Level4
 		[Embed(source="../assets/CaveTune.mp3")] public static var l4msc:Class;
 
 		//Level 5
 		[Embed(source="../assets/Dat Native American Stride_3.mp3")] public static var l5msc:Class;
-
 		
 		//Level 6
-		[Embed(source = "../assets/T.C.B.mp3")]public static var l6msc:Class;
+		[Embed(source = "../assets/TheHoliday.mp3")]public static var l6msc:Class;
 
 		//Level 7		
 		[Embed(source="../assets/experimental-mixing.mp3")] public static var l7msc:Class;
-		
+
+		//Credits
+		[Embed(source="../assets/endingSong.mp3")] public static var endMsc:Class;
 		
 		
 		public function Registry() 

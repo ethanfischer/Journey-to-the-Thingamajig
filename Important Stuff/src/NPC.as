@@ -6,7 +6,7 @@ package
 	public class NPC extends FlxSprite
 	{
 		//[Embed(source = "../map/teddy.png")] private var NPCPNG:Class;
-		[Embed(source = "../map/teddy_bot.png")] private var NPCPNG:Class;
+		[Embed(source = "../assets/NPC.png")] private var NPCPNG:Class;
 
 		[Embed(source = "../assets/here.mp3")] private var hereSFX:Class;
 		private var hereSFXFLAG:Boolean;
@@ -83,7 +83,7 @@ package
 		{
 			super.update();
 
-			FlxG.log("I'm alive!");
+			//FlxG.log("I'm alive!");
 			
 			////////////////////////////
 			//		   TIMERS		  //

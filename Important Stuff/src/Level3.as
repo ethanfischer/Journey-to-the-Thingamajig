@@ -40,14 +40,15 @@ package
 		{
 			super();
 			
-			//MUSIC IS TAKEN CARE OF IN DEATHMENUSTATE. THIS IS CONFUSING, BAD CODING AND IS AN EXAMPLE OF WHY YOU ENCAPSULATE and KEEP YOUR PROGRAM HIGH IN MODULARITY
-		
+			//MUSIC IS TAKEN CARE OF IN PLAYSTATE AND REGISTRY. THIS IS CONFUSING, BAD CODING AND IS AN EXAMPLE OF WHY YOU ENCAPSULATE and KEEP YOUR PROGRAM HIGH IN MODULARITY
+			if(Registry.firstLevel3)
+			{
+				mail = new Mail(100, 187);	
+			} 
+
+
 			letterMsg = new FlxText(30, 100, 400);
-			letterMsg.text = 
-	
-				"I can't hold back the tears any more.\n"
-				+ "It's just so... moving.\n"
-				+ "When you see this thing, you will understand.";
+			letterMsg.text = "You'll bob your head.";
 				
 			
 			//Registry.musix = beats[Registry.deathCount % 2];
@@ -127,12 +128,11 @@ package
 			
 			spring = new Spring(1568, 233, 600);
 			
-			if (Registry.firstLevel3) 
+			/*if (Registry.firstLevel3) 
 			{
 				player.setLetterTimer(200);
 				player.play("letterIdle");
-
-			}	
+			}*/	
 			
 			super.makeLevelNumber();
 		}
