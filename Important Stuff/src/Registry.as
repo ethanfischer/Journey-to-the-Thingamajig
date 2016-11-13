@@ -106,16 +106,16 @@ package
 		
 		
 		//Level2
-		[Embed(source = "../assets/ElephantTime.mp3")] public static var l2msc:Class;
+		[Embed(source = "../assets/Playhouse.mp3")] public static var l2msc:Class;
 		
 		//Level3
 		[Embed(source="../assets/A_Wonderful_Guy.mp3")] public static var l3msc:Class;
 
 		//Level4
-		[Embed(source="../assets/CaveTune.mp3")] public static var l4msc:Class;
+		[Embed(source="../assets/ElephantTime.mp3")] public static var l4msc:Class;
 
 		//Level 5
-		[Embed(source="../assets/Dat Native American Stride_3.mp3")] public static var l5msc:Class;
+		[Embed(source="../assets/jazz_messyswingloop.mp3")] public static var l5msc:Class;
 		
 		//Level 6
 		[Embed(source = "../assets/TheHoliday.mp3")]public static var l6msc:Class;

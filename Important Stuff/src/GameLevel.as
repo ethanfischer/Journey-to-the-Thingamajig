@@ -73,6 +73,15 @@ package
 		public var frog:Frog;
 		public var _levelNumber:FlxText; //this can't be static so it has to be in this class
 		public var _playerSpawn:FlxPoint;
+		public var sparkle:Sparkle;
+		public var sparkle2:Sparkle;
+		public var sparkle3:Sparkle;
+		public var sparkle4:Sparkle;
+		public var sparkle5:Sparkle;
+		public var sparkle6:Sparkle;
+		public var sparkle7:Sparkle;
+		public var sparkle8:Sparkle;
+		public var sparkle9:Sparkle;
 	
 		[Embed(source = "../assets/canopy.png")] private var canopyPNG:Class;
 		[Embed(source = "../assets/canopy6.png")] private var canopy6PNG:Class;
@@ -93,6 +102,16 @@ package
 			worm2 = new Worm(FlxMath.rand(worm1.x + 700, 3400), 0); 
 			worm2 = new Worm(FlxMath.rand(worm2.x + 700, 3400), 0); 
 			hitBox = new Hitbox();
+
+			sparkle = new Sparkle(10, 10);
+			sparkle2 = new Sparkle(30, 30);
+			sparkle3 = new Sparkle(50, 50);
+			sparkle4 = new Sparkle(10, 10);
+			sparkle5 = new Sparkle(30, 30);
+			sparkle6 = new Sparkle(50, 50);
+			sparkle7= new Sparkle(10, 10);
+			sparkle8 = new Sparkle(30, 30);
+			sparkle9 = new Sparkle(50, 50);
 			
 			
 			

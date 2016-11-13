@@ -832,6 +832,8 @@ package
 			if(Registry.stageCount == 3)
 			{
 			Registry.firstLevel4 = false;
+			FlxG.playMusic(Registry.l3msc, 1);
+
 			}
 
 		}
@@ -1099,8 +1101,20 @@ package
 
 			add(_gameLevel);
 			add(_gameLevel.backbackground);
-			add(_gameLevel.background);
 			
+			add(_gameLevel.background);
+			add(_gameLevel.sparkle);
+			add(_gameLevel.sparkle2);
+			add(_gameLevel.sparkle3);
+			add(_gameLevel.sparkle4);
+			add(_gameLevel.sparkle5);
+			add(_gameLevel.sparkle6);
+			add(_gameLevel.sparkle7);
+			add(_gameLevel.sparkle8);
+			add(_gameLevel.sparkle9);
+			// add(_gameLevel.sparkle);
+			
+
 			if (Registry.firstTimePlayingLevel)
 			{
 				Registry.firstTimePlayingLevel = false;
@@ -1166,6 +1180,8 @@ package
 			add(_gameLevel.nomNoms);
 			add(_gameLevel.streams);
 			
+
+			
 			if(Registry.stageCount == 6)add(_gameLevel.wiz.smokelets);
 			add(_gameLevel.foreforeground);
 			add(_muteButton);
@@ -1221,6 +1237,7 @@ package
 			trace("nextstage()");
 			Registry.stageCount++;
 			Registry.checkpointFlag = false;
+			Registry.textCounter = 0;
 			Registry.deathMessageFlag = false;
 			Registry.firstTimePlayingLevel = true;
 			

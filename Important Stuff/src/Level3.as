@@ -30,7 +30,7 @@ package
 	
 		//[Embed(source = "../assets/13_Dwarf_Dance.mp3")] public var dwarfDance:Class;
 		//[Embed(source = "../assets/Native American video game music test.mp3")] public var dwarfDance:Class;
-		[Embed(source="../assets/forestsounds.mp3")] public var dwarfDance:Class;
+		//[Embed(source="../assets/forestsounds.mp3")] public var dwarfDance:Class;
 		//[Embed(source = "../assets/13_Dwarf_Dance.mp3")] public var dwarfDance:Class;
 		
 		public var rockMap:FlxTilemap;	
@@ -52,7 +52,7 @@ package
 				
 			
 			//Registry.musix = beats[Registry.deathCount % 2];
-			Registry.musix = dwarfDance;
+			//Registry.musix = dwarfDance;
 			//musix.loadEmbedded(dwarfDance, true, false);
 			
 			Registry.hasFlower = true;

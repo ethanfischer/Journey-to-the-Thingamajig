@@ -4,6 +4,18 @@
 		"selected_items":
 		[
 			[
+				"textCoun",
+				"textCounter"
+			],
+			[
+				"cla",
+				"Class"
+			],
+			[
+				"esl",
+				"elapsed"
+			],
+			[
 				"black",
 				"blackPNG"
 			],
@@ -67,7 +79,8 @@
 			"file": "GameLevel.as",
 			"settings":
 			{
-				"buffer_size": 4249,
+				"buffer_size": 4307,
+				"encoding": "UTF-8",
 				"line_ending": "Unix"
 			}
 		},
@@ -75,63 +88,34 @@
 			"file": "Registry.as",
 			"settings":
 			{
-				"buffer_size": 5654,
+				"buffer_size": 5646,
+				"encoding": "UTF-8",
 				"line_ending": "Unix"
 			}
 		},
 		{
-			"contents": "package\n{\n	import flash.geom.Point;\n	import flash.system.Capabilities;\n	import org.flixel.*;\n	import org.flixel.plugin.photonstorm.*;\n	import org.flixel.plugin.photonstorm.BaseTypes.Bullet;\n\n	public class PlayState extends FlxState\n	{\n		private var _gameLevel:GameLevel;\n		private static var stages:Array;\n		//private static var stageCount:int = Registry.stageCount; //what stage the user is currently on (0 means Level 1, 1 means Level 2, etc.)\n		private var _level1:Class = Level1;\n		private var _level2:Class = Level2;\n		private var _level3:Class = Level3;\n		private var _level4:Class = Level4;\n		private var _level5:Class = Level5;	\n		private var _level6:Class = Level6;\n		private var _level7:Class = Level7;\n		private var _finalLevel:Class = FinalLevel;\n		private var _menuButton:FlxButton;\n		private var _muteButton:FlxButton;\n		public var healthBar:FlxHealthBar;\n		private var _amountOfDeathsMessage:FlxText;\n		private var _playtimeMessage:FlxText;\n		private var _torchFlag:Boolean = false;\n		private var _randBot:Bot;\n		public var streamDrag:Boolean = false;\n		private var _streamLeft:Boolean = true;\n		private var _shakeFlag:Boolean;\n		private var _letterTimer:Number;\n		private var _npcTextTime:Number;\n		private var _partyPopflag:Boolean;\n		private var _splosion:Poof;\n		private var _jttt:FlxSprite;\n		private var _blackScreen:FlxSprite;\n		private var bouldletsFLag:Boolean;\n		private var endTimer:Number;\n		private var endTimerFlag:Boolean;\n		private var credits:FlxText;\n		private var credits2:FlxText;\n		private var trumpetFlag:Boolean;\n		private var finalPlaytime:Number;\n		private var endLevelFlag:Boolean = false;\n		private var anyKeyJustPressed:Boolean = false;\n\n		\n		\n\n		[Embed(source = \"../assets/punch2.mp3\")] public var punchSFX:Class;\n		[Embed(source = \"../assets/kick.mp3\")] public var kickSFX:Class;\n		[Embed(source = \"../assets/swing&aMiss.mp3\")] public var whiffSFX:Class;\n		[Embed(source = \"../assets/NomNomcollect.mp3\")] public var nomNomSFX:Class;\n		[Embed(source = \"../assets/botKillSFX2.mp3\")] private var _botKillSFX:Class;\n		[Embed(source = \"../assets/boing.mp3\")] private var _boing:Class;\n		[Embed(source = \"../assets/applause.mp3\")] private var _applause:Class;\n		[Embed(source = \"../assets/poof.mp3\")] private var _poof:Class;\n		[Embed(source=\"../assets/dropMug.mp3\")] private var _gong:Class;\n		[Embed(source = \"../assets/clinkclankspin.mp3\")] private var _clinkspinSFX:Class;\n		[Embed(source = \"../assets/trumpetfanfare_mom.mp3\")] private var _trumpetSFX:Class;\n		[Embed(source = \"../assets/mute.png\")] private var _mutePNG:Class;\n		[Embed(source = \"../assets/menu.png\")] private var _menuPNG:Class;\n		[Embed(source = \"../assets/party_pop.mp3\")] private var _partyPop:Class;\n		[Embed(source = \"../assets/foldpaper(openletter).mp3\")] private var _openletter:Class;\n		[Embed(source = \"../assets/jttt.png\")] private var jtttPNG:Class;\n		[Embed(source=\"../assets/black_screen.png\")] private var blackScreenPNG:Class;\n\n		//only here so reference in PlayState doesn't freak out\n		public function PlayState()\n		{\n		}\n\n		override public function create():void\n		{\n			stages = [_level1, _level2, _level3, _level4, _level5, _level6, _level7];\n\n			FlxG.mouse.load(Registry.cursor, 1, 0, 0);\n\n			if(!Registry.pauseSounds) FlxG.volume = .5;\n\n			_menuButton = new FlxButton(2, 2, \"Menu\", gotoMainMenu);\n			_menuButton.loadGraphic(_menuPNG, false, false, 56, 12);\n			_menuButton.label.color = 0xFFFFFF;\n			_menuButton.scrollFactor.x = 0;\n			_menuButton.scrollFactor.y = 0;\n\n			_muteButton = new FlxButton(Registry.screenWidth - 21, 13, \"\", mute, true);\n			_muteButton.loadGraphic(_mutePNG, true, false, 12, 12);\n			_muteButton.scrollFactor.x = 0;\n			_muteButton.scrollFactor.y = 0;\n\n\n			if (Registry.gameStart)\n			{\n				FlxG.flash(0x00000000, 1);\n				Registry.gameStart = false;\n			}\n			else\n			{\n				FlxG.flash(0x00000000, .2);\n			}\n			makeStage(); //initializes and adds all the stuff\n\n			//	Tell flixel how big our game world is\n			FlxG.worldBounds = new FlxRect(0, 0, _gameLevel.width, _gameLevel.height);\n			//	Don't let the camera wander off the edges of the map\n			FlxG.camera.setBounds(0, 0, _gameLevel.width, _gameLevel.height);\n			//	The camera will follow the player\n			FlxG.camera.follow(_gameLevel.player, FlxCamera.STYLE_PLATFORMER);\n\n			Registry.tmpTxt = _gameLevel.letterMsg.text;\n\n		}\n\n		override public function update():void\n		{\n			super.update();\n			\n			handlePause();\n			\n			if (!Registry.gameStart)\n			{\n				\n				debugStuff();\n				collisions();\n				letter();\n				bird();\n				Registry.playtime += FlxG.elapsed; //keep track of how long user has played the current level\n				Registry.totalPlaytime += FlxG.elapsed; //keep track of how long user has played the game\n				//_playtimeMessage.text = \"\" + FlxU.formatTime(Registry.playtime, false); //display how long the user has played the current level\n\n				letterTimer();\n				\n				//whiff sound effect\n				if(Registry.gameLevel.player.canPunch && Registry.hasFlower && FlxG.keys.justPressed(\"X\")) FlxG.play(whiffSFX);\n				handleStreamDrag();\n				\n				level7();\n				fade();\n				//butt();\n			}\n		}\n\n		private function hitBot(player:Player, bot:Bot):void\n		{\n			if (bot.isDying)\n			{\n				return;\n			}\n			else\n			{\n				if ((player.velocity.y >= 0) && player.y + player.height < bot.y + 12)\n				{\n					player.bounce(310);\n					bot.bounce();\n					FlxG.play(_botKillSFX);\n				}\n				else if (player.isDucking && Math.abs(player.velocity.x) > 50)\n				{\n					bot.knockback();\n					FlxG.play(kickSFX);\n				}\n				else\n				{\n					if (player.getInvincible == false && player.y + 30 > bot.y + 10)\n					{\n						player.ouch(34);\n						player.y -= 3;\n\n						if (player.x > bot.x)\n						{\n							player.x += 15;\n							player.facing = FlxObject.LEFT;\n						}\n						else\n						{\n							player.x -= 15;\n							player.facing = FlxObject.RIGHT;\n						}\n					}\n				}\n			}\n		}\n\n		private function hitBorg(player:Player, borg:Borg):void\n		{\n			if (!player.isDying && !borg.isDying)\n			{\n				borg.chargeBool = false;\n				borg.turnAround();\n				player.ouch(50);\n				if (borg.chargeDirection == \"left\")\n				{\n					player.velocity.x = -400;\n					player.bounce(200);\n					player.knockback = true;\n					player.speed = 400;\n				}\n				else if (borg.chargeDirection == \"right\")\n				{\n					player.velocity.x = 400;\n					player.bounce(200);\n					player.knockback = true;\n					player.speed = 400;\n				}\n			}\n		}\n		\n		private function handlePause():void\n		{\n			if (FlxG.keys.ESCAPE || FlxG.keys.P)\n			{\n				FlxG.paused = !FlxG.paused;\n			}\n		}\n\n		private function hitFire(player:Player, fire:Torch):void\n		{\n			if (player.getInvincible == false && player.y + 30 > fire.y + 5)\n			{\n				if (fire.flameOn && !(player.isDucking && fire.y + 24 < player.y + 16))\n				{\n					player.ouch(50);\n					player.y -= 3;\n\n					if (player.x > fire.x)\n					{\n						player.x += 15;\n						player.facing = FlxObject.LEFT;\n					}\n					else\n					{\n						player.x -= 15;\n						player.facing = FlxObject.RIGHT;\n					}\n				}\n			}\n		}\n\n		//turn all the torches on or off\n		//this is only way I know how to apply a function to a bunch of things at the same time\n		private function flameOn(foreground:FlxTilemap, torch:Torch):void\n		{\n			if (Registry.torchesOn) torch.flameOn = true;\n			else torch.flameOn = false;\n		}\n\n		private function collisions():void\n		{\n			//Collisions\n				FlxG.collide(_gameLevel.player, _gameLevel.foreground);\n				FlxG.collide(_gameLevel.player, _gameLevel.crumbleRocks, crumble);\n				FlxG.collide(_gameLevel.player, _gameLevel.fadeBlocks);\n				FlxG.collide(_gameLevel.player, _gameLevel.npc);\n				FlxG.collide(_gameLevel.bots, _gameLevel.foreground);\n				FlxG.collide(_gameLevel.bots, _gameLevel.crumbleRocks);\n				FlxG.overlap(_gameLevel.bots, _gameLevel.rocks, botRock);\n				FlxG.collide(_gameLevel.bots, _gameLevel.rocks, botRock);\n				FlxG.overlap(_gameLevel.bots2, _gameLevel.rocks, botRock);\n				FlxG.collide(_gameLevel.bots2, _gameLevel.rocks, botRock);\n				FlxG.collide(_gameLevel.bots2, _gameLevel.foreground);\n				FlxG.collide(_gameLevel.bots2, _gameLevel.crumbleRocks);\n				FlxG.collide(_gameLevel.bots2.blades, _gameLevel.foreground, killBlade);\n				FlxG.collide(_gameLevel.lilguy, _gameLevel.foreground);\n				FlxG.collide(_gameLevel.borgs, _gameLevel.foreground);\n				FlxG.collide(_gameLevel.borgs, _gameLevel.rocks);\n				FlxG.collide(_gameLevel.rocks, _gameLevel.player);\n				FlxG.collide(_gameLevel.foreground, _gameLevel.rocks);\n				FlxG.collide(_gameLevel.lilguy, _gameLevel.rocks);\n				FlxG.collide(_gameLevel.lilguy, _gameLevel.crumbleRocks);\n				FlxG.collide(_gameLevel.npc, _gameLevel.foreground);\n				FlxG.collide(_gameLevel.wiz, _gameLevel.foreground);\n				FlxG.collide(_gameLevel.frog, _gameLevel.crumbleRocks);\n\n				//Overlappings\n				FlxG.overlap(_gameLevel.player, _gameLevel.reinforcements, hitReinforcement);\n				FlxG.overlap(_gameLevel.player, _gameLevel.bots, hitBot);\n				FlxG.overlap(_gameLevel.player, _gameLevel.bots2, hitBot);\n				FlxG.overlap(_gameLevel.player, _gameLevel.borgs, hitBorg);\n				FlxG.overlap(_gameLevel.player, _gameLevel.torches, hitFire);\n				FlxG.overlap(_gameLevel.player, _gameLevel.lilguy, hitLilguy);\n				FlxG.overlap(_gameLevel.hitBox, _gameLevel.bots, punchBot);\n				FlxG.overlap(_gameLevel.hitBox, _gameLevel.bots2, punchBot);\n				FlxG.overlap(_gameLevel.hitBox, _gameLevel.borgs, punchBorg);\n				FlxG.overlap(_gameLevel.hitBox, _gameLevel.frog, punchFrog);\n				FlxG.overlap(_gameLevel.player, _gameLevel.boulder, playerBoulder);\n\n				//reform this\n				if(Registry.stageCount == 3 && Registry.firstLevel4) FlxG.overlap(_gameLevel.player, _gameLevel.mail, hitMail);\n				if(Registry.stageCount == 2 && Registry.firstLevel3) FlxG.overlap(_gameLevel.player, _gameLevel.mail, hitMail);\n\n\n\n				FlxG.overlap(_gameLevel.foreground, _gameLevel.torches, flameOn);\n				FlxG.overlap(_gameLevel.player, _gameLevel.nomNoms, hitNomNom);\n				FlxG.overlap(_gameLevel.bots, _gameLevel.nomNoms, hitNomNom);\n\n				if (!FlxG.overlap(_gameLevel.player, _gameLevel.nomNoms)) _torchFlag = false; //eliminate torches turning on and off when overlaping switch\n\n				FlxG.overlap(_gameLevel.player, _gameLevel.bots2.blades, hitBlade);\n				FlxG.overlap(_gameLevel.bots, _gameLevel.bots2.blades, botHitBlade);		\n				FlxG.overlap(_gameLevel.player, _gameLevel.streams, handleStreams);\n				FlxG.overlap(_gameLevel.hitBox, _gameLevel.rocks, punchRock);\n\n				if (Registry.stageCount == 4) FlxG.overlap(_gameLevel.hitBox, _gameLevel.npc, punchNPC);\n				if (Registry.stageCount == 1) FlxG.overlap(_gameLevel.hitBox, _gameLevel.npc, meetNPC);\n								\n				FlxG.overlap(_gameLevel.player.screen, _gameLevel.bots, updateThings);\n				FlxG.overlap(_gameLevel.player.screen, _gameLevel.bots2, updateThings);\n				FlxG.overlap(_gameLevel.player.screen2, _gameLevel.rocks, updateThings);\n				FlxG.overlap(_gameLevel.player.screen2, _gameLevel.crumbleRocks, updateThings);\n				FlxG.overlap(_gameLevel.player.screen2, _gameLevel.borgs, updateThings);\n				FlxG.overlap(_gameLevel.player.screen2, _gameLevel.torches, updateThings);\n				FlxG.overlap(_gameLevel.player.screen2, _gameLevel.streams, updateThings);\n				FlxG.overlap(_gameLevel.player, _gameLevel.spring, bouncePlayer);\n				FlxG.overlap(_gameLevel.player, _gameLevel.spring2, bouncePlayer);\n				FlxG.overlap(_gameLevel.player, _gameLevel.checkpoint, hitCheckpoint);\n				if(Registry.stageCount == 6 && Registry.giftHasBeenExchanged) FlxG.overlap(_gameLevel.player, _gameLevel.checkpoint2, hitCheckpoint);\n				FlxG.overlap(_gameLevel.player, _gameLevel.end, hitCheckpoint);\n\n				\n		}\n\n		private function addText(txt:String):void\n		{\n			if(Registry.stageCount == 0) \n			{\n				l1Text();\n			}\n			else if (Registry.stageCount == 2) \n			{\n				if(FlxG.keys.Z || FlxG.keys.X)\n				{\n					l3Text();\n				}\n			}\n		}\n\n		private function l1Text():void\n		{\n			Registry.textCounter++;\n			if(Registry.textCounter == 1)\n			{\n				Registry.tmpTxt = Registry.tmpTxt + \"I don't know where it came from.\\n\\n\";\n			}\n			else if(Registry.textCounter == 2)\n			{\n				Registry.tmpTxt = Registry.tmpTxt + \"But I know one thing:\";\n			}\n			else if(Registry.textCounter == 3)\n			{\n				Registry.tmpTxt = Registry.tmpTxt + \"\\n...You have to see it.\\n\\n\"\n			}\n			else if(Registry.textCounter == 4)\n			{\n				Registry.tmpTxt = Registry.tmpTxt + \"P.S.\\n\"\n									  			  + \"Press 'ZX'\"; 					\n			}\n			_gameLevel.letterMsg.text = Registry.tmpTxt;	\n		}\n\n		private function l3Text():void\n		{\n			Registry.textCounter++;\n			if (Registry.textCounter == 1)\n			{\n				Registry.tmpTxt = Registry.tmpTxt + \"\\nYou'll tap your toe.\"; 					\n			}	\n			else if (Registry.textCounter == 2)\n			{\n				Registry.tmpTxt = Registry.tmpTxt + \"\\nHeck, you might never stop dancing,\"; 					\n			}\n			else if (Registry.textCounter == 3)\n			{\n				Registry.tmpTxt = Registry.tmpTxt + \"\\nwhen you see this thing.\"; 					\n			}\n			else if (Registry.textCounter == 4)\n			{\n				Registry.tmpTxt = Registry.tmpTxt + \"\\n\\n Press 'ZX'\"; 					\n			}\n			_gameLevel.letterMsg.text = Registry.tmpTxt;	\n		}\n\n		private function letter():void\n		{\n			//If the letter is on screen (it should be when first playing level 1 and when hitting the mail in level 4),\n				// pressing z and x should make the letter fade away and the player animate putting the letter away\n				//if(Registry.letterSequence && FlxG.keys.justPressed(\"z\"))\n				//{\n				//	addText(Registry.tmpTxt);\n\n				//}\n\n				if (FlxG.keys.any() && !anyKeyJustPressed)\n				{\n					anyKeyJustPressed = true;\n\n					// Do the stuff you want when any key is just pressed.\n					addText(Registry.tmpTxt);\n\n				}\n				else if (!FlxG.keys.any())\n				{\n					anyKeyJustPressed = false;\n				}\n\n				if (Registry.stageCount == 0 && Registry.letterSequence && FlxG.keys.any()) //teach them to use Z and X in level one\n				{\n					//_gameLevel.letterMsg.text =\n					//Registry.tmpTxt = _gameLevel.letterMsg.text;\n					\n					\n					if(FlxG.keys.Z && FlxG.keys.X)\n					{\n						_letterTimer = .5;\n						_gameLevel.player.putAway();\n						Registry.letterSequence = false;\n						Registry.gameLevel.player.moves = true;\n					}\n				}\n				else if ((Registry.stageCount == 2 || Registry.stageCount == 3) && Registry.letterSequence && (FlxG.keys.X && FlxG.keys.Z)) //after level one, any key will put the letter away\n				{\n					_letterTimer = .5;\n					_gameLevel.player.putAway();\n					Registry.letterSequence = false;\n					Registry.gameLevel.player.moves = true;\n				}\n		}\n\n		private function debugStuff():void\n		{\n			if (FlxG.keys.T)\n				{\n					FlxG.log(\"		***TEST***\");\n					\n					//Player Position//\n					/*trace(Registry.gameLevel.player.x, Registry.gameLevel.player.y);\n					trace(\"Playtime: \" + Registry.playtime\n						+ \"\\nTotalPlaytime: \" + Registry.totalPlaytime);*/\n					FlxG.log(\"screenResX: \" + Capabilities.screenResolutionX + \"\\n screenResY: \" + Capabilities.screenResolutionY);\n					\n				}\n		}\n\n		private function bird():void\n		{\n				// Bird appears every 30 seconds in the forest levels\n				if (Registry.stageCount < 3 && Registry.playtime > 1 && Registry.playtime % 30 > 0 \n				&& Registry.playtime % 30 < 0.5) \n				{\n					if(!(Registry.stageCount == 0 && Registry.gameLevel.letterMsg.visible)) add(_gameLevel.bird);\n				}\n\n				//reset the bird's position after it goes off screen\n				if (_gameLevel.bird.x < -30)\n				{\n					_gameLevel.bird.x = Registry.screenWidth + 30;\n					_gameLevel.bird.y = Registry.screenHeight /2 - 70;\n					remove(_gameLevel.bird);\n				}\n		}\n\n		private function letterTimer():void\n		{\n			if (_letterTimer > 0)\n			{\n				_letterTimer -= FlxG.elapsed;\n				_gameLevel.letterMsg.alpha -= .2;\n			}\n			else if(_letterTimer < 0)\n			{\n				_gameLevel.letterMsg.kill();\n				remove(_gameLevel.letterMsg);\n			}\n		}\n\n		private function handleStreamDrag():void\n		{\n			if (streamDrag)\n				{\n					if (_streamLeft) _gameLevel.player.x -= 2; //if water is flowing left, make the player flow left\n					else\n					{\n						if (Registry.stageCount == 6) _gameLevel.player.x += 3; // vice versa\n						else _gameLevel.player.x += 2\n					}\n				}\n				if (!FlxG.overlap(_gameLevel.player, _gameLevel.streams)) //if player isn't in water\n				{\n					if (!((!_streamLeft && FlxG.keys.RIGHT) || (FlxG.keys.LEFT && _streamLeft))) //and they're not carrying momentum from stream, no more streamDrag\n					{\n						streamDrag = false;\n					}\n				}\n		}\n\n		private function butt():void\n		{\n			if(Registry.totalPlaytime > 5 && !Registry.buttAppeared)\n			{\n				//FlxG.log(\"buttTime!\");\n				add(_gameLevel.butt);\n			}\n\n		}\n\n		private function level7():void\n		{\n			if (Registry.stageCount == 6) \n				{\n			\n					if (Registry.dropBouldlets) \n					{	\n						add(_gameLevel.bouldlets);\n						Registry.dropBouldlets = false;\n					}\n					if (Registry.gameLevel.wiz.smushFlag)\n					{\n						if(_gameLevel.player.x > _gameLevel.wiz.BEHINDGIFT - 300){\n							_gameLevel.boulder.x = _gameLevel.wiz.BEHINDGIFT - 110;\n							add(_gameLevel.boulder);\n							Registry.gameLevel.wiz.smushFlag = false;\n							_gameLevel.wiz.smushTimer = .4;\n						}\n					}\n					if (Registry.theEnd) theEnd();\n					\n					//////////////////////\n					//     Wiz cutscene //     		\n					////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////\n					//		NOTE:I know there must be a much easier/more efficient way of handling cutscenes, \n					//	    	 but this is how I do it:\n					//		-create a cutscene boolean in Registry. The cutscene can be triggered in any class that has access to Registry (which is every class I'm aware of)\n					//		-because PlayState(this class) handles animations and generally everything that happens on stage, what happens in the cutscene happens here\n					///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////\n					\n					//MEETING WIZ\n					//if (!Registry.giftExchange) //giftExchange is turned on when Wiz is onScreen behind the big gift (gExch turned on in Wiz)\n					//{\n					if (!Registry.metWiz)\n					{\n						\n						meetWiz();\n					}\n					//}\n					\n					//GIFT EXCHANGE\n					if (Registry.giftExchange) //gift exchange cutscene happens after you greet the wiz (flagged in Wiz)\n					{\n						giftExchange();\n						\n					}\n					add(_gameLevel.wiz.message); //the game is constantly refreshing wiz's message because the message updates in real time\n				\n				}\n		}\n\n		private function hitNomNom(thing:FlxSprite, nomNom:NomNom):void\n		{\n			if (thing is Bot)\n			{\n				FlxG.play(nomNomSFX);\n				nomNom.spinTimer = .75;\n				FlxG.play(_clinkspinSFX, .6, false, true);\n				if (Registry.torchesOn)\n				{\n					Registry.torchesOn = false; //turn torches off\n				}\n				else if (Registry.torchesOn == false)\n				{\n					Registry.torchesOn = true; //turn em on\n				}\n			}\n			else if (nomNom.crossedIt)\n			{\n				FlxG.play(nomNomSFX);\n				nomNom.spinTimer = .75;\n				FlxG.play(_clinkspinSFX, .6, false, true);\n				if (Registry.torchesOn)\n				{\n					Registry.torchesOn = false; //turn torches off\n				}\n				else if (Registry.torchesOn == false)\n				{\n					Registry.torchesOn = true; //turn em on\n				}\n			}\n		}\n\n		private function hitCheckpoint(player:Player, checkpoint:Checkpoint):void\n		{\n			checkpoint.kill();\n			\n			if (checkpoint.second) Registry.checkpointFlag2 = true;\n			else Registry.checkpointFlag = true;\n			\n			if (checkpoint.end)\n			{\n					endLevel();\n				\n			}\n			\n		}\n\n		private function hitReinforcement(player:Player, reinforcement:Reinforcement):void\n		{\n			reinforcement.kill();\n			Registry.ballsCollected++;\n			\n			if (Registry.ballsCollected % 50 == 0 && Registry.ballsCollected > 0)\n			{\n				if (!trumpetFlag)\n				{\n					FlxG.play(_trumpetSFX);\n					trumpetFlag = true;\n				}\n				add(new FlxText(_gameLevel.player.x, _gameLevel.player.y - 10, 200, Registry.ballsCollected + \"th BALL OF POINTLESSNESS!\"));\n			}\n			//if (Registry.stageCount == 0 && player.x > 600) _gameLevel.pointsMessage.kill();\n		}\n\n		private function hitBlade(player:Player, blade:Bullet):void\n		{\n			if (player.y + player.height/2 <= blade.y)\n			{\n				player.bounce(310);\n				FlxG.play(_gong);\n				_gameLevel.poofs.addPoof(blade.x - blade.width, blade.y - 16 );\n				blade.kill();\n\n			}\n			else if ((blade.y > player.y + 16) || !player.isDucking)\n			{\n				player.ouch(50);\n				FlxG.play(_gong);\n				_gameLevel.poofs.addPoof(blade.x - blade.width, blade.y - 16 );\n				FlxG.play(_gong, .13, false);\n				blade.kill();\n			}\n		}\n\n		private function botHitBlade(bot:Bot, blade:Bullet):void\n		{\n			FlxG.play(_gong);\n				_gameLevel.poofs.addPoof(blade.x - blade.width, blade.y - 16 );\n				FlxG.play(_gong, .13, false);\n				blade.kill();\n		}\n\n		private function hitLilguy(player:Player, lilguy:LilGuy):void\n		{\n			if (!lilguy.isDying)\n			{\n				FlxG.play(nomNomSFX);\n				lilguy.kill();\n				Registry.character = \"bot\";\n				Registry.swap = true;\n				Registry.swapX = Registry.gameLevel.player.x;\n				Registry.swapY = Registry.gameLevel.player.y;\n				Registry.swapVelX = Registry.gameLevel.player.velocity.x;\n				Registry.swapVelY = Registry.gameLevel.player.velocity.y;\n				Registry.gameLevel.player.walkSFX.stop();\n				FlxG.resetState();\n			}\n		}\n\n		private function createHealthBar():void\n		{\n			healthBar = new FlxHealthBar(_gameLevel.player, 30, 3, 0, 100, true);\n			healthBar.createFilledBar(0x00000000, 0x90FF0000, false);\n			healthBar.y = 7;\n			healthBar.x = Registry.screenWidth -37;\n			healthBar.scrollFactor.x = 0;\n			healthBar.scrollFactor.y = 0;\n			add(healthBar);\n		}\n\n		private function createAmountOfDeathsMessage():void\n		{\n			_amountOfDeathsMessage = new FlxText(Registry.screenWidth - 90, 3, 320, \"Level \" + (Registry.stageCount + 1) + \"\\n\" + \"Deaths: \" + Registry.deaths);\n			_amountOfDeathsMessage.size = 8;\n			_amountOfDeathsMessage.scrollFactor.x = 0;\n			_amountOfDeathsMessage.scrollFactor.y = 0;\n			add(_amountOfDeathsMessage);\n		}\n\n		private function endLevel():void\n		{\n			\n			if (!endLevelFlag) \n			{\n				if (!_partyPopflag)\n				{\n					_partyPopflag = true;\n					FlxG.play(_partyPop);\n				}\n				_gameLevel.player.walkSFX.stop();\n				_gameLevel.player.visible = false;\n				this.clear();\n				add(_gameLevel.blue);//??\n				_gameLevel.blue.visible = true;//??\n				if(Registry.stageCount > 0) _gameLevel.not_a_flower.visible = false; //??\n				//FlxG.music.fadeOut(.4);\n				\n				//play next levels music\n				if (Registry.stageCount == 0) \n				{\n					//FlxG.playMusic(Registry.l2msc, .5);\n					//FlxG.playMusic(Registry.water, 1);\n\n				}\n				/*if (Registry.stageCount == 1) FlxG.playMusic(Registry.l3msc, 1);\n				if (Registry.stageCount == 2) FlxG.playMusic(Registry.l4msc, 1);\n				if (Registry.stageCount == 3) FlxG.playMusic(Registry.l5msc, 1);\n				if (Registry.stageCount == 4) FlxG.playMusic(Registry.l6msc, 1);\n				if (Registry.stageCount == 5) FlxG.playMusic(Registry.l7msc, 1);*/\n				endLevelFlag = true;\n			}	\n			\n			FlxG.flash(0x00CCFF, 2, nextStage);\n		}\n		private function meetNPC(hitBox:FlxObject, npc:NPC):void\n		{\n			add(_gameLevel.npc.message);\n			if(!_gameLevel.npc.meetFlag) \n			{\n				_gameLevel.npc.meetTimer = 14;\n				fade(_gameLevel.black, 2);\n				FlxG.playMusic(Registry.l2msc, .5);\n			}\n		}\n\n		private function startFade(object:class, time:Number)\n		{\n			if(fadeFlag = false)\n			{\n				fadeFlag = true\n				\n			}\n		}\n\n		private function fade()\n		{\n			if(fadeFlag)\n			{\n\n			}\n		}\n\n		private function punchBot(hitBox:FlxObject , bot:Bot):void\n		{\n			\n			if (Registry.gameLevel.player.canPunch && FlxG.keys.justPressed(\"X\") && Registry.hasFlower && !bot.isDying)\n			{\n				FlxG.play(punchSFX);\n				bot.knockback();\n			}\n		}\n		\n		private function punchFrog(hitBox:FlxObject, frog:Frog):void\n		{\n			if (Registry.gameLevel.player.canPunch && FlxG.keys.justPressed(\"X\") && Registry.hasFlower)\n			{\n				FlxG.play(punchSFX);\n				frog.knockBack();\n			}\n		}\n\n		//only here so reference in PlayState doesn't freak out\n		private function nothing():void\n		{\n		}\n\n		private function punchBorg(hitBox:FlxObject , borg:Borg):void\n		{\n			if (Registry.gameLevel.player.canPunch && FlxG.keys.justPressed(\"X\") && !borg.isDying)\n			{\n				FlxG.play(punchSFX); //this is extra loud for some reason?\n				borg.knockback();\n				FlxG.shake(.03, .1, nothing, true, 1);\n			}\n		}\n\n		private function punchRock(hitBox:FlxObject, rock:FlxObject):void\n		{\n			if (Registry.gameLevel.player.canPunch && FlxG.keys.justPressed(\"X\") && Registry.hasFlower)\n			{\n				FlxG.shake(.02, .1);\n				rock.kill();\n			}\n		}\n\n		private function botRock(bot:Bot, rock:FlxObject):void //when bots fly towards rocks, destroy rocks\n		{\n			if (bot.velocity.x > 50 || bot.velocity.x < -50)\n			{\n				if (bot.velocity.x > 50) bot.velocity.x -= 80;\n				else if (bot.velocity.x < -50) bot.velocity.x -= -80;\n				FlxG.shake(.02, .1);\n				rock.kill();\n\n			}\n		}\n\n		private function hitMail(player:Player, mail:Mail):void\n		{\n			FlxG.log(\"hit Mail\");\n			add(_gameLevel.letterMsg);\n			player.velocity.x = 0;\n			//_gameLevel.player.moves = false;\n			FlxG.play(_openletter);\n			viewMail();\n			//FlxG.fade(0x000000, .2, viewMail);\n			mail.kill();\n			if(Registry.stageCount == 2)\n			{\n				Registry.firstLevel3 = false;\n				FlxG.playMusic(Registry.l3msc, 1);\n			}\n			if(Registry.stageCount == 3)\n			{\n			Registry.firstLevel4 = false;\n			}\n\n		}\n\n		private function viewMail():void\n		{\n			FlxG.camera.stopFX();\n			\n			//FlxG.flash(0x00000000, 1.4);\n			\n			Registry.letterSequence = true;\n			_gameLevel.letterMsg.visible = true;\n			Registry.gameLevel.player.moves = false;\n			Registry.gameLevel.player.velocity.x = 0;\n			Registry.gameLevel.player.play(\"letterIdle\");\n\n			/*if (Registry.stageCount == 1) FlxG.playMusic(Registry.l3msc, 1);\n			if (Registry.stageCount == 2) FlxG.playMusic(Registry.l4msc, 1);\n			if (Registry.stageCount == 3) FlxG.playMusic(Registry.l5msc, 1);\n			if (Registry.stageCount == 4) FlxG.playMusic(Registry.l6msc, 1);\n			if (Registry.stageCount == 5) FlxG.playMusic(Registry.l7msc, 1);*/\n		}\n\n		private function punchNPC(hitBox:FlxObject, npc:NPC):void\n		{\n			if (Registry.gameLevel.player.canPunch && FlxG.keys.justPressed(\"X\"))\n			{\n				FlxG.shake(.02, .05);\n				FlxG.play(kickSFX, 1);\n				add(_gameLevel.npc.message);\n				npc.talk();\n				add(_gameLevel.umbrella);\n			}\n		}\n\n		public function crumble(player:Player, crumblerock:CrumbleRock):void\n		{\n			crumblerock.crumble();\n		}\n\n		public function bouncePlayer(player:Player, spring:Spring):void\n		{\n			if (player.y + player.height < spring.y + 16 && player.velocity.y > 0)\n			{\n				player.bounce(spring.bounce);\n				spring.play(\"up\");\n				FlxG.play(_boing);\n			}\n		}\n\n		public function killBlade(blade:Bullet, foreground:FlxTilemap):void\n		{\n			if (blade.onScreen()) FlxG.play(_poof, 1, false, true);\n\n			_gameLevel.poofs.addPoof(blade.x - blade.width, blade.y - 16);\n			blade.kill();\n		}\n\n		public function handleStreams(player:Player, stream:Stream):void\n		{\n			if (stream.type == \"drop\") null;\n			else\n			{\n				streamDrag = true;\n			}\n			if (stream.flowLeft) _streamLeft = true;\n			if (!stream.flowLeft && stream.type == \"normal\") _streamLeft = false;\n		}\n\n		public function updateThings(screen:FlxSprite, thing:FlxObject):void //this is supposed to optimze my game. Don't know if actually does.\n		{\n			\n			var thatBot:Bot2; //in Level 7, there's one bot that shouldn't stop updating once you get past it\n			if (thing is Bot2) thatBot = Bot2(thing); //since you can only check if the bot2 should update forever, typecast the thing\n			if (thing is Bot2 && thatBot.updateForever) //if it is the updating forever bot, don't do anything\n			{\n			}\n			else\n			{\n				if (_gameLevel.player.x > (thing.x + 500)) thing.active = false; //when player is far enough to right of thing (as happens when user progresses through every level), the thing should stop being active\n				else thing.active = true;\n			}\n		}\n\n\n		public function gotoMainMenu():void\n		{\n			FlxG.music.stop();\n			//Registry.musixFlag = false;\n			Registry.gameStart = true;\n			FlxG.switchState(new MainMenuState);\n		}\n\n		private function mute():void\n		{\n			if (Registry.pauseSounds)\n			{\n				_muteButton.frame = 0;\n				FlxG.volume = Registry.volume;\n				Registry.pauseSounds = false;\n				FlxG.music.play();\n			}\n			else\n			{\n				_muteButton.frame = 2;\n				FlxG.pauseSounds();\n				FlxG.music.stop();\n				Registry.pauseSounds = true;\n				Registry.volume = FlxG.volume;\n				FlxG.volume = 0;\n			}\n		}\n		\n		public function playerBoulder(player:Player, boulder:Boulder):void\n		{\n			player.x -= 5;\n		}\n		\n		public function theEnd():void\n		{\n			if (!endTimerFlag) \n			{ \n				_blackScreen = new FlxSprite(0, 0);\n				_blackScreen.loadGraphic(blackScreenPNG,false, false, 1200, 600);\n				_blackScreen.scrollFactor.x = 0;\n				_blackScreen.scrollFactor.y = 0;\n				_blackScreen.moves = false;\n				_blackScreen.alpha = 0;\n				add(_blackScreen);\n				\n				credits = new FlxText(0, Registry.screenHeight / 8, Registry.screenWidth);\n				credits.size = 16;\n				credits.centerOffsets();\n				credits.scrollFactor.x = 0;\n				credits.scrollFactor.y = 0;\n				credits.alpha = 0;\n				credits.alignment = \"center\";\n				add(credits);\n				\n				credits2 = new FlxText(0, Registry.screenHeight / 8, Registry.screenWidth);\n				credits2.size = 16;\n				credits2.centerOffsets();\n				credits2.scrollFactor.x = 0;\n				credits2.scrollFactor.y = 0;\n				credits2.alpha = 0;\n				credits2.alignment = \"center\";\n				add(credits2);\n				\n				_jttt = new FlxSprite(Registry.screenWidth/15 - 25, Registry.screenHeight/20);\n				_jttt.loadGraphic(jtttPNG,false, false, 517, 174);\n				_jttt.scrollFactor.x = 0;\n				_jttt.scrollFactor.y = 0;\n				_jttt.moves = false;\n				_jttt.alpha = 0;\n				add(_jttt);\n				\n				\n				\n				endTimer = 40; \n				endTimerFlag = true;\n			}\n			if (endTimer > 0) \n			{\n				endTimer -= FlxG.elapsed;\n			}\n			\n			if (endTimer < 35 && endTimer > 31) \n			{\n				_jttt.alpha += .07;\n				finalPlaytime = Registry.totalPlaytime;\n			}\n			if (endTimer < 31 && endTimer > 27)\n			{\n				_jttt.alpha -= .1;\n				credits.text = \"Created by Ethan Fischer\";\n				credits.alpha += .07;\n			}\n			if (endTimer < 27 && endTimer > 23)\n			{\n				credits.alpha -= .1;\n				credits2.text = \"Special Thanks to:\";\n				credits2.alpha += .05;\n			}\n			if (endTimer < 23 && endTimer > 21)\n			{\n				credits2.alpha -= .1;\n				credits.text = \"Sneha Subramanian and family\";\n				credits.alpha += .05;\n			}\n			if (endTimer < 21 && endTimer > 20)\n			{\n				credits.alpha -= .1;\n				credits2.text = \"Kyle Connour\";\n				credits2.alpha += .05;\n			}\n			if (endTimer < 20 && endTimer > 19)\n			{\n				credits2.alpha -= .1;\n				credits.text = \"Hayden Ford\";\n				credits.alpha += .05;\n			}\n			if (endTimer < 19 && endTimer > 18)\n			{\n				credits.alpha -= .1;\n				credits2.text = \"Tom Herrmann\";\n				credits2.alpha += .05;\n			}\n			if (endTimer < 18 && endTimer > 17)\n			{\n				credits2.alpha -= .1;\n				credits.text = \"James Buebe\";\n				credits.alpha += .05;\n			}\n			if (endTimer < 17 && endTimer > 16)\n			{\n				credits.alpha -= .1;\n				credits2.text = \"Jules Wang\";\n				credits2.alpha += .05;\n			}\n			if (endTimer < 16 && endTimer > 14)\n			{\n				credits2.alpha -= .1;\n				credits.text = \"Gautam Gogada\";\n				credits.alpha += .05;\n			}\n			if (endTimer < 14 && endTimer > 10)\n			{\n				credits.alpha -= .1;\n				credits2.text = \"Thanks for playing\";\n				credits2.alpha += .05;\n				_blackScreen.alpha += .01;\n				\n			}\n			if (endTimer < 12 && endTimer > 10)\n			{\n				credits2.alpha -= .1;\n			}\n			if (endTimer < 10 && endTimer > 8)\n			{\n				credits.y = 120;\n				credits.text = \"Total Playtime\";\n				credits.alpha += .07;	\n			}\n			if (endTimer < 8)\n			{\n				credits2.y = 140;\n				credits2.text = FlxU.formatTime(finalPlaytime, false);\n				credits2.alpha += .05;\n				\n			}\n		}\n		\n		private function youBeatTheGame():void\n		{\n			FlxG.volume = .1;\n			Registry.pauseSounds = false;\n			//FlxG.switchState(new MainMenuState);\n		}\n		\n		public function makeStage():void\n		{\n	\n			_gameLevel = new stages[Registry.stageCount];\n			Registry.gameLevel = _gameLevel;\n\n			add(_gameLevel);\n			add(_gameLevel.backbackground);\n			add(_gameLevel.background);\n			\n			if (Registry.firstTimePlayingLevel)\n			{\n				Registry.firstTimePlayingLevel = false;\n				_gameLevel._levelNumber.text = new int(Registry.stageCount + 1).toString();\n				add(_gameLevel._levelNumber);\n				_gameLevel._levelNumber.velocity.x = 350;\n			}\n			\n			if (Registry.stageCount == 6) \n			{\n				add(_gameLevel.smokelets);\n				add(_gameLevel.particles);\n				add(_gameLevel.focusPoint);\n			}\n			\n			add(_gameLevel.foreground);\n			if (Registry.stageCount == 6) add(_gameLevel.thingamajig);\n			add(_gameLevel.wiz);\n			add(_gameLevel.supports);\n			add(_gameLevel.rocks);\n			add(_gameLevel.reinforcements);\n			add(_gameLevel.fadeBlocks);\n			add(_gameLevel.borgs);\n			add(_gameLevel.sign);\n			add(_gameLevel.sign2);\n			add(_gameLevel.bots);\n			add(_gameLevel.poofs);\n			add(_gameLevel.hitBox);\n			if (Registry.stageCount == 0 && Registry.firstLevel1) add(_gameLevel.pointsMessage);\n\n			if(!Registry.hasUmbrella && (Registry.stageCount == 1 || Registry.stageCount == 4)) add(_gameLevel.npc); //if player already has umbrella, don't add the creature\n\n			add(_gameLevel.lilguy);\n			add(_gameLevel.bots2);\n			add(_gameLevel.poofs);\n			add(_gameLevel.worm1);\n			add(_gameLevel.worm2);\n			add(_gameLevel.worm3);\n\n			if (Registry.stageCount == 2 && Registry.firstLevel3) \n			{\n				add(_gameLevel.mail); //if playing level 4 for first time, add the mail for player to hit\n			}\n			\n			if (Registry.stageCount == 3 && Registry.firstLevel4) add(_gameLevel.mail); //if playing level 4 for first time, add the mail for player to hit\n\n			add(_gameLevel.torches);\n			add(_gameLevel.bots2.blades);\n			add(_gameLevel.not_a_flower);\n			add(_gameLevel.spring);\n			add(_gameLevel.spring2);\n			add(_gameLevel.player);\n\n			if (Registry.deaths % 12== 0 && Registry.deaths != 0)\n			{\n				add(_gameLevel.frog); //only add frog every 7 deaths or so\n				add(_gameLevel.frog.message);\n			}\n			\n			add(_gameLevel.checkpoint);\n			add(_gameLevel.end);\n			add(_gameLevel.crumbleRocks);\n			add(_gameLevel.nomNoms);\n			add(_gameLevel.streams);\n			\n			if(Registry.stageCount == 6)add(_gameLevel.wiz.smokelets);\n			add(_gameLevel.foreforeground);\n			add(_muteButton);\n			add(_menuButton);\n			\n			\n			\n			createHealthBar(); //creates and adds player's health bar. Called here because it should appear over top of everything else\n			//createPlaytimeMessage(); //creates and adds playtime message\n\n			if (Registry.firstLevel1 && Registry.stageCount == 0) //if playing level 1 for first time, make the user read the damn letter //added last so it's over top of everything else\n			{\n				add(_gameLevel.letterMsg);\n				Registry.letterSequence = true;\n				_gameLevel.letterMsg.visible = true;\n				Registry.firstLevel1 = false;\n				_gameLevel.player.moves = false;\n			}\n			\n			/*if (Registry.firstLevel3 && Registry.stageCount == 2) //if playing level 3 for first time, make the user read the damn letter //added last so it's over top of everything else\n			{\n				add(_gameLevel.letterMsg);\n				Registry.letterSequence = true;\n				_gameLevel.letterMsg.visible = true;\n				Registry.firstLevel3 = false;\n				_gameLevel.player.moves = false;\n			}*/\n			if (Registry.stageCount == 1) \n			{\n				if(Registry.hasFlower) _gameLevel.npc.exists = false; //if you already have the boxing glove, don't let the thing appear\n				else add(_gameLevel.black);\n			}\n			if (Registry.pauseSounds) _muteButton.frame = 2; //when sounds are muted, make the audio graphic look muted\n			else _muteButton.frame = 0; //otherwise make it look normal\n\n			//select a bot from the bots to be the \"chosen one\"\n			_randBot = Bot(FlxG.getRandom(Registry.gameLevel.bots.alltheBots));\n			_randBot.specialOne = true;\n\n			if (Registry.swap) //if you happen to run into the li'l guy, swap the robot out for the girl\n			{\n				Registry.gameLevel.player.x = Registry.swapX;\n				Registry.gameLevel.player.y = Registry.swapY;\n				Registry.swap = false;\n				FlxG.play(_trumpetSFX);\n			}\n\n		}\n\n		//load the next stage\n		public function nextStage():void\n		{\n			trace(\"nextstage()\");\n			Registry.stageCount++;\n			Registry.checkpointFlag = false;\n			Registry.deathMessageFlag = false;\n			Registry.firstTimePlayingLevel = true;\n			\n			//Registry.musixFlag = true;\n			FlxG.flash(0x000000, 1);\n			Registry.chkptsUsed = 0;\n			FlxG.switchState(new PlayState);\n			//Registry.musixFlag = false;\n			/////////////////////////////////////////////////////////////DON\"T LET MUSIC STOP. FIGURE OUT A WAY TO DO SMOOTH TRANSITION\n		}\n		\n		//////////////////////////////////////////////////////////////\n		//						CUTSCENES							//\n		//////////////////////////////////////////////////////////////\n		public function meetWiz():void\n		{\n			\n			if (!Registry.metWiz) //once player is free, set this to true\n			{\n			\n				if (_gameLevel.player.x > _gameLevel.focusPoint.x) \n				{\n			\n					FlxG.camera.follow(_gameLevel.focusPoint); //have the camera pan over to the right to reveal the wizard\n					\n					_gameLevel.focusPoint.velocity.x = 600; //the speed of the panning\n					if (Registry.wizUnfreeze == false) \n					{\n					\n						FlxControl.player1.setCursorControl(false, false, false, false);\n						//_gameLevel.player.moves = false; //freeze the player\n						_gameLevel.player.velocity.x = 0;\n					}\n					//once wiz is on screen, he will go through his shenanagins, then you will unfreeze \n				}\n				else if (_gameLevel.focusPoint.x >= _gameLevel.focusDestination.x)\n				{\n					if (Registry.wizUnfreeze == true)\n					{\n						//_gameLevel.player.moves = true; //unfreeze the player, allowing player to move to next cutscene (giftExchange)\n						FlxControl.player1.setCursorControl(false, false, true, true);\n						if (_gameLevel.player.x > _gameLevel.focusDestination.x)\n						{\n							FlxG.camera.follow(_gameLevel.player, FlxCamera.STYLE_PLATFORMER); //The camera will follow the player\n							_gameLevel.focusPoint.velocity.x = 0; //make sure focus point isn't moving (yet)\n							_gameLevel.focusPoint.x = _gameLevel.wiz.BEHINDGIFT - Registry.screenWidth + 50; //set up fPoint for giftExchange()\n							_gameLevel.focusDestination.x = _gameLevel.wiz.BEHINDGIFT;\n							\n							//exit meetWiz() and never come back\n							Registry.metWiz = true; //once player.moves is set to true and camera is following player, metWiz is set to true\n							return;\n						}\n					}\n					_gameLevel.focusPoint.velocity.x = 0; //focus point.x is consequently set to focusDestination.x when it passes focusDestination\n					\n				} \n			}\n			\n		}\n		\n		public function giftExchange():void\n		{\n			if (_gameLevel.player.x > _gameLevel.focusPoint.x) \n			{\n				FlxG.camera.follow(_gameLevel.focusPoint); //have the camera pan over to the right to reveal the thingamajig and wiz\n				\n				_gameLevel.focusPoint.velocity.x = 600; //the speed of the panning\n				if (Registry.wizUnfreeze2 == false) \n				{\n					//_gameLevel.player.moves = false; //freeze the player \n					FlxControl.player1.setCursorControl(false, false, false, false);\n					_gameLevel.player.velocity.x = 0;\n				}\n				//once wiz is on screen, he will go through his shenanagins, then you will unfreeze \n			}\n			else if (_gameLevel.focusPoint.x >= _gameLevel.focusDestination.x) //stop camera when fPoint > fDest\n			{\n				_gameLevel.focusPoint.velocity.x = 0; //focus point.x is consequently set to focusDestination.x when it passes focusDestination\n			} \n		}\n		\n	}\n}\n",
 			"file": "PlayState.as",
-			"file_size": 39081,
-			"file_write_time": 131234487590000000,
 			"settings":
 			{
-				"buffer_size": 39107,
+				"buffer_size": 39574,
+				"encoding": "UTF-8",
 				"line_ending": "Unix"
 			}
 		},
 		{
-			"file": "Bot.as",
+			"file": "NPC.as",
 			"settings":
 			{
-				"buffer_size": 7046,
+				"buffer_size": 5998,
 				"line_ending": "Unix"
 			}
 		},
 		{
-			"file": "Player.as",
+			"file": "Sparkle.as",
 			"settings":
 			{
-				"buffer_size": 18661,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"contents": "Searching 177 files for \"stagecount == 2\"\n\n/Users/Ethan/Dev/Journey-to-the-Thingamajig/Important Stuff/src/Bot.as:\n  140  				else\n  141  				{\n  142: 					if (Registry.stageCount == 2) velocity.x = -600;\n  143  					else velocity.x = -400;\n  144  					angle -= 20;\n\n/Users/Ethan/Dev/Journey-to-the-Thingamajig/Important Stuff/src/Bot2.as:\n   76  				\n   77  				if (Registry.pauseSounds) this.fireSFX.volume = 0;\n   78: 				if (Registry.stageCount == 2 && (this.x > 2110 && this.x < 2120)) this.fireSFX.volume = 0.05; //for those three guys in level 3\n   79  				else if(this.onScreen()) fireSFX.volume = 1;\n   80  				else fireSFX.volume = .2; \n\n/Users/Ethan/Dev/Journey-to-the-Thingamajig/Important Stuff/src/DeathMenuState.as:\n   43  			//if (Registry.stageCount == 0) FlxG.playMusic(forestSounds, 1);\n   44  			//if (Registry.stageCount == 1) FlxG.playMusic(forestSounds2, 1);\n   45: 			//if (Registry.stageCount == 2) FlxG.playMusic(forestSounds, 1);\n   46  			//if (Registry.stageCount == 3) FlxG.playMusic(water, 1);\n   47  			//if (Registry.stageCount == 4) FlxG.playMusic(water, 1);\n   ..\n   56  			if (Registry.stageCount == 0) deathMessage.text = \"1\";\n   57  			else if (Registry.stageCount == 1) deathMessage.text = \"2\";\n   58: 			else if (Registry.stageCount == 2) deathMessage.text = \"3\";\n   59  			else if (Registry.stageCount == 3) deathMessage.text = \"4\";\n   60  			else if (Registry.stageCount == 4) deathMessage.text = \"5\";\n\n/Users/Ethan/Dev/Journey-to-the-Thingamajig/Important Stuff/src/LevelMenuState.as:\n  177  		{\n  178  			if (Registry.stageCount == 1) FlxG.playMusic(Registry.l2msc, 1);\n  179: 			if (Registry.stageCount == 2) FlxG.playMusic(Registry.l3msc, 1);\n  180  			if (Registry.stageCount == 3) FlxG.playMusic(Registry.l4msc, 1);\n  181  			if (Registry.stageCount == 4) FlxG.playMusic(Registry.l5msc, 1);\n\n/Users/Ethan/Dev/Journey-to-the-Thingamajig/Important Stuff/src/MainMenuState.as:\n  252  			//TODO put this logic at beginning of each level or in gamelevel and use FirstTimePlayinglevel flag to make sure you don't overlap[ the music\n  253  			if (Registry.stageCount == 1) FlxG.playMusic(Registry.l2msc, 1);\n  254: 			if (Registry.stageCount == 2) FlxG.playMusic(Registry.l3msc, 1);\n  255  			if (Registry.stageCount == 3) FlxG.playMusic(Registry.l4msc, 1);\n  256  			if (Registry.stageCount == 4) FlxG.playMusic(Registry.l5msc, 1);\n\n/Users/Ethan/Dev/Journey-to-the-Thingamajig/Important Stuff/src/PlayState.as:\n  288  				//reform this\n  289  				if(Registry.stageCount == 3 && Registry.firstLevel4) FlxG.overlap(_gameLevel.player, _gameLevel.mail, hitMail);\n  290: 				if(Registry.stageCount == 2 && Registry.firstLevel3) FlxG.overlap(_gameLevel.player, _gameLevel.mail, hitMail);\n  291  \n  292  \n  ...\n  694  				}\n  695  				/*if (Registry.stageCount == 1) FlxG.playMusic(Registry.l3msc, 1);\n  696: 				if (Registry.stageCount == 2) FlxG.playMusic(Registry.l4msc, 1);\n  697  				if (Registry.stageCount == 3) FlxG.playMusic(Registry.l5msc, 1);\n  698  				if (Registry.stageCount == 4) FlxG.playMusic(Registry.l6msc, 1);\n  ...\n  779  			//FlxG.fade(0x000000, .2, viewMail);\n  780  			mail.kill();\n  781: 			if(Registry.stageCount == 2)\n  782  			{\n  783  				Registry.firstLevel3 = false;\n  ...\n  803  \n  804  			/*if (Registry.stageCount == 1) FlxG.playMusic(Registry.l3msc, 1);\n  805: 			if (Registry.stageCount == 2) FlxG.playMusic(Registry.l4msc, 1);\n  806  			if (Registry.stageCount == 3) FlxG.playMusic(Registry.l5msc, 1);\n  807  			if (Registry.stageCount == 4) FlxG.playMusic(Registry.l6msc, 1);\n  ...\n 1096  			add(_gameLevel.worm3);\n 1097  \n 1098: 			if (Registry.stageCount == 2 && Registry.firstLevel3) \n 1099  			{\n 1100  				add(_gameLevel.mail); //if playing level 4 for first time, add the mail for player to hit\n ....\n 1138  			}\n 1139  			\n 1140: 			/*if (Registry.firstLevel3 && Registry.stageCount == 2) //if playing level 3 for first time, make the user read the damn letter //added last so it's over top of everything else\n 1141  			{\n 1142  				add(_gameLevel.letterMsg);\n\n12 matches across 6 files\n\n\nSearching 177 files for \"FlxG.playMusic\"\n\n/Users/Ethan/Dev/Journey-to-the-Thingamajig/Important Stuff/src/DeathMenuState.as:\n   41  			\n   42  			//FlxG.play(writing, 1, false);\n   43: 			//if (Registry.stageCount == 0) FlxG.playMusic(forestSounds, 1);\n   44: 			//if (Registry.stageCount == 1) FlxG.playMusic(forestSounds2, 1);\n   45: 			//if (Registry.stageCount == 2) FlxG.playMusic(forestSounds, 1);\n   46: 			//if (Registry.stageCount == 3) FlxG.playMusic(water, 1);\n   47: 			//if (Registry.stageCount == 4) FlxG.playMusic(water, 1);\n   48: 			//if (Registry.stageCount == 5) FlxG.playMusic(dwarfDance, 1);\n   49: 			//if (Registry.stageCount == 6) FlxG.playMusic(rumble, 1);\n   50  			//\n   51  			//Registry.musixFlag = true;\n\n/Users/Ethan/Dev/Journey-to-the-Thingamajig/Important Stuff/src/LevelMenuState.as:\n  176  		private function changeState():void\n  177  		{\n  178: 			if (Registry.stageCount == 1) FlxG.playMusic(Registry.l2msc, 1);\n  179: 			if (Registry.stageCount == 2) FlxG.playMusic(Registry.l3msc, 1);\n  180: 			if (Registry.stageCount == 3) FlxG.playMusic(Registry.l4msc, 1);\n  181: 			if (Registry.stageCount == 4) FlxG.playMusic(Registry.l5msc, 1);\n  182: 			if (Registry.stageCount == 5) FlxG.playMusic(Registry.l6msc, 1);\n  183: 			if (Registry.stageCount == 6) FlxG.playMusic(Registry.l7msc, 1);\n  184  			\n  185  			Registry.musixFlag = true;\n\n/Users/Ethan/Dev/Journey-to-the-Thingamajig/Important Stuff/src/MainMenuState.as:\n   71  		Registry.firstTimePlayingLevel = true;\n   72  		\n   73: 		FlxG.playMusic(l1msc, 1);\n   74  	\n   75  		dots.loadGraphic(dotsPNG, true, false, 72, 6);\n   ..\n  251  			\n  252  			//TODO put this logic at beginning of each level or in gamelevel and use FirstTimePlayinglevel flag to make sure you don't overlap[ the music\n  253: 			if (Registry.stageCount == 1) FlxG.playMusic(Registry.l2msc, 1);\n  254: 			if (Registry.stageCount == 2) FlxG.playMusic(Registry.l3msc, 1);\n  255: 			if (Registry.stageCount == 3) FlxG.playMusic(Registry.l4msc, 1);\n  256: 			if (Registry.stageCount == 4) FlxG.playMusic(Registry.l5msc, 1);\n  257: 			if (Registry.stageCount == 5) FlxG.playMusic(Registry.l6msc, 1);\n  258: 			if (Registry.stageCount == 6) FlxG.playMusic(Registry.l7msc, 1);\n  259  			\n  260  			Registry.musixFlag = true;\n\n/Users/Ethan/Dev/Journey-to-the-Thingamajig/Important Stuff/src/PlayState.as:\n  689  				if (Registry.stageCount == 0) \n  690  				{\n  691: 					//FlxG.playMusic(Registry.l2msc, .5);\n  692: 					//FlxG.playMusic(Registry.water, 1);\n  693  \n  694  				}\n  695: 				/*if (Registry.stageCount == 1) FlxG.playMusic(Registry.l3msc, 1);\n  696: 				if (Registry.stageCount == 2) FlxG.playMusic(Registry.l4msc, 1);\n  697: 				if (Registry.stageCount == 3) FlxG.playMusic(Registry.l5msc, 1);\n  698: 				if (Registry.stageCount == 4) FlxG.playMusic(Registry.l6msc, 1);\n  699: 				if (Registry.stageCount == 5) FlxG.playMusic(Registry.l7msc, 1);*/\n  700  				endLevelFlag = true;\n  701  			}	\n  ...\n  709  			{\n  710  				_gameLevel.npc.meetTimer = 14;\n  711: 				FlxG.playMusic(Registry.l2msc, .5);\n  712  			}\n  713  \n  ...\n  782  			{\n  783  				Registry.firstLevel3 = false;\n  784: 				FlxG.playMusic(Registry.l3msc, 1);\n  785  			}\n  786  			if(Registry.stageCount == 3)\n  ...\n  803  			Registry.gameLevel.player.play(\"letterIdle\");\n  804  \n  805: 			/*if (Registry.stageCount == 1) FlxG.playMusic(Registry.l3msc, 1);\n  806: 			if (Registry.stageCount == 2) FlxG.playMusic(Registry.l4msc, 1);\n  807: 			if (Registry.stageCount == 3) FlxG.playMusic(Registry.l5msc, 1);\n  808: 			if (Registry.stageCount == 4) FlxG.playMusic(Registry.l6msc, 1);\n  809: 			if (Registry.stageCount == 5) FlxG.playMusic(Registry.l7msc, 1);*/\n  810  		}\n  811  \n\n34 matches across 4 files\n\n\nSearching 177 files for \"punchsfx\"\n\n/Users/Ethan/Dev/Journey-to-the-Thingamajig/Important Stuff/src/MainMenuState.as:\n   21  		[Embed(source = \"../assets/stars.png\")] private var starsPNG:Class;\n   22  		[Embed(source = \"../assets/black.png\")] private var blackPNG:Class;\n   23: 		[Embed(source = \"../assets/punch2.mp3\")] private var punchSFX:Class;\n   24  		//[Embed(source = \"../assets/Save an Enemy.mp3\")] private var horns:Class;\n   25  	\n   ..\n  206  					if (!punchFlag)\n  207  					{\n  208: 						FlxG.play(punchSFX, 1, false, true);\n  209  						punchFlag = true;\n  210  					}\n\n/Users/Ethan/Dev/Journey-to-the-Thingamajig/Important Stuff/src/PlayState.as:\n   49  		\n   50  \n   51: 		[Embed(source = \"../assets/punch2.mp3\")] public var punchSFX:Class;\n   52  		[Embed(source = \"../assets/kick.mp3\")] public var kickSFX:Class;\n   53  		[Embed(source = \"../assets/swing&aMiss.mp3\")] public var whiffSFX:Class;\n   ..\n  736  			if (Registry.gameLevel.player.canPunch && FlxG.keys.justPressed(\"X\") && Registry.hasFlower && !bot.isDying)\n  737  			{\n  738: 				FlxG.play(punchSFX);\n  739  				bot.knockback();\n  740  			}\n  ...\n  745  			if (Registry.gameLevel.player.canPunch && FlxG.keys.justPressed(\"X\") && Registry.hasFlower)\n  746  			{\n  747: 				FlxG.play(punchSFX);\n  748  				frog.knockBack();\n  749  			}\n  ...\n  759  			if (Registry.gameLevel.player.canPunch && FlxG.keys.justPressed(\"X\") && !borg.isDying)\n  760  			{\n  761: 				FlxG.play(punchSFX); //this is extra loud for some reason?\n  762  				borg.knockback();\n  763  				FlxG.shake(.03, .1, nothing, true, 1);\n\n6 matches across 2 files\n",
-			"settings":
-			{
-				"buffer_size": 9419,
-				"line_ending": "Unix",
-				"name": "Find Results",
-				"scratch": true
-			}
-		},
-		{
-			"contents": "package  \n{\n	import flash.display.Sprite;\n	import org.flixel.*;\n	import org.flixel.plugin.photonstorm.*;\n\n	public class Level2 extends GameLevel\n	{\n		[Embed(source=\"../map/mapCSV_Level2_Background.csv\", mimeType=\"application/octet-stream\")] public var backgroundCSV:Class;\n		[Embed(source=\"../map/mapCSV_Level2_Back_Background.csv\", mimeType=\"application/octet-stream\")] public var backbackgroundCSV:Class;\n		[Embed(source=\"../map/mapCSV_Level2_Foreground.csv\", mimeType=\"application/octet-stream\")] public var foregroundCSV:Class;\n		[Embed(source=\"../map/mapCSV_Level2_Fore-Foreground.csv\", mimeType=\"application/octet-stream\")] public var foreforegroundCSV:Class;\n		[Embed(source = \"../map/woody2(green).png\")] public var backgroundTilesPNG:Class;\n		[Embed(source=\"../map/woody_back_background2.png\")] public var backbackgroundTilesPNG:Class;\n		[Embed(source = \"../map/forest_tiles(color).png\")] public var foregroundTilesPNG:Class;\n		[Embed(source = \"../map/forest_tiles_foregroud(color).png\")] public var foreforegroundTilesPNG:Class;\n		[Embed(source = \"../map/botlet(2).png\")] public var botletPNG:Class;\n		[Embed(source = \"../map/star.png\")] public var nomNomPNG:Class;\n		[Embed(source=\"../map/mapCSV_Level2_Bots.csv\", mimeType=\"application/octet-stream\")] public var botsCSV:Class;\n		[Embed(source=\"../map/mapCSV_Level2_Rocks.csv\", mimeType=\"application/octet-stream\")] public var rocksCSV:Class;\n		[Embed(source=\"../map/mapCSV_Level2_CrumbleRocks.csv\", mimeType=\"application/octet-stream\")] public var crumbleRocksCSV:Class;\n		[Embed(source=\"../map/mapCSV_Level2_Reinforcements.csv\", mimeType=\"application/octet-stream\")] public var reinforcementsCSV:Class;\n		[Embed(source = \"../map/mapCSV_Level2_NPCs.csv\", mimeType = \"application/octet-stream\")] public var npcsCSV:Class;\n		[Embed(source = \"../map/rock.png\")] public var rockPNG:Class;\n		[Embed(source = \"../map/crumbleRock.png\")] public var crumbleRockPNG:Class;\n		[Embed(source = \"../map/mapCSV_Level2_NomNoms.csv\", mimeType = \"application/octet-stream\")] public var nomNomsCSV:Class;\n		[Embed(source = \"../map/mapCSV_Level2_Supports.csv\", mimeType = \"application/octet-stream\")] public var supportsCSV:Class;\n		[Embed(source = \"../map/mapCSV_Level2_Checkpoint.csv\", mimeType = \"application/octet-stream\")] public var checkpointCSV:Class;\n	\n		//[Embed(source = \"../assets/13_Dwarf_Dance.mp3\")] public var dwarfDance:Class;\n		[Embed(source = \"../assets/forestsounds.mp3\")] public var dwarfDance:Class;\n		//[Embed(source = \"../assets/beat1.mp3\")] public var beat1:Class;\n		//[Embed(source=\"../assets/Traffic_2 (with piano ending).mp3\")] public var dwarfDance:Class;\n		//[Embed(source=\"../assets/Fucked Up Forest.mp3\")] public var dwarfDance:Class;\n		//[Embed(source=\"../assets/jazzy track.mp3\")] public var dwarfDance:Class;\n		//[Embed(source = \"../assets/Ethan Fischer_s flash game possible athletic music.mp3\")] public var dwarfDance:Class;\n		//[Embed(source=\"../assets/piglatin.mp3\")] public var dwarfDance:Class;\n		//[Embed(source=\"../assets/forestsounds.mp3\")] public var dwarfDance:Class;\n\n		\n		public var rockMap:FlxTilemap;	\n		public var crumbleRockMap:FlxTilemap;\n\n		\n		public function Level2() \n		{\n			super();\n		\n			Registry.hmodeChkpt = 999999999999999999999999999;\n			\n			Registry.fstPlace = 60;\n			Registry.sndPlace = 180;\n			Registry.thdPlace = 320;\n			\n			backbackground = new FlxTilemap;\n			backbackground.loadMap(new backbackgroundCSV, backbackgroundTilesPNG, 256, 300);\n			backbackground.setTileProperties(1, FlxObject.NONE);\n			backbackground.scrollFactor.x = .2;\n			\n			background = new FlxTilemap;\n			background.loadMap(new backgroundCSV, backgroundTilesPNG, 256, 300);\n			background.setTileProperties(1, FlxObject.NONE);\n			background.scrollFactor.x = .7;\n			\n			foreground = new FlxTilemap;\n			foreground.loadMap(new foregroundCSV, foregroundTilesPNG, 16, 16, 0, 0, 1, 24);\n			\n			foreforeground = new FlxTilemap;\n			foreforeground.loadMap(new foreforegroundCSV, foreforegroundTilesPNG, 16, 16, 0, 0, 1, 64);\n			foreforeground.scrollFactor.x = 1;\n			\n			//	Makes these tiles non collidable)\n			foreground.setTileProperties(57, FlxObject.NONE, null, null, 6);\n			\n			\n			Registry.map = foreground;\n			\n			///////////////////////////////////////////////////////\n			//					 CHECKPOINT						 //\n			///////////////////////////////////////////////////////\n		\n			if (Registry.checkpointFlag) \n			{\n				player = new Player(Registry.checkpoint.x + 5, Registry.checkpoint.y - 5);\n				frog = new Frog(1666, 260);\n			}\n			else\n			{\n				player = new Player(30, 255);\n				frog = new Frog(690, 200);\n			}\n			\n			\n			width = foreground.width;\n			height = foreground.height;\n			\n			not_a_flower = new NotAFlower(259, height - 45, player);\n			\n			parseBots(player);\n			parseRocks(player);\n			parseReinforcements();\n			parseCrumbleRocks(player);\n			parseCheckpoint();\n			parseSupports();\n			parseNomNoms();\n			parseNPCs();\n			\n			Registry.crumbleRockMap = crumbleRockMap;\n			Registry.crumbleRocks = crumbleRocks;\n			\n			Registry.player = player;\n			super.makeLevelNumber();\n		}\n			\n		private function parseNomNoms():void\n		{\n			var nomNomMap:FlxTilemap = new FlxTilemap();\n			\n			nomNomMap.loadMap(new nomNomsCSV, nomNomPNG, 16, 16);\n			\n			nomNoms = new FlxGroup();\n			\n			for (var ty:int = 0; ty < nomNomMap.heightInTiles; ty++)\n			{\n				for (var tx:int = 0; tx < nomNomMap.widthInTiles; tx++)\n				{\n					if (nomNomMap.getTile(tx, ty) == 1)\n					{\n						nomNoms.add(new NomNom(tx, ty));\n					}\n				}\n			}\n		}\n		\n		private function parseBots(player:Player):void\n		{			\n			var botMap:FlxTilemap = new FlxTilemap();\n			\n			botMap.loadMap(new botsCSV, botletPNG, 16, 16);\n			\n			bots = new Bots;\n			\n			for (var ty:Number = 0; ty < botMap.heightInTiles; ty++)\n			{\n				for (var tx:int = 0; tx < botMap.widthInTiles; tx++)\n				{\n					if (botMap.getTile(tx, ty) == 1)\n					{\n						bots.addBot(tx, ty, player, FlxObject.RIGHT);\n					}\n					else if (botMap.getTile(tx, ty) == 2)\n					{\n						bots.addBot(tx, ty, player, FlxObject.LEFT);\n					}\n				}\n			\n			}\n			Registry.bots = bots;\n		}\n		\n		private function parseCheckpoint():void\n		{			\n			var checkpointMap:FlxTilemap = new FlxTilemap();\n			\n			checkpointMap.loadMap(new checkpointCSV, botletPNG, 16, 16);\n			\n			for (var ty:Number = 0; ty < checkpointMap.heightInTiles; ty++)\n			{\n				for (var tx:int = 0; tx < checkpointMap.widthInTiles; tx++)\n				{\n					if (checkpointMap.getTile(tx, ty) == 1)\n					{\n						checkpoint = new Checkpoint(tx, ty);\n						Registry.checkpoint = checkpoint;\n						add(checkpoint);\n					}\n					else if (checkpointMap.getTile(tx, ty) == 3)\n					{\n						end = new Checkpoint(tx, ty, true);\n						end.x -=8;\n						end.y -=8;\n						add(end);\n					}\n				}\n			}\n		}\n		\n		private function parseSupports():void\n		{			\n			supportMap = new FlxTilemap();\n			\n			supportMap.loadMap(new supportsCSV, rockPNG, 16, 16);\n			\n			supports = new Supports;\n			\n			for (var ty:Number = 0; ty < supportMap.heightInTiles; ty++)\n			{\n				for (var tx:int = 0; tx < supportMap.widthInTiles; tx++)\n				{\n					if (supportMap.getTile(tx, ty) == 1)\n					{\n						supports.addSupport(tx, ty);\n					}\n				}\n			}\n		}\n		\n		private function parseNPCs():void\n		{			\n			var NPCMap:FlxTilemap = new FlxTilemap();\n			\n			NPCMap.loadMap(new npcsCSV, botletPNG, 16, 16);\n			\n			for (var ty:Number = 0; ty < NPCMap.heightInTiles; ty++)\n			{\n				for (var tx:int = 0; tx < NPCMap.widthInTiles; tx++)\n				{\n					if (NPCMap.getTile(tx, ty) == 1)\n					{\n						npc = new NPC(tx, ty, FlxObject.LEFT);\n						npc.y -= 4;\n						add(npc);\n					}\n				}\n			}\n		}\n		\n		private function parseRocks(player:Player):void\n		{			\n			rockMap = new FlxTilemap();\n			\n			rockMap.loadMap(new rocksCSV, rockPNG, 16, 16);\n			\n			rocks = new Rocks;\n			\n			for (var ty:Number = rockMap.heightInTiles; ty > 0; ty--)\n			{\n				for (var tx:int = rockMap.widthInTiles; tx > 0; tx--)\n				{\n					if (rockMap.getTile(tx, ty) == 1)\n					{\n						rocks.addRock(tx, ty, player, 1);\n					}\n					else if (rockMap.getTile(tx, ty) == 2)\n					{\n						rocks.addRock(tx, ty, player, 2);\n					}\n				}\n			}\n		}\n		\n		private function parseReinforcements():void\n		{			\n			reinforcementMap = new FlxTilemap();\n			\n			reinforcementMap.loadMap(new reinforcementsCSV, rockPNG, 16, 16);\n			\n			reinforcements = new Reinforcements;\n			\n			for (var ty:Number = reinforcementMap.heightInTiles; ty > 0; ty--)\n			{\n				for (var tx:int = reinforcementMap.widthInTiles; tx > 0; tx--)\n				{\n					if (reinforcementMap.getTile(tx, ty) == 1)\n					{\n						reinforcements.addReinforcement(tx, ty);\n					}\n				}\n			}\n		}\n		\n		private function parseCrumbleRocks(player:Player):void\n		{			\n			crumbleRockMap = new FlxTilemap();\n			\n			crumbleRockMap.loadMap(new crumbleRocksCSV, crumbleRockPNG, 16, 16);\n			\n			crumbleRocks = new CrumbleRocks;\n			\n			for (var ty:Number = 0; ty < crumbleRockMap.heightInTiles; ty++)\n			{\n				for (var tx:int = 0; tx < crumbleRockMap.widthInTiles; tx++)\n				{\n					if (crumbleRockMap.getTile(tx, ty) == 1)\n					{\n						crumbleRocks.addCrumbleRock(tx, ty);\n					}\n				}\n			}\n		}\n		\n	}\n}",
-			"file": "Level2.as",
-			"file_size": 9042,
-			"file_write_time": 131230505020000000,
-			"settings":
-			{
-				"buffer_size": 9044,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "Level1.as",
-			"settings":
-			{
-				"buffer_size": 6417,
+				"buffer_size": 3940,
+				"encoding": "UTF-8",
 				"line_ending": "Unix"
 			}
 		},
@@ -151,10 +135,26 @@
 	"build_varint": "",
 	"command_palette":
 	{
-		"height": 392.0,
-		"last_filter": "browse",
+		"height": 167.0,
+		"last_filter": "syntax: acti",
 		"selected_items":
 		[
+			[
+				"syntax: acti",
+				"Set Syntax: ActionScript 3"
+			],
+			[
+				"syntax: java",
+				"Set Syntax: JavaScript (Rails)"
+			],
+			[
+				"syntax",
+				"Set Syntax: ActionScript"
+			],
+			[
+				"package",
+				"Package Control: Install Package"
+			],
 			[
 				"browse",
 				"Preferences: Browse Packages"
@@ -166,19 +166,19 @@
 			[
 				"packag",
 				"Preferences: Browse Packages"
-			],
-			[
-				"package",
-				"Preferences: Browse Packages"
 			]
 		],
-		"width": 392.0
+		"width": 467.0
 	},
 	"console":
 	{
-		"height": 0.0,
+		"height": 146.0,
 		"history":
 		[
+			"-help",
+			"help",
+			"package",
+			"import urllib.request,os,hashlib; h = 'df21e130d211cfc94d9b0905775a7c0f' + '1e3d39e33b79698005270310898eea76'; pf = 'Package Control.sublime-package'; ipp = sublime.installed_packages_path(); urllib.request.install_opener( urllib.request.build_opener( urllib.request.ProxyHandler()) ); by = urllib.request.urlopen( 'http://packagecontrol.io/' + pf.replace(' ', '%20')).read(); dh = hashlib.sha256(by).hexdigest(); print('Error validating download (got %s instead of %s), please try manual install' % (dh, h)) if dh != h else open(os.path.join( ipp, pf), 'wb' ).write(by)"
 		]
 	},
 	"distraction_free":
@@ -196,10 +196,13 @@
 	],
 	"file_history":
 	[
-		"/Users/Ethan/Dev/Journey-to-the-Thingamajig/Important Stuff/src/Main.as",
-		"/Users/Ethan/Dev/Journey-to-the-Thingamajig/Important Stuff/src/Level4.as",
+		"/Users/Ethan/Dev/Journey-to-the-Thingamajig/Important Stuff/src/Bot.as",
+		"/Users/Ethan/Dev/Journey-to-the-Thingamajig/Important Stuff/src/Player.as",
+		"/Users/Ethan/Dev/Journey-to-the-Thingamajig/Important Stuff/src/Level2.as",
 		"/Users/Ethan/Dev/Journey-to-the-Thingamajig/Important Stuff/src/Level3.as",
 		"/Users/Ethan/Dev/Journey-to-the-Thingamajig/Important Stuff/src/Level1.as",
+		"/Users/Ethan/Dev/Journey-to-the-Thingamajig/Important Stuff/src/Level4.as",
+		"/Users/Ethan/Dev/Journey-to-the-Thingamajig/Important Stuff/src/Main.as",
 		"/Users/Ethan/Dev/Journey-to-the-Thingamajig/Important Stuff/src/Level6.as",
 		"/Users/Ethan/Dev/Journey-to-the-Thingamajig/Important Stuff/src/MainMenuState.as",
 		"/Users/Ethan/Dev/Journey-to-the-Thingamajig/Important Stuff/src/NPC.as",
@@ -208,12 +211,9 @@
 		"/Users/Ethan/Dev/Journey-to-the-Thingamajig/Important Stuff/src/DeathMenuState.as",
 		"/Users/Ethan/Dev/Journey-to-the-Thingamajig/Important Stuff/src/PlayState.as",
 		"/Users/Ethan/Dev/Journey-to-the-Thingamajig/Important Stuff/src/Worm.as",
-		"/Users/Ethan/Dev/Journey-to-the-Thingamajig/Important Stuff/src/Level2.as",
-		"/Users/Ethan/Dev/Journey-to-the-Thingamajig/Important Stuff/src/Bot.as",
 		"/Users/Ethan/Dev/Journey-to-the-Thingamajig/Important Stuff/src/Bots.as",
 		"/Users/Ethan/Dev/Journey-to-the-Thingamajig/Important Stuff/src/Level5.as",
 		"/Users/Ethan/Dev/Journey-to-the-Thingamajig/Important Stuff/src/Level7.as",
-		"/Users/Ethan/Dev/Journey-to-the-Thingamajig/Important Stuff/src/Player.as",
 		"/Users/Ethan/Documents/software I want",
 		"/Users/Ethan/Dev/Journey-to-the-Thingamajig/(ignore:delete)DeveloperNotes/Links I used to figure out how to develop flixel o",
 		"/Users/Ethan/Flex/frameworks/flex-config.xml",
@@ -286,6 +286,21 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			"sparkle",
+			"add(",
+			"water",
+			"river",
+			"dwarf",
+			"dwarfdance",
+			"playmusic",
+			"fade(",
+			".log",
+			"meetnpc",
+			"stagecount == 1",
+			"fadeFlag =",
+			".log",
+			"meetFlag",
+			"fade(",
 			"update(",
 			"update",
 			"npc",
@@ -398,22 +413,7 @@
 			"delayedturnar",
 			"turnar",
 			"suicide",
-			"collid",
-			"bouncetimer",
-			"flxg",
-			"log",
-			"bounceTimer",
-			"suicide",
-			"suicidal",
-			"suicide",
-			"suicidal = true",
-			"suicidal",
-			"suicide",
-			"bounceTime",
-			"parsebots",
-			"add",
-			"addbot(",
-			"addbot"
+			"collid"
 		],
 		"highlight": true,
 		"in_selection": false,
@@ -432,7 +432,7 @@
 	"groups":
 	[
 		{
-			"selected": 2,
+			"selected": 4,
 			"sheets":
 			[
 				{
@@ -441,15 +441,15 @@
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 4249,
+						"buffer_size": 4307,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								3796,
-								3796
+								2693,
+								2693
 							]
 						],
 						"settings":
@@ -458,7 +458,7 @@
 							"translate_tabs_to_spaces": false
 						},
 						"translation.x": 0.0,
-						"translation.y": 1681.0,
+						"translation.y": 1200.0,
 						"zoom_level": 1.0
 					},
 					"stack_index": 1,
@@ -470,15 +470,15 @@
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 5654,
+						"buffer_size": 5646,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								5607,
-								5607
+								5273,
+								5273
 							]
 						],
 						"settings":
@@ -487,10 +487,10 @@
 							"translate_tabs_to_spaces": false
 						},
 						"translation.x": 0.0,
-						"translation.y": 1789.0,
+						"translation.y": 1731.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 3,
+					"stack_index": 4,
 					"type": "text"
 				},
 				{
@@ -499,15 +499,15 @@
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 39107,
+						"buffer_size": 39574,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								22989,
-								22989
+								32280,
+								32280
 							]
 						],
 						"settings":
@@ -516,364 +516,27 @@
 							"translate_tabs_to_spaces": false
 						},
 						"translation.x": 0.0,
-						"translation.y": 12873.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 0,
-					"type": "text"
-				},
-				{
-					"buffer": 3,
-					"file": "Bot.as",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 7046,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								5988,
-								5988
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/ActionScript/ActionScript.sublime-syntax",
-							"translate_tabs_to_spaces": false
-						},
-						"translation.x": 0.0,
-						"translation.y": 4307.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 7,
-					"type": "text"
-				},
-				{
-					"buffer": 4,
-					"file": "Player.as",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 18661,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								3624,
-								3624
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/ActionScript/ActionScript.sublime-syntax",
-							"translate_tabs_to_spaces": false
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 8,
-					"type": "text"
-				},
-				{
-					"buffer": 5,
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 9419,
-						"regions":
-						{
-							"match":
-							{
-								"flags": 112,
-								"regions":
-								[
-									[
-										169,
-										184
-									],
-									[
-										438,
-										453
-									],
-									[
-										907,
-										922
-									],
-									[
-										1262,
-										1277
-									],
-									[
-										1637,
-										1652
-									],
-									[
-										2172,
-										2187
-									],
-									[
-										2624,
-										2639
-									],
-									[
-										2861,
-										2876
-									],
-									[
-										3163,
-										3178
-									],
-									[
-										3347,
-										3362
-									],
-									[
-										3619,
-										3634
-									],
-									[
-										3852,
-										3867
-									],
-									[
-										4289,
-										4303
-									],
-									[
-										4364,
-										4378
-									],
-									[
-										4440,
-										4454
-									],
-									[
-										4515,
-										4529
-									],
-									[
-										4583,
-										4597
-									],
-									[
-										4651,
-										4665
-									],
-									[
-										4724,
-										4738
-									],
-									[
-										4983,
-										4997
-									],
-									[
-										5058,
-										5072
-									],
-									[
-										5133,
-										5147
-									],
-									[
-										5208,
-										5222
-									],
-									[
-										5283,
-										5297
-									],
-									[
-										5358,
-										5372
-									],
-									[
-										5591,
-										5605
-									],
-									[
-										5891,
-										5905
-									],
-									[
-										5966,
-										5980
-									],
-									[
-										6041,
-										6055
-									],
-									[
-										6116,
-										6130
-									],
-									[
-										6191,
-										6205
-									],
-									[
-										6266,
-										6280
-									],
-									[
-										6497,
-										6511
-									],
-									[
-										6547,
-										6561
-									],
-									[
-										6646,
-										6660
-									],
-									[
-										6722,
-										6736
-									],
-									[
-										6798,
-										6812
-									],
-									[
-										6874,
-										6888
-									],
-									[
-										6950,
-										6964
-									],
-									[
-										7103,
-										7117
-									],
-									[
-										7229,
-										7243
-									],
-									[
-										7427,
-										7441
-									],
-									[
-										7502,
-										7516
-									],
-									[
-										7577,
-										7591
-									],
-									[
-										7652,
-										7666
-									],
-									[
-										7727,
-										7741
-									],
-									[
-										8146,
-										8154
-									],
-									[
-										8326,
-										8334
-									],
-									[
-										8556,
-										8564
-									],
-									[
-										8885,
-										8893
-									],
-									[
-										9077,
-										9085
-									],
-									[
-										9265,
-										9273
-									]
-								],
-								"scope": ""
-							}
-						},
-						"selection":
-						[
-							[
-								8382,
-								8382
-							]
-						],
-						"settings":
-						{
-							"detect_indentation": false,
-							"line_numbers": false,
-							"output_tag": 3,
-							"result_base_dir": "",
-							"result_file_regex": "^([^ 	].*):$",
-							"result_line_regex": "^ +([0-9]+):",
-							"scroll_past_end": true,
-							"syntax": "Packages/Default/Find Results.hidden-tmLanguage"
-						},
-						"translation.x": 0.0,
-						"translation.y": 3068.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 5,
-					"type": "text"
-				},
-				{
-					"buffer": 6,
-					"file": "Level2.as",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 9044,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								5476,
-								5476
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/ActionScript/ActionScript.sublime-syntax",
-							"translate_tabs_to_spaces": false
-						},
-						"translation.x": 0.0,
-						"translation.y": 1983.0,
+						"translation.y": 19511.0,
 						"zoom_level": 1.0
 					},
 					"stack_index": 2,
 					"type": "text"
 				},
 				{
-					"buffer": 7,
-					"file": "Level1.as",
+					"buffer": 3,
+					"file": "NPC.as",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 6417,
+						"buffer_size": 5998,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								1364,
-								1364
+								457,
+								457
 							]
 						],
 						"settings":
@@ -885,11 +548,40 @@
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 4,
+					"stack_index": 3,
 					"type": "text"
 				},
 				{
-					"buffer": 8,
+					"buffer": 4,
+					"file": "Sparkle.as",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 3940,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								925,
+								925
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/ActionScript 3/ActionScript 3.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 291.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 0,
+					"type": "text"
+				},
+				{
+					"buffer": 5,
 					"file": "LevelMenuState.as",
 					"semi_transient": false,
 					"settings":
@@ -914,7 +606,7 @@
 						"translation.y": 2959.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 6,
+					"stack_index": 5,
 					"type": "text"
 				}
 			]
@@ -969,16 +661,44 @@
 		"selected_items":
 		[
 			[
+				"plays",
+				"PlayState.as"
+			],
+			[
+				"play",
+				"PlayState.as"
+			],
+			[
+				"npc",
+				"NPC.as"
+			],
+			[
+				"level4",
+				"Level4.as"
+			],
+			[
+				"level1",
+				"Level1.as"
+			],
+			[
+				"level3",
+				"Level3.as"
+			],
+			[
+				"regi",
+				"Registry.as"
+			],
+			[
+				"playsta",
+				"PlayState.as"
+			],
+			[
 				"playstate",
 				"PlayState.as"
 			],
 			[
 				"main",
 				"Main.as"
-			],
-			[
-				"level1",
-				"Level1.as"
 			],
 			[
 				"level2",
@@ -991,10 +711,6 @@
 			[
 				"bot",
 				"Bot.as"
-			],
-			[
-				"play",
-				"PlayState.as"
 			],
 			[
 				"levelmenu",
@@ -1011,22 +727,6 @@
 			[
 				"playst",
 				"PlayState.as"
-			],
-			[
-				"npc",
-				"NPC.as"
-			],
-			[
-				"level3",
-				"Level3.as"
-			],
-			[
-				"level4",
-				"Level4.as"
-			],
-			[
-				"regi",
-				"Registry.as"
 			],
 			[
 				"lev",

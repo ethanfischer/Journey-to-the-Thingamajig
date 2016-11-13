@@ -19,7 +19,7 @@ package
 		[Embed(source = "../map/rock.png")] private var _rockPNG:Class;
 		[Embed(source = "../map/botlet(2).png")] public var botletPNG:Class;
 		[Embed(source = "../map/mapCSV_Level1_Reinforcements.csv", mimeType = "application/octet-stream")] private var _reinforcementsCSV:Class;
-		[Embed(source="../assets/forestsounds.mp3")] public var dwarfDance:Class;
+		//[Embed(source="../assets/forestsounds.mp3")] public var dwarfDance:Class;
 		
 		public var rockMap:FlxTilemap;
 		

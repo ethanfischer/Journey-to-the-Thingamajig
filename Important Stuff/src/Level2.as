@@ -28,7 +28,7 @@ package
 		[Embed(source = "../map/mapCSV_Level2_Checkpoint.csv", mimeType = "application/octet-stream")] public var checkpointCSV:Class;
 	
 		//[Embed(source = "../assets/13_Dwarf_Dance.mp3")] public var dwarfDance:Class;
-		[Embed(source = "../assets/forestsounds.mp3")] public var dwarfDance:Class;
+		//[Embed(source = "../assets/forestsounds.mp3")] public var dwarfDance:Class;
 		//[Embed(source = "../assets/beat1.mp3")] public var beat1:Class;
 		//[Embed(source="../assets/Traffic_2 (with piano ending).mp3")] public var dwarfDance:Class;
 		//[Embed(source="../assets/Fucked Up Forest.mp3")] public var dwarfDance:Class;
@@ -36,9 +36,11 @@ package
 		//[Embed(source = "../assets/Ethan Fischer_s flash game possible athletic music.mp3")] public var dwarfDance:Class;
 		//[Embed(source="../assets/piglatin.mp3")] public var dwarfDance:Class;
 		//[Embed(source="../assets/forestsounds.mp3")] public var dwarfDance:Class;
+
 		
 		public var rockMap:FlxTilemap;	
 		public var crumbleRockMap:FlxTilemap;
+
 		
 		public function Level2() 
 		{
