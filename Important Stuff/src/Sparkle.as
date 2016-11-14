@@ -21,7 +21,7 @@ package
 		private var messageCount:int = 0;
 		private var text:String;
 		
-		private var sparkleTime:Number = 1.0/FlxMath.rand(1, 10);
+		private var sparkleTime:Number;
 		private var sparkleFlag:Boolean = false;
 		
 		
@@ -30,7 +30,9 @@ package
 			x=i_x;
 			y=i_x;
 			super(x, y);
-			
+			var randNum:int = FlxMath.rand(1, 10);
+			sparkleTime = .1 * randNum;
+			// FlxG.log("sparkleTime" && sparkleTime);
 			retreatFlag = false;
 			
 			solid = false;
@@ -39,8 +41,8 @@ package
 		
 			loadGraphic(sparklePNG, true, true, 1, 1);
 			
-			scrollFactor.x = 0;
-			scrollFactor.y = 0;
+			scrollFactor.x = 1;
+			scrollFactor.y = 1;
 			
 			// velocity.x = -800;
 			// velocity.y = 30;
@@ -55,7 +57,8 @@ package
 
 			addAnimation("sparkle", [4,3,2,1,0,1,2,3], 40, false);
 			
-			
+			addAnimation("slowSparkle", [4,3,2,1,0,1,2,3], 8, false);
+
 			
 			
 			dieTimer = 0;
@@ -88,22 +91,23 @@ package
 		{
 			super.update();
 
-			if(Registry.hasFlower && Registry.stageCount == 1)
+			if((Registry.hasFlower && Registry.stageCount == 1) ||(Registry.hasUmbrella && Registry.stageCount == 4))
 			{
 				visible = true;
 			}
+
 			jumpAround();
 			// velocity.x = -50;
 			
 			// if (x < -600) x = 600;
 			// if (x > 0) x = -600;	
 
-			if(FlxG.keys.P)
-			{
-				// scrollFactor.x = 1;
-				// scrollFactor.y = 1;
-				FlxG.log(x && y && "Sparkle position");
-			}
+			// if(FlxG.keys.P)
+			// {
+			// 	// scrollFactor.x = 1;
+			// 	// scrollFactor.y = 1;
+			// 	FlxG.log(x && y && "Sparkle position");
+			// }
 			
 			
 			////////////////////////////
@@ -154,10 +158,20 @@ package
 			sparkleTime -= FlxG.elapsed;
 			if(sparkleTime < 0)
 			{
-				x = FlxMath.rand(0, 500);
-				y = FlxMath.rand(0, 250);
-				sparkleTime = .25;
-				play("sparkle");
+				// if(Registry.stageCount == 1)
+				// {
+
+				// 	sparkleTime = .25;
+				// 	play("sparkle");
+				// }
+				// else if (Registry.stageCount == 4)
+				// {
+					sparkleTime = 1;
+					play("slowSparkle");
+				// }
+				x = Registry.gameLevel.player.x + FlxMath.rand(-500, 500);
+				y = Registry.gameLevel.player.y + FlxMath.rand(-500, 500);
+				
 			}
 		}
 		

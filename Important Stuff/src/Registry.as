@@ -109,19 +109,22 @@ package
 		[Embed(source = "../assets/Playhouse.mp3")] public static var l2msc:Class;
 		
 		//Level3
-		[Embed(source="../assets/A_Wonderful_Guy.mp3")] public static var l3msc:Class;
+		[Embed(source="../assets/jazz_messyswingloop.mp3")] public static var l3msc:Class;
 
 		//Level4
-		[Embed(source="../assets/ElephantTime.mp3")] public static var l4msc:Class;
+		[Embed(source="../assets/MindOnTheFritz.mp3")] public static var l4msc:Class;
 
 		//Level 5
-		[Embed(source="../assets/jazz_messyswingloop.mp3")] public static var l5msc:Class;
+		[Embed(source="../assets/A_Wonderful_Guy.mp3")] public static var l5msc:Class;
 		
 		//Level 6
 		[Embed(source = "../assets/TheHoliday.mp3")]public static var l6msc:Class;
 
 		//Level 7		
 		[Embed(source="../assets/experimental-mixing.mp3")] public static var l7msc:Class;
+
+		//Silence
+		[Embed(source="../assets/silence.mp3")] public static var silence:Class;
 
 		//Credits
 		[Embed(source="../assets/endingSong.mp3")] public static var endMsc:Class;

@@ -82,7 +82,16 @@ package
 		public var sparkle7:Sparkle;
 		public var sparkle8:Sparkle;
 		public var sparkle9:Sparkle;
-	
+		public var sparkle10:Sparkle;
+		public var sparkle11:Sparkle;
+		public var sparkle12:Sparkle;
+		public var sparkle13:Sparkle;
+		public var sparkle14:Sparkle;
+		public var sparkle15:Sparkle;
+		public var sparkle16:Sparkle;
+		public var sparkle17:Sparkle;
+		public var sparkle18:Sparkle;
+
 		[Embed(source = "../assets/canopy.png")] private var canopyPNG:Class;
 		[Embed(source = "../assets/canopy6.png")] private var canopy6PNG:Class;
 		public var canopy:FlxSprite = new FlxSprite(0, 0);
@@ -112,7 +121,15 @@ package
 			sparkle7= new Sparkle(10, 10);
 			sparkle8 = new Sparkle(30, 30);
 			sparkle9 = new Sparkle(50, 50);
-			
+			sparkle10 = new Sparkle(10, 10);
+			sparkle11 = new Sparkle(30, 30);
+			sparkle12 = new Sparkle(50, 50);
+			sparkle13= new Sparkle(10, 10);
+			sparkle14 = new Sparkle(30, 30);
+			sparkle15= new Sparkle(50, 50);
+			sparkle16= new Sparkle(10, 10);
+			sparkle17 = new Sparkle(30, 30);
+			sparkle18 = new Sparkle(50, 50);
 			
 			
 			//umbrella

@@ -253,7 +253,8 @@ package
 		{
 			FlxG.pauseSounds();
 			Registry.pauseSounds = true;
-			FlxG.volume = 0;
+			// FlxG.volume = 0;
+			FlxG.playMusic(Registry.silence, .5);
 			Registry.theEnd = true;
 		}
 		

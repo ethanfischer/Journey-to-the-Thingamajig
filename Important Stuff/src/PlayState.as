@@ -92,7 +92,6 @@ package
 			_muteButton.scrollFactor.x = 0;
 			_muteButton.scrollFactor.y = 0;
 
-
 			if (Registry.gameStart)
 			{
 				FlxG.flash(0x00000000, 1);
@@ -121,6 +120,8 @@ package
 			
 			handlePause();
 			
+
+
 			if (!Registry.gameStart)
 			{
 				
@@ -365,7 +366,7 @@ package
 		private function l3Text():void
 		{
 			Registry.textCounter++;
-			FlxG.log("l3Text textCount == " + Registry.textCounter);
+			//FlxG.log("l3Text textCount == " + Registry.textCounter);
 
 			if (Registry.textCounter == 1)
 			{
@@ -508,6 +509,14 @@ package
 			}
 
 		}
+
+		// private function level2():void
+		// {
+		// 	if(Registry.hasFlower)
+		// 	{
+		// 		FlxG.playMusic(Registry.l2msc);
+		// 	}
+		// }
 
 		private function level7():void
 		{
@@ -731,9 +740,12 @@ package
 			{
 				_gameLevel.npc.meetTimer = 14;
 				startFade(_gameLevel.black, 6);
-				FlxG.playMusic(Registry.l2msc, .5);
+				if(Registry.stageCount == 1) FlxG.playMusic(Registry.l2msc, .5);
+				
 			}
 		}
+
+
 
 		private function startFade(object:FlxSprite, fadeTime:Number):void
 		{
@@ -754,7 +766,7 @@ package
 				if (fadeTimer < 0)
 				{
 					fadeFlag = false;
-					FlxG.log("faded");
+					// FlxG.log("faded");
 				}
 			}
 		}
@@ -831,11 +843,14 @@ package
 			}
 			if(Registry.stageCount == 3)
 			{
-			Registry.firstLevel4 = false;
-			FlxG.playMusic(Registry.l3msc, 1);
-
+				Registry.firstLevel4 = false;
+				FlxG.playMusic(Registry.l4msc, 1);
 			}
-
+			if(Registry.stageCount == 5)
+			{
+			Registry.firstLevel6 = false;
+			FlxG.playMusic(Registry.l6msc, 1);
+			}
 		}
 
 		private function viewMail():void
@@ -866,6 +881,8 @@ package
 				add(_gameLevel.npc.message);
 				npc.talk();
 				add(_gameLevel.umbrella);
+				
+
 			}
 		}
 
@@ -989,6 +1006,7 @@ package
 				_jttt.moves = false;
 				_jttt.alpha = 0;
 				add(_jttt);
+				FlxG.log("playingmusic");
 				
 				
 				
@@ -1002,8 +1020,10 @@ package
 			
 			if (endTimer < 35 && endTimer > 31) 
 			{
+				if(endTimer > 34.85) FlxG.playMusic(Registry.endMsc, .5);
 				_jttt.alpha += .07;
 				finalPlaytime = Registry.totalPlaytime;
+
 			}
 			if (endTimer < 31 && endTimer > 27)
 			{
@@ -1088,7 +1108,7 @@ package
 		
 		private function youBeatTheGame():void
 		{
-			FlxG.volume = .1;
+			// FlxG.volume = .1;
 			Registry.pauseSounds = false;
 			//FlxG.switchState(new MainMenuState);
 		}
@@ -1101,18 +1121,31 @@ package
 
 			add(_gameLevel);
 			add(_gameLevel.backbackground);
-			
 			add(_gameLevel.background);
-			add(_gameLevel.sparkle);
-			add(_gameLevel.sparkle2);
-			add(_gameLevel.sparkle3);
-			add(_gameLevel.sparkle4);
-			add(_gameLevel.sparkle5);
-			add(_gameLevel.sparkle6);
-			add(_gameLevel.sparkle7);
-			add(_gameLevel.sparkle8);
-			add(_gameLevel.sparkle9);
-			// add(_gameLevel.sparkle);
+
+			if(Registry.stageCount == 1 || Registry.stageCount == 4)
+			{
+				add(_gameLevel.sparkle);
+				add(_gameLevel.sparkle2);
+				add(_gameLevel.sparkle3);
+				add(_gameLevel.sparkle4);
+				add(_gameLevel.sparkle5);
+				add(_gameLevel.sparkle6);
+				add(_gameLevel.sparkle7);
+				add(_gameLevel.sparkle8);
+				add(_gameLevel.sparkle9);
+				add(_gameLevel.sparkle10);
+				add(_gameLevel.sparkle11);
+				add(_gameLevel.sparkle12);
+				add(_gameLevel.sparkle13);
+				add(_gameLevel.sparkle14);
+				add(_gameLevel.sparkle15);
+				add(_gameLevel.sparkle16);
+				add(_gameLevel.sparkle17);
+				add(_gameLevel.sparkle18);
+				// add(_gameLevel.sparkle);				
+			}
+
 			
 
 			if (Registry.firstTimePlayingLevel)

@@ -229,6 +229,8 @@ package
 			play("punched");
 			if (messageCount == 1)
 			{
+				Registry.firstLevel5 = false;
+				FlxG.playMusic(Registry.l5msc, 1);
 				message.text = "So many balls.\n Great job.";
 				FlxG.play(bah);
 				Registry.hasUmbrella = true;

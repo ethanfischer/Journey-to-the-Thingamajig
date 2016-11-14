@@ -186,6 +186,30 @@ package
 			FlxG.flash(0x000000, 1);
 			Registry.chkptsUsed = 0;
 			FlxG.switchState(new PlayState);
+			if(Registry.stageCount == 1 && Registry.hasFlower)
+			{
+				FlxG.playMusic(Registry.l2msc);
+			}
+			else if(Registry.stageCount == 2 && !Registry.firstLevel3)
+			{
+				FlxG.playMusic(Registry.l3msc);
+			}
+			else if(Registry.stageCount == 3 && !Registry.firstLevel4)
+			{
+				FlxG.playMusic(Registry.l4msc);
+			}
+			else if(Registry.stageCount == 4 && Registry.hasUmbrella)
+			{
+				FlxG.playMusic(Registry.l5msc);
+			}
+			else if(Registry.stageCount == 5)// TODO && !Registry.firstLevel6)
+			{
+				FlxG.playMusic(Registry.l6msc);
+			}
+			else if(Registry.stageCount == 6) //TODO && !Registry.firstLevel7)
+			{
+				FlxG.playMusic(Registry.l7msc);
+			}
 		}
 		
 		override public function destroy():void
