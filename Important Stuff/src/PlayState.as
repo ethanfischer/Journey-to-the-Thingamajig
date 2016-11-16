@@ -119,8 +119,6 @@ package
 			super.update();
 			
 			handlePause();
-			
-
 
 			if (!Registry.gameStart)
 			{
@@ -141,9 +139,19 @@ package
 				
 				level7();
 				fade(_gameLevel.black); //listen for the black to fade in level 2
+				// stars();
 				//butt();
 			}
 		}
+
+		// private function stars():void
+		// {
+		// 	if(Registry.stageCount == 2)
+		// 	{
+		// 		// if (_gameLevel.stars.x < -600) _gameLevel.stars.x = 0;
+		// 		// if (_gameLevel.stars2.x > 0) _gameLevel.stars2.x = -600;	
+		// 	}
+		// }
 
 		private function hitBot(player:Player, bot:Bot):void
 		{
@@ -284,7 +292,7 @@ package
 				FlxG.overlap(_gameLevel.player, _gameLevel.torches, hitFire);
 				FlxG.overlap(_gameLevel.player, _gameLevel.lilguy, hitLilguy);
 				FlxG.overlap(_gameLevel.hitBox, _gameLevel.bots, punchBot);
-				FlxG.overlap(_gameLevel.hitBox, _gameLevel.bots2, punchBot);
+				//FlxG.overlap(_gameLevel.hitBox, _gameLevel.bots2, punchBot);
 				FlxG.overlap(_gameLevel.hitBox, _gameLevel.borgs, punchBorg);
 				FlxG.overlap(_gameLevel.hitBox, _gameLevel.frog, punchFrog);
 				FlxG.overlap(_gameLevel.player, _gameLevel.boulder, playerBoulder);
@@ -370,17 +378,29 @@ package
 
 			if (Registry.textCounter == 1)
 			{
-				Registry.tmpTxt = Registry.tmpTxt + "\nYou'll tap your toe."; 					
+				Registry.tmpTxt = Registry.tmpTxt + " I forgot to mention something."; 					
 			}	
 			else if (Registry.textCounter == 2)
 			{
-				Registry.tmpTxt = Registry.tmpTxt + "\nHeck, you might never stop dancing,"; 					
+				Registry.tmpTxt = Registry.tmpTxt + "\nThis..."; 					
 			}
 			else if (Registry.textCounter == 3)
 			{
-				Registry.tmpTxt = Registry.tmpTxt + "\nwhen you see this thing."; 					
+				Registry.tmpTxt = Registry.tmpTxt + "\n...thing."; 					
 			}
 			else if (Registry.textCounter == 4)
+			{
+				Registry.tmpTxt = Registry.tmpTxt + "\nI don't know how you will react to it."; 					
+			}
+			else if (Registry.textCounter == 5)
+			{
+				Registry.tmpTxt = Registry.tmpTxt + "\nJust..."; 					
+			}
+			else if (Registry.textCounter == 6)
+			{
+				Registry.tmpTxt = Registry.tmpTxt + "...hurry."; 					
+			}
+			else if (Registry.textCounter == 7)
 			{
 				Registry.tmpTxt = Registry.tmpTxt + "\n\n Press 'ZX'"; 					
 			}
@@ -1102,7 +1122,6 @@ package
 				credits2.y = 140;
 				credits2.text = FlxU.formatTime(finalPlaytime, false);
 				credits2.alpha += .05;
-				
 			}
 		}
 		
@@ -1115,7 +1134,6 @@ package
 		
 		public function makeStage():void
 		{
-	
 			_gameLevel = new stages[Registry.stageCount];
 			Registry.gameLevel = _gameLevel;
 
@@ -1145,8 +1163,6 @@ package
 				add(_gameLevel.sparkle18);
 				// add(_gameLevel.sparkle);				
 			}
-
-			
 
 			if (Registry.firstTimePlayingLevel)
 			{
@@ -1187,9 +1203,15 @@ package
 			add(_gameLevel.worm2);
 			add(_gameLevel.worm3);
 
-			if (Registry.stageCount == 2 && Registry.firstLevel3) 
+			FlxG.log("stagecount = " && Registry.stageCount);
+			if (Registry.stageCount == 2) 
 			{
-				add(_gameLevel.mail); //if playing level 4 for first time, add the mail for player to hit
+				if(Registry.firstLevel3)
+				{
+					add(_gameLevel.mail); //if playing level 4 for first time, add the mail for player to hit
+				}			
+				add(_gameLevel.stars);
+				_gameLevel.stars.addStars();
 			}
 			
 			if (Registry.stageCount == 3 && Registry.firstLevel4) add(_gameLevel.mail); //if playing level 4 for first time, add the mail for player to hit

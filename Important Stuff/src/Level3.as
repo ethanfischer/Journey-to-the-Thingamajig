@@ -27,7 +27,8 @@ package
 		[Embed(source = "../map/rock.png")] public var rockPNG:Class;
 		[Embed(source = "../map/crumbleRock.png")] public var crumbleRockPNG:Class;
 		[Embed(source="../map/mapCSV_Level3_NomNoms.csv", mimeType="application/octet-stream")] public var nomNomsCSV:Class;
-	
+		[Embed(source = "../assets/stars.png")] private var starsPNG:Class;
+
 		//[Embed(source = "../assets/13_Dwarf_Dance.mp3")] public var dwarfDance:Class;
 		//[Embed(source = "../assets/Native American video game music test.mp3")] public var dwarfDance:Class;
 		//[Embed(source="../assets/forestsounds.mp3")] public var dwarfDance:Class;
@@ -48,7 +49,7 @@ package
 
 
 			letterMsg = new FlxText(30, 100, 400);
-			letterMsg.text = "You'll bob your head.";
+			letterMsg.text = "Okay.";
 				
 			
 			//Registry.musix = beats[Registry.deathCount % 2];
@@ -57,6 +58,11 @@ package
 			
 			Registry.hasFlower = true;
 			Registry.meetingAdjourned = true;
+
+			stars = new Stars();
+
+			// stars.velocity.x = -200;
+			// stars2.velocity.x = 200;
 
 			Registry.fstPlace = 90;
 			Registry.sndPlace = 270;
@@ -109,9 +115,9 @@ package
 			
 			if (Registry.deaths % 13== 0 && Registry.deaths != 0) //if frog is on screen 
 			{
-				sign = new Sign(135, 134, "", player, 105, 124);
+				sign = new Sign(445, 134, "", player, 405, 124);
 			}
-			else sign = new Sign(135, 134, "PRESS DOWN TO DUCK", player, 105, 134);
+			else sign = new Sign(445, 134, "PRESS DOWN", player, 405, 134);
 			sign2 = new Sign(1103, 50, "SLIDE INTO BAD GUYS", player, 1060, 50);
 			
 			parseBots(player);

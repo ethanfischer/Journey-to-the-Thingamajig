@@ -109,7 +109,7 @@ package
 		[Embed(source = "../assets/Playhouse.mp3")] public static var l2msc:Class;
 		
 		//Level3
-		[Embed(source="../assets/jazz_messyswingloop.mp3")] public static var l3msc:Class;
+		[Embed(source="../assets/WeInsist.mp3")] public static var l3msc:Class;
 
 		//Level4
 		[Embed(source="../assets/MindOnTheFritz.mp3")] public static var l4msc:Class;

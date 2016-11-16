@@ -49,6 +49,8 @@ package
 		[Embed(source = "../assets/cutscene.png")] private var cutscenePNG:Class;
 		[Embed(source = "../assets/blue.png")] private var bluePNG:Class;
 		[Embed(source = "../assets/black.png")] private var blackPNG:Class;
+		// [Embed(source = "../assets/stars.png")] private var starsPNG:Class;
+
 
 
 		public var blue:FlxSprite;
@@ -91,6 +93,8 @@ package
 		public var sparkle16:Sparkle;
 		public var sparkle17:Sparkle;
 		public var sparkle18:Sparkle;
+		public var stars:Stars;
+
 
 		[Embed(source = "../assets/canopy.png")] private var canopyPNG:Class;
 		[Embed(source = "../assets/canopy6.png")] private var canopy6PNG:Class;
