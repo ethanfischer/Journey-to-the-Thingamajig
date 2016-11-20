@@ -45,6 +45,7 @@ package
 		public var walkSFX:FlxSound;
 		public var cutscene:FlxSprite;
 		public var letterMsg:FlxText;
+		public var wizHat:FlxSprite;
 		[Embed(source = "../assets/umbrella.png")] private var _umbrellaPNG:Class;
 		[Embed(source = "../assets/cutscene.png")] private var cutscenePNG:Class;
 		[Embed(source = "../assets/blue.png")] private var bluePNG:Class;

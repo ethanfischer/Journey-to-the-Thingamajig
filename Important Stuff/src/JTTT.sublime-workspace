@@ -4,6 +4,26 @@
 		"selected_items":
 		[
 			[
+				"rand",
+				"randNum"
+			],
+			[
+				"has",
+				"hasUmbrella"
+			],
+			[
+				"spar",
+				"sparkleTimer"
+			],
+			[
+				"sparkl",
+				"sparkleTimer"
+			],
+			[
+				"spa",
+				"sparkleFlag"
+			],
+			[
 				"textCoun",
 				"textCounter"
 			],
@@ -79,7 +99,7 @@
 			"file": "GameLevel.as",
 			"settings":
 			{
-				"buffer_size": 4307,
+				"buffer_size": 5546,
 				"encoding": "UTF-8",
 				"line_ending": "Unix"
 			}
@@ -88,7 +108,7 @@
 			"file": "Registry.as",
 			"settings":
 			{
-				"buffer_size": 5646,
+				"buffer_size": 5725,
 				"encoding": "UTF-8",
 				"line_ending": "Unix"
 			}
@@ -97,8 +117,67 @@
 			"file": "PlayState.as",
 			"settings":
 			{
-				"buffer_size": 39574,
+				"buffer_size": 41319,
 				"encoding": "UTF-8",
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "Player.as",
+			"settings":
+			{
+				"buffer_size": 18661,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "Level7.as",
+			"settings":
+			{
+				"buffer_size": 15891,
+				"encoding": "UTF-8",
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "Level6.as",
+			"settings":
+			{
+				"buffer_size": 13730,
+				"encoding": "UTF-8",
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "Stars.as",
+			"settings":
+			{
+				"buffer_size": 349,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "Level3.as",
+			"settings":
+			{
+				"buffer_size": 10074,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "Sign.as",
+			"settings":
+			{
+				"buffer_size": 1008,
+				"encoding": "UTF-8",
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "Star.as",
+			"settings":
+			{
+				"buffer_size": 1568,
 				"line_ending": "Unix"
 			}
 		},
@@ -106,16 +185,7 @@
 			"file": "NPC.as",
 			"settings":
 			{
-				"buffer_size": 5998,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "Sparkle.as",
-			"settings":
-			{
-				"buffer_size": 3940,
-				"encoding": "UTF-8",
+				"buffer_size": 6071,
 				"line_ending": "Unix"
 			}
 		},
@@ -123,7 +193,7 @@
 			"file": "LevelMenuState.as",
 			"settings":
 			{
-				"buffer_size": 5784,
+				"buffer_size": 6439,
 				"line_ending": "Unix"
 			}
 		}
@@ -135,10 +205,18 @@
 	"build_varint": "",
 	"command_palette":
 	{
-		"height": 167.0,
-		"last_filter": "syntax: acti",
+		"height": 87.0,
+		"last_filter": "set syntax action",
 		"selected_items":
 		[
+			[
+				"set syntax action",
+				"Set Syntax: ActionScript 3"
+			],
+			[
+				"set syntax: act",
+				"Set Syntax: ActionScript 3"
+			],
 			[
 				"syntax: acti",
 				"Set Syntax: ActionScript 3"
@@ -168,7 +246,7 @@
 				"Preferences: Browse Packages"
 			]
 		],
-		"width": 467.0
+		"width": 449.0
 	},
 	"console":
 	{
@@ -196,15 +274,22 @@
 	],
 	"file_history":
 	[
-		"/Users/Ethan/Dev/Journey-to-the-Thingamajig/Important Stuff/src/Bot.as",
-		"/Users/Ethan/Dev/Journey-to-the-Thingamajig/Important Stuff/src/Player.as",
 		"/Users/Ethan/Dev/Journey-to-the-Thingamajig/Important Stuff/src/Level2.as",
+		"/Users/Ethan/Dev/Journey-to-the-Thingamajig/Important Stuff/src/Sparkle.as",
+		"/Users/Ethan/Dev/Journey-to-the-Thingamajig/Important Stuff/src/MainMenuState.as",
+		"/Users/Ethan/Dev/Journey-to-the-Thingamajig/Important Stuff/src/Player.as",
+		"/Users/Ethan/Dev/Journey-to-the-Thingamajig/Important Stuff/src/Star.as",
+		"/Users/Ethan/Dev/Journey-to-the-Thingamajig/Important Stuff/src/Rock.as",
+		"/Users/Ethan/Dev/Journey-to-the-Thingamajig/Important Stuff/src/Rocks.as",
+		"/Users/Ethan/Dev/Journey-to-the-Thingamajig/Important Stuff/src/Wiz.as",
+		"/Users/Ethan/Dev/Journey-to-the-Thingamajig/Important Stuff/src/Level7.as",
+		"/Users/Ethan/Documents/Professional/whyhireme",
+		"/Users/Ethan/Dev/Journey-to-the-Thingamajig/Important Stuff/src/Bot.as",
 		"/Users/Ethan/Dev/Journey-to-the-Thingamajig/Important Stuff/src/Level3.as",
 		"/Users/Ethan/Dev/Journey-to-the-Thingamajig/Important Stuff/src/Level1.as",
 		"/Users/Ethan/Dev/Journey-to-the-Thingamajig/Important Stuff/src/Level4.as",
 		"/Users/Ethan/Dev/Journey-to-the-Thingamajig/Important Stuff/src/Main.as",
 		"/Users/Ethan/Dev/Journey-to-the-Thingamajig/Important Stuff/src/Level6.as",
-		"/Users/Ethan/Dev/Journey-to-the-Thingamajig/Important Stuff/src/MainMenuState.as",
 		"/Users/Ethan/Dev/Journey-to-the-Thingamajig/Important Stuff/src/NPC.as",
 		"/Users/Ethan/Dev/Journey-to-the-Thingamajig/Important Stuff/src/Turd.as",
 		"/Users/Ethan/Dev/Journey-to-the-Thingamajig/Important Stuff/src/Butt.as",
@@ -213,7 +298,6 @@
 		"/Users/Ethan/Dev/Journey-to-the-Thingamajig/Important Stuff/src/Worm.as",
 		"/Users/Ethan/Dev/Journey-to-the-Thingamajig/Important Stuff/src/Bots.as",
 		"/Users/Ethan/Dev/Journey-to-the-Thingamajig/Important Stuff/src/Level5.as",
-		"/Users/Ethan/Dev/Journey-to-the-Thingamajig/Important Stuff/src/Level7.as",
 		"/Users/Ethan/Documents/software I want",
 		"/Users/Ethan/Dev/Journey-to-the-Thingamajig/(ignore:delete)DeveloperNotes/Links I used to figure out how to develop flixel o",
 		"/Users/Ethan/Flex/frameworks/flex-config.xml",
@@ -286,6 +370,65 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			"pickup",
+			"player, ",
+			"glove",
+			"pickuptimer",
+			"pickuptimer =",
+			"pickup",
+			"letter",
+			"stars",
+			"level.star",
+			"star.",
+			"rock",
+			"stars",
+			"stars2",
+			"stars",
+			"makestage",
+			"stars",
+			"count == 2",
+			"add(",
+			"stars",
+			"update",
+			"stars",
+			"add(",
+			"add(sparkle",
+			"stars",
+			"l3text",
+			"level3",
+			".volume",
+			".log",
+			"theend()",
+			".playmu",
+			"theend",
+			"jumparound",
+			"player.x",
+			"jumparound",
+			"visible",
+			"level2()",
+			"stagecount",
+			"createstage",
+			"level7(",
+			"level7",
+			"playmusic",
+			"meetnpc",
+			"msc",
+			"l2msc",
+			".play",
+			"nextstage",
+			"has",
+			"velocity.",
+			"jumparound",
+			"sparkle",
+			"timer",
+			"sparkle",
+			"x =",
+			"timer",
+			"dots",
+			"sparkle",
+			"y_x",
+			"sparkle",
+			"_gamelevel",
 			"sparkle",
 			"add(",
 			"water",
@@ -354,66 +497,7 @@
 			"addtext",
 			"string",
 			"String",
-			"i dont",
-			"text",
-			"l1",
-			"thingama",
-			"timer",
-			"timer =",
-			"timer=",
-			"timer =",
-			"timer",
-			"thingamajigpn",
-			"thingamajig.png",
-			"nowhere",
-			"thingam",
-			"nowhere",
-			"opacity",
-			"fade",
-			"thingamajig",
-			"flxg.playmusic",
-			"play",
-			"music",
-			"update(",
-			"butt(",
-			"streamDrag",
-			"butt(",
-			"streamd",
-			"lettertimer",
-			"lettertim",
-			"lettert",
-			"debug",
-			"letter(",
-			"update(",
-			"npc",
-			"registry.checkpointflag =",
-			"registry.checkpointflag",
-			"parsebots(",
-			"FlxG.log",
-			"log",
-			"suicide",
-			"parsebots(",
-			"parsebots",
-			"hitblade",
-			"collide(",
-			"parsebots",
-			"teddy",
-			"npc",
-			"stagecount ==",
-			"stagecount",
-			"update(",
-			"update",
-			"isdying",
-			"turnaround",
-			".log",
-			".play",
-			"suicide",
-			"issuiciding",
-			"suicide",
-			"delayedturnar",
-			"turnar",
-			"suicide",
-			"collid"
+			"i dont"
 		],
 		"highlight": true,
 		"in_selection": false,
@@ -421,6 +505,7 @@
 		"regex": false,
 		"replace_history":
 		[
+			"star",
 			"thingamajig"
 		],
 		"reverse": false,
@@ -432,7 +517,7 @@
 	"groups":
 	[
 		{
-			"selected": 4,
+			"selected": 2,
 			"sheets":
 			[
 				{
@@ -441,27 +526,27 @@
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 4307,
+						"buffer_size": 5546,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								2693,
-								2693
+								3323,
+								3328
 							]
 						],
 						"settings":
 						{
-							"syntax": "Packages/ActionScript/ActionScript.sublime-syntax",
+							"syntax": "Packages/ActionScript 3/ActionScript 3.tmLanguage",
 							"translate_tabs_to_spaces": false
 						},
 						"translation.x": 0.0,
-						"translation.y": 1200.0,
+						"translation.y": 1389.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 1,
+					"stack_index": 11,
 					"type": "text"
 				},
 				{
@@ -470,15 +555,15 @@
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 5646,
+						"buffer_size": 5725,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								5273,
-								5273
+								2800,
+								2810
 							]
 						],
 						"settings":
@@ -487,10 +572,10 @@
 							"translate_tabs_to_spaces": false
 						},
 						"translation.x": 0.0,
-						"translation.y": 1731.0,
+						"translation.y": 921.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 4,
+					"stack_index": 8,
 					"type": "text"
 				},
 				{
@@ -499,15 +584,44 @@
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 39574,
+						"buffer_size": 41319,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								32280,
-								32280
+								12568,
+								12568
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/ActionScript 3/ActionScript 3.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 78.0,
+						"translation.y": 6573.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 0,
+					"type": "text"
+				},
+				{
+					"buffer": 3,
+					"file": "Player.as",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 18661,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								1645,
+								1645
 							]
 						],
 						"settings":
@@ -516,27 +630,85 @@
 							"translate_tabs_to_spaces": false
 						},
 						"translation.x": 0.0,
-						"translation.y": 19511.0,
+						"translation.y": 507.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 2,
+					"stack_index": 1,
 					"type": "text"
 				},
 				{
-					"buffer": 3,
-					"file": "NPC.as",
+					"buffer": 4,
+					"file": "Level7.as",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 5998,
+						"buffer_size": 15891,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								457,
-								457
+								7319,
+								7319
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/ActionScript/ActionScript.sublime-syntax",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 2275.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 4,
+					"type": "text"
+				},
+				{
+					"buffer": 5,
+					"file": "Level6.as",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 13730,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								6280,
+								6280
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/ActionScript 3/ActionScript 3.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 2401.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 3,
+					"type": "text"
+				},
+				{
+					"buffer": 6,
+					"file": "Stars.as",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 349,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								282,
+								282
 							]
 						],
 						"settings":
@@ -548,24 +720,24 @@
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 3,
+					"stack_index": 9,
 					"type": "text"
 				},
 				{
-					"buffer": 4,
-					"file": "Sparkle.as",
+					"buffer": 7,
+					"file": "Level3.as",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 3940,
+						"buffer_size": 10074,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								925,
-								925
+								3233,
+								3233
 							]
 						],
 						"settings":
@@ -574,27 +746,27 @@
 							"translate_tabs_to_spaces": false
 						},
 						"translation.x": 0.0,
-						"translation.y": 291.0,
+						"translation.y": 689.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 0,
+					"stack_index": 2,
 					"type": "text"
 				},
 				{
-					"buffer": 5,
-					"file": "LevelMenuState.as",
+					"buffer": 8,
+					"file": "Sign.as",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 5784,
+						"buffer_size": 1008,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								5025,
-								5025
+								404,
+								404
 							]
 						],
 						"settings":
@@ -603,10 +775,97 @@
 							"translate_tabs_to_spaces": false
 						},
 						"translation.x": 0.0,
-						"translation.y": 2959.0,
+						"translation.y": 8.0,
 						"zoom_level": 1.0
 					},
 					"stack_index": 5,
+					"type": "text"
+				},
+				{
+					"buffer": 9,
+					"file": "Star.as",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 1568,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								507,
+								507
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/ActionScript 3/ActionScript 3.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 83.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 7,
+					"type": "text"
+				},
+				{
+					"buffer": 10,
+					"file": "NPC.as",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 6071,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								5526,
+								5526
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/ActionScript/ActionScript.sublime-syntax",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 3843.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 10,
+					"type": "text"
+				},
+				{
+					"buffer": 11,
+					"file": "LevelMenuState.as",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 6439,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								2866,
+								2866
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/ActionScript/ActionScript.sublime-syntax",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 958.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 6,
 					"type": "text"
 				}
 			]
@@ -661,11 +920,95 @@
 		"selected_items":
 		[
 			[
-				"plays",
+				"level2",
+				"Level2.as"
+			],
+			[
+				"pl",
+				"Player.as"
+			],
+			[
+				"pla",
 				"PlayState.as"
 			],
 			[
+				"level6",
+				"Level6.as"
+			],
+			[
+				"level7",
+				"Level7.as"
+			],
+			[
+				"sign",
+				"Sign.as"
+			],
+			[
+				"regis",
+				"Registry.as"
+			],
+			[
+				"star",
+				"Star.as"
+			],
+			[
+				"level3",
+				"Level3.as"
+			],
+			[
+				"spark",
+				"Sparkle.as"
+			],
+			[
+				"rock",
+				"Rock.as"
+			],
+			[
+				"rocks",
+				"Rocks.as"
+			],
+			[
+				"mainmenu",
+				"MainMenuState.as"
+			],
+			[
+				"playstate",
+				"PlayState.as"
+			],
+			[
+				"reg",
+				"Registry.as"
+			],
+			[
+				"plas",
+				"PlayState.as"
+			],
+			[
+				"levelmen",
+				"LevelMenuState.as"
+			],
+			[
 				"play",
+				"PlayState.as"
+			],
+			[
+				"regi",
+				"Registry.as"
+			],
+			[
+				"playsta",
+				"PlayState.as"
+			],
+			[
+				"player",
+				"Player.as"
+			],
+			[
+				"sparkle",
+				"Sparkle.as"
+			],
+			[
+				"plays",
 				"PlayState.as"
 			],
 			[
@@ -681,28 +1024,8 @@
 				"Level1.as"
 			],
 			[
-				"level3",
-				"Level3.as"
-			],
-			[
-				"regi",
-				"Registry.as"
-			],
-			[
-				"playsta",
-				"PlayState.as"
-			],
-			[
-				"playstate",
-				"PlayState.as"
-			],
-			[
 				"main",
 				"Main.as"
-			],
-			[
-				"level2",
-				"Level2.as"
 			],
 			[
 				"registry",
@@ -715,14 +1038,6 @@
 			[
 				"levelmenu",
 				"LevelMenuState.as"
-			],
-			[
-				"pl",
-				"Player.as"
-			],
-			[
-				"player",
-				"Player.as"
 			],
 			[
 				"playst",
@@ -747,10 +1062,6 @@
 			[
 				"death",
 				"DeathMenuState.as"
-			],
-			[
-				"level6",
-				"Level6.as"
 			],
 			[
 				"gamelevel",

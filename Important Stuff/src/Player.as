@@ -109,6 +109,7 @@ package
 				addAnimation("parachute", [24, 23, 23, 23, 23, 23, 23, 23, 23, 23, 23, 23, 23, 23, 23, 23, 23, 23, 23, 23, 23, 23, 23, 23, 23, 23, 23, 23, 23], 24, false);
 				addAnimation("letter", [26, 27, 28, 29, 30, 31, 32, 33, 0, 0], 18, false);
 				addAnimation("letterIdle", [26], 0, false);
+				addAnimation("hatIdle", [16,17,18, 40], 8, false);
 				
 				//handle walking Soundeffect stuff here
 				walkSFX = new FlxSound();
@@ -684,6 +685,8 @@ package
 			canIdle = false;
 			_letterTimer = .7;
 			play("letter");
+			FlxG.log("putAway");
+
 		}
 		
 		public function setLetterTimer(lt:Number):void

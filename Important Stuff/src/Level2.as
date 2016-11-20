@@ -26,7 +26,8 @@ package
 		[Embed(source = "../map/mapCSV_Level2_NomNoms.csv", mimeType = "application/octet-stream")] public var nomNomsCSV:Class;
 		[Embed(source = "../map/mapCSV_Level2_Supports.csv", mimeType = "application/octet-stream")] public var supportsCSV:Class;
 		[Embed(source = "../map/mapCSV_Level2_Checkpoint.csv", mimeType = "application/octet-stream")] public var checkpointCSV:Class;
-	
+		// [Embed(source = "../assets/wizHat.png")] public var wizHatPNG:Class;
+
 		//[Embed(source = "../assets/13_Dwarf_Dance.mp3")] public var dwarfDance:Class;
 		//[Embed(source = "../assets/forestsounds.mp3")] public var dwarfDance:Class;
 		//[Embed(source = "../assets/beat1.mp3")] public var beat1:Class;
@@ -45,6 +46,8 @@ package
 		public function Level2() 
 		{
 			super();
+
+		
 		
 			Registry.hmodeChkpt = 999999999999999999999999999;
 			

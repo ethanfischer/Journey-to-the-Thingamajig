@@ -42,6 +42,7 @@ package
 		[Embed(source = "../map/mapCSV_Level6_NomNoms.csv", mimeType = "application/octet-stream")] public var nomNomsCSV:Class;
 															[Embed(source = "../assets/stream.png")] public var streamPNG:Class;
 		[Embed(source = "../map/mapCSV_Level6_Streams.csv", mimeType = "application/octet-stream")] public var streamsCSV:Class;
+																[Embed(source = "../assets/wizHat.png")] public var wizHatPNG:Class;
 		
 
 		
@@ -51,6 +52,7 @@ package
 		public var rockMap:FlxTilemap;	
 		public var crumbleRockMap:FlxTilemap;
 		public var fadeBlockMap:FlxTilemap;
+
 		//public var borgs:Borgs;
 		
 	
@@ -78,8 +80,6 @@ package
 				
 			//	i++;
 			//}
-			
-			
 			Registry.hasUmbrella = true;
 			
 			Registry.fstPlace = 120;
@@ -103,16 +103,12 @@ package
 			background.scrollFactor.y = .9;
 			background.y += 160; /**/
 			
-			
 			foreground = new FlxTilemap;
 			foreground.loadMap(new foregroundCSV, foregroundTilesPNG, 16, 16, 0, 0, 1, 24);
-			
 			foreforeground = new FlxTilemap;
 			foreforeground.loadMap(new foreforegroundCSV, foreforegroundTilesPNG, 16, 16, 0, 0, 1, 64);
 			foreforeground.scrollFactor.x = 1;
 			foreforeground.y += 160;
-			
-			
 			
 			//	Makes these tiles non collidable)
 			foreground.setTileProperties(57, FlxObject.NONE, null, null, 6);
@@ -127,7 +123,11 @@ package
 			width = foreground.width;
 			height = foreground.height;
 			//Registry.checkpointFlag = true;
-		
+
+			wizHat = new FlxSprite(340, 448);
+			wizHat.loadGraphic(wizHatPNG, false, false, 16, 16);
+			wizHat.scrollFactor.x = 1;
+			wizHat.scrollFactor.y = 1;
 			
 		///////////////////////////////////////////////////////
 		//					 CHECKPOINT						 //
@@ -145,24 +145,23 @@ package
 			frog = new Frog(1309, 112);
 			Registry.torchesOn = true;
 		}
-		
-		
-		Registry.player = player;
-			
+
+			Registry.player = player;
+				
 			not_a_flower = new NotAFlower(260, height - 48, player);
-			
-				switch((Registry.totalDeaths % 20)) 
-				{  
-					case 14:
-						sign_message = "DANGER!!!";
-						break;
-					default:
-						sign_message = "DANGER";
+				
+				// switch((Registry.totalDeaths % 20)) 
+				// {  
+				// 	case 14:
+				// 		sign_message = "DANGER!!!";
+				// 		break;
+				// 	default:
+				// 		sign_message = "DANGER";
 					
-				}
+				// }
 	
-			sign = new Sign(103, 400, sign_message, player, 45, 390);	
-			sign.message.alignment = "center";
+			// sign = new Sign(103, 400, sign_message, player, 45, 390);	
+			// sign.message.alignment = "center";
 			
 			parseBots(player);
 			parseBots2(player);
@@ -325,7 +324,9 @@ package
 			
 			borgMap.loadMap(new borgsCSV, botletPNG, 16, 16);
 			
-			borgs = new Borgs;			
+			borgs = new Borgs;	
+
+			var firstBorg:Boolean = true;		
 			
 			for (var ty:Number = 0; ty < borgMap.heightInTiles; ty++)
 			{
@@ -333,7 +334,11 @@ package
 				{
 					if (borgMap.getTile(tx, ty) == 1)
 					{
-						borgs.addBorg(tx, ty, player, FlxObject.RIGHT);
+						if(!Registry.firstLevel6 || !firstBorg)
+						{
+							borgs.addBorg(tx, ty, player, FlxObject.RIGHT);
+							firstBorg = false;
+						}
 					}
 					else if (borgMap.getTile(tx, ty) == 3)
 					{

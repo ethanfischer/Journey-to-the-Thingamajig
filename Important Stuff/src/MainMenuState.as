@@ -65,82 +65,84 @@ package
 		
 		override public function create():void
 		{
+			//mute mode
+			FlxG.volume = 0;
 		
-		Registry.checkpointFlag = false;
-		//FlxG.play(quack);
-		Registry.firstTimePlayingLevel = true;
-		
-		FlxG.playMusic(l1msc, 1);
-	
-		dots.loadGraphic(dotsPNG, true, false, 72, 6);
-		dots.drag.y = 3900;
-		dots.addAnimation("blink", [0, 2], 3, true);
-		dots.play("blink");
-		
-		var t:FlxSprite = new FlxSprite(0, 0, titlePagePNG);
-		
-		
-		quest = new FlxSprite(0, 0);
-		quest.loadGraphic(questPNG, false, false, 600, 300);
-		quest.alpha = 0;
-		
-		to = new FlxSprite(0, 0);
-		to.loadGraphic(toPNG, false, false, 600, 300);
-		to.alpha = 0;
-		
-		thingamajig = new FlxSprite(0, 0);
-		thingamajig.loadGraphic(thingamajigPNG, false, false, 600, 300);
-		thingamajig.alpha = 0;
-		
-		start = new FlxSprite(0, 40);
-		start.loadGraphic(startPNG, false, false, 500, 250);
-		start.alpha = 0;
-		
-		menuTrees = new FlxSprite(0, 0);
-		menuTrees.loadGraphic(menuTreesPNG, false, false, 1200, 300);
-		menuTrees.velocity.x = -30;
-		
-		stars = new FlxSprite(0, 0);
-		stars.loadGraphic(starsPNG, false, false, 1200, 300);
-		
-		stars2 = new FlxSprite(0, 0);
-		stars2.loadGraphic(starsPNG, false, false, 1200, 300);
-		
-		black = new FlxSprite(0, 0);
-		black.loadGraphic(blackPNG, false, false, 600, 300);
-		black.alpha = 0;
+			Registry.checkpointFlag = false;
+			//FlxG.play(quack);
+			Registry.firstTimePlayingLevel = true;
 			
-		Registry.stageCount = 0;
+			FlxG.playMusic(l1msc, 1);
 			
-		//levelsBox = new FlxButton(Registry.screenWidth / 2 - 29, 200, "LEVELS", goToLevelMenu);
-		//start = new FlxButton(Registry.screenWidth / 2 - 30, 185, "START", startIt);
-		
-		//levelsBox.makeGraphic(64, 20, 0x00000000);
-		
-		//start.makeGraphic(64, 20, 0x00000000);
-		
-		//levelsBox.label.color = 0xffffff;
-		//levelsBox.alpha = 0;
-		
-		//start.label.color = 0xffffff;
-		//start.alpha = 0;
-		
-		
-		stars.velocity.x = -200;
-		stars2.velocity.x = 200;
-		
-		add(black);
-		add(t);
-		add(stars);
-		add(stars2);
-		add(menuTrees);
-		add(title);
-		//add(the);
-		add(quest);
-		add(to);
-		add(thingamajig);
-		add(start);
-		
+			dots.loadGraphic(dotsPNG, true, false, 72, 6);
+			dots.drag.y = 3900;
+			dots.addAnimation("blink", [0, 2], 3, true);
+			dots.play("blink");
+			
+			var t:FlxSprite = new FlxSprite(0, 0, titlePagePNG);
+			
+			
+			quest = new FlxSprite(0, 0);
+			quest.loadGraphic(questPNG, false, false, 600, 300);
+			quest.alpha = 0;
+			
+			to = new FlxSprite(0, 0);
+			to.loadGraphic(toPNG, false, false, 600, 300);
+			to.alpha = 0;
+			
+			thingamajig = new FlxSprite(0, 0);
+			thingamajig.loadGraphic(thingamajigPNG, false, false, 600, 300);
+			thingamajig.alpha = 0;
+			
+			start = new FlxSprite(0, 40);
+			start.loadGraphic(startPNG, false, false, 500, 250);
+			start.alpha = 0;
+			
+			menuTrees = new FlxSprite(0, 0);
+			menuTrees.loadGraphic(menuTreesPNG, false, false, 1200, 300);
+			menuTrees.velocity.x = -30;
+			
+			stars = new FlxSprite(0, 0);
+			stars.loadGraphic(starsPNG, false, false, 1200, 300);
+			
+			stars2 = new FlxSprite(0, 0);
+			stars2.loadGraphic(starsPNG, false, false, 1200, 300);
+			
+			black = new FlxSprite(0, 0);
+			black.loadGraphic(blackPNG, false, false, 600, 300);
+			black.alpha = 0;
+				
+			Registry.stageCount = 0;
+				
+			//levelsBox = new FlxButton(Registry.screenWidth / 2 - 29, 200, "LEVELS", goToLevelMenu);
+			//start = new FlxButton(Registry.screenWidth / 2 - 30, 185, "START", startIt);
+			
+			//levelsBox.makeGraphic(64, 20, 0x00000000);
+			
+			//start.makeGraphic(64, 20, 0x00000000);
+			
+			//levelsBox.label.color = 0xffffff;
+			//levelsBox.alpha = 0;
+			
+			//start.label.color = 0xffffff;
+			//start.alpha = 0;
+			
+			
+			stars.velocity.x = -200;
+			stars2.velocity.x = 200;
+			
+			add(black);
+			add(t);
+			add(stars);
+			add(stars2);
+			add(menuTrees);
+			add(title);
+			//add(the);
+			add(quest);
+			add(to);
+			add(thingamajig);
+			add(start);
+			
 		}
 		
 		override public function update():void

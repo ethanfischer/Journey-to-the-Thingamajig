@@ -142,9 +142,9 @@ package
 		}
 		else 
 		{
-			//player = new Player(10, 65);
+			player = new Player(10, 65);
 			frog = new Frog(166, 80);
-			player = new Player(9500, 350); //for testing ending sequence
+			//player = new Player(9500, 350); //for testing ending sequence
 			Registry.torchesOn = true;
 		}
 		
