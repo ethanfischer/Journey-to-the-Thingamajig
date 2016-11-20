@@ -303,7 +303,7 @@ package
 				//reform this
 				if(Registry.stageCount == 3 && Registry.firstLevel4) FlxG.overlap(_gameLevel.player, _gameLevel.mail, hitMail);
 				if(Registry.stageCount == 2 && Registry.firstLevel3) FlxG.overlap(_gameLevel.player, _gameLevel.mail, hitMail);
-				// if(Registry.stageCount == 5 && Registry.firstLevel5) FlxG.overlap(_gameLevel.player, _gameLevel.wizHat, hitHat);
+				if(Registry.stageCount == 5 && Registry.firstLevel6) FlxG.overlap(_gameLevel.player, _gameLevel.wizHat, hitHat);
 
 
 
@@ -450,7 +450,7 @@ package
 				}
 				else if ((Registry.stageCount == 2 || Registry.stageCount == 3 || Registry.stageCount == 5) && Registry.letterSequence && (FlxG.keys.X && FlxG.keys.Z)) //after level one, any key will put the letter away
 				{
-					_letterTimer = .5;
+					if(Registry.stageCount != 5) _letterTimer = .5;
 					_gameLevel.player.putAway();
 					Registry.letterSequence = false;
 					Registry.gameLevel.player.moves = true;
@@ -1250,11 +1250,11 @@ package
 			
 			if(Registry.stageCount == 3 && Registry.firstLevel4) add(_gameLevel.mail); //if playing level 4 for first time, add the mail for player to hit
 			
-			// if(Registry.stageCount == 5)
-			// {
-			// 	add(_gameLevel.wizHat);
-			// 	FlxG.log(_gameLevel.wizHat.x);
-			// }
+			if(Registry.stageCount == 5 && Registry.firstLevel6)
+			{
+				add(_gameLevel.wizHat);
+				// FlxG.log(_gameLevel.wizHat.x);
+			}
 
 			add(_gameLevel.torches);
 			add(_gameLevel.bots2.blades);
