@@ -331,7 +331,7 @@ package
 						
 						if (!walkingFlag)
 						{
-							walkSFX.play(true); //only play once you're really walking
+							if(Registry.stageCount != 5)walkSFX.play(true); //only play once you're really walking
 							walkingFlag = true;
 							
 							if (velocity.x > 100 || velocity.x < -100) walkSFX.volume = 1; 
@@ -348,7 +348,7 @@ package
 						{
 							if (velocity.x > 100 || velocity.x < -100) 
 							{
-								walkSFX.play(true); //only play once you're really walking
+								if(Registry.stageCount != 5)walkSFX.play(true); //only play once you're really walking
 								walkingFlag = true;
 							}
 							_fadeoutFlag = false; //fadeout flag? I don't remember what this does
@@ -380,7 +380,7 @@ package
 					//play("flip");
 					if (!_jumpSFXflag)
 					{
-					_jumpSFX.play();
+						if(Registry.stageCount != 5)_jumpSFX.play();
 					_jumpSFXflag = true;
 					walkSFX.stop();
 					}
@@ -392,7 +392,7 @@ package
 					
 					if (!_jumpSFXflag)
 					{
-					_jumpSFX.play();
+					if(Registry.stageCount != 5)_jumpSFX.play();
 					_jumpSFXflag = true;
 					}
 				}
@@ -463,7 +463,7 @@ package
 							if (Math.abs(velocity.x) > 50)
 							{
 								play("slide");
-								_slideSFX.play();
+								if(Registry.stageCount != 5)_slideSFX.play();
 							}
 							
 							else 
@@ -582,7 +582,7 @@ package
 							velocity.y = 10;
 							umbrellaCounter += 1;
 							play("parachute");
-							FlxG.play(_umbrellaSFX);
+							// FlxG.play(_umbrellaSFX);
 							_paraFlag = true;
 						}
 						else
@@ -620,8 +620,14 @@ package
 			else
 			{
 				play("hurt");
-				if (Registry.character == "girl") FlxG.play(_ouchSFX);
-				else if (Registry.character == "bot") FlxG.play(_ouchBotSFX);
+				if (Registry.character == "girl") 
+				{
+					if(Registry.stageCount != 5) FlxG.play(_ouchSFX);
+				}
+				else if (Registry.character == "bot")
+				{
+					if(Registry.stageCount != 5) FlxG.play(_ouchBotSFX);
+				} 
 				FlxG.shake(.03, .02);
 				health -= damage;
 				_hurtTimer = .3;
@@ -648,7 +654,7 @@ package
 				
 				if (!_deathSFXflag)
 				{
-					FlxG.play(_deathSFX);
+					if(Registry.stageCount != 5) FlxG.play(_deathSFX);
 					_deathSFXflag = true;
 					if (Registry.deathCount < 16) Registry.deathCount += 1;
 					else Registry.deathCount = 1;
@@ -681,7 +687,7 @@ package
 		
 		public function putAway():void
 		{
-			FlxG.play(_foldPaperSFX, 1);
+			if(Registry.stageCount != 5)FlxG.play(_foldPaperSFX, 1);
 			canIdle = false;
 			_letterTimer = .7;
 			play("letter");

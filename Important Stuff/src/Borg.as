@@ -52,7 +52,7 @@ package
 		
 		override public function kill():void
 		{		
-			FlxG.play(deathSFX);
+			// FlxG.play(deathSFX);
 			play("dead");
 			stunTimer = 4;
 			
@@ -185,7 +185,7 @@ package
 		
 		public function knockback():void
 		{		
-			FlxG.play(deathSFX);
+			// FlxG.play(deathSFX);
 			play("dead");
 			stunTimer = 3;
 			drag.x = 2000000000;
@@ -211,7 +211,7 @@ package
 			{
 				if (!isDying) play("charge");
 				growlSFX_flag = true;
-				FlxG.play(growlSFX);
+				// FlxG.play(growlSFX);
 			}
 			if (!chargeBool)
 			{

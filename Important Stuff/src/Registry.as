@@ -76,8 +76,10 @@ package
 		public static var firstLevel7:Boolean = true;
 
 		public static var firstTimePlayingLevel:Boolean = true;
-		public static var volume:Number = .5; 
+		// public static var volume:Number = .5; 
+		public static var volume:Number = 0; 
 		
+
 		public static var dropBouldlets:Boolean = false;
 		public static var wizUnfreeze:Boolean = false;
 		public static var wizUnfreeze2:Boolean = false;

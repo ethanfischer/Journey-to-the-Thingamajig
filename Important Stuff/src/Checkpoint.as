@@ -61,7 +61,7 @@ package
 				
 				if (!end) 
 				{
-					FlxG.play(pop);
+					if(Registry.stageCount != 5)FlxG.play(pop);
 				}
 				isDying = true;
 				dieTimer = 1.7;

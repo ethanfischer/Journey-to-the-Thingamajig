@@ -202,7 +202,7 @@ package
 			{
 				FlxG.playMusic(Registry.l5msc);
 			}
-			else if(Registry.stageCount == 5)// TODO && !Registry.firstLevel6)
+			else if(Registry.stageCount == 5 && !Registry.firstLevel6)// TODO && !Registry.firstLevel6)
 			{
 				FlxG.playMusic(Registry.l6msc);
 			}

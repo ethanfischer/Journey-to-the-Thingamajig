@@ -65,8 +65,8 @@ package
 		
 		override public function create():void
 		{
-			//mute mode
-			FlxG.volume = 0;
+			//mute mode, music, volume, silent
+			 // FlxG.volume = 0;
 		
 			Registry.checkpointFlag = false;
 			//FlxG.play(quack);
@@ -252,12 +252,12 @@ package
 			Registry.stageCount = 0;
 			
 			//TODO put this logic at beginning of each level or in gamelevel and use FirstTimePlayinglevel flag to make sure you don't overlap[ the music
-			if (Registry.stageCount == 1) FlxG.playMusic(Registry.l2msc, 1);
-			if (Registry.stageCount == 2) FlxG.playMusic(Registry.l3msc, 1);
-			if (Registry.stageCount == 3) FlxG.playMusic(Registry.l4msc, 1);
-			if (Registry.stageCount == 4) FlxG.playMusic(Registry.l5msc, 1);
-			if (Registry.stageCount == 5) FlxG.playMusic(Registry.l6msc, 1);
-			if (Registry.stageCount == 6) FlxG.playMusic(Registry.l7msc, 1);
+			// if (Registry.stageCount == 1) FlxG.playMusic(Registry.l2msc, 1);
+			// if (Registry.stageCount == 2) FlxG.playMusic(Registry.l3msc, 1);
+			// if (Registry.stageCount == 3) FlxG.playMusic(Registry.l4msc, 1);
+			// if (Registry.stageCount == 4) FlxG.playMusic(Registry.l5msc, 1);
+			// if (Registry.stageCount == 5) FlxG.playMusic(Registry.l6msc, 1);
+			// if (Registry.stageCount == 6) FlxG.playMusic(Registry.l7msc, 1);
 			
 			Registry.musixFlag = true;
 			FlxG.flash(0x000000, 1);

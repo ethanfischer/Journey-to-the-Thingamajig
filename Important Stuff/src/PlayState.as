@@ -118,9 +118,8 @@ package
 		{
 			super.update();
 
-			//mute mode
-			FlxG.volume = 0;
-			
+			//mute mode, music, volumne, silent
+			// FlxG.volume = 0;
 			handlePause();
 
 			if (!Registry.gameStart)
@@ -137,7 +136,11 @@ package
 				letterTimer();
 				
 				//whiff sound effect
-				if(Registry.gameLevel.player.canPunch && Registry.hasFlower && FlxG.keys.justPressed("X")) FlxG.play(whiffSFX);
+				if(Registry.gameLevel.player.canPunch && Registry.hasFlower && FlxG.keys.justPressed("X")) 
+				{
+					if(Registry.stageCount != 5) FlxG.play(whiffSFX);
+
+				}
 				handleStreamDrag();
 				
 				level7();
@@ -168,12 +171,12 @@ package
 				{
 					player.bounce(310);
 					bot.bounce();
-					FlxG.play(_botKillSFX);
+					if(Registry.stageCount != 5)FlxG.play(_botKillSFX);
 				}
 				else if (player.isDucking && Math.abs(player.velocity.x) > 50)
 				{
 					bot.knockback();
-					FlxG.play(kickSFX);
+					if(Registry.stageCount != 5) FlxG.play(kickSFX);
 				}
 				else
 				{
@@ -650,7 +653,7 @@ package
 			{
 				if (!trumpetFlag)
 				{
-					FlxG.play(_trumpetSFX);
+					if(Registry.stageCount != 5) FlxG.play(_trumpetSFX);
 					trumpetFlag = true;
 				}
 				add(new FlxText(_gameLevel.player.x, _gameLevel.player.y - 10, 200, Registry.ballsCollected + "th BALL OF POINTLESSNESS!"));
@@ -663,7 +666,7 @@ package
 			if (player.y + player.height/2 <= blade.y)
 			{
 				player.bounce(310);
-				FlxG.play(_gong);
+				if(Registry.stageCount != 5)FlxG.play(_gong);
 				_gameLevel.poofs.addPoof(blade.x - blade.width, blade.y - 16 );
 				blade.kill();
 
@@ -671,16 +674,16 @@ package
 			else if ((blade.y > player.y + 16) || !player.isDucking)
 			{
 				player.ouch(50);
-				FlxG.play(_gong);
+				if(Registry.stageCount != 5)FlxG.play(_gong);
 				_gameLevel.poofs.addPoof(blade.x - blade.width, blade.y - 16 );
-				FlxG.play(_gong, .13, false);
+				if(Registry.stageCount != 5)FlxG.play(_gong, .13, false);
 				blade.kill();
 			}
 		}
 
 		private function botHitBlade(bot:Bot, blade:Bullet):void
 		{
-			FlxG.play(_gong);
+			if(Registry.stageCount != 5)FlxG.play(_gong);
 				_gameLevel.poofs.addPoof(blade.x - blade.width, blade.y - 16 );
 				FlxG.play(_gong, .13, false);
 				blade.kill();
@@ -731,7 +734,7 @@ package
 				if (!_partyPopflag)
 				{
 					_partyPopflag = true;
-					FlxG.play(_partyPop);
+					if(Registry.stageCount != 5)FlxG.play(_partyPop);
 				}
 				_gameLevel.player.walkSFX.stop();
 				_gameLevel.player.visible = false;
@@ -801,7 +804,7 @@ package
 			
 			if (Registry.gameLevel.player.canPunch && FlxG.keys.justPressed("X") && Registry.hasFlower && !bot.isDying)
 			{
-				FlxG.play(punchSFX);
+				if(Registry.stageCount != 5) FlxG.play(punchSFX);
 				bot.knockback();
 			}
 		}
@@ -810,7 +813,7 @@ package
 		{
 			if (Registry.gameLevel.player.canPunch && FlxG.keys.justPressed("X") && Registry.hasFlower)
 			{
-				FlxG.play(punchSFX);
+				if(Registry.stageCount != 5)FlxG.play(punchSFX);
 				frog.knockBack();
 			}
 		}
@@ -824,7 +827,7 @@ package
 		{
 			if (Registry.gameLevel.player.canPunch && FlxG.keys.justPressed("X") && !borg.isDying)
 			{
-				FlxG.play(punchSFX); //this is extra loud for some reason?
+				if(Registry.stageCount != 5)FlxG.play(punchSFX); //this is extra loud for some reason?
 				borg.knockback();
 				FlxG.shake(.03, .1, nothing, true, 1);
 			}
@@ -871,11 +874,11 @@ package
 				Registry.firstLevel4 = false;
 				FlxG.playMusic(Registry.l4msc, 1);
 			}
-			if(Registry.stageCount == 5)
-			{
-				Registry.firstLevel6 = false;
-				FlxG.playMusic(Registry.l6msc, 1);
-			}
+			// if(Registry.stageCount == 5)
+			// {
+			// 	Registry.firstLevel6 = false;
+			// 	FlxG.playMusic(Registry.l6msc, 1);
+			// }
 		}
 
 		private function hitHat(player:Player, hat:FlxSprite):void
@@ -930,7 +933,7 @@ package
 			if (Registry.gameLevel.player.canPunch && FlxG.keys.justPressed("X"))
 			{
 				FlxG.shake(.02, .05);
-				FlxG.play(kickSFX, 1);
+				if(Registry.stageCount != 5)FlxG.play(kickSFX, 1);
 				add(_gameLevel.npc.message);
 				npc.talk();
 				add(_gameLevel.umbrella);
@@ -950,13 +953,16 @@ package
 			{
 				player.bounce(spring.bounce);
 				spring.play("up");
-				FlxG.play(_boing);
+				if(Registry.stageCount != 5) FlxG.play(_boing);
 			}
 		}
 
 		public function killBlade(blade:Bullet, foreground:FlxTilemap):void
 		{
-			if (blade.onScreen()) FlxG.play(_poof, 1, false, true);
+			if (blade.onScreen()) 
+			{
+				if(Registry.stageCount != 5)	FlxG.play(_poof, 1, false, true);
+			}
 
 			_gameLevel.poofs.addPoof(blade.x - blade.width, blade.y - 16);
 			blade.kill();

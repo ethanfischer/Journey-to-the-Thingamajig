@@ -84,7 +84,7 @@ package
 		{
 			if (!crumbleTimerFlag)
 			{
-				FlxG.play(poof2, 1, false, true);	
+				if(Registry.stageCount != 5)FlxG.play(poof2, 1, false, true);	
 				crumbleTimer = .3;
 				crumbleTimerFlag = true;
 			}	
