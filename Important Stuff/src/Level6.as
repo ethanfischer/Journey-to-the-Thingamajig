@@ -334,11 +334,7 @@ package
 				{
 					if (borgMap.getTile(tx, ty) == 1)
 					{
-						if(!Registry.firstLevel6 || !firstBorg)
-						{
 							borgs.addBorg(tx, ty, player, FlxObject.RIGHT);
-							firstBorg = false;
-						}
 					}
 					else if (borgMap.getTile(tx, ty) == 3)
 					{

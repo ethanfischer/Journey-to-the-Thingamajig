@@ -110,6 +110,7 @@ package
 				addAnimation("letter", [26, 27, 28, 29, 30, 31, 32, 33, 0, 0], 18, false);
 				addAnimation("letterIdle", [26], 0, false);
 				addAnimation("hatIdle", [16,17,18, 40], 8, false);
+				addAnimation("hatAway", [41,42,43], 8, false);
 				
 				//handle walking Soundeffect stuff here
 				walkSFX = new FlxSound();
@@ -687,10 +688,19 @@ package
 		
 		public function putAway():void
 		{
-			if(Registry.stageCount != 5)FlxG.play(_foldPaperSFX, 1);
+			if(Registry.stageCount != 5)
+			{
+				FlxG.play(_foldPaperSFX, 1);
+				play("letter");
+
+			}
+			else
+			{
+				play("hatAway");
+			}
 			canIdle = false;
 			_letterTimer = .7;
-			play("letter");
+
 			FlxG.log("putAway");
 
 		}
