@@ -125,14 +125,14 @@ package
 			if (levelCount < 6 && l1pic.velocity.x == 0 && FlxG.keys.RIGHT && selector == 1) 
 			{
 				levelCount += 1;
-				Registry.stageCount += 1;
+				// Registry.stageCount += 1;
 				l1pic.velocity.x = -8000;
 				FlxG.play(quack);
 			}
 			if (levelCount > 0 && l1pic.velocity.x == 0 && FlxG.keys.LEFT && selector == 1)
 			{
 				levelCount -= 1;
-				Registry.stageCount -= 1;
+				// Registry.stageCount -= 1;
 				l1pic.velocity.x = 8000;
 				FlxG.play(quack);
 			}
@@ -181,11 +181,13 @@ package
 			if (Registry.stageCount == 4) FlxG.playMusic(Registry.l5msc, 1);
 			if (Registry.stageCount == 5) FlxG.playMusic(Registry.l6msc, 1);
 			if (Registry.stageCount == 6) FlxG.playMusic(Registry.l7msc, 1);*/
-			
+			Registry.stageCount = levelCount;
+			Registry.checkpointFlag = false;
 			Registry.musixFlag = true;
 			FlxG.flash(0x000000, 1);
 			Registry.chkptsUsed = 0;
 			FlxG.switchState(new PlayState);
+
 			if(Registry.stageCount == 1 && Registry.hasFlower)
 			{
 				FlxG.playMusic(Registry.l2msc);

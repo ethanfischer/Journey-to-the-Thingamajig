@@ -482,7 +482,7 @@ package
 								canIdle = true;
 								_flag497 = true;
 							}
-							decel = 1500;
+							decel = 300;
 						}
 					}
 					else

@@ -19,7 +19,7 @@ package
 		private var _level6:Class = Level6;
 		private var _level7:Class = Level7;
 		private var _finalLevel:Class = FinalLevel;
-		private var _menuButton:FlxButton;
+		private var _levelButton:FlxButton;
 		private var _muteButton:FlxButton;
 		public var healthBar:FlxHealthBar;
 		private var _amountOfDeathsMessage:FlxText;
@@ -46,6 +46,7 @@ package
 		private var finalPlaytime:Number;
 		private var endLevelFlag:Boolean = false;
 		private var anyKeyJustPressed:Boolean = false;
+		private var mouseTimer:Number = 0.0;
 
 		
 		
@@ -62,7 +63,7 @@ package
 		[Embed(source = "../assets/clinkclankspin.mp3")] private var _clinkspinSFX:Class;
 		[Embed(source = "../assets/trumpetfanfare_mom.mp3")] private var _trumpetSFX:Class;
 		[Embed(source = "../assets/mute.png")] private var _mutePNG:Class;
-		[Embed(source = "../assets/menu.png")] private var _menuPNG:Class;
+		[Embed(source = "../assets/menu.png")] private var _levelsPNG:Class;
 		[Embed(source = "../assets/party_pop.mp3")] private var _partyPop:Class;
 		[Embed(source = "../assets/foldpaper(openletter).mp3")] private var _openletter:Class;
 		[Embed(source = "../assets/jttt.png")] private var jtttPNG:Class;
@@ -78,14 +79,14 @@ package
 			stages = [_level1, _level2, _level3, _level4, _level5, _level6, _level7];
 
 			FlxG.mouse.load(Registry.cursor, 1, 0, 0);
-
+			// FlxG.mouse.visible = false;
 			if(!Registry.pauseSounds) FlxG.volume = .5;
 
-			_menuButton = new FlxButton(2, 2, "Menu", gotoMainMenu);
-			_menuButton.loadGraphic(_menuPNG, false, false, 56, 12);
-			_menuButton.label.color = 0xFFFFFF;
-			_menuButton.scrollFactor.x = 0;
-			_menuButton.scrollFactor.y = 0;
+			_levelButton = new FlxButton(2, 2, "Levels", gotoMainMenu);
+			_levelButton.loadGraphic(_levelsPNG, false, false, 56, 12);
+			_levelButton.label.color = 0xFFFFFF;
+			_levelButton.scrollFactor.x = 0;
+			_levelButton.scrollFactor.y = 0;
 
 			_muteButton = new FlxButton(Registry.screenWidth - 21, 13, "", mute, true);
 			_muteButton.loadGraphic(_mutePNG, true, false, 12, 12);
@@ -118,8 +119,12 @@ package
 		{
 			super.update();
 
+			//"You can change the path the elephant and rider find themselves traveling on"
+
+			handleMouse();
+
 			//mute mode, music, volumne, silent
-			// FlxG.volume = 0;
+			FlxG.volume = 0;
 			handlePause();
 
 			if (!Registry.gameStart)
@@ -261,6 +266,23 @@ package
 		{
 			if (Registry.torchesOn) torch.flameOn = true;
 			else torch.flameOn = false;
+		}
+
+		private function handleMouse():void
+		{
+			if(!FlxG.keys.any())
+			{
+				mouseTimer += FlxG.elapsed; //if no keys are pressed for 1.5 seconds, the cursor becomes visible
+				if(mouseTimer > 1.5)
+				{
+					// FlxG.mouse.visible = true;
+				}
+			}
+			else
+			{
+				mouseTimer = 0; //reset cursor timer each time a key is pressed
+				// FlxG.mouse.visible = false;
+			}
 		}
 
 		private function collisions():void
@@ -997,10 +1019,9 @@ package
 
 		public function gotoMainMenu():void
 		{
-			FlxG.music.stop();
 			//Registry.musixFlag = false;
-			Registry.gameStart = true;
-			FlxG.switchState(new MainMenuState);
+			//Registry.gameStart = true;
+			FlxG.switchState(new LevelMenuState);
 		}
 
 		private function mute():void
@@ -1286,7 +1307,7 @@ package
 			if(Registry.stageCount == 6)add(_gameLevel.wiz.smokelets);
 			add(_gameLevel.foreforeground);
 			add(_muteButton);
-			add(_menuButton);
+			add(_levelButton);
 			
 			
 			
