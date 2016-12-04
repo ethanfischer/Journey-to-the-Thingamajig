@@ -444,7 +444,8 @@ package
 					}
 					else
 					{
-						accel = 550;
+						// accel = 550;
+						accel = 250; // 16-12-03 edited
 					}
 					
 					if (touching == FlxObject.FLOOR)

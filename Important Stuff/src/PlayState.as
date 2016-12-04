@@ -124,7 +124,7 @@ package
 			handleMouse();
 
 			//mute mode, music, volumne, silent
-			FlxG.volume = 0;
+			// FlxG.volume = 0;
 			handlePause();
 
 			if (!Registry.gameStart)
@@ -243,7 +243,7 @@ package
 			{
 				if (fire.flameOn && !(player.isDucking && fire.y + 24 < player.y + 16))
 				{
-					player.ouch(50, .1);
+					player.ouch(50, .6);
 					player.y -= 3;
 
 					if (player.x > fire.x)
@@ -470,11 +470,15 @@ package
 			}
 			else if (Registry.textCounter == 6)
 			{
-				Registry.tmpTxt = "\n\nfocUS. YOU'RE ALMOST HERE"; 					
+				Registry.tmpTxt = "\n\nFOCUS."; 					
 			}
 			else if (Registry.textCounter == 7)
 			{
-				Registry.tmpTxt = Registry.tmpTxt + "\n\n Press 'ZX'"; 					
+				Registry.tmpTxt = Registry.tmpTxt + "\n\nYOU'RE ALMOST HERE"; 					
+			}
+			else if (Registry.textCounter == 8)
+			{
+				Registry.tmpTxt = Registry.tmpTxt + "\n\n Press 'ZX'";
 			}
 			_gameLevel.letterMsg.text = Registry.tmpTxt;	
 		}
