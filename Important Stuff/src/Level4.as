@@ -47,10 +47,7 @@ package
 		
 			
 			letterMsg = new FlxText(40, 100, 300);
-			letterMsg.text = "I had many questions.\n"
-							+"And, for a time, it answered.\n\n"
-		
-							+"Soon, you will understand.";
+			letterMsg.text = "";
 			//letterMsg.loadGraphic(letterPNG, false, false, 600, 300);
 			letterMsg.scrollFactor.y = 0;
 			letterMsg.visible = false;

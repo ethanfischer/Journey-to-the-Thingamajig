@@ -375,6 +375,13 @@ package
 					l3Text();
 				}
 			}
+			else if (Registry.stageCount == 3) 
+			{
+				if(FlxG.keys.Z || FlxG.keys.X)
+				{
+					l4Text();
+				}
+			}
 		}
 
 		private function l1Text():void
@@ -428,6 +435,42 @@ package
 			else if (Registry.textCounter == 6)
 			{
 				Registry.tmpTxt = Registry.tmpTxt + "...hurry."; 					
+			}
+			else if (Registry.textCounter == 7)
+			{
+				Registry.tmpTxt = Registry.tmpTxt + "\n\n Press 'ZX'"; 					
+			}
+			_gameLevel.letterMsg.text = Registry.tmpTxt;	
+		}
+
+		private function l4Text():void
+		{
+			Registry.textCounter++;
+			//FlxG.log("l3Text textCount == " + Registry.textCounter);
+
+			if (Registry.textCounter == 1)
+			{
+				Registry.tmpTxt = Registry.tmpTxt + "What"; 					
+			}	
+			else if (Registry.textCounter == 2)
+			{
+				Registry.tmpTxt = Registry.tmpTxt + "\nthe"; 					
+			}
+			else if (Registry.textCounter == 3)
+			{
+				Registry.tmpTxt = Registry.tmpTxt + "\nf";				
+			}
+			else if (Registry.textCounter == 4)
+			{
+				Registry.tmpTxt = Registry.tmpTxt + "u";					
+			}
+			else if (Registry.textCounter == 5)
+			{
+				Registry.tmpTxt = Registry.tmpTxt + "c"; 					
+			}
+			else if (Registry.textCounter == 6)
+			{
+				Registry.tmpTxt = "\n\nfocUS. YOU'RE ALMOST HERE"; 					
 			}
 			else if (Registry.textCounter == 7)
 			{
