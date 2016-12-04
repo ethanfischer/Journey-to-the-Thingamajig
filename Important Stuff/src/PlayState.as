@@ -243,7 +243,7 @@ package
 			{
 				if (fire.flameOn && !(player.isDucking && fire.y + 24 < player.y + 16))
 				{
-					player.ouch(50);
+					player.ouch(50, .1);
 					player.y -= 3;
 
 					if (player.x > fire.x)
@@ -1019,8 +1019,8 @@ package
 
 		public function gotoMainMenu():void
 		{
-			//Registry.musixFlag = false;
-			//Registry.gameStart = true;
+			Registry.musixFlag = false;
+			Registry.gameStart = true;
 			FlxG.switchState(new LevelMenuState);
 		}
 

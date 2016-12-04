@@ -140,7 +140,7 @@ package
 			if (FlxG.keys.justPressed("Z") || FlxG.keys.ENTER) 
 			{
 				if (selector == 1) changeState();
-				else FlxG.switchState(new MainMenuState);
+				else FlxG.switchState(new PlayState);
 				FlxG.play(quack);
 			}
 			

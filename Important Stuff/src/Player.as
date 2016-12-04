@@ -612,7 +612,7 @@ package
 		}
 		
 		
-		public function ouch(damage:int):void
+		public function ouch(damage:int, i_invTimer:Number = .8):void
 		{
 			if (_invincible)
 			{
@@ -633,7 +633,7 @@ package
 				health -= damage;
 				_hurtTimer = .3;
 				_invincible = true;
-				_invTimer = .8;
+				_invTimer = i_invTimer;
 				
 			}
 		}
