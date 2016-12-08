@@ -117,19 +117,68 @@
 			}
 		},
 		{
-			"file": "Registry.as",
+			"contents": "Searching 180 files for \"mutemode\"\n\n0 matches\n\nSearching 180 files for \"mute mode\"\n\n/Users/Ethan/Dev/Journey-to-the-Thingamajig/Important Stuff/src/MainMenuState.as:\n   66  \t\toverride public function create():void\n   67  \t\t{\n   68: \t\t\t//mute mode, music, volume, silent\n   69  \t\t\t // FlxG.volume = 0;\n   70  \t\t\n\n/Users/Ethan/Dev/Journey-to-the-Thingamajig/Important Stuff/src/PlayState.as:\n  124  \t\t\thandleMouse();\n  125  \n  126: \t\t\t//mute mode, music, volumne, silent\n  127  \t\t\t// FlxG.volume = 0;\n  128  \t\t\thandlePause();\n\n2 matches across 2 files\n\n\nSearching 180 files for \"mouse.visible\"\n\n/Users/Ethan/Dev/Journey-to-the-Thingamajig/Important Stuff/src/org/flixel/FlxButton.as:\n  215  \t\t\t//Figure out if the button is highlighted or pressed or what\n  216  \t\t\t// (ignore checkbox behavior for now).\n  217: \t\t\tif(FlxG.mouse.visible)\n  218  \t\t\t{\n  219  \t\t\t\tif(cameras == null)\n\n/Users/Ethan/Dev/Journey-to-the-Thingamajig/Important Stuff/src/org/flixel/plugin/photonstorm/FlxButtonPlus.as:\n  269  \t\t\tvar prevStatus:uint = _status;\n  270  \t\t\t\n  271: \t\t\tif (FlxG.mouse.visible)\n  272  \t\t\t{\n  273  \t\t\t\tif (buttonNormal.cameras == null)\n\n/Users/Ethan/Dev/Journey-to-the-Thingamajig/Important Stuff/src/PlayState.as:\n   80  \n   81  \t\t\tFlxG.mouse.load(Registry.cursor, 1, 0, 0);\n   82: \t\t\tFlxG.mouse.visible = false;\n   83  \t\t\tif(!Registry.pauseSounds) FlxG.volume = .5;\n   84  \n   ..\n  276  \t\t\t\tif(mouseTimer > 1.5)\n  277  \t\t\t\t{\n  278: \t\t\t\t\tFlxG.mouse.visible = true;\n  279  \t\t\t\t}\n  280  \t\t\t}\n  ...\n  282  \t\t\t{\n  283  \t\t\t\tmouseTimer = 0; //reset cursor timer each time a key is pressed\n  284: \t\t\t\tFlxG.mouse.visible = false;\n  285  \t\t\t}\n  286  \t\t}\n\n5 matches across 3 files\n\n\nSearching 180 files for \"mute mode\"\n\n/Users/Ethan/Dev/Journey-to-the-Thingamajig/Important Stuff/src/MainMenuState.as:\n   66  \t\toverride public function create():void\n   67  \t\t{\n   68: \t\t\t// mute mode, music, volume, silent\n   69  \t\t\t //FlxG.volume = 0;\n   70  \t\t\n\n/Users/Ethan/Dev/Journey-to-the-Thingamajig/Important Stuff/src/PlayState.as:\n  124  \t\t\thandleMouse();\n  125  \n  126: \t\t\t//mute mode, music, volumne, silent\n  127  \t\t\t//FlxG.volume = 0;\n  128  \t\t\thandlePause();\n\n2 matches across 2 files\n\n\nSearching 180 files for \"mute mode\"\n\n/Users/Ethan/Dev/Journey-to-the-Thingamajig/Important Stuff/src/MainMenuState.as:\n   66  \t\toverride public function create():void\n   67  \t\t{\n   68: \t\t\t// mute mode, music, volume, silent\n   69  \t\t\t FlxG.volume = 0;\n   70  \t\t\n\n/Users/Ethan/Dev/Journey-to-the-Thingamajig/Important Stuff/src/PlayState.as:\n  124  \t\t\thandleMouse();\n  125  \n  126: \t\t\t//mute mode, music, volumne, silent\n  127  \t\t\tFlxG.volume = 0;\n  128  \t\t\thandlePause();\n\n2 matches across 2 files\n\n\nSearching 180 files for \"mute mode\"\n\n/Users/Ethan/Dev/Journey-to-the-Thingamajig/Important Stuff/src/MainMenuState.as:\n   66  \t\toverride public function create():void\n   67  \t\t{\n   68: \t\t\t// mute mode, music, volume, silent\n   69  \t\t\t FlxG.volume = 0;\n   70  \t\t\n\n/Users/Ethan/Dev/Journey-to-the-Thingamajig/Important Stuff/src/PlayState.as:\n  124  \t\t\thandleMouse();\n  125  \n  126: \t\t\t//mute mode, music, volumne, silent\n  127  \t\t\tFlxG.volume = 0;\n  128  \t\t\thandlePause();\n\n2 matches across 2 files\n",
 			"settings":
 			{
-				"buffer_size": 5772,
-				"encoding": "UTF-8",
-				"line_ending": "Unix"
+				"buffer_size": 3174,
+				"line_ending": "Unix",
+				"name": "Find Results",
+				"scratch": true
 			}
 		},
 		{
 			"file": "PlayState.as",
 			"settings":
 			{
-				"buffer_size": 43189,
+				"buffer_size": 44306,
+				"encoding": "UTF-8",
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "NPC.as",
+			"settings":
+			{
+				"buffer_size": 6070,
+				"encoding": "UTF-8",
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "Player.as",
+			"settings":
+			{
+				"buffer_size": 19698,
+				"encoding": "UTF-8",
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "/Users/Ethan/Desktop/Holiday_FamilyFeud_&_Charades",
+			"settings":
+			{
+				"buffer_size": 5117,
+				"encoding": "UTF-8",
+				"line_ending": "Unix",
+				"name": "---------------------------------1 YUKOJOE--------"
+			}
+		},
+		{
+			"file": "Level4.as",
+			"settings":
+			{
+				"buffer_size": 11168,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"contents": "package  \n{\n\timport org.flixel.*;\n\timport org.flixel.plugin.photonstorm.*;\n\t//import org.flixel.plugin.photonstorm.FX.CenterSlideFX;\n\t//import org.flixel.plugin.photonstorm.FX.FloodFillFX;\n\t\n\tpublic class MainMenuState extends FlxState\n\t{\n\t\t[Embed(source = \"../assets/menulake.png\")] private var titlePagePNG:Class;\n\t\t[Embed(source = \"../assets/menuBox.png\")] private var menuBoxPNG:Class;\t\n\t\t[Embed(source = \"../assets/menu trees.png\")] private var menuTreesPNG:Class;\n\t\t[Embed(source = \"../assets/selectthing.png\")] private var dotsPNG:Class;\n\t\t[Embed(source = \"../assets/quack.mp3\")] private var quack:Class;\n\t\t[Embed(source = \"../assets/title.png\")] private var titlePNG:Class;\n\t\t\n\t\t[Embed(source=\"../assets/the.png\")] private var thePNG:Class;\n\t\t[Embed(source=\"../assets/quest.png\")] private var questPNG:Class;\n\t\t[Embed(source=\"../assets/to .png\")] private var toPNG:Class;\n\t\t[Embed(source = \"../assets/nowhere.png\")] private var thingamajigPNG:Class;\n\t\t[Embed(source = \"../assets/stars.png\")] private var starsPNG:Class;\n\t\t[Embed(source = \"../assets/black.png\")] private var blackPNG:Class;\n\t\t[Embed(source = \"../assets/punch2.mp3\")] private var punchSFX:Class;\n\t\t//[Embed(source = \"../assets/Save an Enemy.mp3\")] private var horns:Class;\n\t\n\t\t[Embed(source = \"../assets/start.png\")] private var startPNG:Class;\n\t\t//[Embed(source = \"../assets/fadein_chord1.mp3\")] private var fadeChord1:Class\n\t\t//[Embed(source = \"../assets/fadein_chord2.mp3\")] private var fadeChord2:Class\n\t\t//[Embed(source = \"../assets/fadein_chord3.mp3\")] private var fadeChord3:Class\n\t\t//[Embed(source = \"../assets/forestsounds.mp3\")] public var l1msc:Class;\n\t\t//[Embed(source = \"../assets/jazz_slowswing(drumfade_outandin).mp3\")] private var l1msc:Class;\n\t\t//[Embed(source=\"../assets/EFFG-Level-2-or-3-v2.mp3\")] private var l1msc:Class;\n\t\t[Embed(source=\"../assets/time.mp3\")] private var l1msc:Class;\n\n\t\t//private var fadeChordflag1:Boolean;\n\t\t//private var fadeChordflag2:Boolean;\n\t\t//private var fadeChordflag3:Boolean;\n\t\t\n\t\t\n\t \tprivate var dots:FlxSprite = new FlxSprite(Registry.screenWidth / 2 - 34, Registry.screenHeight / 1.325); //40 is how far down dots are\n\t\t\n\t\tprivate var level:Level1;\n\t\tprivate var title:FlxSprite;\n\t\tprivate var dolly:FlxSprite;\n\t\t//private var start:FlxButton;\n\t\tprivate var levelsText:FlxText;\n\t\tprivate var levelsBox:FlxButton;\n\t\tprivate var selector:int = 1;\n\t\t\n\t\t//private var the:FlxSprite;\n\t\tprivate var quest:FlxSprite;\n\t\tprivate var to:FlxSprite;\n\t\tprivate var thingamajig:FlxSprite;\n\t\tprivate var stars:FlxSprite;\n\t\tprivate var stars2:FlxSprite;\n\t\tprivate var black:FlxSprite;\n\t\tprivate var menuTrees:FlxSprite;\n\t\tprivate var punchFlag:Boolean;\n\t\tprivate var timer:Number = 6;\n\t\tprivate var start:FlxSprite;\n\t\t\n\t\tpublic function MainMenuState() \n\t\t{\n\t\t}\n\t\t\n\t\toverride public function create():void\n\t\t{\n\t\t\t// mute mode, music, volume, silent\n\t\t\t\t // FlxG.volume = 0;\n\t\t\n\t\t\tRegistry.checkpointFlag = false;\n\t\t\t//FlxG.play(quack);\n\t\t\tRegistry.firstTimePlayingLevel = true;\n\t\t\t\n\t\t\tFlxG.playMusic(l1msc, 1);\n\t\t\t\n\t\t\tdots.loadGraphic(dotsPNG, true, false, 72, 6);\n\t\t\tdots.drag.y = 3900;\n\t\t\tdots.addAnimation(\"blink\", [0, 2], 3, true);\n\t\t\tdots.play(\"blink\");\n\t\t\t\n\t\t\tvar t:FlxSprite = new FlxSprite(0, 0, titlePagePNG);\n\t\t\t\n\t\t\t\n\t\t\tquest = new FlxSprite(0, 0);\n\t\t\tquest.loadGraphic(questPNG, false, false, 600, 300);\n\t\t\tquest.alpha = 0;\n\t\t\t\n\t\t\tto = new FlxSprite(0, 0);\n\t\t\tto.loadGraphic(toPNG, false, false, 600, 300);\n\t\t\tto.alpha = 0;\n\t\t\t\n\t\t\tthingamajig = new FlxSprite(0, 0);\n\t\t\tthingamajig.loadGraphic(thingamajigPNG, false, false, 600, 300);\n\t\t\tthingamajig.alpha = 0;\n\t\t\t\n\t\t\tstart = new FlxSprite(0, 40);\n\t\t\tstart.loadGraphic(startPNG, false, false, 500, 250);\n\t\t\tstart.alpha = 0;\n\t\t\t\n\t\t\tmenuTrees = new FlxSprite(0, 0);\n\t\t\tmenuTrees.loadGraphic(menuTreesPNG, false, false, 1200, 300);\n\t\t\tmenuTrees.velocity.x = -30;\n\t\t\t\n\t\t\tstars = new FlxSprite(0, 0);\n\t\t\tstars.loadGraphic(starsPNG, false, false, 1200, 300);\n\t\t\t\n\t\t\tstars2 = new FlxSprite(0, 0);\n\t\t\tstars2.loadGraphic(starsPNG, false, false, 1200, 300);\n\t\t\t\n\t\t\tblack = new FlxSprite(0, 0);\n\t\t\tblack.loadGraphic(blackPNG, false, false, 600, 300);\n\t\t\tblack.alpha = 0;\n\t\t\t\t\n\t\t\tRegistry.stageCount = 0;\n\t\t\t\t\n\t\t\t//levelsBox = new FlxButton(Registry.screenWidth / 2 - 29, 200, \"LEVELS\", goToLevelMenu);\n\t\t\t//start = new FlxButton(Registry.screenWidth / 2 - 30, 185, \"START\", startIt);\n\t\t\t\n\t\t\t//levelsBox.makeGraphic(64, 20, 0x00000000);\n\t\t\t\n\t\t\t//start.makeGraphic(64, 20, 0x00000000);\n\t\t\t\n\t\t\t//levelsBox.label.color = 0xffffff;\n\t\t\t//levelsBox.alpha = 0;\n\t\t\t\n\t\t\t//start.label.color = 0xffffff;\n\t\t\t//start.alpha = 0;\n\t\t\t\n\t\t\t\n\t\t\tstars.velocity.x = -200;\n\t\t\tstars2.velocity.x = 200;\n\t\t\t\n\t\t\tadd(black);\n\t\t\tadd(t);\n\t\t\tadd(stars);\n\t\t\tadd(stars2);\n\t\t\tadd(menuTrees);\n\t\t\tadd(title);\n\t\t\t//add(the);\n\t\t\tadd(quest);\n\t\t\tadd(to);\n\t\t\tadd(thingamajig);\n\t\t\tadd(start);\n\t\t\t\n\t\t}\n\t\t\n\t\toverride public function update():void\n\t\t{\n\t\t\tsuper.update();\n\t\t\tdots.play(\"blink\");\n\t\t\t\n\t\t\t//title.alpha += .01;\n\t\t\t\n\t\t\tif (stars.x < -600) stars.x = 0;\n\t\t\tif (stars2.x > 0) stars2.x = -600;\t\n\t\t\tif (menuTrees.x < -600) menuTrees.x = 0;\n\t\t\t\n\t\t\tif (timer > 0)\n\t\t\t{\t\n\t\t\t\tif (timer < 6)\n\t\t\t\t{\n\t\t\t\t\tquest.alpha += .5;\n\t\t\t\t\tif (timer < 4)\n\t\t\t\t\t{\n\t\t\t\t\t\tto.alpha += .5;\n\t\t\t\t\t\tif (timer < 2)\n\t\t\t\t\t\t{\n\t\t\t\t\t\t\tthingamajig.alpha += .01;\n\n\t\t\t\t\t\t}\n\t\t\t\t\t}\n\t\t\t\t}\n\t\t\t\ttimer -= FlxG.elapsed;\n\t\t\t}\n\t\t\telse if (timer < 0)\n\t\t\t{\n\t\t\t\tstart.alpha += .02;\n\t\t\t}\n\t\t\t\n\t\t\tif (start.alpha == 1)\n\t\t\t{\n\t\t\t\tadd(start);\n\t\t\t\tadd(levelsBox);\n\t\t\t\tadd(dots);\n\t\t\t}\n\t\t\t\n\t\t\tif (FlxG.keys.justPressed(\"DOWN\") && selector < 2) \n\t\t\t{\n\t\t\t\tdots.frame = 0;\n\t\t\t\tselector++;\n\t\t\t\tdots.velocity.y = 354;\n\t\t\t\tFlxG.play(quack);\n\t\t\t}\n\t\t\telse if (FlxG.keys.justPressed(\"UP\") && selector > 1) \n\t\t\t{\n\t\t\t\tdots.frame = 0;\n\t\t\t\tselector--;\n\t\t\t\tdots.velocity.y = -354;\n\t\t\t\tFlxG.play(quack);\n\t\t\t}\n\t\t\t\n\t\t\tif (FlxG.keys.Z || FlxG.keys.X || FlxG.keys.SPACE || FlxG.keys.ENTER)\n\t\t\t{\n\t\t\t\tif (selector == 1) \n\t\t\t\t{\n\t\t\t\t\tFlxG.flash(0x99999900, .1);\n\t\t\t\t\tif (!punchFlag)\n\t\t\t\t\t{\n\t\t\t\t\t\tFlxG.play(punchSFX, 1, false, true);\n\t\t\t\t\t\tpunchFlag = true;\n\t\t\t\t\t}\n\t\t\t\t\tFlxG.shake(.03, .1);\n\t\t\t\t\tFlxG.fade(0x000000, 0.5, changeState); \n\t\t\t\t}\n\t\t\t\telse if (selector == 2) \n\t\t\t\t{\n\t\t\t\t\tFlxG.fade(0x000000, 0.2, changeState);\n\t\t\t\t}\n\t\t\t\t//FlxG.play(quack);\n\t\t\t}\n\t\t\t\n\t\t}\n\t\t\n\t\tprivate function changeState():void\n\t\t{\n\t\t\tif (selector == 1) \n\t\t\t\t{\t\n\t\t\t\t\tFlxG.switchState(new PlayState);\n\t\t\t\t}\n\t\t\t\telse if (selector == 2) \n\t\t\t\t{\t\n\t\t\t\t\tFlxG.switchState(new LevelMenuState);\n\t\t\t\t}\n\t\t\t//FlxG.switchState(new DeathMenuState);\n\t\t}\n\t\t\n\t\toverride public function destroy():void\n\t\t{\n\t\t\tFlxSpecialFX.clear();\n\t\t\t\n\t\t\tsuper.destroy();\n\t\t}\n\t\t\n\t\tprivate function goToLevelMenu():void\n\t\t{\n\t\t\tFlxG.switchState(new LevelMenuState);\n\t\t}\n\t\t\n\t\tprivate function startIt():void\n\t\t{\n\t\t\tRegistry.stageCount = 0;\n\t\t\t\n\t\t\t//TODO put this logic at beginning of each level or in gamelevel and use FirstTimePlayinglevel flag to make sure you don't overlap[ the music\n\t\t\t// if (Registry.stageCount == 1) FlxG.playMusic(Registry.l2msc, 1);\n\t\t\t// if (Registry.stageCount == 2) FlxG.playMusic(Registry.l3msc, 1);\n\t\t\t// if (Registry.stageCount == 3) FlxG.playMusic(Registry.l4msc, 1);\n\t\t\t// if (Registry.stageCount == 4) FlxG.playMusic(Registry.l5msc, 1);\n\t\t\t// if (Registry.stageCount == 5) FlxG.playMusic(Registry.l6msc, 1);\n\t\t\t// if (Registry.stageCount == 6) FlxG.playMusic(Registry.l7msc, 1);\n\t\t\t\n\t\t\tRegistry.musixFlag = true;\n\t\t\tFlxG.flash(0x000000, 1);\n\t\t\tRegistry.chkptsUsed = 0;\n\t\t\t\n\t\t\tFlxG.switchState(new PlayState);\n\t\t}\n\t}\n}",
+			"file": "MainMenuState.as",
+			"file_size": 7430,
+			"file_write_time": 131256341960000000,
+			"settings":
+			{
+				"buffer_size": 7431,
 				"encoding": "UTF-8",
 				"line_ending": "Unix"
 			}
@@ -178,28 +227,10 @@
 			}
 		},
 		{
-			"file": "Player.as",
-			"settings":
-			{
-				"buffer_size": 19143,
-				"encoding": "UTF-8",
-				"line_ending": "Unix"
-			}
-		},
-		{
 			"file": "Spring.as",
 			"settings":
 			{
 				"buffer_size": 497,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "MainMenuState.as",
-			"settings":
-			{
-				"buffer_size": 7429,
-				"encoding": "UTF-8",
 				"line_ending": "Unix"
 			}
 		},
@@ -224,7 +255,7 @@
 			"file": "LevelMenuState.as",
 			"settings":
 			{
-				"buffer_size": 6464,
+				"buffer_size": 6536,
 				"encoding": "UTF-8",
 				"line_ending": "Unix"
 			}
@@ -266,7 +297,7 @@
 	"command_palette":
 	{
 		"height": 87.0,
-		"last_filter": "set syntax action",
+		"last_filter": "",
 		"selected_items":
 		[
 			[
@@ -306,7 +337,7 @@
 				"Preferences: Browse Packages"
 			]
 		],
-		"width": 449.0
+		"width": 485.0
 	},
 	"console":
 	{
@@ -334,8 +365,12 @@
 	],
 	"file_history":
 	[
-		"/Users/Ethan/Dev/Journey-to-the-Thingamajig/Important Stuff/src/Level3.as",
+		"/Users/Ethan/Desktop/pikandzug",
 		"/Users/Ethan/Dev/Journey-to-the-Thingamajig/Important Stuff/src/Player.as",
+		"/Users/Ethan/Dev/Journey-to-the-Thingamajig/Important Stuff/src/Registry.as",
+		"/Users/Ethan/Dev/Journey-to-the-Thingamajig/Important Stuff/src/PlayState.as",
+		"/Users/Ethan/Dev/Journey-to-the-Thingamajig/Important Stuff/src/MainMenuState.as",
+		"/Users/Ethan/Dev/Journey-to-the-Thingamajig/Important Stuff/src/Level3.as",
 		"/Users/Ethan/Dev/Journey-to-the-Thingamajig/Important Stuff/src/Level1.as",
 		"/Users/Ethan/Dev/Journey-to-the-Thingamajig/Important Stuff/src/Level7.as",
 		"/Users/Ethan/Dev/Journey-to-the-Thingamajig/Important Stuff/src/LevelMenuState.as",
@@ -344,7 +379,6 @@
 		"/Users/Ethan/Dev/Journey-to-the-Thingamajig/Important Stuff/src/Sign.as",
 		"/Users/Ethan/Dev/Journey-to-the-Thingamajig/Important Stuff/src/Level2.as",
 		"/Users/Ethan/Dev/Journey-to-the-Thingamajig/Important Stuff/src/Sparkle.as",
-		"/Users/Ethan/Dev/Journey-to-the-Thingamajig/Important Stuff/src/MainMenuState.as",
 		"/Users/Ethan/Dev/Journey-to-the-Thingamajig/Important Stuff/src/Rock.as",
 		"/Users/Ethan/Dev/Journey-to-the-Thingamajig/Important Stuff/src/Rocks.as",
 		"/Users/Ethan/Dev/Journey-to-the-Thingamajig/Important Stuff/src/Wiz.as",
@@ -356,7 +390,6 @@
 		"/Users/Ethan/Dev/Journey-to-the-Thingamajig/Important Stuff/src/Turd.as",
 		"/Users/Ethan/Dev/Journey-to-the-Thingamajig/Important Stuff/src/Butt.as",
 		"/Users/Ethan/Dev/Journey-to-the-Thingamajig/Important Stuff/src/DeathMenuState.as",
-		"/Users/Ethan/Dev/Journey-to-the-Thingamajig/Important Stuff/src/PlayState.as",
 		"/Users/Ethan/Dev/Journey-to-the-Thingamajig/Important Stuff/src/Worm.as",
 		"/Users/Ethan/Dev/Journey-to-the-Thingamajig/Important Stuff/src/Bots.as",
 		"/Users/Ethan/Dev/Journey-to-the-Thingamajig/Important Stuff/src/Level5.as",
@@ -432,6 +465,58 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			"left",
+			"control",
+			"facing",
+			"facing =",
+			"facing",
+			"turn",
+			"canpunch",
+			"canpunch =",
+			"canpunch",
+			"mute mode",
+			"pumpbrakes",
+			"play(\"",
+			"play(\"j",
+			"brakes",
+			"pumpBrakes",
+			"pumpbrakes",
+			"ispumpingbrakes",
+			"slowdown",
+			"pumping",
+			"play(\"",
+			"canidle",
+			"mute mode",
+			"decel",
+			"girlpng",
+			"edited",
+			"decel",
+			"accel",
+			"hitflame",
+			"hittorch",
+			"mute mode",
+			"addtext",
+			"message",
+			"ouch(",
+			"number",
+			"ouch",
+			"back",
+			"levelcount",
+			"go",
+			"gottomainmenu",
+			"levelspng",
+			"levelpng",
+			"levels.png",
+			"cursor",
+			"gotolevelsmenu",
+			"mouse.visible",
+			"mute mode",
+			"mutemode",
+			"levelspng",
+			"levelbutton",
+			"levelsmenu",
+			"levelmenu",
+			"menubutton",
 			"mouse",
 			"cursor",
 			"flxg.mouse",
@@ -507,59 +592,7 @@
 			"black",
 			"wizhat",
 			"worm",
-			"blackpng",
-			"black",
-			"black.png",
-			"wizhat",
-			"blackpng",
-			"black.",
-			"streampng",
-			"flxsprite(",
-			"== 5",
-			"volume",
-			"scrollfactor",
-			"add(",
-			"stagecount == 5",
-			"add(_game",
-			"new flxsprite",
-			"flxsprite",
-			"pickup",
-			"player, ",
-			"glove",
-			"pickuptimer",
-			"pickuptimer =",
-			"pickup",
-			"letter",
-			"stars",
-			"level.star",
-			"star.",
-			"rock",
-			"stars",
-			"stars2",
-			"stars",
-			"makestage",
-			"stars",
-			"count == 2",
-			"add(",
-			"stars",
-			"update",
-			"stars",
-			"add(",
-			"add(sparkle",
-			"stars",
-			"l3text",
-			"level3",
-			".volume",
-			".log",
-			"theend()",
-			".playmu",
-			"theend",
-			"jumparound",
-			"player.x",
-			"jumparound",
-			"visible",
-			"level2()",
-			"stagecount"
+			"blackpng"
 		],
 		"highlight": true,
 		"in_selection": false,
@@ -567,6 +600,7 @@
 		"regex": false,
 		"replace_history":
 		[
+			"levelButton",
 			"star",
 			"thingamajig"
 		],
@@ -579,7 +613,7 @@
 	"groups":
 	[
 		{
-			"selected": 2,
+			"selected": 5,
 			"sheets":
 			[
 				{
@@ -605,39 +639,104 @@
 							"translate_tabs_to_spaces": false
 						},
 						"translation.x": 0.0,
-						"translation.y": 541.0,
+						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 14,
+					"stack_index": 9,
 					"type": "text"
 				},
 				{
 					"buffer": 1,
-					"file": "Registry.as",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 5772,
+						"buffer_size": 3174,
 						"regions":
 						{
+							"match":
+							{
+								"flags": 112,
+								"regions":
+								[
+									[
+										237,
+										246
+									],
+									[
+										435,
+										444
+									],
+									[
+										820,
+										833
+									],
+									[
+										1062,
+										1075
+									],
+									[
+										1289,
+										1302
+									],
+									[
+										1442,
+										1455
+									],
+									[
+										1598,
+										1611
+									],
+									[
+										1863,
+										1872
+									],
+									[
+										2060,
+										2069
+									],
+									[
+										2367,
+										2376
+									],
+									[
+										2562,
+										2571
+									],
+									[
+										2867,
+										2876
+									],
+									[
+										3062,
+										3071
+									]
+								],
+								"scope": ""
+							}
 						},
 						"selection":
 						[
 							[
-								2703,
-								2780
+								3061,
+								3061
 							]
 						],
 						"settings":
 						{
-							"syntax": "Packages/ActionScript 3/ActionScript 3.tmLanguage",
-							"translate_tabs_to_spaces": false
+							"detect_indentation": false,
+							"line_numbers": false,
+							"output_tag": 6,
+							"result_base_dir": "",
+							"result_file_regex": "^([^ \t].*):$",
+							"result_line_regex": "^ +([0-9]+):",
+							"scroll_past_end": true,
+							"syntax": "Packages/Default/Find Results.hidden-tmLanguage"
 						},
 						"translation.x": 0.0,
-						"translation.y": 901.0,
+						"translation.y": 1782.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 2,
+					"stack_index": 4,
 					"type": "text"
 				},
 				{
@@ -646,15 +745,15 @@
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 43189,
+						"buffer_size": 44306,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								4624,
-								4624
+								4694,
+								4694
 							]
 						],
 						"settings":
@@ -663,14 +762,159 @@
 							"translate_tabs_to_spaces": false
 						},
 						"translation.x": 0.0,
-						"translation.y": 1828.0,
+						"translation.y": 2253.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 3,
+					"type": "text"
+				},
+				{
+					"buffer": 3,
+					"file": "NPC.as",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 6070,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								3771,
+								3772
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/ActionScript/ActionScript.sublime-syntax",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 2361.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 2,
+					"type": "text"
+				},
+				{
+					"buffer": 4,
+					"file": "Player.as",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 19698,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								14194,
+								14194
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/ActionScript 3/ActionScript 3.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 7671.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 1,
+					"type": "text"
+				},
+				{
+					"buffer": 5,
+					"file": "/Users/Ethan/Desktop/Holiday_FamilyFeud_&_Charades",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 5117,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								0,
+								5117
+							]
+						],
+						"settings":
+						{
+							"auto_name": "---------------------------------1 YUKOJOE--------",
+							"syntax": "Packages/Text/Plain text.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 4828.0,
 						"zoom_level": 1.0
 					},
 					"stack_index": 0,
 					"type": "text"
 				},
 				{
-					"buffer": 3,
+					"buffer": 6,
+					"file": "Level4.as",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 11168,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								3298,
+								3298
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/ActionScript/ActionScript.sublime-syntax",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 483.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 6,
+					"type": "text"
+				},
+				{
+					"buffer": 7,
+					"file": "MainMenuState.as",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 7431,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								2861,
+								2861
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/ActionScript 3/ActionScript 3.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 868.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 5,
+					"type": "text"
+				},
+				{
+					"buffer": 8,
 					"file": "Checkpoint.as",
 					"semi_transient": false,
 					"settings":
@@ -695,11 +939,11 @@
 						"translation.y": 807.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 7,
+					"stack_index": 14,
 					"type": "text"
 				},
 				{
-					"buffer": 4,
+					"buffer": 9,
 					"file": "CrumbleRock.as",
 					"semi_transient": false,
 					"settings":
@@ -724,11 +968,11 @@
 						"translation.y": 1065.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 9,
+					"stack_index": 16,
 					"type": "text"
 				},
 				{
-					"buffer": 5,
+					"buffer": 10,
 					"file": "Bot2.as",
 					"semi_transient": false,
 					"settings":
@@ -753,11 +997,11 @@
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 8,
+					"stack_index": 15,
 					"type": "text"
 				},
 				{
-					"buffer": 6,
+					"buffer": 11,
 					"file": "Bot.as",
 					"semi_transient": false,
 					"settings":
@@ -782,11 +1026,11 @@
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 10,
+					"stack_index": 17,
 					"type": "text"
 				},
 				{
-					"buffer": 7,
+					"buffer": 12,
 					"file": "Borg.as",
 					"semi_transient": false,
 					"settings":
@@ -811,40 +1055,11 @@
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 12,
+					"stack_index": 7,
 					"type": "text"
 				},
 				{
-					"buffer": 8,
-					"file": "Player.as",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 19143,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								14330,
-								14330
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/ActionScript 3/ActionScript 3.tmLanguage",
-							"translate_tabs_to_spaces": false
-						},
-						"translation.x": 0.0,
-						"translation.y": 8272.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 5,
-					"type": "text"
-				},
-				{
-					"buffer": 9,
+					"buffer": 13,
 					"file": "Spring.as",
 					"semi_transient": false,
 					"settings":
@@ -869,40 +1084,11 @@
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 11,
+					"stack_index": 10,
 					"type": "text"
 				},
 				{
-					"buffer": 10,
-					"file": "MainMenuState.as",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 7429,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								3019,
-								3019
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/ActionScript 3/ActionScript 3.tmLanguage",
-							"translate_tabs_to_spaces": false
-						},
-						"translation.x": 0.0,
-						"translation.y": 1035.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 3,
-					"type": "text"
-				},
-				{
-					"buffer": 11,
+					"buffer": 14,
 					"file": "Main.as",
 					"semi_transient": false,
 					"settings":
@@ -927,11 +1113,11 @@
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 4,
+					"stack_index": 12,
 					"type": "text"
 				},
 				{
-					"buffer": 12,
+					"buffer": 15,
 					"file": "Level6.as",
 					"semi_transient": false,
 					"settings":
@@ -956,40 +1142,40 @@
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 1,
+					"stack_index": 11,
 					"type": "text"
 				},
 				{
-					"buffer": 13,
+					"buffer": 16,
 					"file": "LevelMenuState.as",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 6464,
+						"buffer_size": 6536,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								6085,
-								6085
+								4568,
+								4568
 							]
 						],
 						"settings":
 						{
-							"syntax": "Packages/ActionScript/ActionScript.sublime-syntax",
+							"syntax": "Packages/ActionScript 3/ActionScript 3.tmLanguage",
 							"translate_tabs_to_spaces": false
 						},
 						"translation.x": 0.0,
-						"translation.y": 3007.0,
+						"translation.y": 2251.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 13,
+					"stack_index": 8,
 					"type": "text"
 				},
 				{
-					"buffer": 14,
+					"buffer": 17,
 					"file": "Rock.as",
 					"semi_transient": false,
 					"settings":
@@ -1014,11 +1200,11 @@
 						"translation.y": 107.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 16,
+					"stack_index": 19,
 					"type": "text"
 				},
 				{
-					"buffer": 15,
+					"buffer": 18,
 					"file": "Level2.as",
 					"semi_transient": false,
 					"settings":
@@ -1043,11 +1229,11 @@
 						"translation.y": 184.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 15,
+					"stack_index": 18,
 					"type": "text"
 				},
 				{
-					"buffer": 16,
+					"buffer": 19,
 					"file": "Stars.as",
 					"semi_transient": false,
 					"settings":
@@ -1072,7 +1258,7 @@
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 6,
+					"stack_index": 13,
 					"type": "text"
 				}
 			]
@@ -1127,8 +1313,48 @@
 		"selected_items":
 		[
 			[
+				"player",
+				"Player.as"
+			],
+			[
+				"npc",
+				"NPC.as"
+			],
+			[
+				"play",
+				"Player.as"
+			],
+			[
+				"pl",
+				"Player.as"
+			],
+			[
+				"playstate",
+				"PlayState.as"
+			],
+			[
+				"level4",
+				"Level4.as"
+			],
+			[
 				"playst",
 				"PlayState.as"
+			],
+			[
+				"levelmenu",
+				"LevelMenuState.as"
+			],
+			[
+				"mainmen",
+				"MainMenuState.as"
+			],
+			[
+				"playstat",
+				"PlayState.as"
+			],
+			[
+				"regis",
+				"Registry.as"
 			],
 			[
 				"regi",
@@ -1137,18 +1363,6 @@
 			[
 				"main",
 				"MainMenuState.as"
-			],
-			[
-				"mainmen",
-				"MainMenuState.as"
-			],
-			[
-				"player",
-				"Player.as"
-			],
-			[
-				"play",
-				"PlayState.as"
 			],
 			[
 				"level6",
@@ -1183,10 +1397,6 @@
 				"Registry.as"
 			],
 			[
-				"levelmenu",
-				"LevelMenuState.as"
-			],
-			[
 				"gameleve",
 				"GameLevel.as"
 			],
@@ -1211,20 +1421,12 @@
 				"Rock.as"
 			],
 			[
-				"pl",
-				"Player.as"
-			],
-			[
 				"level7",
 				"Level7.as"
 			],
 			[
 				"sign",
 				"Sign.as"
-			],
-			[
-				"regis",
-				"Registry.as"
 			],
 			[
 				"star",
@@ -1247,10 +1449,6 @@
 				"MainMenuState.as"
 			],
 			[
-				"playstate",
-				"PlayState.as"
-			],
-			[
 				"plas",
 				"PlayState.as"
 			],
@@ -1269,14 +1467,6 @@
 			[
 				"plays",
 				"PlayState.as"
-			],
-			[
-				"npc",
-				"NPC.as"
-			],
-			[
-				"level4",
-				"Level4.as"
 			],
 			[
 				"registry",

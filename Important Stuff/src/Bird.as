@@ -159,41 +159,41 @@ package
 		}
 		
 		
-		public function talk():void
-		{
-			play("punched");
-			if (messageCount == 1)
-			{
-				message.text = "I SEE YOU'RE ENJOYING THE BOXING GLOVE";
-			}
-			else if (messageCount == 3) //for some reason when you punch the Bird it calls talk() twice. This is terrible programming, but whatevs
-			{
-				message.text = "MIND NOT PUNCHING ME?";
-			}
-			else if (messageCount == 5)
-			{
-				message.text = "PLEASE. I'LL PAY YOU IF YOU STOP";
-			}
-			else if (messageCount == 7)
-			{
-				message.text = "HERE. TAKE THIS AND LEAVE ME ALONE ";
-			}
-			else if (messageCount == 9)
-			{
-				message.text = "";
-				play("umbrella");
-			}
-			else if (messageCount > 9)
-			{
-				immovable = false;
-				knockback();
-				Registry.hasUmbrella = true;
-				//player.bounce(400);
-				//message.text = "SHIIIIIIT";
-			}
+		// public function talk():void
+		// {
+		// 	play("punched");
+		// 	if (messageCount == 1)
+		// 	{
+		// 		message.text = "I SEE YOU'RE ENJOYING THE BOXING GLOVE";
+		// 	}
+		// 	else if (messageCount == 3) //for some reason when you punch the Bird it calls talk() twice. This is terrible programming, but whatevs
+		// 	{
+		// 		message.text = "MIND NOT PUNCHING ME?";
+		// 	}
+		// 	else if (messageCount == 5)
+		// 	{
+		// 		message.text = "PLEASE. I'LL PAY YOU IF YOU STOP";
+		// 	}
+		// 	else if (messageCount == 7)
+		// 	{
+		// 		message.text = "HERE. TAKE THIS AND LEAVE ME ALONE ";
+		// 	}
+		// 	else if (messageCount == 9)
+		// 	{
+		// 		message.text = "";
+		// 		play("umbrella");
+		// 	}
+		// 	else if (messageCount > 9)
+		// 	{
+		// 		immovable = false;
+		// 		knockback();
+		// 		Registry.hasUmbrella = true;
+		// 		//player.bounce(400);
+		// 		//message.text = "SHIIIIIIT";
+		// 	}
 			
-			messageCount += 1; 
-		}
+		// 	messageCount += 1; 
+		// }
 	}
 
 }

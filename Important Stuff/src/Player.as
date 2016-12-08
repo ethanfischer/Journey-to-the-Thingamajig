@@ -62,6 +62,7 @@ package
 		private var umbrellaCounter:int; //when you first open the umbrella, it slows you down. Only let this happen a few times so players cant abuse this power
 		
 		public var walkingFlag:Boolean = false;
+		public var isPumpingBrakes:Boolean = false;
 		public var halted:Boolean;
 		public var facingFlag:Boolean;
 		private var _flag497:Boolean; //why the fuck would I name something this??
@@ -111,6 +112,7 @@ package
 				addAnimation("letterIdle", [26], 0, false);
 				addAnimation("hatIdle", [16,17,18, 40], 8, false);
 				addAnimation("hatAway", [41,42,43], 8, false);
+				addAnimation("pumpBrakes", [48], 0, false);
 				
 				//handle walking Soundeffect stuff here
 				walkSFX = new FlxSound();
@@ -147,6 +149,7 @@ package
 				loadGraphic(_botPNG, true, true, 14, 32, true);
 				
 				addAnimation("idle", [0, 1, 2, 3, 4, 5, 6, 7, 8, 9], 16, true);
+				addAnimation("pumpBrakes", [0], 0, true);
 				addAnimation("walk", [0, 1, 2, 3, 4, 5, 6, 7, 8, 9], 16, true);
 				addAnimation("run", [0, 1, 2, 3, 4, 5, 6, 7, 8, 9], 16, true);
 				addAnimation("jump", [0, 1, 2, 3, 4, 5, 6, 7, 8, 9], 32, true);
@@ -328,7 +331,8 @@ package
 				{
 					if (Math.abs(velocity.x) >= MAXSPEED)
 					{
-						play("run");
+						if(!isPumpingBrakes) play("run");
+						else play("pumpBrakes");
 						
 						if (!walkingFlag)
 						{
@@ -343,8 +347,8 @@ package
 					}
 					else
 					{
-						play("walk");
-						
+						if(!isPumpingBrakes) play("walk");
+						else play("pumpBrakes");
 						if (!walkingFlag)
 						{
 							if (velocity.x > 100 || velocity.x < -100) 
@@ -441,11 +445,18 @@ package
 					if ((facing == LEFT && velocity.x > 0) || (facing == RIGHT && velocity.x < 0))
 					{
 						accel = 1000;
+						play("pumpBrakes");
+						
+						isPumpingBrakes = true;
+						
 					}
 					else
 					{
 						// accel = 550;
-						accel = 250; // 16-12-03 edited
+						if(isPumpingBrakes && facing == FlxObject.RIGHT) facing = FlxObject.LEFT;
+						else if (isPumpingBrakes) facing = FlxObject.RIGHT;
+						isPumpingBrakes = false;
+						accel = 300; // 16-12-03 edited
 					}
 					
 					if (touching == FlxObject.FLOOR)
@@ -483,12 +494,14 @@ package
 								canIdle = true;
 								_flag497 = true;
 							}
-							decel = 300;
+							decel = 300; //16-12-03 edited
+							//decel = 500;
 						}
 					}
 					else
 					{
 						_slideSFX.stop();
+						accel = 1000;
 						if(!(FlxG.keys.LEFT || FlxG.keys.RIGHT)) decel = 200
 						else decel = 0;
 					}
@@ -584,7 +597,7 @@ package
 							velocity.y = 10;
 							umbrellaCounter += 1;
 							play("parachute");
-							// FlxG.play(_umbrellaSFX);
+							FlxG.play(_umbrellaSFX);
 							_paraFlag = true;
 						}
 						else

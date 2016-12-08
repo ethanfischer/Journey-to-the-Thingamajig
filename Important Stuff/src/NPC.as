@@ -138,6 +138,7 @@ package
 						if (meetTimer < 6)
 						{
 							message.text = "(press 'X')";
+							Registry.gameLevel.player.canPunch = true;
 							if (!noise2Flag)
 							{
 								FlxG.play(noise2);
@@ -147,7 +148,6 @@ package
 							{
 								//UNFREEZE PLAYER
 								Registry.gameLevel.player.canIdle = true;
-								Registry.gameLevel.player.canPunch = true;
 								FlxControl.player1.setCursorControl(false, false, true, true);
 								alpha -= FlxG.elapsed / 5;
 								message.alpha -= FlxG.elapsed / 5;
