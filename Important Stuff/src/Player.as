@@ -445,9 +445,13 @@ package
 					if ((facing == LEFT && velocity.x > 0) || (facing == RIGHT && velocity.x < 0))
 					{
 						accel = 1000;
-						play("pumpBrakes");
+						if (touching == FlxObject.FLOOR)
+						{
+							play("pumpBrakes");
+							
+							isPumpingBrakes = true;	
+						}
 						
-						isPumpingBrakes = true;
 						
 					}
 					else
@@ -597,7 +601,7 @@ package
 							velocity.y = 10;
 							umbrellaCounter += 1;
 							play("parachute");
-							FlxG.play(_umbrellaSFX);
+							if(Registry.stageCount != 5)FlxG.play(_umbrellaSFX);
 							_paraFlag = true;
 						}
 						else
