@@ -6,7 +6,7 @@ package
 	public class NPC extends FlxSprite
 	{
 		//[Embed(source = "../map/teddy.png")] private var NPCPNG:Class;
-		[Embed(source = "../assets/NPC.png")] private var NPCPNG:Class;
+		[Embed(source = "../assets/wiz.png")] private var NPCPNG:Class;
 
 		[Embed(source = "../assets/here.mp3")] private var hereSFX:Class;
 		private var hereSFXFLAG:Boolean;
@@ -32,34 +32,46 @@ package
 		
 		public function NPC(x:int, y:int, i_facing:uint)
 		{
-			super(x * 16, y * 16);
+			super(x * 16, y * 16 -24);
 			
 			retreatFlag = false;
 			
 			message = new FlxText(x*16, y*16 - 30, 150, "");
 		
-			loadGraphic(NPCPNG, true, true, 16, 18);
+			loadGraphic(NPCPNG, true, true, 24, 48);
 			
 			facing = i_facing;
 			facing = FlxObject.RIGHT;
+			// drag.x = 9999;
 			
 			immovable = true;
 			solid = true;
 			active = true;
 			
-			addAnimation("idle", [0,1], 2, true);
-			addAnimation("dead", [0, 11, 12, 13], 60, false);
-			addAnimation("punched", [1, 2, 1, 2, 1, 2, 1, 2, 1, 2, 0], 15, false);
-			addAnimation("umbrella", [1, 2, 1, 2, 1, 2, 1, 2, 3, 0], 15, false);
-			addAnimation("retreat", [14, 15, 16, 17, 16, 17, 16, 17] , 20, false);
+			// addAnimation("idle", [0,1], 2, true);
+			// addAnimation("dead", [0, 11, 12, 13], 60, false);
+			// addAnimation("punched", [1, 2, 1, 2, 1, 2, 1, 2, 1, 2, 0], 15, false);
+			// addAnimation("umbrella", [1, 2, 1, 2, 1, 2, 1, 2, 3, 0], 15, false);
+			// addAnimation("retreat", [14, 15, 16, 17, 16, 17, 16, 17] , 20, false);
+
+			addAnimation("think", [3], 0, false);
+			addAnimation("look", [5], 0, false);
+			addAnimation("idle", [0], 0, true);
+			addAnimation("excited", [1, 2, 1, 2, 1,1,1,1,1,1,1,1,1,1], 4, true);
+			addAnimation("moreExcited", [1, 2, 1, 2], 2, true);
+			addAnimation("exuberant", [1, 2], 6, true);
+			addAnimation("ecstatic", [1, 2], 8, true);
+			addAnimation("run", [4], 12, true);
+			addAnimation("dead", [6], 0, true);
 			
-			play("idle");
+			play("moreExcited");
 			
 			dieTimer = 0;
 			
-			offset.y = -2;
-			width = 3;
-			offset.x = 8;
+			// offset.y = -2;
+			width = 24;
+			height = 48;
+			// offset.x = 8;
 		}
 		
 		override public function kill():void
@@ -82,6 +94,9 @@ package
 		override public function update():void
 		{
 			super.update();
+
+			if(Registry.player.x > x) facing = FlxObject.LEFT;
+			else facing = FlxObject.RIGHT;
 
 			//FlxG.log("I'm alive!");
 			

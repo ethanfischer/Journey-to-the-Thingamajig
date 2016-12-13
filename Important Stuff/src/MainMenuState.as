@@ -66,7 +66,7 @@ package
 		override public function create():void
 		{
 			// mute mode, music, volume, silent
-			 // FlxG.volume = 0;
+			if (Registry.muteMode) FlxG.volume = 0;
 		
 			Registry.checkpointFlag = false;
 			//FlxG.play(quack);

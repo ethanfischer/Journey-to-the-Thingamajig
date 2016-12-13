@@ -99,6 +99,9 @@ package
 		public static var metWiz:Boolean = false;
 		public static var wizGiftFlag:Boolean = false; //once set, camera stays stationary with wiz and gift on right side of screen (set true in Playstate)
 		
+
+		public static var muteMode:Boolean = false;
+
 		////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 		//															musicRepository															  //
 		////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -123,7 +126,7 @@ package
 		[Embed(source = "../assets/TheHoliday.mp3")]public static var l6msc:Class;
 
 		//Level 7		
-		[Embed(source="../assets/experimental-mixing.mp3")] public static var l7msc:Class;
+		[Embed(source="../assets/l7msc.mp3")] public static var l7msc:Class;
 
 		//Silence
 		[Embed(source="../assets/silence.mp3")] public static var silence:Class;

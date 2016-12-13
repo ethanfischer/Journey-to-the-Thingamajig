@@ -124,7 +124,7 @@ package
 			handleMouse();
 
 			//mute mode, music, volumne, silent
-			// FlxG.volume = 0;
+			if (Registry.muteMode) FlxG.volume = 0;
 			handlePause();
 
 			if (!Registry.gameStart)

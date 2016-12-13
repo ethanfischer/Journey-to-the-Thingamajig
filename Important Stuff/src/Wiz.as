@@ -5,7 +5,7 @@ package
 
 	public class Wiz extends FlxSprite
 	{
-		[Embed(source = "../map/wiz.png")] private var wizPNG:Class;
+		[Embed(source = "../assets/wiz.png")] private var wizPNG:Class;
 		[Embed(source = "../assets/smash.mp3")] private var smash:Class;
 		[Embed(source = "../assets/rumble_loud.mp3")] public var rumble:Class;
 		[Embed(source = "../assets/wiz_laugh.mp3")] public var wizLaugh:Class;
