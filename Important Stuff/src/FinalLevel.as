@@ -43,7 +43,7 @@ package
 		[Embed(source = "../map/mapCSV_FinalLevel_Streams.csv", mimeType = "application/octet-stream")] public var streamsCSV:Class;
 		[Embed(source="../map/mapCSV_FinalLevel_Reinforcements.csv", mimeType="application/octet-stream")] public var reinforcementsCSV:Class;
 		
-		[Embed(source="../assets/distant_thunder.mp3")] public var dwarfDance:Class; //mountain ambience mode
+		//[Embed(source="../assets/distant_thunder.mp3")] public var dwarfDance:Class; //mountain ambience mode
 		
 		public var rockMap:FlxTilemap;	
 		public var crumbleRockMap:FlxTilemap;

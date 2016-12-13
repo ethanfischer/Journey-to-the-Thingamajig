@@ -44,7 +44,7 @@ package
 		[Embed(source = "../map/mapCSV_Level7_Reinforcements.csv", mimeType = "application/octet-stream")] public var reinforcementsCSV:Class;
 		[Embed(source = "../assets/smoke.png")] private var smokePNG:Class;
 		
-		[Embed(source = "../assets/distant_thunder.mp3")] public var dwarfDance:Class; //mountain ambience mode
+		//[Embed(source = "../assets/distant_thunder.mp3")] public var dwarfDance:Class; //mountain ambience mode
 		[Embed(source = "../assets/volcano.png")] public var volcanoPNG:Class;
 		[Embed(source="../assets/thingamajig.png")] public var thingPNG:Class;
 		//[Embed(source="../assets/02_Open_Eye_Signal.mp3")] public var dwarfDance:Class; //music mode

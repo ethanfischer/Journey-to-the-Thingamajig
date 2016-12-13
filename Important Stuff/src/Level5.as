@@ -37,7 +37,7 @@ package
 		
 		//[Embed(source="../assets/distant_thunder.mp3")] public var dwarfDance:Class; //mountain ambience mode
 		//[Embed(source = "../assets/02_Open_Eye_Signal.mp3")] public var dwarfDance:Class; //music mode
-		[Embed(source = "../assets/water.mp3")] public var dwarfDance:Class;
+		//[Embed(source = "../assets/water.mp3")] public var dwarfDance:Class;
 		
 		//public var waterSFX:FlxSound = new FlxSound();
 		public var rockMap:FlxTilemap;	
@@ -47,7 +47,7 @@ package
 		{
 			super();
 			
-			dwarfDance
+			//dwarfDance
 			//Registry.musix = dwarfDance;
 			//musix.loadEmbedded(dwarfDance, true, false);
 		

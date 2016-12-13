@@ -103,7 +103,7 @@ package
 		
 		public var supportMap:FlxTilemap;
 		
-		[Embed(source = "../assets/water.mp3")] private var water:Class;
+		//[Embed(source = "../assets/water.mp3")] private var water:Class;
 		
 		public function GameLevel() 
 		{
