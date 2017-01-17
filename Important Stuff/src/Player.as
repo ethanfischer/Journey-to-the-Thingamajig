@@ -444,15 +444,13 @@ package
 			
 					if ((facing == LEFT && velocity.x > 0) || (facing == RIGHT && velocity.x < 0))
 					{
-						accel = 1000;
+						accel = Registry.playerTurnAroundAccel;
 						if (touching == FlxObject.FLOOR)
 						{
 							play("pumpBrakes");
 							
 							isPumpingBrakes = true;	
 						}
-						
-						
 					}
 					else
 					{
@@ -460,7 +458,7 @@ package
 						if(isPumpingBrakes && facing == FlxObject.RIGHT) facing = FlxObject.LEFT;
 						else if (isPumpingBrakes) facing = FlxObject.RIGHT;
 						isPumpingBrakes = false;
-						accel = 300; // 16-12-03 edited
+						accel = Registry.playerNormalAccel; // 16-12-03 edited //17-01-16
 					}
 					
 					if (touching == FlxObject.FLOOR)
@@ -474,8 +472,8 @@ package
 							canIdle = false;
 							walkSFX.stop()
 							walkingFlag = false;
-							if (Math.abs(velocity.x) > 100) decel = 70
-							else decel = 150;
+							if (Math.abs(velocity.x) > 100) decel = Registry.playerInitialSlideDecel;
+							else decel = Registry.playerSlideDecel;
 							
 							if (Math.abs(velocity.x) > 50)
 							{
@@ -498,16 +496,16 @@ package
 								canIdle = true;
 								_flag497 = true;
 							}
-							decel = 300; //16-12-03 edited
+							decel = Registry.playerNormalDecel; //16-12-03 edited
 							//decel = 500;
 						}
 					}
 					else
 					{
 						_slideSFX.stop();
-						accel = 1000;
-						if(!(FlxG.keys.LEFT || FlxG.keys.RIGHT)) decel = 200
-						else decel = 0;
+						accel = Registry.playerAirAccel;
+						if(!(FlxG.keys.LEFT || FlxG.keys.RIGHT)) decel = Registry.playerAirDecel;
+						else decel = 0; //if going the opposite direction, accel happens in other direction so decel is not needed here
 					}
 				//}
 			FlxControl.player1.setAdvancedMovementSpeed(accel, accel, 400, 400, speed, 800, decel, 0);

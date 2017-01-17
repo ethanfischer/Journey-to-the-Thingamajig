@@ -21,6 +21,7 @@ package
 		private var _finalLevel:Class = FinalLevel;
 		private var _levelButton:FlxButton;
 		private var _muteButton:FlxButton;
+		private var _controlsButton:FlxButton;
 		public var healthBar:FlxHealthBar;
 		private var _amountOfDeathsMessage:FlxText;
 		private var _playtimeMessage:FlxText;
@@ -64,6 +65,7 @@ package
 		[Embed(source = "../assets/trumpetfanfare_mom.mp3")] private var _trumpetSFX:Class;
 		[Embed(source = "../assets/mute.png")] private var _mutePNG:Class;
 		[Embed(source = "../assets/menu.png")] private var _levelsPNG:Class;
+		[Embed(source = "../assets/controlsButton.png")] private var _controlsPNG:Class;
 		[Embed(source = "../assets/party_pop.mp3")] private var _partyPop:Class;
 		[Embed(source = "../assets/foldpaper(openletter).mp3")] private var _openletter:Class;
 		[Embed(source = "../assets/jttt.png")] private var jtttPNG:Class;
@@ -87,6 +89,14 @@ package
 			_levelButton.label.color = 0xFFFFFF;
 			_levelButton.scrollFactor.x = 0;
 			_levelButton.scrollFactor.y = 0;
+
+			_controlsButton = new FlxButton(215, 2, "", tweakControls);
+			_controlsButton.loadGraphic(_controlsPNG, false, false, 500, 12);
+			_controlsButton.scrollFactor.x = 0;
+			_controlsButton.scrollFactor.y = 0;
+			_controlsButton.label = new FlxText(250, 2, 300, "ctrls: " + Registry.controlsDescriptor);
+			_controlsButton.label.color = 0x777777;
+			//multiButton.label.setFormat(null,20,0x333333,"center");
 
 			_muteButton = new FlxButton(Registry.screenWidth - 21, 13, "", mute, true);
 			_muteButton.loadGraphic(_mutePNG, true, false, 12, 12);
@@ -150,6 +160,9 @@ package
 				
 				level7();
 				fade(_gameLevel.black); //listen for the black to fade in level 2
+
+				// tweakControls();
+				helpfulHints();
 				// stars();
 				//butt();
 			}
@@ -360,6 +373,60 @@ package
 				FlxG.overlap(_gameLevel.player, _gameLevel.end, hitCheckpoint);
 
 				
+		}
+
+		private function tweakControls():void
+		{
+			if(Registry.controlsDescriptor == "normal")
+			{
+				Registry.playerNormalAccel = 300;
+				Registry.playerTurnAroundAccel = 1000;
+				Registry.playerAirAccel = 1000;
+
+				Registry.playerAirDecel = 200;
+				Registry.playerNormalDecel = 300;
+				// Registry.playerInitialSlideDecel = 70;
+				// Registry.playerSlideDecel = 150;
+
+				Registry.controlsDescriptor = "momentous";
+				_controlsButton.label.text = "ctrls: " + Registry.controlsDescriptor;
+			}
+			else if (Registry.controlsDescriptor == "momentous")
+			{
+				Registry.playerNormalAccel = 1200;
+				Registry.playerTurnAroundAccel = 4000;
+				Registry.playerAirAccel = 2000;
+
+				Registry.playerAirDecel = 400;
+				Registry.playerNormalDecel = 1600;
+				// Registry.playerInitialSlideDecel = 70;
+				// Registry.playerSlideDecel = 150;
+
+				Registry.controlsDescriptor = "tight";
+				_controlsButton.label.text = "ctrls: " + Registry.controlsDescriptor;
+			}
+			else if (Registry.controlsDescriptor == "tight")
+			{
+				Registry.playerNormalAccel = 600;
+				Registry.playerTurnAroundAccel = 2000;
+				Registry.playerAirAccel = 1500;
+
+				Registry.playerAirDecel = 300;
+				Registry.playerNormalDecel = 600;
+				// Registry.playerInitialSlideDecel = 70;
+				// Registry.playerSlideDecel = 150;
+
+				Registry.controlsDescriptor = "normal";
+				_controlsButton.label.text = "ctrls: " + Registry.controlsDescriptor;
+			}
+		}
+
+		private function helpfulHints():void
+		{
+			// if(Registry.playtime >10 && Registry.playtime < 10.1)
+			// {
+			// 	add(new FlxText(_gameLevel.player.x, _gameLevel.player.y - 10, 200, "Press 'J' for tight controls"));
+			// }
 		}
 
 		private function addText(txt:String):void
@@ -725,7 +792,7 @@ package
 					if(Registry.stageCount != 5) FlxG.play(_trumpetSFX);
 					trumpetFlag = true;
 				}
-				add(new FlxText(_gameLevel.player.x, _gameLevel.player.y - 10, 200, Registry.ballsCollected + "th BALL OF POINTLESSNESS!"));
+				add(new FlxText(_gameLevel.player.x, _gameLevel.player.y - 10, 200, Registry.ballsCollected + "th ball of pointlessness."));
 			}
 			//if (Registry.stageCount == 0 && player.x > 600) _gameLevel.pointsMessage.kill();
 		}
@@ -1355,6 +1422,7 @@ package
 			add(_gameLevel.foreforeground);
 			add(_muteButton);
 			add(_levelButton);
+			add(_controlsButton);
 			
 			
 			

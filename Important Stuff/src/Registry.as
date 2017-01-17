@@ -100,7 +100,30 @@ package
 		public static var wizGiftFlag:Boolean = false; //once set, camera stays stationary with wiz and gift on right side of screen (set true in Playstate)
 		
 
+		public static var playerNormalAccel:int = 600;
+		public static var playerTurnAroundAccel:int = 2000;
+		public static var playerAirAccel:int = 1500;
+
+		public static var playerAirDecel:int = 300;
+		public static var playerNormalDecel:int = 600;
+		public static var playerInitialSlideDecel:int = 140;
+		public static var playerSlideDecel:int = 300;
+
+		public static var controlsDescriptor:String = "normal";
+
+		/*
+			Registry.playerNormalAccel = 600;
+			Registry.playerTurnAroundAccel = 2000;
+			Registry.playerAirAccel = 1500;
+
+			Registry.playerAirDecel = 300;
+			Registry.playerNormalDecel = 600;
+			Registry.playerInitialSlideDecel = 140;
+			Registry.playerSlideDecel = 300;
+		*/
+
 		public static var muteMode:Boolean = false;
+		// public static var muteMode:Boolean = true;
 
 		////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 		//															musicRepository															  //

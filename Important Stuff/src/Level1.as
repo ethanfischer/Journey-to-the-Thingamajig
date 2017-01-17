@@ -102,7 +102,7 @@ package
 			}
 			
 			sign = new Sign(135, 240, "PRESS 'Z' TO JUMP", player, 100, 240);
-			sign2 = new Sign(1000, 180, "BALL OF POINTLESSNESS!", player, 1080, 180);
+			sign2 = new Sign(1000, 180, "ball of pointlessness", player, 1080, 180);
 			
 			parseBots(player);
 			parseRocks(player);
