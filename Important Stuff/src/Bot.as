@@ -66,7 +66,16 @@ package
 		
 			removeSprite();
 		}
-		
+
+		public function isBot2():Boolean
+		{
+			return false;
+		}
+
+		public function dodge():void
+		{
+			//this is a placeholder. This function is overriden in Bot2
+		}		
 		
 		private function removeSprite():void
 		{

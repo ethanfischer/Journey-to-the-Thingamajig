@@ -128,6 +128,12 @@ package
 			wizHat.loadGraphic(wizHatPNG, false, false, 16, 16);
 			wizHat.scrollFactor.x = 1;
 			wizHat.scrollFactor.y = 1;
+
+			letterMsg = new FlxText(305, 190, 300);
+			letterMsg.text = "";
+			//letterMsg.loadGraphic(letterPNG, false, false, 600, 300);
+			letterMsg.scrollFactor.y = 0;
+			letterMsg.visible = false;
 			
 		///////////////////////////////////////////////////////
 		//					 CHECKPOINT						 //

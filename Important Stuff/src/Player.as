@@ -301,6 +301,7 @@ package
 				_letterTimer = 0;
 				moves = true;
 				canIdle = true;
+				canPunch = true;
 				FlxControl.player1.setCursorControl(false, false, true, true);
 			}
 			
@@ -587,10 +588,12 @@ package
 				}
                 //else
                     //velocity.y = -200; //The general acceleration of the jump
-            } else
+            } 
+            else
             {
 				if (((FlxG.keys.Z || FlxG.keys.UP) && !_letterTimer > 0) && velocity.y > 10 && _hurtTimer <= 0 && Registry.hasUmbrella) 
 				{
+					FlxG.log("Registry.hasUmbrella = " + Registry.hasUmbrella);
 					acceleration.y = 100;
 					if(!_paraFlag)
 					{
@@ -704,6 +707,8 @@ package
 		
 		public function putAway():void
 		{
+
+			FlxG.log(FlxG.elapsed);
 			if(Registry.stageCount != 5)
 			{
 				FlxG.play(_foldPaperSFX, 1);
@@ -716,6 +721,7 @@ package
 			}
 			canIdle = false;
 			_letterTimer = .7;
+			Registry.gameLevel.letterMsg.visible = false;
 
 			FlxG.log("putAway");
 

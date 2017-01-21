@@ -46,6 +46,8 @@ package
 			
 			//Registry.musix = dwarfDance;
 			//Registry.musix.loadEmbedded(dwarfDance, true, false);
+
+			Registry.hasUmbrella = false;
 			
 			backbackground = new FlxTilemap;
 			backbackground.loadMap(new backbackgroundCSV, backbackgroundTilesPNG, 252, 300);

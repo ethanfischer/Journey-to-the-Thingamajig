@@ -20,6 +20,7 @@ package
 		public var weapon:FlxWeapon;
 		public var direction:uint;
 		public var updateForever:Boolean;
+		private var dodgeTimer:Number = 0;
 		
 		public function Bot2(x:int, y:int, i_player:Player, i_weapon:FlxWeapon, i_facing:uint, bladeSpeed:int, i_active:Boolean = false, fireRate:int = 1, bullets:int = 4, i_updateForever:Boolean = false)
 		{
@@ -52,6 +53,7 @@ package
 			
 			addAnimation("idle", [0,1], 30, true);
 			addAnimation("dead", [11], 1, false);
+			addAnimation("dodge", [14], 0, false);
 			
 			play("idle");
 			
@@ -79,10 +81,31 @@ package
 				else if(this.onScreen()) fireSFX.volume = 1;
 				else fireSFX.volume = .2; 
 			}
+
+			if(dodgeTimer > 0)
+			{
+				dodgeTimer -= FlxG.elapsed;
+			}
+			else if (dodgeTimer < 0)
+			{
+				dodgeTimer = 0;
+				play("idle");
+			}
 			
 			
 		
 			
+		}
+
+		override public function dodge():void
+		{
+			play("dodge");
+			dodgeTimer = .2;
+		}
+
+		override public function isBot2():Boolean
+		{
+			return true;
 		}
 		
 		override public function retreat():void

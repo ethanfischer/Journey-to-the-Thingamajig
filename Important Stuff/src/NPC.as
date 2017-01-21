@@ -241,7 +241,7 @@ package
 		
 		public function talk():void
 		{
-			play("punched");
+			// play("punched");
 			if (messageCount == 1)
 			{
 				Registry.firstLevel5 = false;

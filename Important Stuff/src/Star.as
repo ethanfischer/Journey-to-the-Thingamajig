@@ -60,7 +60,7 @@ package
 			velocity.x = -500;
 			if (x < 0) 
 			{
-				FlxG.log("x < 0");
+				// FlxG.log("x < 0");
 				var randNum:int = FlxMath.rand(500, 1000);
 				x = randNum;
 			}

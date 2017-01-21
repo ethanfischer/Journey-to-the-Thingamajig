@@ -47,7 +47,8 @@ package
 		{
 			super();
 
-		
+			Registry.hasUmbrella = false;
+
 		
 			Registry.hmodeChkpt = 999999999999999999999999999;
 			

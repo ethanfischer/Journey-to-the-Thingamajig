@@ -333,7 +333,7 @@ package
 				FlxG.overlap(_gameLevel.player, _gameLevel.torches, hitFire);
 				FlxG.overlap(_gameLevel.player, _gameLevel.lilguy, hitLilguy);
 				FlxG.overlap(_gameLevel.hitBox, _gameLevel.bots, punchBot);
-				//FlxG.overlap(_gameLevel.hitBox, _gameLevel.bots2, punchBot);
+				FlxG.overlap(_gameLevel.hitBox, _gameLevel.bots2, punchBot);
 				FlxG.overlap(_gameLevel.hitBox, _gameLevel.borgs, punchBorg);
 				FlxG.overlap(_gameLevel.hitBox, _gameLevel.frog, punchFrog);
 				FlxG.overlap(_gameLevel.player, _gameLevel.boulder, playerBoulder);
@@ -429,7 +429,7 @@ package
 			// }
 		}
 
-		private function addText(txt:String):void
+		private function addText():void
 		{
 			if(Registry.stageCount == 0) 
 			{
@@ -437,17 +437,24 @@ package
 			}
 			else if (Registry.stageCount == 2) 
 			{
-				if(FlxG.keys.Z || FlxG.keys.X)
+				if(FlxG.keys.Z || FlxG.keys.X || FlxG.keys.SPACE || FlxG.keys.ENTER || FlxG.keys.UP || FlxG.keys.DOWN)
 				{
 					l3Text();
 				}
 			}
 			else if (Registry.stageCount == 3) 
 			{
-				if(FlxG.keys.Z || FlxG.keys.X)
+				if(FlxG.keys.Z || FlxG.keys.X || FlxG.keys.SPACE || FlxG.keys.ENTER || FlxG.keys.UP || FlxG.keys.DOWN)
 				{
 					l4Text();
 				}
+			}
+			else if (Registry.stageCount == 5)
+			{
+				if(FlxG.keys.Z || FlxG.keys.X || FlxG.keys.SPACE || FlxG.keys.ENTER || FlxG.keys.UP || FlxG.keys.DOWN)
+				{
+					l6Text();
+				}	
 			}
 		}
 
@@ -550,6 +557,17 @@ package
 			_gameLevel.letterMsg.text = Registry.tmpTxt;	
 		}
 
+		private function l6Text():void
+		{
+			// Registry.textCounter++;
+			// if(Registry.textCounter == 1)
+			// {
+			// 	Registry.tmpTxt = "Press 'ZX'";
+			// }
+			
+			_gameLevel.letterMsg.text = "Press 'ZX'";	
+		}
+
 		private function letter():void
 		{
 			//If the letter is on screen (it should be when first playing level 1 and when hitting the mail in level 4),
@@ -565,7 +583,7 @@ package
 					anyKeyJustPressed = true;
 
 					// Do the stuff you want when any key is just pressed.
-					addText(Registry.tmpTxt);
+					addText();
 
 				}
 				else if (!FlxG.keys.any())
@@ -583,6 +601,7 @@ package
 					{
 						_letterTimer = .5;
 						_gameLevel.player.putAway();
+						// _gameLevel.letterMsg.visible = false;
 						Registry.letterSequence = false;
 						Registry.gameLevel.player.moves = true;
 					}
@@ -938,11 +957,16 @@ package
 		private function punchBot(hitBox:FlxObject , bot:Bot):void
 		{
 			
-			if (Registry.gameLevel.player.canPunch && FlxG.keys.justPressed("X") && Registry.hasFlower && !bot.isDying)
+			if (!bot.isBot2() && Registry.gameLevel.player.canPunch && FlxG.keys.justPressed("X") && Registry.hasFlower && !bot.isDying)
 			{
 				if(Registry.stageCount != 5) FlxG.play(punchSFX);
 				bot.knockback();
 			}
+			else if (bot.isBot2() && FlxG.keys.justPressed("X"))
+			{
+				bot.dodge();
+			}
+
 		}
 		
 		private function punchFrog(hitBox:FlxObject, frog:Frog):void
@@ -993,8 +1017,9 @@ package
 		private function hitMail(player:Player, mail:Mail):void
 		{
 			//FlxG.log("hit Mail");
-			add(_gameLevel.letterMsg);
+			// add(_gameLevel.letterMsg);
 			player.velocity.x = 0;
+
 			//_gameLevel.player.moves = false;
 			FlxG.play(_openletter);
 			viewMail();
@@ -1022,6 +1047,7 @@ package
 			//FlxG.log("hit Mail");
 			// add(_gameLevel.letterMsg);
 			player.velocity.x = 0;
+
 			//_gameLevel.player.moves = false;
 			// FlxG.play(_openletter);
 			viewMail();
@@ -1038,9 +1064,11 @@ package
 		private function viewMail():void
 		{
 			FlxG.camera.stopFX();
-			
+			add(_gameLevel.letterMsg);
+			_gameLevel.letterMsg.visible = true;
 			//FlxG.flash(0x00000000, 1.4);
-			
+			_gameLevel.player.canPunch = false;
+
 			Registry.letterSequence = true;
 			Registry.gameLevel.player.moves = false;
 			Registry.gameLevel.player.velocity.x = 0;
@@ -1049,7 +1077,6 @@ package
 			else 
 			{
 				Registry.gameLevel.player.play("letterIdle");
-				_gameLevel.letterMsg.visible = true;
 			}
 		}
 

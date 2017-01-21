@@ -48,6 +48,7 @@ package
 			} 
 
 
+
 			letterMsg = new FlxText(30, 100, 400);
 			letterMsg.text = "Okay.";
 				
@@ -57,6 +58,7 @@ package
 			//musix.loadEmbedded(dwarfDance, true, false);
 			
 			Registry.hasFlower = true;
+			Registry.hasUmbrella = false;
 			Registry.meetingAdjourned = true;
 
 			stars = new Stars();

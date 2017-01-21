@@ -87,6 +87,7 @@ package
 			if(Registry.firstLevel4) mail = new Mail(130, 430);
 			
 			canopy.visible = false;
+			Registry.hasUmbrella = false;
 			
 			
 			///////////////////////////////////////////////////////

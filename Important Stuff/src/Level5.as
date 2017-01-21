@@ -50,6 +50,12 @@ package
 			//dwarfDance
 			//Registry.musix = dwarfDance;
 			//musix.loadEmbedded(dwarfDance, true, false);
+			if(!Registry.firstLevel5)
+			{
+				Registry.hasUmbrella = true;
+			}
+
+			Registry.firstLevel5 = false;
 		
 			Registry.fstPlace = 120;
 			Registry.sndPlace = 220;
