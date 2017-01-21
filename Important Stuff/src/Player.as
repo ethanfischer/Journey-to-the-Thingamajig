@@ -593,7 +593,7 @@ package
             {
 				if (((FlxG.keys.Z || FlxG.keys.UP) && !_letterTimer > 0) && velocity.y > 10 && _hurtTimer <= 0 && Registry.hasUmbrella) 
 				{
-					FlxG.log("Registry.hasUmbrella = " + Registry.hasUmbrella);
+					// FlxG.log("Registry.hasUmbrella = " + Registry.hasUmbrella);
 					acceleration.y = 100;
 					if(!_paraFlag)
 					{
