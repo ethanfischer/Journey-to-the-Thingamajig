@@ -723,7 +723,7 @@ package
 			_letterTimer = .7;
 			Registry.gameLevel.letterMsg.visible = false;
 
-			FlxG.log("putAway");
+			// FlxG.log("putAway");
 
 		}
 		

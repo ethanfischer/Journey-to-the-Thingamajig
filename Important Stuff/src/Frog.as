@@ -102,7 +102,7 @@ package
 		
 		public function knockBack():void
 		{
-			velocity.x = 1000;
+			velocity.x = 400;
 			velocity.y = -300;
 			solid = false;
 			angle = 45;

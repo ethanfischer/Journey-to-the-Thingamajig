@@ -22,7 +22,7 @@ package
 		[Embed(source="../map/mapCSV_Level3_Bots(2).csv", mimeType="application/octet-stream")] public var bots2CSV:Class;
 		[Embed(source="../map/mapCSV_Level3_Rocks.csv", mimeType="application/octet-stream")] public var rocksCSV:Class;
 		[Embed(source = "../map/mapCSV_Level3_CrumbleRocks.csv", mimeType = "application/octet-stream")] public var crumbleRocksCSV:Class;
-		[Embed(source = "../map/mapCSV_Level3_Supports.csv", mimeType = "application/octet-stream")]         public var supportsCSV:Class;
+		// [Embed(source = "../map/mapCSV_Level3_Supports.csv", mimeType = "application/octet-stream")]         public var supportsCSV:Class;
 		[Embed(source="../map/mapCSV_Level3_Reinforcements.csv", mimeType="application/octet-stream")] public var reinforcementsCSV:Class;
 		[Embed(source = "../map/rock.png")] public var rockPNG:Class;
 		[Embed(source = "../map/crumbleRock.png")] public var crumbleRockPNG:Class;
@@ -107,7 +107,7 @@ package
 			else
 			{
 				player = new Player(30, 160);
-				frog = new Frog(173, 160);
+				frog = new Frog(147, 170);
 			}
 			
 			
@@ -115,18 +115,18 @@ package
 			
 			not_a_flower = new NotAFlower(260, height - 48, player);
 			
-			if (Registry.deaths % 13== 0 && Registry.deaths != 0) //if frog is on screen 
-			{
-				sign = new Sign(445, 134, "", player, 405, 124);
-			}
-			else sign = new Sign(445, 134, "PRESS DOWN", player, 405, 134);
-			sign2 = new Sign(1103, 50, "SLIDE INTO BAD GUYS", player, 1060, 50);
+			// if (Registry.deaths % 13== 0 && Registry.deaths != 0) //if frog is on screen 
+			// {
+			// 	sign = new Sign(445, 134, "", player, 405, 124);
+			// }
+			sign = new Sign(445, 134, "Hold down", player, 380, 134);
+			sign2 = new Sign(1103, 50, "", player, 1060, 50);
 			
 			parseBots(player);
 			parseBots2(player);
 			parseRocks(player);
 			parseReinforcements();
-			parseSupports();
+			// parseSupports();
 			parseCrumbleRocks(player);
 			parseNomNoms();
 			parseCheckpoint();
@@ -312,25 +312,25 @@ package
 			}
 		}
 		
-		private function parseSupports():void
-		{			
-			supportMap = new FlxTilemap();
+		// private function parseSupports():void
+		// {			
+		// 	supportMap = new FlxTilemap();
 			
-			supportMap.loadMap(new supportsCSV, rockPNG, 16, 16);
+		// 	supportMap.loadMap(new supportsCSV, rockPNG, 16, 16);
 			
-			supports = new Supports;
+		// 	supports = new Supports;
 			
-			for (var ty:Number = 0; ty < supportMap.heightInTiles; ty++)
-			{
-				for (var tx:int = 0; tx < supportMap.widthInTiles; tx++)
-				{
-					if (supportMap.getTile(tx, ty) == 1)
-					{
-						supports.addSupport(tx, ty);
-					}
-				}
-			}
-		}
+		// 	for (var ty:Number = 0; ty < supportMap.heightInTiles; ty++)
+		// 	{
+		// 		for (var tx:int = 0; tx < supportMap.widthInTiles; tx++)
+		// 		{
+		// 			if (supportMap.getTile(tx, ty) == 1)
+		// 			{
+		// 				supports.addSupport(tx, ty);
+		// 			}
+		// 		}
+		// 	}
+		// }
 		
 	}
 }

@@ -90,11 +90,11 @@ package
 			_levelButton.scrollFactor.x = 0;
 			_levelButton.scrollFactor.y = 0;
 
-			_controlsButton = new FlxButton(215, 2, "", tweakControls);
+			_controlsButton = new FlxButton(370, -1, "", tweakControls);
 			_controlsButton.loadGraphic(_controlsPNG, false, false, 500, 12);
 			_controlsButton.scrollFactor.x = 0;
 			_controlsButton.scrollFactor.y = 0;
-			_controlsButton.label = new FlxText(250, 2, 300, "ctrls: " + Registry.controlsDescriptor);
+			_controlsButton.label = new FlxText(250, 0, 300, "ctrls: " + Registry.controlsDescriptor);
 			_controlsButton.label.color = 0x777777;
 			//multiButton.label.setFormat(null,20,0x333333,"center");
 
@@ -314,6 +314,7 @@ package
 				FlxG.collide(_gameLevel.bots2, _gameLevel.foreground);
 				FlxG.collide(_gameLevel.bots2, _gameLevel.crumbleRocks);
 				FlxG.collide(_gameLevel.bots2.blades, _gameLevel.foreground, killBlade);
+				FlxG.collide(_gameLevel.bots2.blades, _gameLevel.rocks, killBladeRock);
 				FlxG.collide(_gameLevel.lilguy, _gameLevel.foreground);
 				FlxG.collide(_gameLevel.borgs, _gameLevel.foreground);
 				FlxG.collide(_gameLevel.borgs, _gameLevel.rocks);
@@ -1131,6 +1132,17 @@ package
 			blade.kill();
 		}
 
+		public function killBladeRock(blade:Bullet, rock:Rock):void //this is a shameless copy of the above function. I probably could have tweaked the above function to take a generic GameObject or something and work for both foreground objects and rock objects, but this was quick and easy and I just want to be done...
+		{
+			if (blade.onScreen()) 
+			{
+				if(Registry.stageCount != 5)	FlxG.play(_poof, 1, false, true);
+			}
+
+			_gameLevel.poofs.addPoof(blade.x - blade.width, blade.y - 16);
+			blade.kill();
+		}
+
 		public function handleStreams(player:Player, stream:Stream):void
 		{
 			if (stream.type == "drop") null;
@@ -1405,7 +1417,7 @@ package
 			add(_gameLevel.worm2);
 			add(_gameLevel.worm3);
 
-			FlxG.log("stagecount = " && Registry.stageCount);
+			// FlxG.log("stagecount = " && Registry.stageCount);
 			if (Registry.stageCount == 2) 
 			{
 				if(Registry.firstLevel3)
@@ -1431,7 +1443,7 @@ package
 			add(_gameLevel.spring2);
 			add(_gameLevel.player);
 
-			if (Registry.deaths % 12== 0 && Registry.deaths != 0)
+			if (Registry.deaths % 24== 0 && Registry.deaths != 0)
 			{
 				add(_gameLevel.frog); //only add frog every 7 deaths or so
 				add(_gameLevel.frog.message);
