@@ -122,8 +122,8 @@ package
 			Registry.playerSlideDecel = 300;
 		*/
 
-		public static var muteMode:Boolean = false;
-		// public static var muteMode:Boolean = true;
+		// public static var muteMode:Boolean = false;
+		public static var muteMode:Boolean = true;
 
 		////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 		//															musicRepository															  //
