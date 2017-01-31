@@ -357,7 +357,10 @@ package
 				FlxG.overlap(_gameLevel.player, _gameLevel.streams, handleStreams);
 				FlxG.overlap(_gameLevel.hitBox, _gameLevel.rocks, punchRock);
 
-				if (Registry.stageCount == 4) FlxG.overlap(_gameLevel.hitBox, _gameLevel.npc, punchNPC);
+				if (Registry.stageCount == 4)
+				{
+					if(Registry.firstLevel5) FlxG.overlap(_gameLevel.hitBox, _gameLevel.npc, punchNPC);
+				}
 				if (Registry.stageCount == 1) FlxG.overlap(_gameLevel.hitBox, _gameLevel.npc, meetNPC);
 								
 				FlxG.overlap(_gameLevel.player.screen, _gameLevel.bots, updateThings);
@@ -1101,6 +1104,7 @@ package
 				add(_gameLevel.npc.message);
 				npc.talk();
 				add(_gameLevel.umbrella);
+
 				
 
 			}
@@ -1408,7 +1412,13 @@ package
 			add(_gameLevel.hitBox);
 			if (Registry.stageCount == 0 && Registry.firstLevel1) add(_gameLevel.pointsMessage);
 
-			if(!Registry.hasUmbrella && (Registry.stageCount == 1 || Registry.stageCount == 4)) add(_gameLevel.npc); //if player already has umbrella, don't add the creature
+			if(!Registry.hasUmbrella)
+			{
+				if(Registry.stageCount == 1 || Registry.stageCount == 4) 
+				{
+					add(_gameLevel.npc); //if player already has umbrella, don't add the creature
+				}
+			}
 
 			add(_gameLevel.lilguy);
 			add(_gameLevel.bots2);
@@ -1510,7 +1520,7 @@ package
 		//load the next stage
 		public function nextStage():void
 		{
-			trace("nextstage()");
+			// trace("nextstage()");
 			Registry.stageCount++;
 			Registry.checkpointFlag = false;
 			Registry.textCounter = 0;

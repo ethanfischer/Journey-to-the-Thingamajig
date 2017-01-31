@@ -95,6 +95,8 @@ package
 		{
 			super.update();
 
+			// FlxG.log(Registry.gameLevel.player.x + "wiz is here");
+
 			if(Registry.player.x > x) facing = FlxObject.LEFT;
 			else facing = FlxObject.RIGHT;
 
@@ -221,9 +223,9 @@ package
 		{
 			kill();
 		
-			Registry.nmlTimescale = FlxG.timeScale;
-			FlxG.timeScale = .3;
-			bounceTimer = .01;
+			// Registry.nmlTimescale = FlxG.timeScale;
+			// FlxG.timeScale = .3;
+			// bounceTimer = .01;
 		}
 		
 		public function knockback():void
@@ -244,7 +246,7 @@ package
 			// play("punched");
 			if (messageCount == 1)
 			{
-				Registry.firstLevel5 = false;
+				// Registry.firstLevel5 = false;
 				FlxG.playMusic(Registry.l5msc, 1);
 				message.text = "So many balls.\n Great job.";
 				FlxG.play(bah);
@@ -262,6 +264,7 @@ package
 				knockback();
 				FlxG.play(bahfade);
 				message.text = "";
+				Registry.firstLevel5 = false;
 			}
 			messageCount += 1; 
 		}

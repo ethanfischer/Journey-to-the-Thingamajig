@@ -54,8 +54,6 @@ package
 			{
 				Registry.hasUmbrella = true;
 			}
-
-			Registry.firstLevel5 = false;
 		
 			Registry.fstPlace = 120;
 			Registry.sndPlace = 220;

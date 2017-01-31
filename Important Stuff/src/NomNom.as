@@ -21,7 +21,8 @@ package
 			loadGraphic(nomNomPNG, true, false, 16, 20);
 			width = 6;
 			height = 10;
-			offset.y = 0;
+			offset.x = 5;
+			offset.y = 5;
 		
 			
 			addAnimation("idle", [1, 2, 1, 3], 4, true);
@@ -47,17 +48,19 @@ package
 				play("spin");
 				spinTimer -= FlxG.elapsed;
 			}
-			else play("idle");
+			else
+			{
+				play("idle");
+			}
 			
 			//use two variables to track players movement
-			if (Registry.gameLevel.player.x < x + 3) tempWhere = "left";
-			else tempWhere = "right";
+			if (Registry.gameLevel.player.x < x + width/2) tempWhere = "left";
+			else if (Registry.gameLevel.player.x > x + width/2) tempWhere = "right";
 			
 			//player crosses nomNom when previously on left but now on right, or vice versa
 			if (where != tempWhere)
 			{
 				crossedIt = true;
-				
 			}
 			else crossedIt = false;
 			

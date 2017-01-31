@@ -106,8 +106,8 @@ package
 
 		public static var playerAirDecel:int = 300;
 		public static var playerNormalDecel:int = 600;
-		public static var playerInitialSlideDecel:int = 100;
-		public static var playerSlideDecel:int = 300;
+		public static var playerInitialSlideDecel:int = 80;
+		public static var playerSlideDecel:int = 280;
 
 		public static var controlsDescriptor:String = "normal";
 

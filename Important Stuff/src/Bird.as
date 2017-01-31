@@ -127,14 +127,14 @@ package
 		
 	
 		
-		public function bounce():void
-		{
-			kill();
+		// public function bounce():void
+		// {
+		// 	kill();
 		
-			Registry.nmlTimescale = FlxG.timeScale;
-			FlxG.timeScale = .3;
-			bounceTimer = .01;
-		}
+		// 	Registry.nmlTimescale = FlxG.timeScale;
+		// 	FlxG.timeScale = .3;
+		// 	bounceTimer = .01;
+		// }
 		
 		public function knockback():void
 		{		
