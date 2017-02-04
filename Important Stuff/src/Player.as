@@ -7,7 +7,7 @@ package
 	
 	public class Player extends FlxSprite
 	{
-		[Embed(source = "../assets/player_40x40(letter).png")] private var _girlPNG:Class; //normal
+		[Embed(source = "../assets/player.png")] private var _girlPNG:Class; //normal
 		[Embed(source = "../assets/egg(2).png")] private var _botPNG:Class; //robot
 		[Embed(source = "../assets/player_hurt.png")] private var _playerHurtPNG:Class;
 		
@@ -111,7 +111,7 @@ package
 				addAnimation("letter", [26, 27, 28, 29, 30, 31, 32, 33, 0, 0], 18, false);
 				addAnimation("letterIdle", [26], 0, false);
 				addAnimation("hatIdle", [16,17,18, 40], 8, false);
-				addAnimation("hatAway", [41,42,43], 8, false);
+				addAnimation("hatAway", [41,42,43,44,45,46,0], 12, false);
 				addAnimation("pumpBrakes", [48], 0, false);
 				
 				//handle walking Soundeffect stuff here

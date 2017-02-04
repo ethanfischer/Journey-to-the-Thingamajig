@@ -57,14 +57,14 @@ package
 			addAnimation("think", [3], 0, false);
 			addAnimation("look", [5], 0, false);
 			addAnimation("idle", [0], 0, true);
-			addAnimation("excited", [1, 2, 1, 2, 1,1,1,1,1,1,1,1,1,1], 4, true);
+			addAnimation("excited", [1, 2, 1, 2, 0], 2, false);
 			addAnimation("moreExcited", [1, 2, 1, 2], 2, true);
 			addAnimation("exuberant", [1, 2], 6, true);
 			addAnimation("ecstatic", [1, 2], 8, true);
 			addAnimation("run", [4], 12, true);
 			addAnimation("dead", [6], 0, true);
 			
-			play("moreExcited");
+			play("think");
 			
 			dieTimer = 0;
 			
@@ -128,12 +128,14 @@ package
 				if (meetTimer < 13) 
 				{
 					message.text = "You collected many balls. Wow.";
+					if(meetTimer > 12.5) play("excited");
+
 					if (!hereSFXFLAG)
 					{
 						FlxG.play(hereSFX);
-						hereSFXFLAG = true;
-					}
-					
+						hereSFXFLAG = true;}
+
+										
 					if (meetTimer < 10)
 					{
 						if (!Registry.gameLevel.player.pickup) 

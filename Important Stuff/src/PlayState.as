@@ -797,8 +797,7 @@ package
 			
 			if (checkpoint.end)
 			{
-					endLevel();
-				
+				endLevel();
 			}
 			
 		}
@@ -893,7 +892,8 @@ package
 				if (!_partyPopflag)
 				{
 					_partyPopflag = true;
-					if(Registry.stageCount != 5)FlxG.play(_partyPop);
+					// if(Registry.stageCount != 5)
+					FlxG.play(_partyPop);
 				}
 				_gameLevel.player.walkSFX.stop();
 				_gameLevel.player.visible = false;
@@ -928,11 +928,8 @@ package
 				_gameLevel.npc.meetTimer = 14;
 				startFade(_gameLevel.black, 6);
 				if(Registry.stageCount == 1) FlxG.playMusic(Registry.l2msc, .5);
-				
 			}
 		}
-
-
 
 		private function startFade(object:FlxSprite, fadeTime:Number):void
 		{
@@ -1243,11 +1240,11 @@ package
 				_jttt.moves = false;
 				_jttt.alpha = 0;
 				add(_jttt);
-				FlxG.log("playingmusic");
+				// FlxG.log("playingmusic");
 				
 				
 				
-				endTimer = 40; 
+				endTimer = 82; 
 				endTimerFlag = true;
 			}
 			if (endTimer > 0) 
@@ -1255,90 +1252,71 @@ package
 				endTimer -= FlxG.elapsed;
 			}
 			
-			if (endTimer < 35 && endTimer > 31) 
+			if (endTimer < 75 && endTimer > 70) 
 			{
-				if(endTimer > 34.85) FlxG.playMusic(Registry.endMsc, .5);
-				_jttt.alpha += .07;
+				if(endTimer > 74.85) FlxG.playMusic(Registry.endMsc, .5);
+				_jttt.alpha += .01;
 				finalPlaytime = Registry.totalPlaytime;
 
 			}
-			if (endTimer < 31 && endTimer > 27)
+			if (endTimer < 70 && endTimer > 65)
 			{
-				_jttt.alpha -= .1;
-				credits.text = "Created by Ethan Fischer";
-				credits.alpha += .07;
+				_jttt.alpha -= .05;
+				credits.text = "by Ethan Fischer";
+				credits.alpha += .01;
 			}
-			if (endTimer < 27 && endTimer > 23)
+			if (endTimer < 65 && endTimer > 55)
 			{
-				credits.alpha -= .1;
-				credits2.text = "Special Thanks to:";
-				credits2.alpha += .05;
+				credits.alpha -= .05;
+				credits2.size = 8;
+				credits2.alpha += .01;
+				credits2.text = "Music:"
+				+"\n1. Time -- Komiku"
+				+"\n2. Playhouse -- Buddy Rich Big Band"
+				+"\n3. We Insist -- Zoe Keating"
+				+"\n4. Mind on the Fritz -- Prof.Logik"
+				+"\n5. A Wonderful Guy - Oscar Peterson Trio"
+				+"\n6. The Holiday -- So I'm An Islander"
+				+"\n7. Epic Piece -- Ethan Berg"
+				+"\n8. The End -- Ethan Fischer";
 			}
-			if (endTimer < 23 && endTimer > 21)
-			{
-				credits2.alpha -= .1;
-				credits.text = "Sneha Subramanian and family";
-				credits.alpha += .05;
-			}
-			if (endTimer < 21 && endTimer > 20)
-			{
-				credits.alpha -= .1;
-				credits2.text = "Kyle Connour";
-				credits2.alpha += .05;
-			}
-			if (endTimer < 20 && endTimer > 19)
+			if (endTimer < 55 && endTimer > 52)
 			{
 				credits2.alpha -= .1;
-				credits.text = "Hayden Ford";
+				credits.size = 8;
+				credits.text = "Thank you to everyone who helped me make this better.";
 				credits.alpha += .05;
 			}
-			if (endTimer < 19 && endTimer > 18)
-			{
-				credits.alpha -= .1;
-				credits2.text = "Tom Herrmann";
-				credits2.alpha += .05;
-			}
-			if (endTimer < 18 && endTimer > 17)
-			{
-				credits2.alpha -= .1;
-				credits.text = "James Buebe";
-				credits.alpha += .05;
-			}
-			if (endTimer < 17 && endTimer > 16)
-			{
-				credits.alpha -= .1;
-				credits2.text = "Jules Wang";
-				credits2.alpha += .05;
-			}
-			if (endTimer < 16 && endTimer > 14)
-			{
-				credits2.alpha -= .1;
-				credits.text = "Gautam Gogada";
-				credits.alpha += .05;
-			}
-			if (endTimer < 14 && endTimer > 10)
+			if (endTimer < 52 && endTimer > 45)
 			{
 				credits.alpha -= .1;
 				credits2.text = "Thanks for playing";
 				credits2.alpha += .05;
 				_blackScreen.alpha += .01;
-				
 			}
-			if (endTimer < 12 && endTimer > 10)
+		
+			if (endTimer < 45 && endTimer > 42)
 			{
 				credits2.alpha -= .1;
 			}
-			if (endTimer < 10 && endTimer > 8)
+			if (endTimer < 42 && endTimer > 40)
 			{
 				credits.y = 120;
 				credits.text = "Total Playtime";
-				credits.alpha += .07;	
+				credits.alpha += .01;	
 			}
-			if (endTimer < 8)
+			if (endTimer < 40 && endTimer > 36)
 			{
 				credits2.y = 140;
 				credits2.text = FlxU.formatTime(finalPlaytime, false);
-				credits2.alpha += .05;
+				credits.alpha += .01;
+				credits2.alpha += .01;
+			}
+			if (endTimer < 36)
+			{
+				credits.alpha -= .001;
+				credits2.alpha -= .001;
+
 			}
 		}
 		
@@ -1552,7 +1530,7 @@ package
 					_gameLevel.focusPoint.velocity.x = 600; //the speed of the panning
 					if (Registry.wizUnfreeze == false) 
 					{
-					
+						streamDrag = false;
 						FlxControl.player1.setCursorControl(false, false, false, false);
 						//_gameLevel.player.moves = false; //freeze the player
 						_gameLevel.player.velocity.x = 0;
