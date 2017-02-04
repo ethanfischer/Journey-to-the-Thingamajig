@@ -1371,10 +1371,18 @@ package
 			
 			if (Registry.stageCount == 6) 
 			{
+				Registry.playerInitialSlideDecel = 40;
+				Registry.playerSlideDecel = 140;
 				add(_gameLevel.smokelets);
 				add(_gameLevel.particles);
 				add(_gameLevel.focusPoint);
 			}
+			else
+			{
+				Registry.playerInitialSlideDecel = 80;
+				Registry.playerSlideDecel = 280;				
+			}
+
 			add(_gameLevel.foreground);
 			if (Registry.stageCount == 6) add(_gameLevel.thingamajig);
 			add(_gameLevel.wiz);

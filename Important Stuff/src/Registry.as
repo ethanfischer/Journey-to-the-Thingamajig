@@ -4,6 +4,8 @@ package
 	import flash.concurrent.Condition;
 	import flash.geom.Point;
 	import org.flixel.*;
+	import org.flixel.plugin.photonstorm.*;
+
 	
 	public class Registry 
 	{
@@ -160,6 +162,12 @@ package
 		
 		public function Registry() 
 		{
+
+			//	Enable the Controls plugin - you only need do this once (unless you destroy the plugin)
+			if (FlxG.getPlugin(FlxControl) == null)
+			{
+				FlxG.addPlugin(new FlxControl);
+			}
 		}
 		
 	}
