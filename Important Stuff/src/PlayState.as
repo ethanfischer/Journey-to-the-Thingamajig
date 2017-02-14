@@ -84,13 +84,13 @@ package
 			// FlxG.mouse.visible = false;
 			if(!Registry.pauseSounds) FlxG.volume = .5;
 
-			_levelButton = new FlxButton(2, 2, "Levels", gotoMainMenu);
+			_levelButton = new FlxButton(2, 1, "Levels", gotoMainMenu);
 			_levelButton.loadGraphic(_levelsPNG, false, false, 56, 12);
-			_levelButton.label.color = 0xFFFFFF;
+			_levelButton.label.color = 0x777777;
 			_levelButton.scrollFactor.x = 0;
 			_levelButton.scrollFactor.y = 0;
 
-			_controlsButton = new FlxButton(370, -1, "", tweakControls);
+			_controlsButton = new FlxButton(Registry.screenWidth - 125, -1, "", tweakControls);
 			_controlsButton.loadGraphic(_controlsPNG, false, false, 500, 12);
 			_controlsButton.scrollFactor.x = 0;
 			_controlsButton.scrollFactor.y = 0;
@@ -135,6 +135,7 @@ package
 
 			//mute mode, music, volumne, silent
 			if (Registry.muteMode) FlxG.volume = 0;
+			FlxG.log(FlxG.volume);
 			handlePause();
 
 			if (!Registry.gameStart)
@@ -1451,15 +1452,11 @@ package
 			add(_gameLevel.nomNoms);
 			add(_gameLevel.streams);
 			
-
-			
 			if(Registry.stageCount == 6)add(_gameLevel.wiz.smokelets);
 			add(_gameLevel.foreforeground);
 			add(_muteButton);
 			add(_levelButton);
 			add(_controlsButton);
-			
-			
 			
 			createHealthBar(); //creates and adds player's health bar. Called here because it should appear over top of everything else
 			//createPlaytimeMessage(); //creates and adds playtime message
@@ -1555,7 +1552,7 @@ package
 						{
 							FlxG.camera.follow(_gameLevel.player, FlxCamera.STYLE_PLATFORMER); //The camera will follow the player
 							_gameLevel.focusPoint.velocity.x = 0; //make sure focus point isn't moving (yet)
-							_gameLevel.focusPoint.x = _gameLevel.wiz.BEHINDGIFT - Registry.screenWidth + 50; //set up fPoint for giftExchange()
+							_gameLevel.focusPoint.x = _gameLevel.wiz.BEHINDGIFT - (Registry.screenWidth * 0.6); //set up fPoint for giftExchange()
 							_gameLevel.focusDestination.x = _gameLevel.wiz.BEHINDGIFT;
 							
 							//exit meetWiz() and never come back

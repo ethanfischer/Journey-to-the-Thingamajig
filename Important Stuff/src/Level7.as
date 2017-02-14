@@ -90,9 +90,10 @@ package
 			
 			
 			wiz = new Wiz(9900, 415);
-			focusDestination = new FlxPoint(wiz.x-220, wiz.y); //where the camera should stop in the last level
+			focusDestination = new FlxPoint(wiz.x-Registry.screenWidth/2.3, wiz.y); //where the camera should stop in the last level
 			
 			focusPoint = new FlxSprite(wiz.x - 455, 430);
+			// focusPoint = new FlxSprite(wiz.x - Registry.screenWidth-5, 430);
 			focusPoint.visible = false;
 			focusPoint.scrollFactor.x = 0;
 			Registry.hasFlower = true;
@@ -142,10 +143,10 @@ package
 		}
 		else 
 		{
-			player = new Player(10, 65); //for testing 2nd half
+			// player = new Player(10, 65); //for testing 2nd half
 			// player = new Player(Registry.checkpoint.x + 5, Registry.checkpoint.y - 5);
 			frog = new Frog(166, 80);
-			// player = new Player(9500, 350); //for testing ending sequence
+			player = new Player(9300, 350); //for testing ending sequence
 			Registry.torchesOn = true;
 		}
 		

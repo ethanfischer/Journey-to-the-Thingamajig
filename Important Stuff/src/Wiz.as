@@ -28,6 +28,7 @@ package
 		private var shockedFlag:Boolean = false;
 		public var message:FlxText;
 		public const BEHINDGIFT:int = 11170
+		// public const BEHINDGIFT:int = 11170
 		public var smokelets:Smokelets;
 		public var impendingDoomFlag:Boolean = false;
 		public var smushFlag:Boolean = false;
@@ -147,9 +148,12 @@ package
 								FlxG.play(wizLaughLong);
 								wizLaughFlag = true;
 							}
+							
 							play("excited");
 							if(isTouching(FLOOR))velocity.y = -110;
+							
 							//message.y = y - 44;
+							
 							message.text = "COME SEE IT!";
 						}
 							
@@ -174,6 +178,7 @@ package
 			//cutscene2
 			if (cut2Timer > 0)
 			{
+				// FlxG.log(cut2Timer);
 				cut2Timer -= FlxG.elapsed;
 			}
 			if (cut2Timer < 0 && cut2Timer > -10)
@@ -213,11 +218,14 @@ package
 			if (x == BEHINDGIFT && !impendingDoomFlag) //
 			{
 				velocity.x = 0;
-				facing = FlxObject.LEFT;				
+				facing = FlxObject.LEFT;
+
 				if (cut2Timer == -100 && onScreen()) 
 				{
-					cut2Timer = .5;
+					cut2Timer = 5.5;
+					// cut2Timer = 1.5;
 				}
+
 				Registry.giftExchange = true; //once wiz is on screen, turn on giftexchange cutscene
 				message.x = x - 94
 				message.y = y - 24;

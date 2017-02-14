@@ -10,8 +10,8 @@ package
 	public class Registry 
 	{
 		
-		public static var screenWidth:int = 500;
-		public static var screenHeight:int = 250;
+		public static var screenWidth:int = 400;
+		public static var screenHeight:int = 200;
 		
 		
 		

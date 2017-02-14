@@ -14,10 +14,13 @@ package
 		[Embed(source = "../assets/quack.mp3")] private var quack:Class;
 		[Embed(source = "../assets/title.png")] private var titlePNG:Class;
 		
-		[Embed(source="../assets/the.png")] private var thePNG:Class;
-		[Embed(source="../assets/quest.png")] private var questPNG:Class;
-		[Embed(source="../assets/to .png")] private var toPNG:Class;
-		[Embed(source = "../assets/nowhere.png")] private var thingamajigPNG:Class;
+		// [Embed(source="../assets/the.png")] private var thePNG:Class;
+
+		//old, bigger version uses 'quest.png', 'to.png', and 'nowhere.png'
+		[Embed(source="../assets/journey400x200.png")] private var questPNG:Class;
+		[Embed(source="../assets/to400x200.png")] private var toPNG:Class;
+		[Embed(source = "../assets/thingamajig400x200.png")] private var thingamajigPNG:Class;
+
 		[Embed(source = "../assets/stars.png")] private var starsPNG:Class;
 		[Embed(source = "../assets/black.png")] private var blackPNG:Class;
 		[Embed(source = "../assets/punch2.mp3")] private var punchSFX:Class;
@@ -37,14 +40,14 @@ package
 		//private var fadeChordflag3:Boolean;
 		
 		
-	 	private var dots:FlxSprite = new FlxSprite(Registry.screenWidth / 2 - 34, Registry.screenHeight / 1.325); //40 is how far down dots are
+	 	// private var dots:FlxSprite = new FlxSprite(Registry.screenWidth / 2 - 34, Registry.screenHeight / 1.325); //40 is how far down dots are
 		
 		private var level:Level1;
 		private var title:FlxSprite;
 		private var dolly:FlxSprite;
-		//private var start:FlxButton;
+		private var startButton:FlxButton;
 		private var levelsText:FlxText;
-		private var levelsBox:FlxButton;
+		private var levelsButton:FlxButton;
 		private var selector:int = 1;
 		
 		//private var the:FlxSprite;
@@ -56,8 +59,8 @@ package
 		private var black:FlxSprite;
 		private var menuTrees:FlxSprite;
 		private var punchFlag:Boolean;
-		private var timer:Number = 6;
-		private var start:FlxSprite;
+		private var timer:Number = 8;
+		// private var start:FlxSprite;
 		
 		public function MainMenuState() 
 		{
@@ -65,6 +68,9 @@ package
 		
 		override public function create():void
 		{
+			FlxG.mouse.load(Registry.cursor, 1, 0, 0);
+			FlxG.mouse.show();
+
 			// mute mode, music, volume, silent
 			if (Registry.muteMode) FlxG.volume = 0;
 		
@@ -74,10 +80,10 @@ package
 			
 			FlxG.playMusic(l1msc, 1);
 			
-			dots.loadGraphic(dotsPNG, true, false, 72, 6);
-			dots.drag.y = 3900;
-			dots.addAnimation("blink", [0, 2], 3, true);
-			dots.play("blink");
+			// dots.loadGraphic(dotsPNG, true, false, 72, 6);
+			// dots.drag.y = 3900;
+			// dots.addAnimation("blink", [0, 2], 3, true);
+			// dots.play("blink");
 			
 			var t:FlxSprite = new FlxSprite(0, 0, titlePagePNG);
 			
@@ -94,9 +100,9 @@ package
 			thingamajig.loadGraphic(thingamajigPNG, false, false, 600, 300);
 			thingamajig.alpha = 0;
 			
-			start = new FlxSprite(0, 40);
-			start.loadGraphic(startPNG, false, false, 500, 250);
-			start.alpha = 0;
+			// start = new FlxSprite(0, 40);
+			// start.loadGraphic(startPNG, false, false, 500, 250);
+			// start.alpha = 0;
 			
 			menuTrees = new FlxSprite(0, 0);
 			menuTrees.loadGraphic(menuTreesPNG, false, false, 1200, 300);
@@ -114,18 +120,24 @@ package
 				
 			Registry.stageCount = 0;
 				
-			//levelsBox = new FlxButton(Registry.screenWidth / 2 - 29, 200, "LEVELS", goToLevelMenu);
-			//start = new FlxButton(Registry.screenWidth / 2 - 30, 185, "START", startIt);
+			levelsButton = new FlxButton(Registry.screenWidth / 2 - 29, Registry.screenHeight- 35, "LEVELS", goToLevelMenu);
+			startButton = new FlxButton(Registry.screenWidth / 2 - 30, Registry.screenHeight - 50, "START", startIt);
 			
-			//levelsBox.makeGraphic(64, 20, 0x00000000);
+
+			//Bigger version
+			//levelsButton = new FlxButton(Registry.screenWidth / 2 - 29, 200, "LEVELS", goToLevelMenu);
+			//startButton = new FlxButton(Registry.screenWidth / 2 - 30, 185, "START", startIt);
+
+
+			levelsButton.makeGraphic(64, 20, 0x00000000);
 			
-			//start.makeGraphic(64, 20, 0x00000000);
+			startButton.makeGraphic(64, 20, 0x00000000);
 			
-			//levelsBox.label.color = 0xffffff;
-			//levelsBox.alpha = 0;
+			levelsButton.label.color = 0xffffff;
+			levelsButton.alpha = 0;
 			
-			//start.label.color = 0xffffff;
-			//start.alpha = 0;
+			startButton.label.color = 0xffffff;
+			startButton.alpha = 0;
 			
 			
 			stars.velocity.x = -200;
@@ -141,14 +153,17 @@ package
 			add(quest);
 			add(to);
 			add(thingamajig);
-			add(start);
+			add(startButton);
+			add(levelsButton);
+			startButton.visible = false;
+			levelsButton.visible = false;
 			
 		}
 		
 		override public function update():void
 		{
 			super.update();
-			dots.play("blink");
+			// dots.play("blink");
 			
 			//title.alpha += .01;
 			
@@ -158,13 +173,13 @@ package
 			
 			if (timer > 0)
 			{	
-				if (timer < 6)
+				if (timer < 8)
 				{
 					quest.alpha += .5;
-					if (timer < 4)
+					if (timer < 6)
 					{
 						to.alpha += .5;
-						if (timer < 2)
+						if (timer < 4)
 						{
 							thingamajig.alpha += .01;
 
@@ -175,28 +190,30 @@ package
 			}
 			else if (timer < 0)
 			{
-				start.alpha += .02;
+				startButton.alpha += .02;
+				startButton.visible = true;
+				levelsButton.visible = true;
 			}
 			
-			if (start.alpha == 1)
+			if (startButton.alpha == 1)
 			{
-				add(start);
-				add(levelsBox);
-				add(dots);
+				// add(startButton);
+				// add(levelsButton);
+				// add(dots);
 			}
 			
 			if (FlxG.keys.justPressed("DOWN") && selector < 2) 
 			{
-				dots.frame = 0;
+				// dots.frame = 0;
 				selector++;
-				dots.velocity.y = 354;
+				// dots.velocity.y = 354;
 				FlxG.play(quack);
 			}
 			else if (FlxG.keys.justPressed("UP") && selector > 1) 
 			{
-				dots.frame = 0;
+				// dots.frame = 0;
 				selector--;
-				dots.velocity.y = -354;
+				// dots.velocity.y = -354;
 				FlxG.play(quack);
 			}
 			
