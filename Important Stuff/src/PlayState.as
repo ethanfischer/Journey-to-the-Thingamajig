@@ -68,7 +68,9 @@ package
 		[Embed(source = "../assets/controlsButton.png")] private var _controlsPNG:Class;
 		[Embed(source = "../assets/party_pop.mp3")] private var _partyPop:Class;
 		[Embed(source = "../assets/foldpaper(openletter).mp3")] private var _openletter:Class;
-		[Embed(source = "../assets/jttt.png")] private var jtttPNG:Class;
+		// [Embed(source = "../assets/jttt.png")] private var jtttPNG:Class;
+		[Embed(source = "../assets/jttt400x200.png")] private var jtttPNG:Class;
+
 		[Embed(source="../assets/black_screen.png")] private var blackScreenPNG:Class;
 
 		//only here so reference in PlayState doesn't freak out
@@ -1223,6 +1225,7 @@ package
 				credits.scrollFactor.y = 0;
 				credits.alpha = 0;
 				credits.alignment = "center";
+				credits.height = Registry.screenHeight;
 				add(credits);
 				
 				credits2 = new FlxText(0, Registry.screenHeight / 8, Registry.screenWidth);
@@ -1232,6 +1235,7 @@ package
 				credits2.scrollFactor.y = 0;
 				credits2.alpha = 0;
 				credits2.alignment = "center";
+				credits2.height = Registry.screenHeight;
 				add(credits2);
 				
 				_jttt = new FlxSprite(Registry.screenWidth/15 - 25, Registry.screenHeight/20);
@@ -1260,15 +1264,20 @@ package
 				finalPlaytime = Registry.totalPlaytime;
 
 			}
-			if (endTimer < 70 && endTimer > 65)
+			if (endTimer < 72 && endTimer > 66)
+			{
+				credits.text = "\n\n\n\n\nby Ethan Fischer";
+				credits.alpha += .01;
+			}
+			if (endTimer < 66 && endTimer > 65)
 			{
 				_jttt.alpha -= .05;
-				credits.text = "by Ethan Fischer";
-				credits.alpha += .01;
+				// credits.text = "\n\n\n\n\nby Ethan Fischer";
+				credits.alpha -= .05;
 			}
 			if (endTimer < 65 && endTimer > 55)
 			{
-				credits.alpha -= .05;
+				// credits.alpha -= .05;
 				credits2.size = 8;
 				credits2.alpha += .01;
 				credits2.text = "Music:"

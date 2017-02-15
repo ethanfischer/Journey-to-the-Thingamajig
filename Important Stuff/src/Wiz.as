@@ -229,7 +229,7 @@ package
 				Registry.giftExchange = true; //once wiz is on screen, turn on giftexchange cutscene
 				message.x = x - 94
 				message.y = y - 24;
-				if (Registry.gameLevel.player.x >= x - 350) //rumble time
+				if (Registry.gameLevel.player.x >= x - Registry.screenWidth * 1.5) //rumble time
 				{
 					//freeze the player for the last time
 					message.text = "";
