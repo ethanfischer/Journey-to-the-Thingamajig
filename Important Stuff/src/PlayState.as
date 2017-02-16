@@ -1268,7 +1268,7 @@ package
 				finalPlaytime = Registry.totalPlaytime;
 
 			}
-			if (endTimer < 72 && endTimer > 66)
+			if (endTimer < 70 && endTimer > 66)
 			{
 				credits.text = "\n\n\n\n\nby Ethan Fischer";
 				credits.alpha += .01;
@@ -1283,20 +1283,24 @@ package
 			{
 				// credits.alpha -= .05;
 				credits2.size = 8;
+				credits2.alignment = "left";
 				credits2.alpha += .01;
-				credits2.text = "Music:"
-				+"\n1. Time -- Komiku"
-				+"\n2. Playhouse -- Buddy Rich Big Band"
-				+"\n3. We Insist -- Zoe Keating"
-				+"\n4. Mind on the Fritz -- Prof.Logik"
-				+"\n5. A Wonderful Guy - Oscar Peterson Trio"
-				+"\n6. The Holiday -- So I'm An Islander"
-				+"\n7. Epic Piece -- Ethan Berg"
-				+"\n8. The End -- Ethan Fischer";
+				credits2.text = ""
+				+"\t\t\t\t\t\t\t\t\tMusic:"
+				+"\n\t\t\t\t\t\t\t\t\t1. Time -- Komiku"
+				+"\n\t\t\t\t\t\t\t\t\t2. Playhouse -- Buddy Rich Big Band"
+				+"\n\t\t\t\t\t\t\t\t\t3. We Insist -- Zoe Keating"
+				+"\n\t\t\t\t\t\t\t\t\t4. Mind on the Fritz -- Prof.Logik"
+				+"\n\t\t\t\t\t\t\t\t\t5. A Wonderful Guy - Oscar Peterson Trio"
+				+"\n\t\t\t\t\t\t\t\t\t6. The Holiday -- So I'm An Islander"
+				+"\n\t\t\t\t\t\t\t\t\t7. Epic Piece -- Ethan Berg"
+				+"\n\t\t\t\t\t\t\t\t\t.. Dwarf Dance -- Flako"
+				+"\n\t\t\t\t\t\t\t\t\t8. The End -- Ethan Fischer";
 			}
 			if (endTimer < 55 && endTimer > 52)
 			{
 				credits2.alpha -= .1;
+
 				credits.size = 8;
 				credits.text = "Thank you to everyone who helped me make this better.";
 				credits.alpha += .05;
@@ -1304,6 +1308,8 @@ package
 			if (endTimer < 52 && endTimer > 45)
 			{
 				credits.alpha -= .1;
+
+				credits2.alignment = "center";
 				credits2.text = "Thanks for playing";
 				credits2.alpha += .05;
 				_blackScreen.alpha += .01;
