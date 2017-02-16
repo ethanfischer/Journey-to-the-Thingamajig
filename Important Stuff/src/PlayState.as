@@ -724,6 +724,10 @@ package
 							add(_gameLevel.boulder);
 							Registry.gameLevel.wiz.smushFlag = false;
 							_gameLevel.wiz.smushTimer = .4;
+
+
+
+
 						}
 					}
 
@@ -1532,7 +1536,7 @@ package
 		//////////////////////////////////////////////////////////////
 		public function meetWiz():void
 		{
-			
+			// FlxG.playMusic(Registry.falseHopeMsc);
 			if (!Registry.metWiz) //once player is free, set this to true
 			{
 			
@@ -1540,8 +1544,9 @@ package
 				{
 			
 					FlxG.camera.follow(_gameLevel.focusPoint); //have the camera pan over to the right to reveal the wizard
-					
 					_gameLevel.focusPoint.velocity.x = 600; //the speed of the panning
+					Registry.muteBots = true;
+
 					if (Registry.wizUnfreeze == false) 
 					{
 						streamDrag = false;
@@ -1587,7 +1592,9 @@ package
 				{
 					//_gameLevel.player.moves = false; //freeze the player 
 					FlxControl.player1.setCursorControl(false, false, false, false);
-					_gameLevel.player.velocity.x = 0;
+
+
+					Registry.disablePlayer = true; //this is utilized in Player.as and Bot2.as
 				}
 				//once wiz is on screen, he will go through his shenanagins, then you will unfreeze 
 			}

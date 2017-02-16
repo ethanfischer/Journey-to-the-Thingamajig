@@ -127,6 +127,9 @@ package
 		public static var muteMode:Boolean = false;
 		// public static var muteMode:Boolean = true;
 
+		public static var disablePlayer:Boolean = false;
+		public static var muteBots:Boolean = false;
+
 		////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 		//															musicRepository															  //
 		////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -152,6 +155,10 @@ package
 
 		//Level 7		
 		[Embed(source="../assets/l7msc.mp3")] public static var l7msc:Class;
+
+
+		//False Hope music
+		[Embed(source="../assets/DwarfDance.mp3")] public static var falseHopeMsc:Class;
 
 		//Silence
 		[Embed(source="../assets/silence.mp3")] public static var silence:Class;

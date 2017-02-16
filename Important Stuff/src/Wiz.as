@@ -35,7 +35,7 @@ package
 		public var smushTimer:Number;
 		public var smushedFlag:Boolean;
 		public var rumbleFlag:Boolean;
-		[Embed(source = "../assets/fanfare.mp3")] private var fanfare:Class;
+		// [Embed(source = "../assets/fanfare.mp3")] private var fanfare:Class;
 		private var fanfareFlag:Boolean = false;
 		
 		public function Wiz(x:int, y:int)
@@ -76,6 +76,11 @@ package
 			{
 				cut1Timer = 12;
 				shockedFlag = true;
+				if (!fanfareFlag)
+				{
+					FlxG.playMusic(Registry.falseHopeMsc);
+					fanfareFlag = true;
+				}
 			}
 			//Timer
 			if (cut1Timer > 0)
@@ -84,11 +89,11 @@ package
 				
 				if (cut1Timer < 11)
 				{
-					if (!fanfareFlag)
-					{
-						FlxG.play(fanfare);
-						fanfareFlag = true;
-					}
+					// if (!fanfareFlag)
+					// {
+					// 	FlxG.playMusic(Registry.falseHopeMsc);
+					// 	fanfareFlag = true;
+					// }
 					if(cut1Timer > 10.5) message.text = "!\t";
 					if(cut1Timer < 10 && cut1Timer > 9) play("look");
 					if (cut1Timer < 9)

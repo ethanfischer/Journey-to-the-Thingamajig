@@ -57,6 +57,8 @@ package
 		public var screen2:FlxSprite; //for updating things that visible on screen
 		public var canIdle:Boolean = true;
 		public var canPunch:Boolean = true;
+		public var canDuck:Boolean = true;
+
 		public var isDying:Boolean = false;
 		public var isDucking:Boolean = false;
 		private var umbrellaCounter:int; //when you first open the umbrella, it slows you down. Only let this happen a few times so players cant abuse this power
@@ -222,6 +224,15 @@ package
 		override public function update():void
 		{
 			super.update();
+
+			if(Registry.disablePlayer)
+			{
+				FlxControl.player1.setCursorControl(false, false, false, false);
+				canPunch = false;
+				_canJump = false;
+				canDuck = false;
+				velocity.x = 0;
+			}
 			
 			//////////////////////////////////////////////////////////////////////////////////////
 			//      								TIMERS										// 
@@ -465,7 +476,7 @@ package
 					if (touching == FlxObject.FLOOR)
 					{
 						
-						if (FlxG.keys.DOWN && !isDying)
+						if (FlxG.keys.DOWN && !isDying && canDuck)
 						{
 							_flag497 = false;
 							isDucking = true;

@@ -67,6 +67,13 @@ package
 		{
 			super.update();
 			
+			if(Registry.muteBots)
+			{
+
+				fireSFX.volume = 0;
+				weapon.setFireRate(0);
+			}
+
 			if (!isDying)
 			{
 				velocity.x = 0;
@@ -77,9 +84,14 @@ package
 				if(isTouching(FLOOR)) weapon.fire(); //don't shoot before they land
 				
 				if (Registry.pauseSounds) this.fireSFX.volume = 0;
-				if (Registry.stageCount == 2 && (this.x > 2110 && this.x < 2120)) this.fireSFX.volume = 0.05; //for those three guys in level 3
-				else if(this.onScreen()) fireSFX.volume = 1;
-				else fireSFX.volume = .2; 
+				
+				if(!Registry.muteBots)
+				{
+					if (Registry.stageCount == 2 && (this.x > 2110 && this.x < 2120)) this.fireSFX.volume = 0.05; //for those three guys in level 3
+					else if(this.onScreen()) fireSFX.volume = 1;
+					else fireSFX.volume = .2; 
+				}
+				
 			}
 
 			if(dodgeTimer > 0)
@@ -116,6 +128,11 @@ package
 		override public function turnAround():void
 		{
 			//do nothing. Bot2 can't turn around
+		}
+
+		public function muteBots():void
+		{
+			fireSFX.volume = 0;
 		}
 		
 		private function meh():void
