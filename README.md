@@ -1,6 +1,9 @@
 # Journey-to-the-Thingamajig
 My first published flash game. 
 
+You can play it here:
+http://ethanfischer.github.io/Journey-to-the-Thingamajig/
+
 This was my first personal project. I started it in the summer of 2013 and had 
 worked on it on and off until 2016 when I finally published it on gamejolt and kongregate.
 
