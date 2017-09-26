@@ -143,10 +143,10 @@ package
 		}
 		else 
 		{
-			// player = new Player(10, 65); //for testing 2nd half
-			// player = new Player(Registry.checkpoint.x + 5, Registry.checkpoint.y - 5);
+			player = new Player(10, 65); 
+			// player = new Player(Registry.checkpoint.x + 5, Registry.checkpoint.y - 5);//for testing 2nd half
 			frog = new Frog(166, 80);
-			player = new Player(9300, 350); //for testing ending sequence
+			//player = new Player(9300, 350); //for testing ending sequence
 			Registry.torchesOn = true;
 		}
 		
