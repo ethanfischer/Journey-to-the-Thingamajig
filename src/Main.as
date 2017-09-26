@@ -11,7 +11,7 @@ package
 		{
 			super(Registry.screenWidth, Registry.screenHeight, MainMenuState, 2, 30, 30);
 			
-			 forceDebugger = true;
+			 //forceDebugger = true;
 		}
 	}
 }
