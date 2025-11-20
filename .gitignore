@@ -21,3 +21,9 @@ bin-release/
 
 # Git worktrees
 .worktrees/
+
+# Haxe/Lime/OpenFL
+export/
+.haxelib/
+*.n
+*.hl
