@@ -1,0 +1,49 @@
+===============================================================================
+  QUICK START - Continue HaxeFlixel Port on Windows
+===============================================================================
+
+STEP 1: Install Haxe & HaxeFlixel
+----------------------------------
+1. Download and install Haxe: https://haxe.org/download/
+2. Open Command Prompt and run:
+
+   haxelib install lime
+   haxelib install openfl
+   haxelib install flixel
+   haxelib install flixel-addons
+   haxelib run lime setup
+
+   (Answer 'y' when asked to install lime command)
+
+STEP 2: Get the Code
+---------------------
+If you don't have the repo:
+   git clone https://github.com/ethanfischer/Journey-to-the-Thingamajig.git
+   cd Journey-to-the-Thingamajig
+
+If you already have it:
+   cd Journey-to-the-Thingamajig
+   git fetch origin
+   git checkout feature/haxeflixel-port
+   git pull
+
+STEP 3: Test It Works
+----------------------
+   lime test html5
+
+Expected: Browser opens with game showing title and menu!
+
+STEP 4: Continue with Claude Code
+----------------------------------
+Open Claude Code in the repository directory and say:
+
+   "Read CLAUDE.md and continue the HaxeFlixel port from task 7
+    using superpowers:subagent-driven-development"
+
+===============================================================================
+  Current Progress: Tasks 1-6 Complete (Game Runs!)
+  Remaining: Tasks 7-12 (Asset loading, cleanup, deployment)
+
+  Full details: docs/WINDOWS_SETUP.md
+  Implementation plan: docs/plans/2025-11-19-haxeflixel-port.md
+===============================================================================
