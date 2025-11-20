@@ -64,8 +64,9 @@ class Registry
 	public static var sndPlace:Int;
 	public static var fstPlace:Int;
 	public static var fx:Fx = new Fx();
-	// Note: cursor asset will be handled via Project.xml, not [Embed] metadata
-	// [Embed(source="../assets/cursor.png")] public static var cursor:Class;
+
+	// Asset paths (converted from AS3 [Embed] metadata)
+	public static var cursor:String = "assets/cursor.png";
 
 	public static var firstLevel1:Bool = true;
 	public static var firstLevel2:Bool = true;
@@ -131,13 +132,22 @@ class Registry
 	////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	//															musicRepository															  //
 	////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-	// Note: Audio assets will be handled via Project.xml in HaxeFlixel, not [Embed] metadata
-	// The following embedded assets from ActionScript version will be loaded via AssetPaths:
-	// quack.mp3, writing.mp3, Playhouse.mp3, WeInsist.mp3, MindOnTheFritz.mp3, A_Wonderful_Guy.mp3,
-	// TheHoliday.mp3, l7msc.mp3, DwarfDance.mp3, silence.mp3, endingSong.mp3
+	// Audio asset paths (converted from AS3 [Embed] metadata)
+	public static var quack:String = "assets/quack.mp3";
+	public static var writing:String = "assets/writing.mp3";
 
-	// In HaxeFlixel, these will be accessed via FlxG.sound.load() with asset paths
-	// Example: FlxG.sound.load(AssetPaths.quack__mp3)
+	// Level music
+	public static var l2msc:String = "assets/Playhouse.mp3";
+	public static var l3msc:String = "assets/WeInsist.mp3";
+	public static var l4msc:String = "assets/MindOnTheFritz.mp3";
+	public static var l5msc:String = "assets/A_Wonderful_Guy.mp3";
+	public static var l6msc:String = "assets/TheHoliday.mp3";
+	public static var l7msc:String = "assets/l7msc.mp3";
+
+	// Other music
+	public static var falseHopeMsc:String = "assets/DwarfDance.mp3";
+	public static var silence:String = "assets/silence.mp3";
+	public static var endMsc:String = "assets/endingSong.mp3";
 
 	public function new()
 	{

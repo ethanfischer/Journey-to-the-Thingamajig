@@ -9,11 +9,11 @@ class Main extends Sprite
 	{
 		super();
 
-		// Initialize FlxGame with screen dimensions, initial state, zoom, and frame rates
+		// Initialize FlxGame with screen dimensions and initial state
 		// In HaxeFlixel, we create a FlxGame instance and add it to the display list
-		// Parameters: width, height, initialState, zoom (optional), updateFramerate, drawFramerate
-		// Using hardcoded values: 400x200 (from Registry.as)
-		addChild(new FlxGame(400, 200, MainMenuState, 2, 30, 30));
+		// Parameters: gameWidth, gameHeight, initialState, zoom (optional), skipSplash (optional)
+		// Using values: 400x200 (from Registry.as), zoom=2
+		addChild(new FlxGame(400, 200, MainMenuState, 2, true));
 
 		// forceDebugger = true;
 	}
