@@ -80,11 +80,13 @@ class Level1 extends GameLevel
 		// Check if player reached level exit
 		if (player != null && Registry.levelExit != null)
 		{
-			if (player.overlaps(Registry.levelExit))
+			var playerMid = player.getMidpoint();
+			if (playerMid.distanceTo(Registry.levelExit) < 32)
 			{
 				// TODO: Transition to next level or level complete state
 				trace("Level complete!");
 			}
+			playerMid.put(); // Return pooled point
 		}
 
 		// Check if player fell off the map (death)
