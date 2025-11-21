@@ -64,7 +64,7 @@ class Player extends FlxSprite
 		handleMovement();
 
 		// Animation
-		updateAnimation();
+		updateAnimation(elapsed);
 
 		super.update(elapsed);
 	}
@@ -81,12 +81,12 @@ class Player extends FlxSprite
 		if (FlxG.keys.pressed.LEFT)
 		{
 			acceleration.x = -Registry.playerNormalAccel;
-			facing = FlxObject.LEFT;
+			facing = LEFT;
 		}
 		else if (FlxG.keys.pressed.RIGHT)
 		{
 			acceleration.x = Registry.playerNormalAccel;
-			facing = FlxObject.RIGHT;
+			facing = RIGHT;
 		}
 		else
 		{
@@ -96,7 +96,7 @@ class Player extends FlxSprite
 		// Jumping
 		if (FlxG.keys.justPressed.Z || FlxG.keys.justPressed.SPACE)
 		{
-			if (isTouching(FlxObject.DOWN) && canJump)
+			if (isTouching(FLOOR) && canJump)
 			{
 				velocity.y = JUMP_POWER;
 				FlxG.sound.play(AssetPaths.JUMP_SFX3);
@@ -104,7 +104,7 @@ class Player extends FlxSprite
 		}
 
 		// Ducking
-		if (FlxG.keys.pressed.DOWN && isTouching(FlxObject.DOWN))
+		if (FlxG.keys.pressed.DOWN && isTouching(FLOOR))
 		{
 			isDucking = true;
 			acceleration.x = 0;
@@ -115,7 +115,7 @@ class Player extends FlxSprite
 		}
 
 		// Adjust drag based on ground contact
-		if (isTouching(FlxObject.DOWN))
+		if (isTouching(FLOOR))
 		{
 			drag.x = GROUND_DRAG;
 		}
@@ -125,7 +125,7 @@ class Player extends FlxSprite
 		}
 	}
 
-	private function updateAnimation():Void
+	override private function updateAnimation(elapsed:Float):Void
 	{
 		if (isDying)
 		{
@@ -136,7 +136,7 @@ class Player extends FlxSprite
 		{
 			animation.play("duck");
 		}
-		else if (!isTouching(FlxObject.DOWN))
+		else if (!isTouching(FLOOR))
 		{
 			if (velocity.y < 0)
 			{

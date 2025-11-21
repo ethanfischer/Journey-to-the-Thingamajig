@@ -26,11 +26,11 @@ class Level1 extends GameLevel
 		// Tiles 1-63 are solid, 0 is empty
 		for (i in 1...64)
 		{
-			foreground.setTileProperties(i, FlxObject.ANY);
+			foreground.setTileProperties(i, NONE);
 		}
 
 		// Special tiles that can be jumped through from below (one-way platforms)
-		foreground.setTileProperties(57, FlxObject.UP);
+		foreground.setTileProperties(57, CEILING);
 
 		// Register foreground as the collision map
 		Registry.map = foreground;
