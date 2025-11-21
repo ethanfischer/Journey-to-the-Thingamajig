@@ -1,0 +1,10 @@
+{
+  "name": "test-runner",
+  "version": "1.0.0",
+  "scripts": {
+    "test": "node capture-errors.js"
+  },
+  "dependencies": {
+    "puppeteer": "^24.0.0"
+  }
+}
