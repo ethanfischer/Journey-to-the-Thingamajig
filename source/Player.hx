@@ -172,7 +172,11 @@ class Player extends FlxSprite
 
 	override public function destroy():Void
 	{
-		startPos = FlxPoint.weak();
+		if (startPos != null)
+		{
+			startPos.put();
+		}
+		startPos = null;
 		super.destroy();
 	}
 }
