@@ -30,6 +30,14 @@ class AssetPaths
 	public static inline var PLAYER:String = "assets/player.png";
 	public static inline var PLAYER_HURT:String = "assets/player_hurt.png";
 
+	// Player Audio
+	public static inline var FOOTSTEP:String = "assets/footstep.mp3";
+	public static inline var FAST_STEP:String = "assets/faststep.mp3";
+	public static inline var JUMP_SFX3:String = "assets/jumpSFX3.mp3";
+	public static inline var SLIDE_SFX:String = "assets/slide.mp3";
+	public static inline var HURT_SFX:String = "assets/hurtSFX.mp3";
+	public static inline var LAND_SFX:String = "assets/land.mp3";
+
 	// Common UI
 	public static inline var CURSOR:String = "assets/cursor.png";
 	public static inline var MUTE:String = "assets/mute.png";
