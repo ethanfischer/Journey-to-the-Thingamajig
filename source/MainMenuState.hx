@@ -187,9 +187,7 @@ class MainMenuState extends FlxState
 	{
 		if (selector == 1)
 		{
-			// TODO: Convert PlayState before uncommenting
-			// FlxG.switchState(new PlayState());
-			trace("PlayState not yet converted - staying on MainMenuState");
+			FlxG.switchState(new PlayState());
 		}
 		else if (selector == 2)
 		{
@@ -219,8 +217,6 @@ class MainMenuState extends FlxState
 		FlxG.camera.flash(FlxColor.BLACK, 1);
 		Registry.chkptsUsed = 0;
 
-		// TODO: Convert PlayState before uncommenting
-		// FlxG.switchState(new PlayState());
-		trace("PlayState not yet converted - staying on MainMenuState");
+		FlxG.switchState(new PlayState());
 	}
 }
