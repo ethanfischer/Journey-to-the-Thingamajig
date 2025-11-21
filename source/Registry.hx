@@ -14,14 +14,16 @@ class Registry
 
 	public static var map:FlxTilemap;
 	public static var crumbleRockMap:FlxTilemap;
-	public static var crumbleRocks:CrumbleRocks;
+	// TODO: Uncomment when CrumbleRocks class is created
+	// public static var crumbleRocks:CrumbleRocks;
 	public static var levelExit:FlxPoint;
 	public static var player:Player;
-	public static var bots:Bots;
-	public static var bots2:Bots2;
-	public static var borgs:Borgs;
-	public static var rock:Rock;
-	public static var level2:Level2;
+	// TODO: Uncomment when entity classes are created
+	// public static var bots:Bots;
+	// public static var bots2:Bots2;
+	// public static var borgs:Borgs;
+	// public static var rock:Rock;
+	// public static var level2:Level2;
 	public static var hasFlower:Bool; //= true;
 	public static var hasUmbrella:Bool = false;
 	public static var meetingAdjourned:Bool; //= true;
@@ -31,8 +33,11 @@ class Registry
 	public static var stageCount:Int = 0;
 	public static var checkpointFlag:Bool = false;
 	public static var checkpointFlag2:Bool = false;
-	public static var checkpoint:Checkpoint;
-	public static var checkpoint2:Checkpoint;
+	// TODO: Uncomment when Checkpoint class is created
+	// public static var checkpoint:Checkpoint;
+	// public static var checkpoint2:Checkpoint;
+	public static var checkpoint:FlxPoint; // Temporary: using FlxPoint until Checkpoint class exists
+	public static var checkpoint2:FlxPoint; // Temporary: using FlxPoint until Checkpoint class exists
 	public static var ezchkpt:FlxPoint;
 	public static var deathMessageFlag:Bool = false;
 	public static var levelDeathMessage:String;
@@ -63,7 +68,8 @@ class Registry
 	public static var thdPlace:Int;
 	public static var sndPlace:Int;
 	public static var fstPlace:Int;
-	public static var fx:Fx = new Fx();
+	// TODO: Uncomment when Fx class is created
+	// public static var fx:Fx = new Fx();
 
 	// Asset paths (converted from AS3 [Embed] metadata)
 	public static var cursor:String = "assets/cursor.png";
