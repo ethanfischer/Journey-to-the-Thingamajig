@@ -51,6 +51,10 @@ class AssetPaths
 	// Level Assets (to be expanded as needed)
 	public static inline var FOREST_TILES:String = "assets/forest_tiles(4).png";
 
+	// Level 1 Assets
+	public static inline var L1_FOREGROUND_TILES:String = "assets/forest_tiles(4).png";
+	public static inline var L1_FOREGROUND_CSV:String = "assets/mapCSV_Level1_Foreground.csv";
+
 	// Particles and Effects
 	public static inline var PARTICLE:String = "assets/particle.png";
 	public static inline var POOF:String = "assets/poof.png";
