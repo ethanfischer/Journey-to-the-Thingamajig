@@ -1,5 +1,6 @@
 package;
 
+import flixel.FlxG;
 import flixel.FlxGame;
 import openfl.display.Sprite;
 
@@ -10,10 +11,13 @@ class Main extends Sprite
 		super();
 
 		// Initialize FlxGame with screen dimensions and initial state
-		// In HaxeFlixel, we create a FlxGame instance and add it to the display list
-		// Parameters: gameWidth, gameHeight, initialState, zoom (optional), skipSplash (optional)
-		// Using values: 400x200 (from Registry.as), zoom=2
-		addChild(new FlxGame(400, 200, MainMenuState, 2, true));
+		// FlxGame(gameWidth, gameHeight, initialState, updateFramerate, drawFramerate, skipSplash)
+		// Using 400x200 game resolution, 60fps
+		var game = new FlxGame(400, 200, MainMenuState, 60, 60, true);
+		addChild(game);
+
+		// Add FPS counter
+		addChild(new openfl.display.FPS(10, 10, 0xFFFFFF));
 
 		// forceDebugger = true;
 	}

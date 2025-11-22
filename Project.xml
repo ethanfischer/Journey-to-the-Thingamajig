@@ -4,8 +4,8 @@
 
 	<app main="Main" path="export" file="JourneyToTheThingamajig" />
 
-	<window width="800" height="400" fps="30" background="#000000" hardware="true" vsync="false" />
-	<window width="640" height="480" if="html5" />
+	<window width="800" height="400" fps="60" background="#000000" hardware="true" vsync="false" />
+	<window width="640" height="480" fps="60" if="html5" />
 
 	<source path="source" />
 
