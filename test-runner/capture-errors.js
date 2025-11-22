@@ -72,7 +72,7 @@ function startServer() {
 
     const page = await browser.newPage();
 
-    // Capture console messages
+    // Capture console messages (all types for debugging)
     page.on('console', msg => {
         const type = msg.type();
         const text = msg.text();
@@ -80,6 +80,8 @@ function startServer() {
             log(`ERROR: ${text}`);
         } else if (type === 'warning') {
             log(`WARN: ${text}`);
+        } else if (type === 'log') {
+            log(`LOG: ${text}`);
         }
     });
 
@@ -104,11 +106,28 @@ function startServer() {
             timeout: 30000
         });
 
-        log('Page loaded, waiting 5 seconds for game init...\n');
-        await new Promise(r => setTimeout(r, 5000));
+        log('Page loaded, waiting 3 seconds for game init...\n');
+        await new Promise(r => setTimeout(r, 3000));
 
         const canvas = await page.$('canvas');
         log(canvas ? 'Canvas found - game is rendering' : 'No canvas - game failed to start');
+
+        // Click to focus canvas
+        log('\nFocusing canvas...');
+        if (canvas) {
+            await canvas.click();
+        }
+
+        // Wait for menu to load then press space to start
+        log('Waiting 1 second for menu...');
+        await new Promise(r => setTimeout(r, 1000));
+
+        log('Pressing Space to start game...');
+        await page.keyboard.press('Space');
+        await new Promise(r => setTimeout(r, 500));
+
+        log('Waiting 3 seconds for game...\n');
+        await new Promise(r => setTimeout(r, 3000));
 
     } catch (error) {
         log(`LOAD ERROR: ${error.message}`);

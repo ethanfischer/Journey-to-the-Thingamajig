@@ -56,6 +56,9 @@ class Player extends FlxSprite
 		width = 30;
 		height = 55;
 		offset.set(5, 5);
+
+		// Enable collision
+		solid = true;
 	}
 
 	override public function update(elapsed:Float):Void

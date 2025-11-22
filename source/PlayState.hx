@@ -1,6 +1,8 @@
 package;
 
 import flixel.FlxG;
+import flixel.FlxObject;
+import flixel.FlxSprite;
 import flixel.FlxState;
 import flixel.ui.FlxButton;
 import flixel.text.FlxText;
@@ -27,6 +29,11 @@ class PlayState extends FlxState
 
 		// Load Level1
 		loadLevel(1);
+
+		// Set world bounds to level dimensions
+		if (currentLevel != null) {
+			FlxG.worldBounds.set(0, 0, currentLevel.width, currentLevel.height);
+		}
 
 		// Create UI buttons
 		createUI();
@@ -74,6 +81,15 @@ class PlayState extends FlxState
 	override public function update(elapsed:Float):Void
 	{
 		super.update(elapsed);
+
+		// Collide game player against level collision objects
+		if (currentLevel != null && currentLevel.player != null)
+		{
+			// Collide player with foreground tilemap
+			if (currentLevel.foreground != null) {
+				FlxG.collide(currentLevel.foreground, currentLevel.player);
+			}
+		}
 
 		// ESC key to return to menu
 		if (FlxG.keys.justPressed.ESCAPE)
