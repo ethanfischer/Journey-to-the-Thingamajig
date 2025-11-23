@@ -90,8 +90,8 @@ class Player extends FlxSprite
 		// Movement input
 		handleMovement();
 
-		// Animation
-		updateAnimation(elapsed);
+		// Animation selection (before super.update so animation.update() advances frames)
+		selectAnimation();
 
 		super.update(elapsed);
 	}
@@ -152,7 +152,7 @@ class Player extends FlxSprite
 		}
 	}
 
-	override private function updateAnimation(elapsed:Float):Void
+	private function selectAnimation():Void
 	{
 		if (isDying)
 		{
