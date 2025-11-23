@@ -33,7 +33,7 @@ class Level1 extends GameLevel
 		// Foreground tilemap (main collision layer)
 		// Flash: foreground.loadMap(new foregroundCSV, foregroundTilesPNG, 16, 16, 0, 0, 1, 24);
 		foreground = new FlxTilemap();
-		foreground.loadMapFromCSV(AssetPaths.L1_FOREGROUND_CSV, AssetPaths.L1_FOREGROUND_TILES, 16, 16, null, 0, 1, 1);
+		foreground.loadMapFromCSV(AssetPaths.L1_FOREGROUND_CSV, AssetPaths.L1_FOREGROUND_TILES, 16, 16, null, 0, 1, 24);
 
 		// Set level dimensions from foreground tilemap
 		width = Std.int(foreground.width);
