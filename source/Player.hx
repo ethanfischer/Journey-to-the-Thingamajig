@@ -27,6 +27,11 @@ class Player extends FlxSprite
 	private var canJump:Bool = true;
 	public var isDying:Bool = false;
 	public var isDucking:Bool = false;
+	public var isSliding:Bool = false;
+
+	// Slide deceleration constants (from Flash original)
+	private static inline var SLIDE_DECEL_INITIAL:Float = 80;  // When moving fast (>100)
+	private static inline var SLIDE_DECEL:Float = 280;          // When moving slower
 
 	// Starting position
 	private var startPos:FlxPoint;
@@ -47,6 +52,7 @@ class Player extends FlxSprite
 		animation.add("jump", [11], 2, false);
 		animation.add("fall", [12, 13], 15, true);
 		animation.add("duck", [14], 0, false);
+		animation.add("slide", [20], 0, false);
 
 		animation.play("idle");
 
@@ -84,14 +90,33 @@ class Player extends FlxSprite
 
 	private function handleMovement():Void
 	{
-		// Ducking check must happen first (before early return)
+		// Ducking/sliding check must happen first (before early return)
 		if (FlxG.keys.pressed.DOWN && isTouching(FLOOR))
 		{
 			isDucking = true;
+			// Sliding if moving fast enough
+			if (Math.abs(velocity.x) > 50)
+			{
+				isSliding = true;
+				// Use slower deceleration when sliding
+				if (Math.abs(velocity.x) > 100)
+				{
+					drag.x = SLIDE_DECEL_INITIAL;
+				}
+				else
+				{
+					drag.x = SLIDE_DECEL;
+				}
+			}
+			else
+			{
+				isSliding = false;
+			}
 		}
 		else
 		{
 			isDucking = false;
+			isSliding = false;
 		}
 
 		if (isDying || isDucking)
@@ -153,7 +178,14 @@ class Player extends FlxSprite
 
 		if (isDucking)
 		{
-			anim = "duck";
+			if (isSliding)
+			{
+				anim = "slide";
+			}
+			else
+			{
+				anim = "duck";
+			}
 		}
 		else if (!onGround)
 		{
