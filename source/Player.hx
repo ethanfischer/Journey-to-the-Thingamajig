@@ -5,6 +5,9 @@ import flixel.FlxObject;
 import flixel.FlxSprite;
 import flixel.math.FlxPoint;
 import flixel.util.FlxColor;
+#if html5
+import js.Browser;
+#end
 
 /**
  * Player character class
@@ -40,6 +43,7 @@ class Player extends FlxSprite
 		// Set up animations (frame indices from Flash original)
 		animation.add("idle", [0], 0, false);
 		animation.add("walk", [1, 0, 2, 0], 7, true);
+		animation.add("run", [8, 9, 7, 9], 9, true);
 		animation.add("jump", [11], 2, false);
 		animation.add("fall", [12, 13], 15, true);
 		animation.add("duck", [14], 0, false);
@@ -159,29 +163,64 @@ class Player extends FlxSprite
 		// This handles the one-frame delay in collision detection
 		var onGround = isTouching(FLOOR) || wasTouching.has(FLOOR);
 
+		// Determine which animation should play
+		var anim:String = "idle";
+
 		if (isDucking)
 		{
-			animation.play("duck");
+			anim = "duck";
 		}
 		else if (!onGround)
 		{
 			if (velocity.y < 0)
 			{
-				animation.play("jump");
+				anim = "jump";
 			}
 			else
 			{
-				animation.play("fall");
+				anim = "fall";
 			}
 		}
 		else if (velocity.x != 0)
 		{
-			animation.play("walk");
+			// Run animation at max speed (Flash original: >= MAXSPEED which is 170)
+			if (Math.abs(velocity.x) >= MAX_VELOCITY_X)
+			{
+				anim = "run";
+			}
+			else
+			{
+				anim = "walk";
+			}
 		}
-		else
+
+		// Only change animation if different (prevents restarting looping animations)
+		if (animation.name != anim)
 		{
-			animation.play("idle");
+			remoteLog("Animation change: " + animation.name + " -> " + anim + " | velocity.x=" + velocity.x + " | threshold=" + MAX_VELOCITY_X);
+			animation.play(anim);
 		}
+
+		// Debug: log current animation state every few frames
+		if (FlxG.game.ticks % 10 == 0 && anim == "run")
+		{
+			var curAnim = animation.curAnim;
+			var curFrame = curAnim != null ? curAnim.curFrame : -1;
+			var numFrames = curAnim != null ? curAnim.numFrames : -1;
+			var paused = animation.paused;
+			var frameRate = curAnim != null ? curAnim.frameRate : -1;
+			remoteLog("RUN: frame=" + curFrame + "/" + numFrames + " paused=" + paused + " fps=" + frameRate);
+		}
+	}
+
+	private function remoteLog(msg:String):Void
+	{
+		#if html5
+		Browser.window.fetch("http://localhost:9999/log", {
+			method: "POST",
+			body: msg
+		});
+		#end
 	}
 
 	public function takeDamage(amount:Int = 1):Void
