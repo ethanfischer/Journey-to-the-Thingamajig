@@ -200,17 +200,6 @@ class Player extends FlxSprite
 			remoteLog("Animation change: " + animation.name + " -> " + anim + " | velocity.x=" + velocity.x + " | threshold=" + MAX_VELOCITY_X);
 			animation.play(anim);
 		}
-
-		// Debug: log current animation state every few frames
-		if (FlxG.game.ticks % 10 == 0 && anim == "run")
-		{
-			var curAnim = animation.curAnim;
-			var curFrame = curAnim != null ? curAnim.curFrame : -1;
-			var numFrames = curAnim != null ? curAnim.numFrames : -1;
-			var paused = animation.paused;
-			var frameRate = curAnim != null ? curAnim.frameRate : -1;
-			remoteLog("RUN: frame=" + curFrame + "/" + numFrames + " paused=" + paused + " fps=" + frameRate);
-		}
 	}
 
 	private function remoteLog(msg:String):Void
