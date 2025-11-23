@@ -13,7 +13,8 @@ class Main extends Sprite
 		// Initialize FlxGame with screen dimensions and initial state
 		// FlxGame(gameWidth, gameHeight, initialState, updateFramerate, drawFramerate, skipSplash)
 		// Using 400x200 game resolution, 60fps
-		var game = new FlxGame(400, 200, MainMenuState, 60, 60, true);
+		// DEBUG: Skip menu, go straight to PlayState
+		var game = new FlxGame(400, 200, PlayState, 60, 60, true);
 		addChild(game);
 
 		// Add FPS counter
