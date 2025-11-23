@@ -54,6 +54,10 @@ class AssetPaths
 	// Level 1 Assets
 	public static inline var L1_FOREGROUND_TILES:String = "assets/forest_tiles(4).png";
 	public static inline var L1_FOREGROUND_CSV:String = "assets/mapCSV_Level1_Foreground.csv";
+	public static inline var L1_BACKGROUND_TILES:String = "assets/woody(green).png";
+	public static inline var L1_BACKGROUND_CSV:String = "assets/mapCSV_Level1_Background.csv";
+	public static inline var L1_BACKBACKGROUND_TILES:String = "assets/woody_back_background.png";
+	public static inline var L1_BACKBACKGROUND_CSV:String = "assets/mapCSV_Level1_Back_Background.csv";
 
 	// Particles and Effects
 	public static inline var PARTICLE:String = "assets/particle.png";

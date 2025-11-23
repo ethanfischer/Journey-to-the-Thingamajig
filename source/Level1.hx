@@ -14,20 +14,35 @@ import flixel.util.FlxDirectionFlags;
  */
 class Level1 extends GameLevel
 {
+	// Background sprites (parallax layers)
+	private var bgSprite:FlxSprite;
+	private var bgBackSprite:FlxSprite;
+
 	public function new()
 	{
 		super();
 
 		levelNumber = 1;
 
-		// Set up foreground tilemap (main collision layer)
-		foreground = new FlxTilemap();
+		// Back-background layer (farthest parallax - scrolls slowest)
+		// The woody images have trees on the right half (256-512), left half is empty
+		// Use clipRect to only show the right portion with trees
+		bgBackSprite = new FlxSprite(0, 0);
+		bgBackSprite.loadGraphic(AssetPaths.L1_BACKBACKGROUND_TILES);
+		bgBackSprite.scrollFactor.set(0, 0);
+		bgBackSprite.clipRect = new flixel.math.FlxRect(256, 0, 256, 300);
 
-		// Load tilemap from CSV file
-		// Parameters: mapData, tileGraphic, tileWidth, tileHeight, autoTile, startingIndex, drawIndex, collideIndex
+		// Background layer (mid parallax)
+		bgSprite = new FlxSprite(0, 0);
+		bgSprite.loadGraphic(AssetPaths.L1_BACKGROUND_TILES);
+		bgSprite.scrollFactor.set(0.3, 0);
+		bgSprite.clipRect = new flixel.math.FlxRect(256, 0, 256, 300);
+
+		// Foreground tilemap (main collision layer)
+		foreground = new FlxTilemap();
 		foreground.loadMapFromCSV(AssetPaths.L1_FOREGROUND_CSV, AssetPaths.L1_FOREGROUND_TILES, 16, 16, null, 0, 1, 1);
 
-		// Set level dimensions from tilemap
+		// Set level dimensions from foreground tilemap
 		width = Std.int(foreground.width);
 		height = Std.int(foreground.height);
 
@@ -52,12 +67,14 @@ class Level1 extends GameLevel
 		FlxG.camera.setScrollBoundsRect(0, 0, width, height);
 		FlxG.camera.follow(player);
 
-		// Add everything to the group (render order matters!)
+		// Add everything to the group (render order matters - back to front!)
+		add(bgBackSprite);
+		add(bgSprite);
 		add(foreground);
 		add(player);
 
-		// Background color
-		FlxG.cameras.bgColor = FlxColor.fromRGB(135, 206, 235); // Sky blue
+		// Background color (sky blue behind the forest)
+		FlxG.cameras.bgColor = FlxColor.fromRGB(135, 206, 235);
 	}
 
 	override public function update(elapsed:Float):Void
