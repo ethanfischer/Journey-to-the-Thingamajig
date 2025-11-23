@@ -69,25 +69,6 @@ class Player extends FlxSprite
 		setFacingFlip(RIGHT, false, false);
 		setFacingFlip(LEFT, true, false);
 
-		// Debug hitbox visualization
-		debugHitbox = new FlxSprite();
-		debugHitbox.makeGraphic(Std.int(width), Std.int(height), 0x80FF0000); // Semi-transparent red
-	}
-
-	// Debug hitbox sprite
-	private var debugHitbox:FlxSprite;
-
-	override public function draw():Void
-	{
-		super.draw();
-
-		// Draw debug hitbox
-		if (debugHitbox != null)
-		{
-			debugHitbox.x = x;
-			debugHitbox.y = y;
-			debugHitbox.draw();
-		}
 	}
 
 	override public function update(elapsed:Float):Void
@@ -103,6 +84,16 @@ class Player extends FlxSprite
 
 	private function handleMovement():Void
 	{
+		// Ducking check must happen first (before early return)
+		if (FlxG.keys.pressed.DOWN && isTouching(FLOOR))
+		{
+			isDucking = true;
+		}
+		else
+		{
+			isDucking = false;
+		}
+
 		if (isDying || isDucking)
 		{
 			acceleration.x = 0;
@@ -133,17 +124,6 @@ class Player extends FlxSprite
 				velocity.y = JUMP_POWER;
 				FlxG.sound.play(AssetPaths.JUMP_SFX3);
 			}
-		}
-
-		// Ducking
-		if (FlxG.keys.pressed.DOWN && isTouching(FLOOR))
-		{
-			isDucking = true;
-			acceleration.x = 0;
-		}
-		else
-		{
-			isDucking = false;
 		}
 
 		// Adjust drag based on ground contact
