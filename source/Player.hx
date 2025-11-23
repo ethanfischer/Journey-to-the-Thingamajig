@@ -37,13 +37,12 @@ class Player extends FlxSprite
 		// Load player sprite (40x60 frames)
 		loadGraphic(AssetPaths.PLAYER, true, 40, 60);
 
-		// Set up animations
-		// Frame layout from Flash: idle, walk, jump, duck, etc.
-		animation.add("idle", [0], 6, false);
-		animation.add("walk", [1, 2, 3, 4], 8, true);
-		animation.add("jump", [5], 6, false);
-		animation.add("fall", [6], 6, false);
-		animation.add("duck", [7], 6, false);
+		// Set up animations (frame indices from Flash original)
+		animation.add("idle", [0], 0, false);
+		animation.add("walk", [1, 0, 2, 0], 7, true);
+		animation.add("jump", [11], 2, false);
+		animation.add("fall", [12, 13], 15, true);
+		animation.add("duck", [14], 0, false);
 
 		animation.play("idle");
 
@@ -52,13 +51,34 @@ class Player extends FlxSprite
 		maxVelocity.set(MAX_VELOCITY_X, MAX_VELOCITY_Y);
 		drag.x = GROUND_DRAG;
 
-		// Collision box (smaller than sprite for better feel)
-		width = 30;
-		height = 55;
-		offset.set(5, 5);
+		// Collision box (from Flash original - smaller than sprite)
+		// Note: HaxeFlixel offset shifts graphic relative to hitbox differently than Flash
+		width = 12;
+		height = 32;
+		offset.set(15, 28);
 
 		// Enable collision
 		solid = true;
+
+		// Debug hitbox visualization
+		debugHitbox = new FlxSprite();
+		debugHitbox.makeGraphic(Std.int(width), Std.int(height), 0x80FF0000); // Semi-transparent red
+	}
+
+	// Debug hitbox sprite
+	private var debugHitbox:FlxSprite;
+
+	override public function draw():Void
+	{
+		super.draw();
+
+		// Draw debug hitbox
+		if (debugHitbox != null)
+		{
+			debugHitbox.x = x;
+			debugHitbox.y = y;
+			debugHitbox.draw();
+		}
 	}
 
 	override public function update(elapsed:Float):Void
