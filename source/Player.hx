@@ -64,6 +64,11 @@ class Player extends FlxSprite
 		// Enable collision
 		solid = true;
 
+		// Set up sprite flipping based on facing direction
+		// Sprite faces right by default, flip horizontally when facing left
+		setFacingFlip(RIGHT, false, false);
+		setFacingFlip(LEFT, true, false);
+
 		// Debug hitbox visualization
 		debugHitbox = new FlxSprite();
 		debugHitbox.makeGraphic(Std.int(width), Std.int(height), 0x80FF0000); // Semi-transparent red
