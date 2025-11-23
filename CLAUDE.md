@@ -5,41 +5,6 @@
 ### Overview
 Porting a Flash/ActionScript 3 game to HaxeFlixel for modern web browsers (HTML5/JavaScript).
 
-### Current Status (2025-11-19)
-
-**Working Branch:** `feature/haxeflixel-port`
-
-**Completed:** Tasks 1-6 of 12
-- Git preservation (flash-original branch, v1.0-flash tag)
-- HaxeFlixel development environment installed
-- Project structure created (Project.xml, source/)
-- Main.hx entry point converted
-- Registry.hx global state converted
-- MainMenuState.hx basic stub created
-- **Milestone: Game compiles and runs in browser!**
-
-**Next:** Tasks 7-12
-- AssetPaths helper class
-- Full MainMenuState with assets
-- Remove Flash source files
-- Update index.html
-- Update README
-- Create deployment script
-
-### Implementation Plan
-See: `docs/plans/2025-11-19-haxeflixel-port.md`
-
-### How to Continue Development
-
-**Recommended approach:**
-```
-Use superpowers:subagent-driven-development to execute tasks 7-12
-from docs/plans/2025-11-19-haxeflixel-port.md
-```
-
-**Alternative:**
-Execute tasks manually, one at a time, following the plan.
-
 ### Build Commands
 
 **Development:**
@@ -71,9 +36,10 @@ mv source/file.hx source/File_temp.hx && mv source/File_temp.hx source/File.hx
 - `Project.xml` - HaxeFlixel configuration
 - `source/Main.hx` - Entry point
 - `source/Registry.hx` - Global state container
-- `source/MainMenuState.hx` - Menu state (currently stub)
-- `docs/plans/2025-11-19-haxeflixel-port.md` - Implementation plan
-- `docs/WINDOWS_SETUP.md` - Windows setup instructions
+- `source/Player.hx` - Player character class
+- `source/PlayState.hx` - Main gameplay state
+- `source/Level1.hx` - First level
+- `source/AssetPaths.hx` - Asset path constants
 
 ### Original Flash Version
 
@@ -100,7 +66,6 @@ Co-Authored-By: Claude <noreply@anthropic.com>
 **Git workflow:**
 - Work on `feature/haxeflixel-port` branch
 - Commit after each task completion
-- Code review between tasks (using superpowers:code-reviewer)
 
 ### Dependencies
 
@@ -122,29 +87,7 @@ Co-Authored-By: Claude <noreply@anthropic.com>
 - Asset loading via `Project.xml` instead of compiler flags
 - Constructor: `public function new()` instead of `public function Main()`
 - Types: `Int`, `Bool`, `Float` instead of `int`, `Boolean`, `Number`
-
-**Strategy:**
-- Minimal code changes (in-place conversion)
-- Preserve original structure where possible
-- Simplify dependencies (use built-in HaxeFlixel features)
-- Focus on HTML5 web deployment
-
-### Task Progress Tracking
-
-When resuming development, use TodoWrite to track tasks 7-12:
-```
-Task 7: Create AssetPaths Helper
-Task 8: Update MainMenuState with Real Assets
-Task 9: Remove Flash Source Files
-Task 10: Update index.html for HaxeFlixel
-Task 11: Update README
-Task 12: Create Deployment Script
-```
-
-### Design Documents
-
-- `docs/plans/2025-11-19-haxeflixel-port-design.md` - High-level design
-- `docs/plans/2025-11-19-haxeflixel-port.md` - Detailed implementation plan
+- When overriding `update()`, call `super.update(elapsed)` to let parent handle animation frame advancement
 
 ### For Windows Development
 
@@ -154,7 +97,7 @@ See `docs/WINDOWS_SETUP.md` for complete Windows setup instructions.
 
 Test that current build works:
 ```bash
-lime test html5
+./build.sh
 ```
 
-Expected: Browser shows blue gradient with "Journey to the Thingamajig" title.
+Expected: Game runs in browser with working player movement and animations.
