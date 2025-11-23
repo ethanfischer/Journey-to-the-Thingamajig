@@ -30,6 +30,10 @@ class MainMenuState extends FlxState
 	{
 		super.create();
 
+		#if js
+		js.Browser.console.log("MainMenuState.create() called");
+		#end
+
 		// Set up mouse cursor
 		#if !FLX_NO_MOUSE
 		FlxG.mouse.load(Registry.cursor, 1, 0, 0);
