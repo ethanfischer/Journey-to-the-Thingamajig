@@ -23,24 +23,9 @@ class Level1 extends GameLevel
 		// Set up foreground tilemap (main collision layer)
 		foreground = new FlxTilemap();
 
-		// Simple test map: 25 tiles wide, 20 tiles tall
-		// Tile 0 = empty, Tile 1 = solid ground
-		var testMapData:Array<Int> = [];
-		for (row in 0...19)
-		{
-			for (col in 0...25)
-			{
-				testMapData.push(0); // empty
-			}
-		}
-		// Bottom row - all solid (tile 1)
-		for (col in 0...25)
-		{
-			testMapData.push(1);
-		}
-
-		// loadMapFromArray params: mapData, widthInTiles, heightInTiles, tileGraphic, tileWidth, tileHeight, autoTile, startingIndex, drawIndex, collideIndex
-		foreground.loadMapFromArray(testMapData, 25, 20, AssetPaths.L1_FOREGROUND_TILES, 16, 16, null, 0, 1, 1);
+		// Load tilemap from CSV file
+		// Parameters: mapData, tileGraphic, tileWidth, tileHeight, autoTile, startingIndex, drawIndex, collideIndex
+		foreground.loadMapFromCSV(AssetPaths.L1_FOREGROUND_CSV, AssetPaths.L1_FOREGROUND_TILES, 16, 16, null, 0, 1, 1);
 
 		// Set level dimensions from tilemap
 		width = Std.int(foreground.width);
@@ -57,9 +42,8 @@ class Level1 extends GameLevel
 		}
 		else
 		{
-			// Spawn at level start - player is 55 tall, floor is at 304 (row 19 * 16)
-			// Spawn 50 pixels above floor: 304 - 55 - 50 = 199
-			player = new Player(50, 199);
+			// Spawn at level start (original Flash position)
+			player = new Player(50, 200);
 		}
 
 		Registry.player = player;
