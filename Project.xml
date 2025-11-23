@@ -16,6 +16,7 @@
 	<assets path="map" rename="map" />
 
 	<haxedef name="FLX_NO_DEBUG" unless="debug" />
+	<haxedef name="FLX_HEALTH" />
 
 	<icon path="assets/icon.png" />
 </project>
