@@ -26,10 +26,13 @@ class GameLevel extends FlxGroup
 	// Player reference
 	public var player:Player;
 
-	// Entities (to be added as needed)
-	// public var bots:Bots;
-	// public var rocks:Rocks;
-	// etc.
+	// Entity groups
+	public var bots:Bots;
+	public var rocks:Rocks;
+	public var checkpoints:FlxGroup;
+
+	// Level exit point
+	public var levelEnd:FlxPoint;
 
 	// UI and messages
 	public var letterMsg:FlxText;

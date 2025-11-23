@@ -65,10 +65,22 @@ class AssetPaths
 	public static inline var L1_BACKBACKGROUND_TILES:String = "assets/woody_back_background.png";
 	public static inline var L1_BACKBACKGROUND_CSV:String = "assets/mapCSV_Level1_Back_Background.csv";
 
+	// Checkpoint/Save Points
+	public static inline var CHECKPOINT:String = "assets/checkpoint.png";
+	public static inline var ENDING:String = "assets/ending.png";
+	public static inline var POP_SFX:String = "assets/pop.mp3";
+
+	// Enemies
+	public static inline var BOT:String = "map/bot.png";
+	public static inline var EJECT_SFX:String = "assets/eject.mp3";
+	public static inline var WILHELM_SFX:String = "assets/wilhelm_scream.mp3";
+
+	// Obstacles
+	public static inline var ROCK:String = "map/rock.png";
+	public static inline var ROCK_BUST_SFX:String = "assets/rockBust2.mp3";
+
 	// Particles and Effects
 	public static inline var PARTICLE:String = "assets/particle.png";
 	public static inline var POOF:String = "assets/poof.png";
 	public static inline var SPARKLE:String = "assets/sparkle.png";
-
-	// TODO: Add more asset paths as levels and entities are converted
 }
