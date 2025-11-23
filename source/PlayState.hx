@@ -16,6 +16,7 @@ class PlayState extends FlxState
 {
 	private var currentLevel:GameLevel;
 	private var levelButton:FlxButton;
+	private var debugText:FlxText;
 
 	override public function create():Void
 	{
@@ -75,7 +76,11 @@ class PlayState extends FlxState
 		levelButton.scrollFactor.set(0, 0); // Fixed to camera
 		add(levelButton);
 
-		// TODO: Add health bar, death counter, etc.
+		// Debug text for animation info
+		debugText = new FlxText(2, 20, 300, "");
+		debugText.scrollFactor.set(0, 0);
+		debugText.color = FlxColor.WHITE;
+		add(debugText);
 	}
 
 	override public function update(elapsed:Float):Void
@@ -88,6 +93,14 @@ class PlayState extends FlxState
 			if (currentLevel.foreground != null) {
 				FlxG.collide(currentLevel.foreground, currentLevel.player);
 			}
+
+			// Update debug text
+			var p = currentLevel.player;
+			var animName = p.animation.name != null ? p.animation.name : "null";
+			var curAnim = p.animation.curAnim;
+			var frame = curAnim != null ? curAnim.curFrame : -1;
+			var frameIdx = p.animation.frameIndex;
+			debugText.text = "Anim: " + animName + " frame:" + frame + " idx:" + frameIdx + "\nvel.x: " + Std.int(p.velocity.x);
 		}
 
 		// ESC key to return to menu
