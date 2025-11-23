@@ -1,4 +1,14 @@
 {
+  "permissions": {
+    "allow": [
+      "Bash(git commit -m \"$(cat <<''EOF''\nfix: load actual level tilemap from CSV instead of hardcoded test data\n\nLevel1 was using a hardcoded 25x20 empty test map instead of the real\nlevel data. Now loads mapCSV_Level1_Foreground.csv which has the full\n215x20 tile level design.\n\n🤖 Generated with [Claude Code](https://claude.com/claude-code)\n\nCo-Authored-By: Claude <noreply@anthropic.com>\nEOF\n)\")",
+      "Bash(git ls-tree:*)",
+      "Bash(\"assets/woody(green).png\")",
+      "Bash(\"assets/woody_back_background.png\")"
+    ],
+    "deny": [],
+    "ask": []
+  },
   "workingDirectory": ".",
   "notes": "HaxeFlixel port in progress - tasks 1-6 complete, game runs! Continue with task 7 using subagent-driven-development skill"
 }
