@@ -64,9 +64,9 @@ class Player extends FlxSprite
 	private var _deathSFXflag:Bool = false;
 
 	// Movement values (dynamic, from Registry)
-	public var accel:Float;
-	private var decel:Float;
-	public var speed:Float;
+	public var accel:Float = 600;
+	private var decel:Float = 600;
+	public var speed:Float = 170;
 
 	// Starting position
 	private var startPos:FlxPoint;
@@ -475,21 +475,19 @@ class Player extends FlxSprite
 			_jump = -1;
 		}
 
-		// Apply jump velocity
+		// Apply jump velocity - keep applying upward velocity while holding jump
 		if (_jump > 0)
 		{
-			if (_jump < 0.13)
-			{
-				velocity.y = -200; // Minimum jump speed
+			// Apply velocity for the entire jump duration (until max time reached)
+			velocity.y = -200;
 
-				// Play jump sound once
-				if (!_jumpSFXflag)
-				{
-					if (Registry.stageCount != 5 && _jumpSFX != null)
-						_jumpSFX.play();
-					_jumpSFXflag = true;
-					if (walkSFX != null) walkSFX.stop();
-				}
+			// Play jump sound once (early in jump)
+			if (_jump < 0.13 && !_jumpSFXflag)
+			{
+				if (Registry.stageCount != 5 && _jumpSFX != null)
+					_jumpSFX.play();
+				_jumpSFXflag = true;
+				if (walkSFX != null) walkSFX.stop();
 			}
 		}
 		else
