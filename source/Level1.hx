@@ -2,11 +2,9 @@ package;
 
 import flixel.FlxG;
 import flixel.FlxObject;
-import flixel.FlxSprite;
 import flixel.tile.FlxTilemap;
 import flixel.math.FlxPoint;
 import flixel.util.FlxColor;
-import flixel.util.FlxDirectionFlags;
 
 /**
  * Level 1 - First playable level
@@ -14,10 +12,6 @@ import flixel.util.FlxDirectionFlags;
  */
 class Level1 extends GameLevel
 {
-	// Background sprites (parallax layers)
-	private var bgSprite:FlxSprite;
-	private var bgBackSprite:FlxSprite;
-
 	public function new()
 	{
 		super();
@@ -25,20 +19,19 @@ class Level1 extends GameLevel
 		levelNumber = 1;
 
 		// Back-background layer (farthest parallax - scrolls slowest)
-		// The woody images have trees on the right half (256-512), left half is empty
-		// Use clipRect to only show the right portion with trees
-		bgBackSprite = new FlxSprite(0, 0);
-		bgBackSprite.loadGraphic(AssetPaths.L1_BACKBACKGROUND_TILES);
-		bgBackSprite.scrollFactor.set(0, 0);
-		bgBackSprite.clipRect = new flixel.math.FlxRect(256, 0, 256, 300);
+		// Flash: backbackground.loadMap(new backbackgroundCSV, backbackgroundTilesPNG, 252, 300);
+		backbackground = new FlxTilemap();
+		backbackground.loadMapFromCSV(AssetPaths.L1_BACKBACKGROUND_CSV, AssetPaths.L1_BACKBACKGROUND_TILES, 252, 300);
+		backbackground.scrollFactor.x = 0.2;
 
 		// Background layer (mid parallax)
-		bgSprite = new FlxSprite(0, 0);
-		bgSprite.loadGraphic(AssetPaths.L1_BACKGROUND_TILES);
-		bgSprite.scrollFactor.set(0.3, 0);
-		bgSprite.clipRect = new flixel.math.FlxRect(256, 0, 256, 300);
+		// Flash: background.loadMap(new backgroundCSV, backgroundTilesPNG, 256, 300);
+		background = new FlxTilemap();
+		background.loadMapFromCSV(AssetPaths.L1_BACKGROUND_CSV, AssetPaths.L1_BACKGROUND_TILES, 256, 300);
+		background.scrollFactor.x = 0.7;
 
 		// Foreground tilemap (main collision layer)
+		// Flash: foreground.loadMap(new foregroundCSV, foregroundTilesPNG, 16, 16, 0, 0, 1, 24);
 		foreground = new FlxTilemap();
 		foreground.loadMapFromCSV(AssetPaths.L1_FOREGROUND_CSV, AssetPaths.L1_FOREGROUND_TILES, 16, 16, null, 0, 1, 1);
 
@@ -57,7 +50,7 @@ class Level1 extends GameLevel
 		}
 		else
 		{
-			// Spawn at level start (original Flash position)
+			// Spawn at level start (original Flash: height - 64, but 200 works for current level)
 			player = new Player(50, 200);
 		}
 
@@ -68,8 +61,8 @@ class Level1 extends GameLevel
 		FlxG.camera.follow(player);
 
 		// Add everything to the group (render order matters - back to front!)
-		add(bgBackSprite);
-		add(bgSprite);
+		add(backbackground);
+		add(background);
 		add(foreground);
 		add(player);
 

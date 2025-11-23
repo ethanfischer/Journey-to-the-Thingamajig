@@ -44,12 +44,26 @@ Execute tasks manually, one at a time, following the plan.
 
 **Development:**
 ```bash
-lime test html5
+./build.sh
 ```
 
 **Production:**
 ```bash
 lime build html5 -final
+```
+
+### CRITICAL: Build Verification Rules
+
+After running `./build.sh`, check for "BUILD SUCCEEDED" or "BUILD FAILED" at the end of output.
+
+**Rules:**
+- NEVER use `| tail` to truncate build output
+- If you see "BUILD FAILED", read the errors and fix them before proceeding
+- Only warnings (deprecation, font warnings) are acceptable - errors are not
+
+**Filename case sensitivity:** Haxe requires filenames to match class names exactly. `class Level1` must be in `Level1.hx`, not `level1.hx`. The Write tool on Windows/WSL may lowercase filenames. After writing, verify with `ls` and fix if needed:
+```bash
+mv source/file.hx source/File_temp.hx && mv source/File_temp.hx source/File.hx
 ```
 
 ### Key Files
