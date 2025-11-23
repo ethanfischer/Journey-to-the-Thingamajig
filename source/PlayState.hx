@@ -82,10 +82,9 @@ class PlayState extends FlxState
 	{
 		super.update(elapsed);
 
-		// Collide game player against level collision objects
+		// Collide player with foreground tilemap
 		if (currentLevel != null && currentLevel.player != null)
 		{
-			// Collide player with foreground tilemap
 			if (currentLevel.foreground != null) {
 				FlxG.collide(currentLevel.foreground, currentLevel.player);
 			}

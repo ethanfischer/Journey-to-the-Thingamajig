@@ -155,11 +155,15 @@ class Player extends FlxSprite
 			return;
 		}
 
+		// Use both isTouching and wasTouching for more reliable ground detection
+		// This handles the one-frame delay in collision detection
+		var onGround = isTouching(FLOOR) || wasTouching.has(FLOOR);
+
 		if (isDucking)
 		{
 			animation.play("duck");
 		}
-		else if (!isTouching(FLOOR))
+		else if (!onGround)
 		{
 			if (velocity.y < 0)
 			{
