@@ -47,7 +47,7 @@ class Player extends FlxSprite
 	private var _deadTimer:Float = 0;
 	private var _letterTimer:Float = 0;
 	public var pickupTimer:Float = 0;
-	private var _jump:Float = 0;
+	public var _jump:Float = 0;
 
 	// Invincibility
 	private var _invincible:Bool = false;
@@ -93,7 +93,7 @@ class Player extends FlxSprite
 			animation.add("fall", [12, 13], 15, true);
 			animation.add("duck", [14], 0, false);
 			animation.add("slide", [20], 0, false);
-			animation.add("flip", [3, 4, 5, 6, 12, 12], 12, true);
+			animation.add("flip", [3, 4, 5, 6, 12, 12], 20, true); 
 			animation.add("hurt", [10], 1, true);
 			animation.add("dead", [15], 0, false);
 			animation.add("pickup", [19, 19, 19, 19, 19, 19, 19, 19, 19, 19, 19, 19], 3, false);
@@ -121,7 +121,7 @@ class Player extends FlxSprite
 			animation.add("fall", [0, 1, 2, 3, 4, 5, 6, 7, 8, 9], 32, true);
 			animation.add("duck", [11, 12], 16, true);
 			animation.add("slide", [11, 12], 16, true);
-			animation.add("flip", [14, 15, 16, 3], 12, true);
+			animation.add("flip", [14, 15, 16, 3], 20, true);
 			animation.add("hurt", [10], 0, true);
 			animation.add("dead", [17], 0, false);
 			animation.add("pickup", [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13], 16, false);
@@ -451,9 +451,21 @@ class Player extends FlxSprite
 		{
 			_jump += elapsed;
 
+			// Log jump state
+			remoteLog("JUMP: _jump=" + Std.string(_jump).substr(0, 5) + " vel.x=" + Std.int(Math.abs(velocity.x)) + " threshold=" + MAX_VELOCITY_X);
+
 			if (Math.abs(velocity.x) >= MAX_VELOCITY_X)
 			{
 				// Fast jump = flip animation with longer duration
+				// Trigger flip animation when jump held long enough (like Flash)
+				if (_jump > 0.10)
+				{
+					animation.play("flip");
+					var curAnim = animation.curAnim;
+					var frame = curAnim != null ? curAnim.curFrame : -1;
+					remoteLog("FLIP: _jump=" + _jump + " frame=" + frame + " frameIdx=" + animation.frameIndex);
+				}
+
 				if (_jump > 0.22)
 				{
 					_jump = -1;
@@ -564,6 +576,15 @@ class Player extends FlxSprite
 			return;
 		}
 
+		// Log flip animation frames when it's playing
+		if (animation.name == "flip")
+		{
+			var curAnim = animation.curAnim;
+			var frame = curAnim != null ? curAnim.curFrame : -1;
+			var numFrames = curAnim != null ? curAnim.numFrames : 0;
+			remoteLog("FLIP: frame=" + frame + "/" + numFrames + " idx=" + animation.frameIndex);
+		}
+
 		// Use both isTouching and wasTouching for more reliable ground detection
 		var onGround = isTouching(FLOOR) || wasTouching.has(FLOOR);
 
@@ -585,6 +606,9 @@ class Player extends FlxSprite
 		{
 			if (velocity.y < 0)
 			{
+				// Log jump state for debugging
+				remoteLog("JUMP_ANIM: vel.x=" + Std.int(Math.abs(velocity.x)) + " MAX=" + MAX_VELOCITY_X + " _jump=" + _jump);
+
 				// Flip animation when jumping at max speed
 				if (Math.abs(velocity.x) >= MAX_VELOCITY_X && _jump > 0.10)
 				{

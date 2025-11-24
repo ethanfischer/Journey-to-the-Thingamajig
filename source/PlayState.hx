@@ -100,7 +100,8 @@ class PlayState extends FlxState
 			var curAnim = p.animation.curAnim;
 			var frame = curAnim != null ? curAnim.curFrame : -1;
 			var frameIdx = p.animation.frameIndex;
-			debugText.text = "Anim: " + animName + " frame:" + frame + " idx:" + frameIdx + "\nvel.x: " + Std.int(p.velocity.x);
+			var jumpStr = Std.string(p._jump).substr(0, 5);
+			debugText.text = "Anim: " + animName + " frame:" + frame + " idx:" + frameIdx + "\nvel.x: " + Std.int(p.velocity.x) + " _jump:" + jumpStr;
 		}
 
 		// ESC key to return to menu
