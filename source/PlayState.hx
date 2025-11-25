@@ -150,7 +150,7 @@ class PlayState extends FlxState
 		if (player.velocity.y > 0 && player.y + player.height < bot.y + bot.height / 2)
 		{
 			bot.kill();
-			player.velocity.y = -150; // Bounce
+			player.velocity.y = -310; // Bounce (Flash used 310)
 			FlxG.sound.play(AssetPaths.BOT_KILL_SFX);
 		}
 		else

@@ -40,6 +40,9 @@ class Level1 extends GameLevel
 		width = Std.int(foreground.width);
 		height = Std.int(foreground.height);
 
+		// Set Registry.map for bot edge detection
+		Registry.map = foreground;
+
 		// Set level exit point (coordinates from Flash version)
 		Registry.levelExit = FlxPoint.get(99 * 16, 16 * 16);
 

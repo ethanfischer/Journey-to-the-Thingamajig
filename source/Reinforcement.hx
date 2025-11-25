@@ -12,19 +12,17 @@ class Reinforcement extends FlxSprite
 	{
 		super(x, y);
 
-		// Load graphic - use checkpoint as placeholder if reinforcement.png doesn't exist
-		if (openfl.Assets.exists(AssetPaths.REINFORCEMENT))
-		{
-			loadGraphic(AssetPaths.REINFORCEMENT, true, 16, 16);
-		}
-		else
-		{
-			makeGraphic(16, 16, 0xFFFFFF00); // Yellow placeholder
-		}
+		// Load the reinforcement sprite (16x16 frames)
+		loadGraphic(AssetPaths.REINFORCEMENT, true, 16, 16);
 
-		// Simple bob animation
-		animation.add("idle", [0], 0, false);
+		// Flash animations:
+		// idle: [1,2,3,4,5,6,7,7] at 9 fps
+		// explode: [8,9,10,11,11,...] at 10 fps
+		animation.add("idle", [1, 2, 3, 4, 5, 6, 7, 7], 9, true);
+		animation.add("explode", [8, 9, 10, 11], 10, false);
 		animation.play("idle");
+
+		immovable = true;
 	}
 
 	public function collect():Void
