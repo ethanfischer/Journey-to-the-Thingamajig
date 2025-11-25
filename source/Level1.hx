@@ -2,6 +2,7 @@ package;
 
 import flixel.FlxG;
 import flixel.FlxObject;
+import flixel.group.FlxGroup;
 import flixel.tile.FlxTilemap;
 import flixel.math.FlxPoint;
 import flixel.util.FlxColor;
@@ -56,6 +57,36 @@ class Level1 extends GameLevel
 
 		Registry.player = player;
 
+		// Initialize entity groups
+		bots = new Bots();
+		rocks = new Rocks();
+		checkpoints = new FlxGroup();
+		reinforcements = new Reinforcements();
+
+		// Parse and spawn bots
+		parseEntityCSV(AssetPaths.L1_BOTS_CSV, function(col, row, tile) {
+			var facing = (tile == 2) ? 0x0001 : 0x0010; // LEFT : RIGHT
+			var suicidal = (tile == 3);
+			bots.addBot(col, row, facing, suicidal);
+		});
+
+		// Parse and spawn rocks
+		parseEntityCSV(AssetPaths.L1_ROCKS_CSV, function(col, row, tile) {
+			rocks.addRock(col, row);
+		});
+
+		// Parse and spawn checkpoints
+		parseEntityCSV(AssetPaths.L1_CHECKPOINT_CSV, function(col, row, tile) {
+			var isEnd = (tile == 3);
+			var cp = new Checkpoint(col, row, isEnd);
+			checkpoints.add(cp);
+		});
+
+		// Parse and spawn reinforcements
+		parseEntityCSV(AssetPaths.L1_REINFORCEMENTS_CSV, function(col, row, tile) {
+			reinforcements.addReinforcement(col, row);
+		});
+
 		// Camera follows player within level bounds
 		FlxG.camera.setScrollBoundsRect(0, 0, width, height);
 		FlxG.camera.follow(player);
@@ -64,6 +95,10 @@ class Level1 extends GameLevel
 		add(backbackground);
 		add(background);
 		add(foreground);
+		add(checkpoints);
+		add(reinforcements);
+		add(rocks);
+		add(bots);
 		add(player);
 
 		// Background color (sky blue behind the forest)
@@ -93,6 +128,29 @@ class Level1 extends GameLevel
 		{
 			player.die();
 			// TODO: Respawn or death menu
+		}
+	}
+
+	/**
+	 * Parse CSV and call callback for each non-zero tile
+	 */
+	private function parseEntityCSV(csvPath:String, callback:(Int, Int, Int) -> Void):Void
+	{
+		var csvData = openfl.Assets.getText(csvPath);
+		if (csvData == null) return;
+
+		var lines = csvData.split("\n");
+		for (row in 0...lines.length)
+		{
+			var cols = lines[row].split(",");
+			for (col in 0...cols.length)
+			{
+				var tile = Std.parseInt(cols[col]);
+				if (tile != null && tile > 0)
+				{
+					callback(col, row, tile);
+				}
+			}
 		}
 	}
 }
