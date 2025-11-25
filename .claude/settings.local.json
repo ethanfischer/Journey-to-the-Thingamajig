@@ -16,7 +16,9 @@
       "Bash(/tmp/flash-level1.as)",
       "Bash(/tmp/flash-playstate.as)",
       "Bash(git fetch:*)",
-      "Bash(/mnt/c/Users/ethan/Repos/Journey-to-the-Thingamajig/assets/reinforcement.png)"
+      "Bash(/mnt/c/Users/ethan/Repos/Journey-to-the-Thingamajig/assets/reinforcement.png)",
+      "Bash(sed:*)",
+      "Bash(assets/hitbox.png)"
     ],
     "deny": [],
     "ask": []
