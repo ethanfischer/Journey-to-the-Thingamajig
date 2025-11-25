@@ -94,6 +94,25 @@ class PlayState extends FlxState
 				FlxG.collide(currentLevel.foreground, currentLevel.player);
 			}
 
+			// Collide entities with foreground
+			if (currentLevel.bots != null) {
+				FlxG.collide(currentLevel.bots, currentLevel.foreground);
+			}
+			if (currentLevel.rocks != null) {
+				FlxG.collide(currentLevel.rocks, currentLevel.foreground);
+			}
+
+			// Player-entity overlaps
+			if (currentLevel.bots != null) {
+				FlxG.overlap(currentLevel.player, currentLevel.bots, hitBot);
+			}
+			if (currentLevel.checkpoints != null) {
+				FlxG.overlap(currentLevel.player, currentLevel.checkpoints, hitCheckpoint);
+			}
+			if (currentLevel.reinforcements != null) {
+				FlxG.overlap(currentLevel.player, currentLevel.reinforcements, hitReinforcement);
+			}
+
 			// Update debug text
 			var p = currentLevel.player;
 			var animName = p.animation.name != null ? p.animation.name : "null";
@@ -123,6 +142,52 @@ class PlayState extends FlxState
 		{
 			FlxG.switchState(new MainMenuState());
 		});
+	}
+
+	private function hitBot(player:Player, bot:Bot):Void
+	{
+		// If player falling onto bot, kill the bot
+		if (player.velocity.y > 0 && player.y + player.height < bot.y + bot.height / 2)
+		{
+			bot.kill();
+			player.velocity.y = -150; // Bounce
+			FlxG.sound.play(AssetPaths.BOT_KILL_SFX);
+		}
+		else
+		{
+			// Bot hurts player
+			// TODO: Implement player damage system
+			trace("Player hit by bot!");
+		}
+	}
+
+	private function hitCheckpoint(player:Player, checkpoint:Dynamic):Void
+	{
+		var cp:Checkpoint = cast checkpoint;
+		if (cp.isEnd)
+		{
+			// Level complete!
+			FlxG.sound.play(AssetPaths.POP_SFX);
+			cp.kill();
+			trace("Level complete - end bubble popped!");
+			// TODO: Transition to level complete state
+		}
+		else
+		{
+			// Save checkpoint
+			if (cp.popable)
+			{
+				cp.kill();
+				Registry.checkpoint = cp.getMidpoint();
+				Registry.checkpointFlag = true;
+				FlxG.sound.play(AssetPaths.POP_SFX);
+			}
+		}
+	}
+
+	private function hitReinforcement(player:Player, reinforcement:Reinforcement):Void
+	{
+		reinforcement.collect();
 	}
 
 	override public function destroy():Void
