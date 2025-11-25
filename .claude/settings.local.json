@@ -9,7 +9,14 @@
       "Bash(git commit:*)",
       "Bash(/mnt/c/Users/ethan/Repos/Journey-to-the-Thingamajig/assets/forest_tiles_l1.png)",
       "Bash(node log-server.js:*)",
-      "WebFetch(domain:github.com)"
+      "WebFetch(domain:github.com)",
+      "Skill(superpowers:using-git-worktrees)",
+      "Skill(superpowers:brainstorming)",
+      "Skill(superpowers:executing-plans)",
+      "Bash(/tmp/flash-level1.as)",
+      "Bash(/tmp/flash-playstate.as)",
+      "Bash(git fetch:*)",
+      "Bash(/mnt/c/Users/ethan/Repos/Journey-to-the-Thingamajig/assets/reinforcement.png)"
     ],
     "deny": [],
     "ask": []
