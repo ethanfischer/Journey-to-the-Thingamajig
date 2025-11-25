@@ -90,10 +90,6 @@ class Level1 extends GameLevel
 			reinforcements.addReinforcement(col, row);
 		});
 
-		// Add tutorial signs
-		var sign1 = new Sign(135, 240, "PRESS 'Z' TO JUMP");
-		add(sign1);
-
 		// Camera follows player within level bounds
 		FlxG.camera.setScrollBoundsRect(0, 0, width, height);
 		FlxG.camera.follow(player);
@@ -107,6 +103,11 @@ class Level1 extends GameLevel
 		add(rocks);
 		add(bots);
 		add(player);
+
+		// Add tutorial signs (after player so text renders on top)
+		// Flash: new Sign(135, 240, "PRESS 'Z' TO JUMP", player, 100, 240)
+		var sign1 = new Sign(135, 240, "PRESS 'Z' TO JUMP", 100, 240);
+		add(sign1);
 
 		// Background color (sky blue behind the forest)
 		FlxG.cameras.bgColor = FlxColor.fromRGB(135, 206, 235);

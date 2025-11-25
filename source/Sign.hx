@@ -1,54 +1,62 @@
 package;
 
+import flixel.group.FlxGroup;
 import flixel.FlxSprite;
 import flixel.text.FlxText;
-import flixel.FlxG;
 import flixel.util.FlxColor;
 
 /**
  * Tutorial sign that displays text when player is nearby
+ * Extends FlxGroup to contain both sprite and text (like Flash version)
  */
-class Sign extends FlxSprite
+class Sign extends FlxGroup
 {
-	public var text:FlxText;
-	private var message:String;
+	public var message:FlxText;
+	private var signSprite:FlxSprite;
+	private var signX:Float;
+	private var signY:Float;
 
-	public function new(x:Float, y:Float, message:String)
+	public function new(x:Float, y:Float, text:String, messageX:Float, messageY:Float)
 	{
-		super(x, y);
-		this.message = message;
+		super();
 
-		makeGraphic(32, 32, 0xFF8B4513); // Brown placeholder
+		signX = x;
+		signY = y;
 
-		text = new FlxText(0, 0, 150, message);
-		text.setFormat(null, 8, FlxColor.WHITE, CENTER);
-		text.setBorderStyle(OUTLINE, FlxColor.BLACK, 1);
-		text.visible = false;
-		text.scrollFactor.set(1, 1);
+		// Sign doesn't have a visible sprite in Flash - just the text
+		// We keep the sprite for position tracking but make it invisible
+		signSprite = new FlxSprite(x, y);
+		signSprite.makeGraphic(1, 1, 0x00000000); // Invisible 1x1 pixel
+		signSprite.visible = false;
+		add(signSprite);
+
+		// Create text message
+		message = new FlxText(messageX, messageY, 150, text);
+		message.setFormat(null, 8, FlxColor.WHITE, CENTER);
+		message.visible = false;
+		add(message);
 	}
 
 	override public function update(elapsed:Float):Void
 	{
 		super.update(elapsed);
 
-		// Show text when player is nearby
+		// Show text when player is nearby (Flash bounds check)
 		if (Registry.player != null)
 		{
-			var dist = Math.sqrt(Math.pow(x - Registry.player.x, 2) + Math.pow(y - Registry.player.y, 2));
-			text.visible = (dist < 64);
+			var px = Registry.player.x;
+			var py = Registry.player.y;
 
-			// Position text above sign
-			if (text.visible)
+			// Flash check: player.x > x - 34 && player.x < x + 50
+			//             player.y > y - 50 && player.y < y + 50
+			if (px > signX - 34 && px < signX + 50 && py > signY - 50 && py < signY + 50)
 			{
-				text.x = x - 59;  // Center the 150px text over 32px sign
-				text.y = y - 30;  // Above the sign
+				message.visible = true;
+			}
+			else
+			{
+				message.visible = false;
 			}
 		}
-	}
-
-	override public function draw():Void
-	{
-		super.draw();
-		text.draw();
 	}
 }

@@ -47,11 +47,20 @@ class Bot extends FlxSprite
 
 		offset.y = 0;
 		acceleration.y = 500;
-		velocity.x = 20;
 
-		// Flip sprite based on facing
-		setFacingFlip(RIGHT, false, false);
-		setFacingFlip(LEFT, true, false);
+		// Flip sprite based on facing (0x0010 = RIGHT, 0x0001 = LEFT)
+		setFacingFlip(0x0010, false, false); // RIGHT
+		setFacingFlip(0x0001, true, false);  // LEFT
+
+		// Set initial velocity based on facing direction
+		if (facing == 0x0001) // LEFT
+		{
+			velocity.x = -30;
+		}
+		else // RIGHT (0x0010)
+		{
+			velocity.x = 30;
+		}
 	}
 
 	override public function kill():Void
@@ -202,15 +211,15 @@ class Bot extends FlxSprite
 	{
 		if (!isDying && !isSuiciding)
 		{
-			if (facing == RIGHT)
+			if (facing == 0x0010) // RIGHT
 			{
-				facing = LEFT;
+				facing = 0x0001; // LEFT
 				velocity.x = -30;
 				animation.play("idleRight");
 			}
 			else
 			{
-				facing = RIGHT;
+				facing = 0x0010; // RIGHT
 				velocity.x = 30;
 				animation.play("idleLeft");
 			}
