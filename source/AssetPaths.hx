@@ -64,6 +64,10 @@ class AssetPaths
 	public static inline var L1_BACKGROUND_CSV:String = "assets/mapCSV_Level1_Background.csv";
 	public static inline var L1_BACKBACKGROUND_TILES:String = "assets/woody_back_background.png";
 	public static inline var L1_BACKBACKGROUND_CSV:String = "assets/mapCSV_Level1_Back_Background.csv";
+	public static inline var L1_BOTS_CSV:String = "assets/mapCSV_Level1_Bots.csv";
+	public static inline var L1_ROCKS_CSV:String = "assets/mapCSV_Level1_Rocks.csv";
+	public static inline var L1_CHECKPOINT_CSV:String = "assets/mapCSV_Level1_Checkpoint.csv";
+	public static inline var L1_REINFORCEMENTS_CSV:String = "assets/mapCSV_Level1_Reinforcements.csv";
 
 	// Checkpoint/Save Points
 	public static inline var CHECKPOINT:String = "assets/checkpoint.png";
@@ -78,6 +82,17 @@ class AssetPaths
 	// Obstacles
 	public static inline var ROCK:String = "map/rock.png";
 	public static inline var ROCK_BUST_SFX:String = "assets/rockBust2.mp3";
+
+	// Level 1 Audio
+	public static inline var L1_MUSIC:String = "assets/DwarfDance.mp3";
+	public static inline var BOT_KILL_SFX:String = "assets/botKillSFX2.mp3";
+	public static inline var COLLECT_SFX:String = "assets/NomNomcollect.mp3";
+
+	// NPC Audio
+	public static inline var FROG_SFX:String = "assets/frog.mp3";
+
+	// Collectibles
+	public static inline var REINFORCEMENT:String = "assets/reinforcement.png";
 
 	// Particles and Effects
 	public static inline var PARTICLE:String = "assets/particle.png";
