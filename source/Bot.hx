@@ -94,11 +94,13 @@ class Bot extends FlxSprite
 		checkSuicide();
 
 		// Check for collision with walls
-		if (isTouching(RIGHT))
+		// Note: We check wasTouching (from previous frame) because FlxG.collide
+		// happens after update(), so touching flags are set for next frame
+		if ((wasTouching.toInt() & 0x0010) != 0) // Was touching RIGHT last frame
 		{
 			turnAround();
 		}
-		if (isTouching(LEFT))
+		if ((wasTouching.toInt() & 0x0001) != 0) // Was touching LEFT last frame
 		{
 			turnAround();
 		}
