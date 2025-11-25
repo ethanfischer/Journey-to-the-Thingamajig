@@ -30,6 +30,7 @@ class GameLevel extends FlxGroup
 	public var bots:Bots;
 	public var rocks:Rocks;
 	public var checkpoints:FlxGroup;
+	public var reinforcements:Reinforcements;
 
 	// Level exit point
 	public var levelEnd:FlxPoint;
