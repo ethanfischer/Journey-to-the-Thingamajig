@@ -103,6 +103,9 @@ class Level1 extends GameLevel
 
 		// Background color (sky blue behind the forest)
 		FlxG.cameras.bgColor = FlxColor.fromRGB(135, 206, 235);
+
+		// Start level music
+		FlxG.sound.playMusic(AssetPaths.L1_MUSIC, 0.7, true);
 	}
 
 	override public function update(elapsed:Float):Void
