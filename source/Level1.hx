@@ -87,6 +87,10 @@ class Level1 extends GameLevel
 			reinforcements.addReinforcement(col, row);
 		});
 
+		// Add tutorial signs
+		var sign1 = new Sign(135, 240, "PRESS 'Z' TO JUMP");
+		add(sign1);
+
 		// Camera follows player within level bounds
 		FlxG.camera.setScrollBoundsRect(0, 0, width, height);
 		FlxG.camera.follow(player);
