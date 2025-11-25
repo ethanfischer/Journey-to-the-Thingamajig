@@ -94,6 +94,10 @@ class AssetPaths
 	// Collectibles
 	public static inline var REINFORCEMENT:String = "assets/reinforcement.png";
 
+	// Combat
+	public static inline var HITBOX:String = "assets/hitbox.png";
+	public static inline var KICK_SFX:String = "assets/kick.mp3";
+
 	// Particles and Effects
 	public static inline var PARTICLE:String = "assets/particle.png";
 	public static inline var POOF:String = "assets/poof.png";

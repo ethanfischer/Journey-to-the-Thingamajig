@@ -24,7 +24,7 @@ class Registry
 	// public static var borgs:Borgs;
 	// public static var rock:Rock;
 	// public static var level2:Level2;
-	public static var hasFlower:Bool; //= true;
+	public static var hasFlower:Bool = false; // Player acquires flower in Level 1
 	public static var hasUmbrella:Bool = false;
 	public static var meetingAdjourned:Bool; //= true;
 	//public static var musix:FlxSound;
